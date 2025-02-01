@@ -83,12 +83,24 @@ def flatten(forest):
     return (leaf for tree in forest for leaf in tree)
 
 
+def ilen(it):
+    i = 0
+    for _ in it:
+        i += 1
+    return i
+
+
+def nesting_level(e):
+    return ilen(e.iterancestors())
+
+
 class Stroke:
     def __init__(self, path: etree.Element):
         assert path.tag == SVG + 'path'
         self.path = path
 
     def _print(self, level):
+        # yield '・' * level + self.path.get(KVG + 'type')
         return ()
 
 
@@ -118,18 +130,42 @@ class Element:
                     #         or not e.get(KVG + 'element'))):
                     if len(e) == 1 and not e.get(KVG + 'element'):
                         yield from Element(e).children
-                    # elif e.get(KVG + 'part') == '1':
-                    elif e.get(KVG + 'part') is not None:
+                    elif (part := e.get(KVG + 'part')) is not None:
                         e_name = e.get(KVG + 'element')
-                        xpath = f'//svg:g[@kvg:element="{e_name}"]'
-                        if number := e.get(KVG + 'number') is not None:
-                            xpath = f'svg:g[@kvg:element="{e_name}" \
-                                        and @kvg:number={number}]'
-                        yield Element(*flatten(
-                            g_.xpath(xpath,
-                                     namespaces={'svg': SVG.strip('}{'),
-                                                 'kvg': KVG.strip('}{')})
-                            for g_ in self.g))
+                        xpath = f'//svg:g[@kvg:part \
+                                      and @kvg:element="{e_name}" \
+                                      and not(./svg:g[@kvg:element="{e_name}" \
+                                                  and @kvg:part="{part}"])]'
+                        # print(xpath)
+                        if (number := e.get(KVG + 'number')) is not None:
+                            xpath = f'//svg:g[@kvg:part \
+                                          and @kvg:element="{e_name}" \
+                                          and @kvg:number={number} \
+                                          and not(./svg:g[@kvg:element="{e_name}" \
+                                                      and @kvg:part="{part}"])]'
+                        es_ = self.g.xpath(xpath,
+                                           namespaces={'svg': SVG.strip('}{'),
+                                                       'kvg': KVG.strip('}{')})
+                        # print([e.attrib for e in es_])
+                        es = []
+                        passed = False
+                        for e_ in es_:
+                            if (not es or e_.get(KVG + 'part') <=
+                                    es[-1].get(KVG + 'part')):
+                                if passed:
+                                    break
+                                es = []
+                            es.append(e_)
+                            if e == e_:
+                                passed = True
+                        topmost_es = [
+                            e for e in es
+                            if nesting_level(e) == min(map(nesting_level, es))]
+                        if e == min(topmost_es,
+                                    key=lambda e: int(e.get(KVG + 'part'))):
+                            yield Element(*es)
+                        else:
+                            yield from Element(e).children
                     elif e.get(KVG + 'part') is not None:
                         pass
                     else:
