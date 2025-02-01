@@ -1,3 +1,4 @@
+import sys
 from pprint import pprint
 from pathlib import Path
 from collections import defaultdict
@@ -10,10 +11,139 @@ SVG = '{http://www.w3.org/2000/svg}'
 KVG = '{http://kanjivg.tagaini.net}'
 
 
-files = list(Path('kanjivg/kanji').glob('?????.svg'))  # ignore variants
+files = list(Path('kanjivg/kanji').glob(sys.argv[1] + '.svg'))
 
 bare_elements = defaultdict(set)
 decomposition = defaultdict(set)
+
+
+def unnamed(_index=[0]):
+    _index[0] += 1
+    return f'<unnamed element #{_index[0]}>'
+
+
+class Unnamed:
+    # TODO is this necessary
+    index = 0
+
+    def __new__(cls, *args, **kwargs):
+        cls.index += 1
+        return super().__new__(*args, **kwargs)
+
+    def __init__(self):
+        self.index = self.index
+
+    # this is just so that all unnamed elements don't become one element
+    def __eq__(self, other):
+        return self is other
+
+    def __hash__(self):
+        return id(self)
+
+    def __repr__(self):
+        return f'<unnamed element {self.index}>'
+
+
+class AgreeingAttributes:
+    def __init__(self, stuff):
+        self._anything = stuff[0]
+        self._stuff = stuff[1:]
+
+    def __getattr__(self, name):
+        try:
+            attr = getattr(self._anything, name)
+        except AttributeError:
+            s = object()
+            # TODO make a new exception class instead of using assert
+            assert all(getattr(thing, name, s) == s for thing in self._stuff)
+            raise
+        if callable(attr):
+            def agreeing_method(*args, **kwargs):
+                ret = attr(*args, **kwargs)
+                assert all(
+                    getattr(thing, name)(*args, **kwargs) == ret
+                    for thing in self._stuff)
+                return ret
+
+            return agreeing_method
+        assert all(
+            getattr(thing, name) == attr
+            for thing in self._stuff)
+        return attr
+
+    def __iter__(self):
+        yield self._anything
+        yield from self._stuff
+
+    def __len__(self):
+        return 1 + len(self._stuff)
+
+
+def flatten(forest):
+    return (leaf for tree in forest for leaf in tree)
+
+
+class Stroke:
+    def __init__(self, path: etree.Element):
+        assert path.tag == SVG + 'path'
+        self.path = path
+
+    def _print(self, level):
+        return ()
+
+
+class Element:
+    def __init__(self, *g: etree.Element):
+        self.g = AgreeingAttributes(g)
+        assert self.g.tag == SVG + 'g'
+        if len(self.g) > 1:
+            for i, g in enumerate(self.g):
+                assert g.get(KVG + 'part') == str(i + 1)
+
+    @property
+    def name(self):
+        # can't use get(key, fallback) here because we don't want the
+        # index to increase when the element has a name
+        return self.g.get(KVG + 'element') or unnamed()
+
+    @property
+    def children(self):
+        for g in self.g:
+            for e in g:
+                if e.tag == SVG + 'path':
+                    yield Stroke(e)
+                elif e.tag == SVG + 'g':
+                    # if (len(e) == 1 and (
+                    #         e.get(KVG + 'radical') not in {None, 'general', 'tradit'}
+                    #         or not e.get(KVG + 'element'))):
+                    if len(e) == 1 and not e.get(KVG + 'element'):
+                        yield from Element(e).children
+                    # elif e.get(KVG + 'part') == '1':
+                    elif e.get(KVG + 'part') is not None:
+                        e_name = e.get(KVG + 'element')
+                        xpath = f'//svg:g[@kvg:element="{e_name}"]'
+                        if number := e.get(KVG + 'number') is not None:
+                            xpath = f'svg:g[@kvg:element="{e_name}" \
+                                        and @kvg:number={number}]'
+                        yield Element(*flatten(
+                            g_.xpath(xpath,
+                                     namespaces={'svg': SVG.strip('}{'),
+                                                 'kvg': KVG.strip('}{')})
+                            for g_ in self.g))
+                    elif e.get(KVG + 'part') is not None:
+                        pass
+                    else:
+                        yield Element(e)
+                else:
+                    raise Exception
+
+    def _print(self, level):
+        yield '・' * level + self.name
+        for c in self.children:
+            yield from c._print(level + 1)
+
+    def __str__(self):
+        return '\n'.join(self._print(0)) + '\n'
 
 
 # we're referring to the kanji element here, as kanjivg defines it. that
@@ -43,14 +173,20 @@ def handle_element(parent_element: str, *gs: etree.Element):
 
 
 for file in files:
-    # print(file)
+    print(file.stem)
     root = etree.parse(file).getroot()
     # g = root.xpath("//svg:g[@id and starts-with(@id, 'kvg:StrokePaths_07e4d')]",
     #                namespaces={'svg': 'http://www.w3.org/2000/svg'})
     g = root.xpath(f"//svg:g[@id='kvg:{file.stem}']",
                    namespaces={'svg': SVG.strip('}{')})
-    handle_element(False, *g)
+    # handle_element(False, *g)
+    e = Element(*g)
+    print(e)
+    print()
 
 # print(len(bare_elements))
 # pprint(dict(bare_elements))
-pprint({k: v for k, v in bare_elements.items() if len(v) > 10})
+# for k, v in bare_elements.items():
+#     if len(v) > 10:
+#         print(k, '\t', ''.join(x for x in v if x))
+# pprint({k: v for k, v in bare_elements.items() if len(v) > 10})
