@@ -82,14 +82,42 @@ def _eq_zip(a, b):
     return all(x == y for x, y in zip_longest(a, b, fillvalue=object()))
 
 
-class Stroke:
+class StrokeOrElement:
+    @property
+    def _equiv(self):
+        # we do a little caching
+        try:
+            equiv = type(self)._EQUIV
+        except AttributeError:
+            equiv = type(self)._EQUIV = {
+                t: equiv_cls[0]
+                for equiv_cls in self.EQUIVALENT
+                for t in equiv_cls}
+
+        try:
+            return equiv[self.name]
+        except KeyError:
+            return self.name
+
+    def __hash__(self):
+        return hash(self._hash())
+
+
+class Stroke(StrokeOrElement):
+    EQUIVALENT = [
+        ('㇐', '㇀'),
+        ('㇏', '㇔'),
+        ('㇑', '㇕', '㇙'),
+        ('㇆', '㇖'),
+    ]
+
     def __init__(self, path: etree.Element, kanji):
         self.kanji = kanji
         assert path.tag == SVG + 'path'
         self.path = path
 
     @property
-    def type(self):
+    def name(self):
         t = self.path.get(KVG + 'type')
         if t is not None:
             t = t[0]
@@ -98,32 +126,67 @@ class Stroke:
     def _hash(self):
         return '-'
 
-    def __hash__(self):
-        return hash(self._hash())
-
     def __eq__(self, other):
         return isinstance(other, Stroke) \
-            and _eq_or_missing(self.type, other.type)
+            and _eq_or_missing(self._equiv, other._equiv)
 
     def _print(self, level):
-        yield '・' * level + (self.type or '')
+        # yield '・' * level + (self.name or '')
+        yield '・' * level + (str(self._equiv) or '')
         # return ()
 
 
-class Element:
-    FAKE_ELEMENTS = {
-        #'丿',
-        #'丨',
+class Element(StrokeOrElement):
+    FAKE = {
+        '丿', '丨', '丶', '一', None, '倠', '𦍒',
     }
 
-    def __init__(self, *g: etree.Element, kanji=None, faux=False):
-        if not faux:
-            assert kanji is not None
+    FINAL = {
+        '立', '龰', '龶', '長', '里', '己', '貝', '豆', '衣', '血', '虫', '艹',
+        '廿', '大', '糸', '白', '王', '氵', '小', '土', '糸', '禾', '王', '正',
+    }
+
+    DOES_NOT_CONTAIN = {
+        '𢦏': {'土', '㇐'},
+        '𡗗': {'大'},
+        '𠔉': {'大'},
+        '𠂤': {'㠯'},
+        '竜': {'龍'},
+        '鼡': {'臼'},
+        '革': {'口'},  # kinda does contain ig
+        '遂': {'八'},
+        '鐵': {'載', '裁'}
+        # '黍': {None},
+    }
+
+    NOT_PRESENT_IN_KANJI = {
+        # lazy. space is technically also not present as an element so
+        # whatever
+        '頁': '獺 懶 癩 籟 嬾 藾',
+        '頼': '獺 懶 癩 籟 嬾 藾',
+        '静': '瀞',
+        '青': '蜻 猜 靜 菁 錆 倩 瀞 睛 鯖',
+        '難': '儺 攤',  # debatable tbh, one line difference
+        '載': '鐡',
+        '贈': '囎',
+        '裁': '殱 纎',
+        '艸': '趨 皺 蒭 芻 雛 鄒',
+        '乙': '巴',
+    }
+
+    EQUIVALENT = [
+        ('四', '罒'),
+        '⻌辶',
+        '㕚叉',
+        '臼𦥑',
+        '匚匸',
+        '儿八',
+    ]
+
+    def __init__(self, *g: etree.Element, kanji=None):
         self.kanji = kanji
         self.g = AgreeingAttributes(g)
         assert self.g.tag == SVG + 'g'
-        if not faux and self is not kanji:
-            assert self.name not in self.FAKE_ELEMENTS
         if len(self.g) > 1:
             for i, g in enumerate(self.g):
                 assert g.get(KVG + 'part') == str(i + 1)
@@ -131,6 +194,9 @@ class Element:
     @property
     def name(self):
         return self.g.get(KVG + 'element')
+
+    def _does_not_contain(self, element_name):
+        return element_name in self.DOES_NOT_CONTAIN.get(self.name, [])
 
     @property
     def children(self):
@@ -145,11 +211,9 @@ class Element:
                     #         or not e.get(KVG + 'element'))):
                     e_name = e.get(KVG + 'element')
                     # 053b6, etc.
-                    if (
-                            (len(e) == 1 and (not e_name or e_name == self.name))
-                            or (e_name in self.FAKE_ELEMENTS)):
+                    if (len(e) == 1 and (not e_name or e_name == self.name)):
                         # print('recursing')
-                        yield from Element(e, kanji=self.kanji, faux=True).children
+                        yield from Element(e, kanji=self.kanji).children
                     elif e.get(KVG + 'part') is not None:
                         # the not thing is for 05de8 etc.
                         xpath = f'//svg:g[@kvg:part \
@@ -196,18 +260,38 @@ class Element:
                             yield Element(*es, kanji=self.kanji)
                         else:
                             yield from Element(e, kanji=self.kanji).children
-                    elif e.get(KVG + 'part') is not None:
-                        pass
                     else:
                         yield Element(e, kanji=self.kanji)
                 else:
                     raise Exception
 
+    def _iterate_elements(self, good_parent=None):
+        if good_parent is None:
+            good_parent = self
+
+        if self.name in self.FINAL:
+            return
+
+        for c in self.children:
+            if not isinstance(c, Element):
+                pass
+            elif ((c.name in kanji_names)
+                    and(c.name not in self.FAKE)
+                    and not good_parent._does_not_contain(c.name)
+                    # self.kanji.name == good_parent.kanji.name
+                    and self.kanji.name not in
+                    good_parent.NOT_PRESENT_IN_KANJI.get(c.name, {})):
+                yield c
+            else:
+                # we are a bad child
+                yield from c._iterate_elements(good_parent)
+
+    @property
+    def elements(self):
+        return self._iterate_elements()
+
     def _hash(self):
         return '(' + ''.join(c._hash() for c in self.children) + ')'
-
-    def __hash__(self):
-        return hash(self._hash())
 
     def __eq__(self, other):
         return isinstance(other, Element) \
@@ -215,8 +299,8 @@ class Element:
             and _eq_zip(self.children, other.children)
 
     def _print(self, level):
-        yield '－' * level + str(self.name)  # + '   ' + self._hash()
-        for c in self.children:
+        yield '・' * level + str(self.name) + str(ord(str(self.name)[0]))  # + '   ' + self._hash()
+        for c in self.elements:
             yield from c._print(level + 1)
 
     def __str__(self):
@@ -224,17 +308,19 @@ class Element:
 
 
 class Kanji(Element):
-    def __init__(self, g: etree.Element):
+    def __init__(self, g: etree.Element, file):
+        self.file = file
         return super().__init__(g, kanji=self)
 
 
 def extract_elements(e):
     if isinstance(e, Element):
         yield e
-        for c in e.children:
+        for c in e.elements:
             yield from extract_elements(c)
 
 
+kanji_names = set()
 elements = []
 
 
@@ -246,7 +332,8 @@ for file in files:
     g = root.xpath(f"//svg:g[@id='kvg:{file.stem}']",
                    namespaces={'svg': SVG.strip('}{')})
     # handle_element(False, *g)
-    e = Kanji(*g)
+    e = Kanji(*g, file=file)
+    kanji_names.add(e.name)
     elements.extend(extract_elements(e))
     # print(e)
     # print()
@@ -258,19 +345,32 @@ def group(it, key=None):
 
 def children_key(e):
     return tuple(
-        ('s', str(c.type)) if type(c) is Stroke else ('e', str(c.name))
-        for c in e.children)
+        ('s', str(c._equiv)) if type(c) is Stroke else ('e', str(c._equiv))
+        for c in e.elements)
 
 
 whoopsies = 0
 
+exceptions = {
+    '𦥑', '𢦏', '齊',
+    '鳥',  # sometimes written without the bottom 4 strokes
+    '闌',  # the line in the middle can be split in two, not an error
+    '走', '足',  # often look like 止, but ig it's semantic or whatever
+    '襄',  # this one is a mf
+}
+
 groups = group(elements, key=lambda e: e.name or unnamed())
 for g in groups:
+    if g[0].name in exceptions:
+        continue
     groups2 = group(g, key=children_key)
     if len(groups2) > 1:
         whoopsies += 1
         for g2 in groups2:
-            print(len(g2), [e.kanji.name for e in g2])
+            print(len(g2))
+            print(*[e.kanji.name for e in g2])
+            print(*[e.kanji.file for e in g2])
+            print(*[e.kanji.file.stem for e in g2], sep=', ')
             print(g2[0])
         print('############')
     # if g.count(g[0]) != len(g):
