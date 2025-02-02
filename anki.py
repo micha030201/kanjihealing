@@ -122,31 +122,39 @@ class Element:
     def children(self):
         for g in self.g:
             for e in g:
+                # print(e.attrib)
                 if e.tag == SVG + 'path':
                     yield Stroke(e)
                 elif e.tag == SVG + 'g':
                     # if (len(e) == 1 and (
                     #         e.get(KVG + 'radical') not in {None, 'general', 'tradit'}
                     #         or not e.get(KVG + 'element'))):
-                    if len(e) == 1 and not e.get(KVG + 'element'):
+                    e_name = e.get(KVG + 'element')
+                    # 053b6, etc.
+                    if len(e) == 1 and not e_name or e_name == self.name:
+                        # print('recursing')
                         yield from Element(e).children
-                    elif (part := e.get(KVG + 'part')) is not None:
-                        e_name = e.get(KVG + 'element')
+                    elif e.get(KVG + 'part') is not None:
+                        # the not thing is for 05de8 etc.
                         xpath = f'//svg:g[@kvg:part \
                                       and @kvg:element="{e_name}" \
-                                      and not(./svg:g[@kvg:element="{e_name}" \
-                                                  and @kvg:part="{part}"])]'
-                        # print(xpath)
+                                      and not(../@kvg:element="{e_name}" \
+                                          and ../@kvg:part=./@kvg:part)]'
                         if (number := e.get(KVG + 'number')) is not None:
                             xpath = f'//svg:g[@kvg:part \
                                           and @kvg:element="{e_name}" \
-                                          and @kvg:number={number} \
-                                          and not(./svg:g[@kvg:element="{e_name}" \
-                                                      and @kvg:part="{part}"])]'
+                                          and @kvg:number="{number}" \
+                                          and not(../@kvg:element="{e_name}" \
+                                              and ../@kvg:part=./@kvg:part \
+                                              and ../@kvg:number="{number}")]'
                         es_ = self.g.xpath(xpath,
                                            namespaces={'svg': SVG.strip('}{'),
                                                        'kvg': KVG.strip('}{')})
-                        # print([e.attrib for e in es_])
+                        es_ = list(es_)
+                        # print(xpath)
+                        # print('es_')
+                        # pprint([e.attrib for e in es_])
+                        # this is a workaround for 05f41 etc.
                         es = []
                         passed = False
                         for e_ in es_:
@@ -158,11 +166,17 @@ class Element:
                             es.append(e_)
                             if e == e_:
                                 passed = True
+                        # print('es')
+                        # pprint([e.attrib for e in es])
                         topmost_es = [
                             e for e in es
                             if nesting_level(e) == min(map(nesting_level, es))]
+                        # print('topmost_es')
+                        # pprint([e.attrib for e in topmost_es])
+                        # print(min(topmost_es, key=lambda e: int(e.get(KVG + 'part'))).attrib)
                         if e == min(topmost_es,
                                     key=lambda e: int(e.get(KVG + 'part'))):
+                            # print('creating multipart')
                             yield Element(*es)
                         else:
                             yield from Element(e).children
