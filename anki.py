@@ -1,4 +1,5 @@
 import sys
+from itertools import zip_longest, groupby
 from pprint import pprint
 from pathlib import Path
 from collections import defaultdict
@@ -20,28 +21,6 @@ decomposition = defaultdict(set)
 def unnamed(_index=[0]):
     _index[0] += 1
     return f'<unnamed element #{_index[0]}>'
-
-
-class Unnamed:
-    # TODO is this necessary
-    index = 0
-
-    def __new__(cls, *args, **kwargs):
-        cls.index += 1
-        return super().__new__(*args, **kwargs)
-
-    def __init__(self):
-        self.index = self.index
-
-    # this is just so that all unnamed elements don't become one element
-    def __eq__(self, other):
-        return self is other
-
-    def __hash__(self):
-        return id(self)
-
-    def __repr__(self):
-        return f'<unnamed element {self.index}>'
 
 
 class AgreeingAttributes:
@@ -91,32 +70,67 @@ def ilen(it):
 
 
 def nesting_level(e):
-    return ilen(e.iterancestors())
+    # workaround for 05883 etc.
+    return ilen(1 for a in e.iterancestors() if a.get(KVG + 'element'))
+
+
+def _eq_or_missing(a, b, sentinel=None):
+    return a is sentinel or b is sentinel or a == b
+
+
+def _eq_zip(a, b):
+    return all(x == y for x, y in zip_longest(a, b, fillvalue=object()))
 
 
 class Stroke:
-    def __init__(self, path: etree.Element):
+    def __init__(self, path: etree.Element, kanji):
+        self.kanji = kanji
         assert path.tag == SVG + 'path'
         self.path = path
 
+    @property
+    def type(self):
+        t = self.path.get(KVG + 'type')
+        if t is not None:
+            t = t[0]
+        return t
+
+    def _hash(self):
+        return '-'
+
+    def __hash__(self):
+        return hash(self._hash())
+
+    def __eq__(self, other):
+        return isinstance(other, Stroke) \
+            and _eq_or_missing(self.type, other.type)
+
     def _print(self, level):
-        # yield '・' * level + self.path.get(KVG + 'type')
-        return ()
+        yield '・' * level + (self.type or '')
+        # return ()
 
 
 class Element:
-    def __init__(self, *g: etree.Element):
+    FAKE_ELEMENTS = {
+        #'丿',
+        #'丨',
+    }
+
+    def __init__(self, *g: etree.Element, kanji=None, faux=False):
+        if not faux:
+            assert kanji is not None
+        self.kanji = kanji
         self.g = AgreeingAttributes(g)
         assert self.g.tag == SVG + 'g'
+        if not faux and self is not kanji:
+            assert self.name not in self.FAKE_ELEMENTS
         if len(self.g) > 1:
             for i, g in enumerate(self.g):
                 assert g.get(KVG + 'part') == str(i + 1)
 
     @property
     def name(self):
-        # can't use get(key, fallback) here because we don't want the
-        # index to increase when the element has a name
-        return self.g.get(KVG + 'element') or unnamed()
+        return self.g.get(KVG + 'element')
 
     @property
     def children(self):
@@ -124,16 +138,18 @@ class Element:
             for e in g:
                 # print(e.attrib)
                 if e.tag == SVG + 'path':
-                    yield Stroke(e)
+                    yield Stroke(e, kanji=self.kanji)
                 elif e.tag == SVG + 'g':
                     # if (len(e) == 1 and (
                     #         e.get(KVG + 'radical') not in {None, 'general', 'tradit'}
                     #         or not e.get(KVG + 'element'))):
                     e_name = e.get(KVG + 'element')
                     # 053b6, etc.
-                    if len(e) == 1 and not e_name or e_name == self.name:
+                    if (
+                            (len(e) == 1 and (not e_name or e_name == self.name))
+                            or (e_name in self.FAKE_ELEMENTS)):
                         # print('recursing')
-                        yield from Element(e).children
+                        yield from Element(e, kanji=self.kanji, faux=True).children
                     elif e.get(KVG + 'part') is not None:
                         # the not thing is for 05de8 etc.
                         xpath = f'//svg:g[@kvg:part \
@@ -177,18 +193,29 @@ class Element:
                         if e == min(topmost_es,
                                     key=lambda e: int(e.get(KVG + 'part'))):
                             # print('creating multipart')
-                            yield Element(*es)
+                            yield Element(*es, kanji=self.kanji)
                         else:
-                            yield from Element(e).children
+                            yield from Element(e, kanji=self.kanji).children
                     elif e.get(KVG + 'part') is not None:
                         pass
                     else:
-                        yield Element(e)
+                        yield Element(e, kanji=self.kanji)
                 else:
                     raise Exception
 
+    def _hash(self):
+        return '(' + ''.join(c._hash() for c in self.children) + ')'
+
+    def __hash__(self):
+        return hash(self._hash())
+
+    def __eq__(self, other):
+        return isinstance(other, Element) \
+            and _eq_or_missing(self.name, other.name) \
+            and _eq_zip(self.children, other.children)
+
     def _print(self, level):
-        yield '・' * level + self.name
+        yield '－' * level + str(self.name)  # + '   ' + self._hash()
         for c in self.children:
             yield from c._print(level + 1)
 
@@ -196,43 +223,63 @@ class Element:
         return '\n'.join(self._print(0)) + '\n'
 
 
-# we're referring to the kanji element here, as kanjivg defines it. that
-# it also happens to be an svg element is coincidental
-def handle_element(parent_element: str, *gs: etree.Element):
-    element = gs[0].get(KVG + 'element')
-    if element is not None:
-        decomposition[parent_element].add(element)
-    else:
-        element = parent_element
-    # print(element)
-    for g in gs:
-        for child in g:
-            if child.tag.endswith('g'):
-                if child.get(KVG + 'part') == '1':
-                    child_element = child.get(KVG + 'element')
-                    handle_element(element, *g.xpath(
-                        f'svg:g[@kvg:element="{child_element}"]',
-                        namespaces={'svg': SVG.strip('}{'),
-                                    'kvg': KVG.strip('}{')}))
-                handle_element(element, child)
-            elif child.tag.endswith('path'):
-                if element is not parent_element:
-                    bare_elements[element].add(parent_element)
-            else:
-                raise Exception(child.tag)
+class Kanji(Element):
+    def __init__(self, g: etree.Element):
+        return super().__init__(g, kanji=self)
+
+
+def extract_elements(e):
+    if isinstance(e, Element):
+        yield e
+        for c in e.children:
+            yield from extract_elements(c)
+
+
+elements = []
 
 
 for file in files:
-    print(file.stem)
+    # print(file.stem)
     root = etree.parse(file).getroot()
     # g = root.xpath("//svg:g[@id and starts-with(@id, 'kvg:StrokePaths_07e4d')]",
     #                namespaces={'svg': 'http://www.w3.org/2000/svg'})
     g = root.xpath(f"//svg:g[@id='kvg:{file.stem}']",
                    namespaces={'svg': SVG.strip('}{')})
     # handle_element(False, *g)
-    e = Element(*g)
-    print(e)
-    print()
+    e = Kanji(*g)
+    elements.extend(extract_elements(e))
+    # print(e)
+    # print()
+
+
+def group(it, key=None):
+    return [list(g) for k, g in groupby(sorted(it, key=key), key=key)]
+
+
+def children_key(e):
+    return tuple(
+        ('s', str(c.type)) if type(c) is Stroke else ('e', str(c.name))
+        for c in e.children)
+
+
+whoopsies = 0
+
+groups = group(elements, key=lambda e: e.name or unnamed())
+for g in groups:
+    groups2 = group(g, key=children_key)
+    if len(groups2) > 1:
+        whoopsies += 1
+        for g2 in groups2:
+            print(len(g2), [e.kanji.name for e in g2])
+            print(g2[0])
+        print('############')
+    # if g.count(g[0]) != len(g):
+    #     whoopsies += 1
+    #     for e in set(g):
+    #         print(e)
+    #     print('############')
+
+print(whoopsies)
 
 # print(len(bare_elements))
 # pprint(dict(bare_elements))
