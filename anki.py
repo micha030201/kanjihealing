@@ -27,7 +27,7 @@ def unnamed(_index=[0]):
 
 class AgreeingAttributes:
     def __init__(self, stuff):
-        stuff = list(stuff)
+        stuff = tuple(dict.fromkeys(stuff))
         self._anything = stuff[0]
         self._stuff = stuff[1:]
 
@@ -64,14 +64,14 @@ class AgreeingAttributes:
         return thing == self._anything or thing in self._stuff
 
     def __hash__(self):
-        return hash(frozenset(self._anything, *self._stuff))
+        return hash((self._anything, self._stuff))
 
     def __eq__(self, other):
         if not isinstance(other, AgreeingAttributes):
             raise NotImplementedError
         return (
-            {self._anything, *self._stuff} ==
-            {other._anything, *other._stuff}
+            self._anything == other._anything and
+            self._stuff == other._stuff
         )
 
 
@@ -107,12 +107,40 @@ def _eq_zip(a, b):
     return all(x == y for x, y in zip_longest(a, b, fillvalue=object()))
 
 
-class KanjiPart:
-    def __init__(self, kanji):
+class RawPart:
+    def __init__(self, gs: Iterable[etree.Element], kanji):
+        self.g = AgreeingAttributes(gs)
         self.kanji = kanji
 
+    def __hash__(self):
+        return hash(self.g)
+
+    def __eq__(self, other):
+        if not isinstance(other, RawPart):
+            raise NotImplementedError
+        return self.g == other.g
+
+    @cached_property
+    def parent(self):
+        for p in product(*(e.iterancestors(SVG + 'g') for e in self.g)):  # yes it's O(n^n)
+            potential_parent = RawElement(p, faux=True, kanji=self.kanji)
+            if potential_parent in self.kanji._elements_flattened_set:
+                potential_parent._sanity_check()
+                return potential_parent
+
+    def __repr__(self):
+        return f'<{type(self).__name__} {self.name}>'
+
+
+class LogicalPart:
+    def __init__(self, raw_part: RawPart):
+        self.raw = raw_part
+
+    def __hash__(self):
+        return hash(self._hash())
+
     @property
-    def _equiv(self):
+    def name(self):
         # we do a little caching
         try:
             equiv = type(self)._EQUIV
@@ -123,38 +151,26 @@ class KanjiPart:
                 for t in equiv_cls}
 
         try:
-            return equiv[self.name]
+            return equiv[self.raw.name]
         except KeyError:
-            return self.name
+            return self.raw.name
 
-    def __hash__(self):
-        return hash(self._hash())
+    def __str__(self):
+        return str(self.raw)
 
-    @cached_property
-    def parent(self):
-        for p in product(*self.g):  # yes it's O(n^n)
-            potential_parent_innards = AgreeingAttributes(p)
-            if potential_parent_innards in self.kanji._element_innards:
-                return self.kanji._element_innards[potential_parent_innards]
+    def __repr__(self):
+        return f'<{type(self).__name__} {self.name}>'
 
 
-class Stroke(KanjiPart):
-    EQUIVALENT = [
-        ('㇐', '㇀'),
-        ('㇏', '㇔'),
-        ('㇑', '㇕', '㇙'),
-        ('㇆', '㇖'),
-    ]
-
-    def __init__(self, path: etree.Element, *args, **kwargs):
+class RawStroke(RawPart):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        assert path.tag == SVG + 'path'
-        self.path = path
+        assert self.g.tag == SVG + 'path'
+        assert len(self.g) == 1
 
-    # for some methods in KanjiPart
     @property
-    def g(self):
-        return AgreeingAttributes([self.path])
+    def path(self):
+        return list(self.g)[0]
 
     @property
     def name(self):
@@ -163,20 +179,61 @@ class Stroke(KanjiPart):
             t = t[0]
         return t
 
+    def _print(self, level):
+        yield '　' * level + (str(self.name) or '')
+
+
+class LogicalStroke(LogicalPart):
+    EQUIVALENT = [
+        ('㇐', '㇀'),
+        ('㇏', '㇔'),
+        ('㇑', '㇕', '㇙'),
+        ('㇆', '㇖'),
+    ]
+
     def _hash(self):
         return '-'
 
     def __eq__(self, other):
-        return isinstance(other, Stroke) \
-            and _eq_or_missing(self._equiv, other._equiv)
+        if not isinstance(other, LogicalPart):
+            raise NotImplementedError
+        return _eq_or_missing(self.name, other.name)
+
+
+class RawElement(RawPart):
+    def __init__(self, *args, faux=False, **kwargs):
+        super().__init__(*args, **kwargs)
+        if not faux:
+            self._sanity_check()
+
+    def _sanity_check(self):
+        assert self.g.tag == SVG + 'g'
+        if len(self.g) > 1:
+            for i, g in enumerate(self.g):
+                assert g.get(KVG + 'part') == str(i + 1)
+
+    @property
+    def name(self):
+        return self.g.get(KVG + 'element')
+
+    @cached_property
+    def children(self):
+        return [
+            p
+            for p
+            in self.kanji._parts_flattened
+            if p.parent is not None and p.parent == self]
 
     def _print(self, level):
-        # yield '・' * level + (self.name or '')
-        yield '・' * level + (str(self._equiv) or '')
-        # return ()
+        yield '・' * level + str(self.name) + ' ' + str(ord(str(self.name)[0]))
+        for c in self.children:
+            yield from c._print(level + 1)
+
+    def __str__(self):
+        return '\n'.join(self._print(0)) + '\n'
 
 
-class Element(KanjiPart):
+class LogicalElement(LogicalPart):
     FAKE = {
         '丿', '丨', '丶', '一', None, '倠', '𦍒',
     }
@@ -217,154 +274,92 @@ class Element(KanjiPart):
     EQUIVALENT = [
         ('四', '罒'),
         '⻌辶',
-        '㕚叉',
+        '叉㕚',
         '臼𦥑',
         '匚匸',
         '儿八',
     ]
 
-    def __init__(self, gs: Iterable[etree.Element], *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.g = AgreeingAttributes(gs)
-        assert self.g.tag == SVG + 'g'
-        if len(self.g) > 1:
-            for i, g in enumerate(self.g):
-                assert g.get(KVG + 'part') == str(i + 1)
-
     @property
-    def name(self):
-        return self.g.get(KVG + 'element')
+    def kanji(self):
+        return self.raw.kanji
 
     def _does_not_contain(self, element_name):
         return element_name in self.DOES_NOT_CONTAIN.get(self.name, [])
 
-    @property
-    def children(self):
-        for g in self.g:
-            for e in g:
-                if e.tag == SVG + 'path':
-                    yield Stroke(e, kanji=self.kanji)
-                elif e.tag == SVG + 'g':
-                    # if (len(e) == 1 and (
-                    #         e.get(KVG + 'radical') not in {None, 'general', 'tradit'}
-                    #         or not e.get(KVG + 'element'))):
-                    e_name = e.get(KVG + 'element')
-                    # 053b6, etc.
-                    if (len(e) == 1 and (not e_name or e_name == self.name)):
-                        # print('recursing')
-                        yield from Element(e, kanji=self.kanji).children
-                    elif e.get(KVG + 'part') is not None:
-                        # the not thing is for 05de8 etc.
-                        xpath = f'//svg:g[@kvg:part \
-                                      and @kvg:element="{e_name}" \
-                                      and not(../@kvg:element="{e_name}" \
-                                          and ../@kvg:part=./@kvg:part)]'
-                        if (number := e.get(KVG + 'number')) is not None:
-                            xpath = f'//svg:g[@kvg:part \
-                                          and @kvg:element="{e_name}" \
-                                          and @kvg:number="{number}" \
-                                          and not(../@kvg:element="{e_name}" \
-                                              and ../@kvg:part=./@kvg:part \
-                                              and ../@kvg:number="{number}")]'
-                        es_ = self.g.xpath(xpath,
-                                           namespaces={'svg': SVG.strip('}{'),
-                                                       'kvg': KVG.strip('}{')})
-                        es_ = list(es_)
-                        # print(xpath)
-                        # print('es_')
-                        # pprint([e.attrib for e in es_])
-                        # this is a workaround for 05f41 etc.
-                        es = []
-                        passed = False
-                        for e_ in es_:
-                            if (not es or e_.get(KVG + 'part') <=
-                                    es[-1].get(KVG + 'part')):
-                                if passed:
-                                    break
-                                es = []
-                            es.append(e_)
-                            if e == e_:
-                                passed = True
-                        # print('es')
-                        # pprint([e.attrib for e in es])
-                        topmost_es = [
-                            e for e in es
-                            if nesting_level(e) == min(map(nesting_level, es))]
-                        # print('topmost_es')
-                        # pprint([e.attrib for e in topmost_es])
-                        # print(min(topmost_es, key=lambda e: int(e.get(KVG + 'part'))).attrib)
-                        if e == min(topmost_es,
-                                    key=lambda e: int(e.get(KVG + 'part'))):
-                            # print('creating multipart')
-                            yield Element(*es, kanji=self.kanji)
-                        else:
-                            yield from Element(e, kanji=self.kanji).children
-                    else:
-                        yield Element(e, kanji=self.kanji)
-                else:
-                    raise Exception
-
-    def _iterate_elements(self, good_parent=None):
+    def _iterate_children(self, good_parent=None):
         if good_parent is None:
             good_parent = self
 
         if self.name in self.FINAL:
             return
 
-        for c in self.children:
-            if not isinstance(c, Element):
-                pass
-            elif ((c.name in kanji_names)
-                    and (c.name not in self.FAKE)
-                    and not good_parent._does_not_contain(c.name)
-                    # self.kanji.name == good_parent.kanji.name
-                    and self.kanji.name not in
-                    good_parent.NOT_PRESENT_IN_KANJI.get(c.name, {})):
-                yield c
+        for c in self.raw.children:
+            if isinstance(c, RawStroke):
+                yield LogicalStroke(c)
+            elif isinstance(c, RawElement):
+                c = LogicalElement(c)
+                if ((c.name in kanji_names)  # FIXME
+                        and (c.name not in self.FAKE)
+                        and not good_parent._does_not_contain(c.name)
+                        # self.kanji.name == good_parent.kanji.name
+                        and self.kanji.name not in
+                        good_parent.NOT_PRESENT_IN_KANJI.get(c.name, {})):
+                    yield c
+                else:
+                    # we are a bad child
+                    yield from c._iterate_children(good_parent)
             else:
-                # we are a bad child
-                yield from c._iterate_elements(good_parent)
+                raise Exception
 
     @property
-    def elements(self):
-        return self._iterate_elements()
+    def children(self):
+        return self._iterate_children()
 
     def _hash(self):
         return '(' + ''.join(c._hash() for c in self.children) + ')'
 
     def __eq__(self, other):
-        return isinstance(other, Element) \
-            and _eq_or_missing(self.name, other.name) \
+        if not isinstance(other, LogicalPart):
+            raise NotImplementedError
+        return _eq_or_missing(self.name, other.name) \
             and _eq_zip(self.children, other.children)  # FIXME
 
-    def _print(self, level):
-        yield '・' * level + str(self.name) + str(ord(str(self.name)[0]))  # + '   ' + self._hash()
-        for c in self.elements:
-            yield from c._print(level + 1)
 
-    def __str__(self):
-        return '\n'.join(self._print(0)) + '\n'
+class Kanji(LogicalElement):
+    def __init__(self, filename):
+        root = etree.parse(filename).getroot()
+        g = root.xpath(f"//svg:g[@id='kvg:{filename.stem}']",
+                       namespaces={'svg': SVG.strip('}{')})
+        self.filename = filename
+        return super().__init__(RawElement(g, kanji=self))
 
-
-class Kanji(Element):
-    def __init__(self, g: etree.Element, file):
-        self.file = file
-        return super().__init__(g, kanji=self)
-
+    # optimization for RawPart.parent
     @cached_property
-    def _element_innards(self):
-        return {e.g: e for e in self._parts_flattened if isinstance(e, Stroke)}
+    def _elements_flattened_set(self):
+        return {p for p in self._parts_flattened if isinstance(p, RawElement)}
 
     @cached_property
     @autoconsume(list)
     def _parts_flattened(self):
-        for i, e in enumerate(self.g.iter()):
+        def redundant(g):  # workaround for 05de8
+            return (
+                len(g.getparent()) == 1
+                and g.get(KVG + 'part') is not None
+                and g.getparent().get(KVG + 'element') == g.get(KVG + 'element')
+                and g.getparent().get(KVG + 'part') == g.get(KVG + 'part')
+            )
+
+        for i, e in enumerate(self.raw.g.iter()):
             if e.tag == SVG + 'path':
-                yield Stroke(e, kanji=self)
-            elif e.tag == SVG + 'g' and e.get(KVG + 'part', '1') == '1':
+                yield RawStroke([e], kanji=self)
+            elif (
+                    e.tag == SVG + 'g'
+                    and e.get(KVG + 'part', '1') == '1'
+                    and not redundant(e)):
                 # p = 0
                 # yield Element(
-                #     e1 for e1 in islice(self.g.iter(), i))
+                #     e1 for e1 in islice(self.g.iter(), i, None))
                 #     if e1.get(KVG + 'element') == e.get(KVG + 'element')
                 #     and e1.get(KVG + 'number') == e.get(KVG + 'number'))
                 #     and p < (k := e1.get(KVG + 'part'))
@@ -372,39 +367,48 @@ class Kanji(Element):
 
                 # you decide which is more (less) readable lmao
 
-                yield Element(*takewhile(
-                    lambda e1: e1 == e or e.get(KVG + 'part', '1') != '1',
+                yield RawElement(takewhile(
+                    lambda e1: e1 == e or e1.get(KVG + 'part', '1') != '1',
                     filter(lambda e1: (
                         e1.get(KVG + 'element') == e.get(KVG + 'element')
-                        and e1.get(KVG + 'number') == e.get(KVG + 'number')),
-                        islice(self.g.iter(), i))  # yes it's O(n^2)
-                ))
+                        and e1.get(KVG + 'number') == e.get(KVG + 'number')
+                        and not redundant(e1)),
+                        islice(self.raw.g.iter(), i, None))  # yes it's O(n^2)
+                ), kanji=self)
 
 
 def extract_elements(e):
-    if isinstance(e, Element):
+    if isinstance(e, LogicalElement):
         yield e
-        for c in e.elements:
+        for c in e.children:
             yield from extract_elements(c)
 
 
-kanji_names = set()
+kanji_names = set()  # FIXME
+kanjis = []
 elements = []
 
 
-for file in files:
+for filename in files:
     # print(file.stem)
-    root = etree.parse(file).getroot()
     # g = root.xpath("//svg:g[@id and starts-with(@id, 'kvg:StrokePaths_07e4d')]",
     #                namespaces={'svg': 'http://www.w3.org/2000/svg'})
-    g = root.xpath(f"//svg:g[@id='kvg:{file.stem}']",
-                   namespaces={'svg': SVG.strip('}{')})
     # handle_element(False, *g)
-    e = Kanji(*g, file=file)
+    e = Kanji(filename)
+    kanjis.append(e)
     kanji_names.add(e.name)
-    elements.extend(extract_elements(e))
     # print(e)
     # print()
+
+
+for k in kanjis:
+    print(k.filename.stem)
+    # print(list(k.raw.children))
+    print(k)
+    elements.extend(extract_elements(e))
+
+
+exit()
 
 
 def group(it, key=None):
