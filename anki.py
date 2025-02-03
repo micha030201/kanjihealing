@@ -156,7 +156,7 @@ class LogicalPart:
             return self.raw.name
 
     def __str__(self):
-        return str(self.raw)
+        return '\n'.join(self._print(0)) + '\n'
 
     def __repr__(self):
         return f'<{type(self).__name__} {self.name}>'
@@ -198,6 +198,9 @@ class LogicalStroke(LogicalPart):
         if not isinstance(other, LogicalPart):
             raise NotImplementedError
         return _eq_or_missing(self.name, other.name)
+
+    def _print(self, level):
+        yield '　' * level + (str(self.name) or '')
 
 
 class RawElement(RawPart):
@@ -287,11 +290,21 @@ class LogicalElement(LogicalPart):
     def _does_not_contain(self, element_name):
         return element_name in self.DOES_NOT_CONTAIN.get(self.name, [])
 
+    @property
+    def strokes(self):
+        # using raw.children to avoid infinite recursion
+        for c in self.raw.children:
+            if isinstance(c, RawStroke):
+                yield LogicalStroke(c)
+            else:
+                yield from LogicalElement(c).strokes
+
     def _iterate_children(self, good_parent=None):
         if good_parent is None:
             good_parent = self
 
         if self.name in self.FINAL:
+            yield from self.strokes
             return
 
         for c in self.raw.children:
@@ -301,6 +314,7 @@ class LogicalElement(LogicalPart):
                 c = LogicalElement(c)
                 if ((c.name in kanji_names)  # FIXME
                         and (c.name not in self.FAKE)
+                        and c.name != good_parent.name
                         and not good_parent._does_not_contain(c.name)
                         # self.kanji.name == good_parent.kanji.name
                         and self.kanji.name not in
@@ -324,6 +338,13 @@ class LogicalElement(LogicalPart):
             raise NotImplementedError
         return _eq_or_missing(self.name, other.name) \
             and _eq_zip(self.children, other.children)  # FIXME
+
+    # you have a problem. you try to fix it with inheritance. now you
+    # have two problems.
+    def _print(self, level):
+        yield '・' * level + str(self.name) + ' ' + str(ord(str(self.name)[0]))
+        for c in self.children:
+            yield from c._print(level + 1)
 
 
 class Kanji(LogicalElement):
