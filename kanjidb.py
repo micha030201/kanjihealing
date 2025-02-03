@@ -1,9 +1,9 @@
-import sys
 from functools import cached_property
-from itertools import zip_longest, groupby, takewhile, islice, product
-from pprint import pprint
+from itertools import (  # can you tell it's my favourite module
+    zip_longest, takewhile, islice, product, chain, combinations)
+from collections import Counter
+from contextlib import suppress
 from pathlib import Path
-from collections import defaultdict
 from typing import Iterable
 
 from lxml import etree
@@ -12,17 +12,6 @@ from lxml import etree
 # fuck xml. all my homies hate xml
 SVG = '{http://www.w3.org/2000/svg}'
 KVG = '{http://kanjivg.tagaini.net}'
-
-
-files = list(Path('kanjivg/kanji').glob(sys.argv[1] + '.svg'))
-
-bare_elements = defaultdict(set)
-decomposition = defaultdict(set)
-
-
-def unnamed(_index=[0]):
-    _index[0] += 1
-    return f'<unnamed element #{_index[0]}>'
 
 
 class AgreeingAttributes:
@@ -87,24 +76,18 @@ def autoconsume(collection):
     return pred
 
 
-def ilen(it):
-    i = 0
-    for _ in it:
-        i += 1
-    return i
-
-
-def nesting_level(e):
-    # workaround for 05883 etc.
-    return ilen(1 for a in e.iterancestors() if a.get(KVG + 'element'))
-
-
 def _eq_or_missing(a, b, sentinel=None):
     return a is sentinel or b is sentinel or a == b
 
 
 def _eq_zip(a, b):
     return all(x == y for x, y in zip_longest(a, b, fillvalue=object()))
+
+
+def powerset(iterable):
+    "powerset([1,2,3]) --> (1,) (2,) (3,) (1,2) (1,3) (2,3) (1,2,3)"
+    s = list(iterable)
+    return chain.from_iterable(combinations(s, r) for r in range(1, len(s)+1))
 
 
 class RawPart:
@@ -122,11 +105,10 @@ class RawPart:
 
     @cached_property
     def parent(self):
-        for p in product(*(e.iterancestors(SVG + 'g') for e in self.g)):  # yes it's O(n^n)
-            potential_parent = RawElement(p, faux=True, kanji=self.kanji)
-            if potential_parent in self.kanji._elements_flattened_set:
-                potential_parent._sanity_check()
-                return potential_parent
+        # yes it's O(n^n)
+        for p in product(*(e.iterancestors(SVG + 'g') for e in self.g)):
+            with suppress(KeyError):
+                return self.kanji._elements_to_element[frozenset(p)]
 
     def __repr__(self):
         return f'<{type(self).__name__} {self.name}>'
@@ -143,11 +125,15 @@ class LogicalPart:
     def name(self):
         # we do a little caching
         try:
-            equiv = type(self)._EQUIV
+            equiv = type(self)._NORMALI
         except AttributeError:
-            equiv = type(self)._EQUIV = {
+            c = Counter(flatten(self.NORMALIZE))
+            if c:
+                if c.most_common(1)[0][1] > 1:
+                    raise Exception(f'Repeated in normalize: {c}')
+            equiv = type(self)._NORMALI = {
                 t: equiv_cls[0]
-                for equiv_cls in self.EQUIVALENT
+                for equiv_cls in self.NORMALIZE
                 for t in equiv_cls}
 
         try:
@@ -184,11 +170,11 @@ class RawStroke(RawPart):
 
 
 class LogicalStroke(LogicalPart):
-    EQUIVALENT = [
-        ('㇐', '㇀'),
-        ('㇏', '㇔'),
-        ('㇑', '㇕', '㇙'),
-        ('㇆', '㇖'),
+    # makes it useless
+    NORMALIZE = [
+        # ('㇐', '㇀', '㇒'),
+        # ('㇑', '㇕', '㇙', '㇏', '㇔'),
+        # ('㇆', '㇖', '㇇'),
     ]
 
     def _hash(self):
@@ -197,10 +183,11 @@ class LogicalStroke(LogicalPart):
     def __eq__(self, other):
         if not isinstance(other, LogicalPart):
             raise NotImplementedError
-        return _eq_or_missing(self.name, other.name)
+        return True
+        # return _eq_or_missing(self.name, other.name)
 
     def _print(self, level):
-        yield '　' * level + (str(self.name) or '')
+        yield '　' * level + (self.name or '')
 
 
 class RawElement(RawPart):
@@ -272,15 +259,17 @@ class LogicalElement(LogicalPart):
         '裁': '殱 纎',
         '艸': '趨 皺 蒭 芻 雛 鄒',
         '乙': '巴',
+        '齊': '韲',
     }
 
-    EQUIVALENT = [
+    NORMALIZE = [
         ('四', '罒'),
         '⻌辶',
         '叉㕚',
         '臼𦥑',
         '匚匸',
         '儿八',
+        '三彡',
     ]
 
     @property
@@ -292,6 +281,7 @@ class LogicalElement(LogicalPart):
 
     @property
     def strokes(self):
+        # FIXME
         # using raw.children to avoid infinite recursion
         for c in self.raw.children:
             if isinstance(c, RawStroke):
@@ -312,7 +302,7 @@ class LogicalElement(LogicalPart):
                 yield LogicalStroke(c)
             elif isinstance(c, RawElement):
                 c = LogicalElement(c)
-                if ((c.name in kanji_names)  # FIXME
+                if ((c.name in KANJI)
                         and (c.name not in self.FAKE)
                         and c.name != good_parent.name
                         and not good_parent._does_not_contain(c.name)
@@ -355,10 +345,16 @@ class Kanji(LogicalElement):
         self.filename = filename
         return super().__init__(RawElement(g, kanji=self))
 
-    # optimization for RawPart.parent
     @cached_property
-    def _elements_flattened_set(self):
-        return {p for p in self._parts_flattened if isinstance(p, RawElement)}
+    def _elements_to_element(self):
+        # i knew xml element vs kanji element would come to bite me in
+        # the ass. make xml wasn't so wrong with this namespace thing
+        ret = {}
+        for p in self._parts_flattened:
+            if isinstance(p, RawElement):
+                for combo in powerset(p.g):
+                    ret[frozenset(combo)] = p
+        return ret
 
     @cached_property
     @autoconsume(list)
@@ -398,85 +394,13 @@ class Kanji(LogicalElement):
                 ), kanji=self)
 
 
-def extract_elements(e):
-    if isinstance(e, LogicalElement):
-        yield e
-        for c in e.children:
-            yield from extract_elements(c)
+KANJI = {}
 
 
-kanji_names = set()  # FIXME
-kanjis = []
-elements = []
-
-
+files = list(Path('kanjivg/kanji').glob('?????.svg'))
 for filename in files:
-    # print(file.stem)
-    # g = root.xpath("//svg:g[@id and starts-with(@id, 'kvg:StrokePaths_07e4d')]",
-    #                namespaces={'svg': 'http://www.w3.org/2000/svg'})
-    # handle_element(False, *g)
-    e = Kanji(filename)
-    kanjis.append(e)
-    kanji_names.add(e.name)
-    # print(e)
-    # print()
-
-
-for k in kanjis:
-    print(k.filename.stem)
-    # print(list(k.raw.children))
-    print(k)
-    elements.extend(extract_elements(e))
-
-
-exit()
-
-
-def group(it, key=None):
-    return [list(g) for k, g in groupby(sorted(it, key=key), key=key)]
-
-
-def children_key(e):
-    return tuple(
-        ('s', str(c._equiv)) if type(c) is Stroke else ('e', str(c._equiv))
-        for c in e.elements)
-
-
-whoopsies = 0
-
-exceptions = {
-    '𦥑', '𢦏', '齊',
-    '鳥',  # sometimes written without the bottom 4 strokes
-    '闌',  # the line in the middle can be split in two, not an error
-    '走', '足',  # often look like 止, but ig it's semantic or whatever
-    '襄',  # this one is a mf
-}
-
-groups = group(elements, key=lambda e: e.name or unnamed())
-for g in groups:
-    if g[0].name in exceptions:
-        continue
-    groups2 = group(g, key=children_key)
-    if len(groups2) > 1:
-        whoopsies += 1
-        for g2 in groups2:
-            print(len(g2))
-            print(*[e.kanji.name for e in g2])
-            print(*[e.kanji.file for e in g2])
-            print(*[e.kanji.file.stem for e in g2], sep=', ')
-            print(g2[0])
-        print('############')
-    # if g.count(g[0]) != len(g):
-    #     whoopsies += 1
-    #     for e in set(g):
-    #         print(e)
-    #     print('############')
-
-print(whoopsies)
-
-# print(len(bare_elements))
-# pprint(dict(bare_elements))
-# for k, v in bare_elements.items():
-#     if len(v) > 10:
-#         print(k, '\t', ''.join(x for x in v if x))
-# pprint({k: v for k, v in bare_elements.items() if len(v) > 10})
+    k = Kanji(filename)
+    # assert k.name not in KANJI, k.name
+    # if k.name in KANJI:
+    #     print(k.name)
+    KANJI[k.name] = k
