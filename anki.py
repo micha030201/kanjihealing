@@ -1,8 +1,10 @@
 import sys
-from itertools import zip_longest, groupby
+from functools import cached_property
+from itertools import zip_longest, groupby, takewhile, islice, product
 from pprint import pprint
 from pathlib import Path
 from collections import defaultdict
+from typing import Iterable
 
 from lxml import etree
 
@@ -25,6 +27,7 @@ def unnamed(_index=[0]):
 
 class AgreeingAttributes:
     def __init__(self, stuff):
+        stuff = list(stuff)
         self._anything = stuff[0]
         self._stuff = stuff[1:]
 
@@ -57,9 +60,31 @@ class AgreeingAttributes:
     def __len__(self):
         return 1 + len(self._stuff)
 
+    def __contains__(self, thing):
+        return thing == self._anything or thing in self._stuff
+
+    def __hash__(self):
+        return hash(frozenset(self._anything, *self._stuff))
+
+    def __eq__(self, other):
+        if not isinstance(other, AgreeingAttributes):
+            raise NotImplementedError
+        return (
+            {self._anything, *self._stuff} ==
+            {other._anything, *other._stuff}
+        )
+
 
 def flatten(forest):
     return (leaf for tree in forest for leaf in tree)
+
+
+def autoconsume(collection):
+    def pred(generator_function):
+        def function_returning_list(*args, **kwargs):
+            return collection(generator_function(*args, **kwargs))
+        return function_returning_list
+    return pred
 
 
 def ilen(it):
@@ -82,7 +107,10 @@ def _eq_zip(a, b):
     return all(x == y for x, y in zip_longest(a, b, fillvalue=object()))
 
 
-class StrokeOrElement:
+class KanjiPart:
+    def __init__(self, kanji):
+        self.kanji = kanji
+
     @property
     def _equiv(self):
         # we do a little caching
@@ -102,8 +130,15 @@ class StrokeOrElement:
     def __hash__(self):
         return hash(self._hash())
 
+    @cached_property
+    def parent(self):
+        for p in product(*self.g):  # yes it's O(n^n)
+            potential_parent_innards = AgreeingAttributes(p)
+            if potential_parent_innards in self.kanji._element_innards:
+                return self.kanji._element_innards[potential_parent_innards]
 
-class Stroke(StrokeOrElement):
+
+class Stroke(KanjiPart):
     EQUIVALENT = [
         ('㇐', '㇀'),
         ('㇏', '㇔'),
@@ -111,10 +146,15 @@ class Stroke(StrokeOrElement):
         ('㇆', '㇖'),
     ]
 
-    def __init__(self, path: etree.Element, kanji):
-        self.kanji = kanji
+    def __init__(self, path: etree.Element, *args, **kwargs):
+        super().__init__(*args, **kwargs)
         assert path.tag == SVG + 'path'
         self.path = path
+
+    # for some methods in KanjiPart
+    @property
+    def g(self):
+        return AgreeingAttributes([self.path])
 
     @property
     def name(self):
@@ -136,7 +176,7 @@ class Stroke(StrokeOrElement):
         # return ()
 
 
-class Element(StrokeOrElement):
+class Element(KanjiPart):
     FAKE = {
         '丿', '丨', '丶', '一', None, '倠', '𦍒',
     }
@@ -183,9 +223,9 @@ class Element(StrokeOrElement):
         '儿八',
     ]
 
-    def __init__(self, *g: etree.Element, kanji=None):
-        self.kanji = kanji
-        self.g = AgreeingAttributes(g)
+    def __init__(self, gs: Iterable[etree.Element], *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.g = AgreeingAttributes(gs)
         assert self.g.tag == SVG + 'g'
         if len(self.g) > 1:
             for i, g in enumerate(self.g):
@@ -202,7 +242,6 @@ class Element(StrokeOrElement):
     def children(self):
         for g in self.g:
             for e in g:
-                # print(e.attrib)
                 if e.tag == SVG + 'path':
                     yield Stroke(e, kanji=self.kanji)
                 elif e.tag == SVG + 'g':
@@ -276,7 +315,7 @@ class Element(StrokeOrElement):
             if not isinstance(c, Element):
                 pass
             elif ((c.name in kanji_names)
-                    and(c.name not in self.FAKE)
+                    and (c.name not in self.FAKE)
                     and not good_parent._does_not_contain(c.name)
                     # self.kanji.name == good_parent.kanji.name
                     and self.kanji.name not in
@@ -296,7 +335,7 @@ class Element(StrokeOrElement):
     def __eq__(self, other):
         return isinstance(other, Element) \
             and _eq_or_missing(self.name, other.name) \
-            and _eq_zip(self.children, other.children)
+            and _eq_zip(self.children, other.children)  # FIXME
 
     def _print(self, level):
         yield '・' * level + str(self.name) + str(ord(str(self.name)[0]))  # + '   ' + self._hash()
@@ -311,6 +350,35 @@ class Kanji(Element):
     def __init__(self, g: etree.Element, file):
         self.file = file
         return super().__init__(g, kanji=self)
+
+    @cached_property
+    def _element_innards(self):
+        return {e.g: e for e in self._parts_flattened if isinstance(e, Stroke)}
+
+    @cached_property
+    @autoconsume(list)
+    def _parts_flattened(self):
+        for i, e in enumerate(self.g.iter()):
+            if e.tag == SVG + 'path':
+                yield Stroke(e, kanji=self)
+            elif e.tag == SVG + 'g' and e.get(KVG + 'part', '1') == '1':
+                # p = 0
+                # yield Element(
+                #     e1 for e1 in islice(self.g.iter(), i))
+                #     if e1.get(KVG + 'element') == e.get(KVG + 'element')
+                #     and e1.get(KVG + 'number') == e.get(KVG + 'number'))
+                #     and p < (k := e1.get(KVG + 'part'))
+                #     and (p := max(k, p)))
+
+                # you decide which is more (less) readable lmao
+
+                yield Element(*takewhile(
+                    lambda e1: e1 == e or e.get(KVG + 'part', '1') != '1',
+                    filter(lambda e1: (
+                        e1.get(KVG + 'element') == e.get(KVG + 'element')
+                        and e1.get(KVG + 'number') == e.get(KVG + 'number')),
+                        islice(self.g.iter(), i))  # yes it's O(n^2)
+                ))
 
 
 def extract_elements(e):
