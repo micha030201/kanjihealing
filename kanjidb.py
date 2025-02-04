@@ -1,8 +1,7 @@
 from functools import cached_property
 from itertools import (  # can you tell it's my favourite module
-    zip_longest, takewhile, islice, product, chain, combinations)
+    zip_longest, takewhile, islice, chain, combinations)
 from collections import Counter
-from contextlib import suppress
 from pathlib import Path
 from typing import Iterable
 
@@ -17,6 +16,7 @@ KVG = '{http://kanjivg.tagaini.net}'
 class AgreeingAttributes:
     def __init__(self, stuff):
         stuff = tuple(dict.fromkeys(stuff))
+        assert all(isinstance(thing, etree._Element) for thing in stuff)
         self._anything = stuff[0]
         self._stuff = stuff[1:]
 
@@ -103,13 +103,6 @@ class RawPart:
             raise NotImplementedError
         return self.g == other.g
 
-    @cached_property
-    def parent(self):
-        # yes it's O(n^n)
-        for p in product(*(e.iterancestors(SVG + 'g') for e in self.g)):
-            with suppress(KeyError):
-                return self.kanji._elements_to_element[frozenset(p)]
-
     def __repr__(self):
         return f'<{type(self).__name__} {self.name}>'
 
@@ -165,6 +158,13 @@ class RawStroke(RawPart):
             t = t[0]
         return t
 
+    def __contains__(self, other):
+        if isinstance(other, RawStroke):
+            return other == self
+        if isinstance(other, RawElement):
+            return False
+        raise NotImplementedError
+
     def _print(self, level):
         yield '　' * level + (str(self.name) or '')
 
@@ -187,7 +187,8 @@ class LogicalStroke(LogicalPart):
         # return _eq_or_missing(self.name, other.name)
 
     def _print(self, level):
-        yield '　' * level + (self.name or '')
+        return ()
+        # yield '　' * level + (self.name or '')
 
 
 class RawElement(RawPart):
@@ -207,12 +208,42 @@ class RawElement(RawPart):
         return self.g.get(KVG + 'element')
 
     @cached_property
+    @autoconsume(tuple)
+    def strokes(self):
+        for s in self.kanji._parts_flattened:
+            if type(s) is not RawStroke:
+                continue
+            for a in s.g.iterancestors(SVG + 'g'):  # yes it's O(n^2)
+                if a in self.g:
+                    yield s
+                    break  # this is an optimization technically
+
+    # optimization
+    @cached_property
+    def _strokes_set(self):
+        return frozenset(self.strokes)
+
+    def __contains__(self, other):
+        if isinstance(other, RawStroke):
+            return other in self._strokes_set
+        if isinstance(other, RawElement):
+            if other._strokes_set == self._strokes_set:
+                return (
+                    self.kanji._parts_flattened.index(self) <
+                    self.kanji._parts_flattened.index(other)
+                )
+            return other._strokes_set < self._strokes_set
+        raise NotImplementedError
+
+    def _filtered_children(self, pred=lambda _: True):
+        parts = [p for p in self.kanji._parts_flattened
+                 if p != self and p in self and pred(p)]
+        return [p for p in parts
+                if not any((p != p1 and p in p1) for p1 in parts)]  # O(n^2)
+
+    @cached_property
     def children(self):
-        return [
-            p
-            for p
-            in self.kanji._parts_flattened
-            if p.parent is not None and p.parent == self]
+        return self._filtered_children()
 
     def _print(self, level):
         yield '・' * level + str(self.name) + ' ' + str(ord(str(self.name)[0]))
@@ -231,6 +262,9 @@ class LogicalElement(LogicalPart):
     FINAL = {
         '立', '龰', '龶', '長', '里', '己', '貝', '豆', '衣', '血', '虫', '艹',
         '廿', '大', '糸', '白', '王', '氵', '小', '土', '糸', '禾', '王', '正',
+        '而', '羊', '缶', '米', '百', '疋', '电', '甲', '由', '田', '生', '日',
+        '手', '四', '厶',
+        '羲',  # XXX
     }
 
     DOES_NOT_CONTAIN = {
@@ -242,7 +276,8 @@ class LogicalElement(LogicalPart):
         '鼡': {'臼'},
         '革': {'口'},  # kinda does contain ig
         '遂': {'八'},
-        '鐵': {'載', '裁'}
+        '鐵': {'載', '裁'},
+        '肅': {'聿'}
         # '黍': {None},
     }
 
@@ -260,16 +295,24 @@ class LogicalElement(LogicalPart):
         '艸': '趨 皺 蒭 芻 雛 鄒',
         '乙': '巴',
         '齊': '韲',
+        '闌': '蘭',  # it's a variant
+        '遂': '燧邃隧',
+        '肖': '哨 屑 逍 鮹 峭 悄 趙 稍 霄 銷 蛸',  # TODO fix files
     }
 
     NORMALIZE = [
         ('四', '罒'),
-        '⻌辶',
+        '⻌辶',  # unfortunately, it's often not disassembled  like this
         '叉㕚',
         '臼𦥑',
         '匚匸',
         '儿八',
         '三彡',
+        '羊⺷',
+        '示礻',
+        '母毋',
+        '手扌',
+        # '束柬'
     ]
 
     @property
@@ -281,44 +324,33 @@ class LogicalElement(LogicalPart):
 
     @property
     def strokes(self):
-        # FIXME
-        # using raw.children to avoid infinite recursion
-        for c in self.raw.children:
-            if isinstance(c, RawStroke):
-                yield LogicalStroke(c)
-            else:
-                yield from LogicalElement(c).strokes
+        return [LogicalStroke(s) for s in self.raw.strokes]
 
-    def _iterate_children(self, good_parent=None):
-        if good_parent is None:
-            good_parent = self
-
+    @cached_property
+    @autoconsume(tuple)
+    def children(self):
         if self.name in self.FINAL:
             yield from self.strokes
             return
 
-        for c in self.raw.children:
+        def f(c):
+            c = LogicalElement(c)  # just for name normalization
+            return (
+                True
+                # and (c.name in KANJI)
+                and (c.name not in self.FAKE)
+                and c.name != self.name
+                and not self._does_not_contain(c.name)
+                # self.kanji.name == good_parent.kanji.name
+                and self.kanji.name not in
+                self.NOT_PRESENT_IN_KANJI.get(c.name, {})
+            )
+
+        for c in self.raw._filtered_children(f):
             if isinstance(c, RawStroke):
                 yield LogicalStroke(c)
             elif isinstance(c, RawElement):
-                c = LogicalElement(c)
-                if ((c.name in KANJI)
-                        and (c.name not in self.FAKE)
-                        and c.name != good_parent.name
-                        and not good_parent._does_not_contain(c.name)
-                        # self.kanji.name == good_parent.kanji.name
-                        and self.kanji.name not in
-                        good_parent.NOT_PRESENT_IN_KANJI.get(c.name, {})):
-                    yield c
-                else:
-                    # we are a bad child
-                    yield from c._iterate_children(good_parent)
-            else:
-                raise Exception
-
-    @property
-    def children(self):
-        return self._iterate_children()
+                yield LogicalElement(c)
 
     def _hash(self):
         return '(' + ''.join(c._hash() for c in self.children) + ')'
@@ -357,7 +389,7 @@ class Kanji(LogicalElement):
         return ret
 
     @cached_property
-    @autoconsume(list)
+    @autoconsume(tuple)
     def _parts_flattened(self):
         def redundant(g):  # workaround for 05de8
             return (
@@ -403,4 +435,4 @@ for filename in files:
     # assert k.name not in KANJI, k.name
     # if k.name in KANJI:
     #     print(k.name)
-    KANJI[k.name] = k
+    KANJI[k.raw.name] = k
