@@ -108,7 +108,8 @@ class RawPart:
 
 
 class LogicalPart:
-    def __init__(self, raw_part: RawPart):
+    def __init__(self, raw_part: RawPart, alias=None):
+        self.alias = alias
         self.raw = raw_part
 
     def __hash__(self):
@@ -116,6 +117,9 @@ class LogicalPart:
 
     @property
     def name(self):
+        if self.alias is not None:
+            return self.alias
+
         # we do a little caching
         try:
             equiv = type(self)._NORMALI
@@ -256,14 +260,20 @@ class RawElement(RawPart):
 
 class LogicalElement(LogicalPart):
     FAKE = {
-        '丿', '丨', '丶', '一', None, '倠', '𦍒',
+        '丿', '丨', '丶', '一', None, '倠', '𦍒', '㐫', '昷', '雁', '𠔉', '吋',
+        '𠫯', '厽', 'CDP-8CB8', '曷', '舄', '寍', '堇',
     }
 
     FINAL = {
         '立', '龰', '龶', '長', '里', '己', '貝', '豆', '衣', '血', '虫', '艹',
         '廿', '大', '糸', '白', '王', '氵', '小', '土', '糸', '禾', '王', '正',
         '而', '羊', '缶', '米', '百', '疋', '电', '甲', '由', '田', '生', '日',
-        '手', '四', '厶',
+        '手', '四', '厶', '玉', '東', '束', '果', '示', '禸', '玄', '氺', '毎',
+        '文', '攵', '彑', '弟', '廾', '广', '幺', '并', '巨', '工', '屮', '尚',
+        '尓', '壬', '士', '咼', '申', '友', '卩', '半', '升', '卅', '千', '前',
+        '冫', '冊', '円', '内', '共', '入', '免', '先', '兀', '儿', '令', '互',
+        '予', '了', '之', '主', '串', '丰', '並', '业', '七', '言', '止', '止',
+        '子', '叉', '勹', '关', '全',
         '羲',  # XXX
     }
 
@@ -277,8 +287,14 @@ class LogicalElement(LogicalPart):
         '革': {'口'},  # kinda does contain ig
         '遂': {'八'},
         '鐵': {'載', '裁'},
-        '肅': {'聿'}
+        '肅': {'聿'},
+        '章': {'音'},
         # '黍': {None},
+        '眞': '具',
+        '烏': '鳥',
+        '攴': '攵',
+        '包': '巳',
+        '匃': '匕',
     }
 
     NOT_PRESENT_IN_KANJI = {
@@ -298,6 +314,35 @@ class LogicalElement(LogicalPart):
         '闌': '蘭',  # it's a variant
         '遂': '燧邃隧',
         '肖': '哨 屑 逍 鮹 峭 悄 趙 稍 霄 銷 蛸',  # TODO fix files
+        '林': '瀝 癧 轣 櫪 靂',  # ig it's a variant but fuck it
+        '林': '瀝 癧 轣 櫪 靂',
+        '真': '癲 巓',
+        '十': '癲巓',
+        '皀': '梍',
+        '朕': '謄',
+        '月': '冑',
+        '儿': '曽',
+        '匕': '曷 藹 臈',
+        '人': '掲 謁 靄 渇 褐 喝 吶 衲 靹 銓 蚋 訥',
+        '斉': '斎',
+        '戔': '賎',
+        '廾': '纂 簒',
+        '巽': '饌',
+        '奚': '鶏 渓',
+        '夾': '侠 頬',
+        '叟': '痩 捜',
+        '劵': '藤',
+        '䍃': '謡 瑶 揺 遥',
+        '顛': '癲 巓',
+        '戊': '戊 幾 譏 饑 機 磯',  # caused by our normalization
+    }
+
+    ALIASED = {
+        # 'A': {'B', 'C'}
+        # when element named B is an element named A's child, alias it to C
+        # i'm conflicted on this. the shape is like in 由, but the stroke order
+        # is like in 用
+        '専': {'用': '由'},
     }
 
     NORMALIZE = [
@@ -312,6 +357,9 @@ class LogicalElement(LogicalPart):
         '示礻',
         '母毋',
         '手扌',
+        '小 ⺌',
+        '戊戍戌',
+        '黒黑',
         # '束柬'
     ]
 
@@ -324,17 +372,23 @@ class LogicalElement(LogicalPart):
 
     @property
     def strokes(self):
-        return [LogicalStroke(s) for s in self.raw.strokes]
+        return tuple(LogicalStroke(s) for s in self.raw.strokes)
 
     @cached_property
-    @autoconsume(tuple)
     def children(self):
         if self.name in self.FINAL:
-            yield from self.strokes
-            return
+            return self.strokes
+
+        def make_logical(c):
+            alias = self.ALIASED.get(self.name, {}).get(c.name)
+            if isinstance(c, RawStroke):
+                return LogicalStroke(c, alias=alias)
+            if isinstance(c, RawElement):
+                return LogicalElement(c, alias=alias)
+            raise Exception
 
         def f(c):
-            c = LogicalElement(c)  # just for name normalization
+            c = make_logical(c)  # just for name normalization
             return (
                 True
                 # and (c.name in KANJI)
@@ -346,11 +400,7 @@ class LogicalElement(LogicalPart):
                 self.NOT_PRESENT_IN_KANJI.get(c.name, {})
             )
 
-        for c in self.raw._filtered_children(f):
-            if isinstance(c, RawStroke):
-                yield LogicalStroke(c)
-            elif isinstance(c, RawElement):
-                yield LogicalElement(c)
+        return tuple(make_logical(c) for c in self.raw._filtered_children(f))
 
     def _hash(self):
         return '(' + ''.join(c._hash() for c in self.children) + ')'

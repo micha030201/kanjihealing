@@ -57,6 +57,10 @@ exceptions = {
     '闌',  # the line in the middle can be split in two, not an error
     '走', '足',  # often look like 止, but ig it's semantic or whatever
     # '襄',  # this one is a mf
+    '長',  # sometimes contains ム
+    '益',  # used only in variant form
+    '歴',  # sometimes tree has top stroke
+    '呉', '匡', '亞', '菫', '算', '謁', '巻',
 }
 
 groups = group(elements, key=lambda e: e.name or unnamed())
