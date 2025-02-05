@@ -54,13 +54,18 @@ exceptions = {
     '𢦏',  # can't decide if it's 十 or 土
     # '齊',
     '鳥',  # sometimes written without the bottom 4 strokes
-    '闌',  # the line in the middle can be split in two, not an error
+    # '闌',  # the line in the middle can be split in two, not an error
     '走', '足',  # often look like 止, but ig it's semantic or whatever
     # '襄',  # this one is a mf
-    '長',  # sometimes contains ム
+    # '長',  # sometimes contains ム
     '益',  # used only in variant form
     '歴',  # sometimes tree has top stroke
-    '呉', '匡', '亞', '菫', '算', '謁', '巻',
+    '呉',  # the bottom part is ocassionally an 大
+    '亞',  # the top is 冖 in 壺
+    '菫',  # the top is 艹 in 菫 勤 but 廿 in 懃
+    # '謁',  # has 匂 in 謁 but 匃 in 靄 藹
+    '曷',  # has 匂 in 掲 謁 渇 褐 喝 but 曷 in 竭 鞨 碣 蝎 曷 靄 藹 羯 偈 蠍 歇 臈 遏 葛
+    '堇',  # has 艹 in 謹 but 廿 in 槿 饉 瑾 覲 XXX also has 口 in 謹 but nowhere else
 }
 
 groups = group(elements, key=lambda e: e.name or unnamed())

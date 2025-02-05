@@ -260,8 +260,7 @@ class RawElement(RawPart):
 
 class LogicalElement(LogicalPart):
     FAKE = {
-        '丿', '丨', '丶', '一', None, '倠', '𦍒', '㐫', '昷', '雁', '𠔉', '吋',
-        '𠫯', '厽', 'CDP-8CB8', '曷', '舄', '寍', '堇',
+        '丿', '丨', '丶', '一', None, '倠', '𦍒', '㐫', '𠔉', '𠫯', 'CDP-8CB8',
     }
 
     FINAL = {
@@ -274,7 +273,7 @@ class LogicalElement(LogicalPart):
         '冫', '冊', '円', '内', '共', '入', '免', '先', '兀', '儿', '令', '互',
         '予', '了', '之', '主', '串', '丰', '並', '业', '七', '言', '止', '止',
         '子', '叉', '勹', '关', '全',
-        '羲',  # XXX
+        # '羲',  # XXX
     }
 
     DOES_NOT_CONTAIN = {
@@ -295,6 +294,9 @@ class LogicalElement(LogicalPart):
         '攴': '攵',
         '包': '巳',
         '匃': '匕',
+        '算': '大',  # 大 vs 廾
+        '捲': '巻', # the top two strokes and the bottom element are different
+        '薀': '温',
     }
 
     NOT_PRESENT_IN_KANJI = {
@@ -323,10 +325,9 @@ class LogicalElement(LogicalPart):
         '月': '冑',
         '儿': '曽',
         '匕': '曷 藹 臈',
-        '人': '掲 謁 靄 渇 褐 喝 吶 衲 靹 銓 蚋 訥',
+        '人': '掲 謁 渇 褐 喝 吶 衲 靹 銓 蚋 訥',
         '斉': '斎',
         '戔': '賎',
-        '廾': '纂 簒',
         '巽': '饌',
         '奚': '鶏 渓',
         '夾': '侠 頬',
