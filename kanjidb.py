@@ -184,6 +184,9 @@ class LogicalStroke(LogicalPart):
     def _hash(self):
         return '-'
 
+    def __hash__(self):
+        return hash(self._hash())
+
     def __eq__(self, other):
         if not isinstance(other, LogicalPart):
             raise NotImplementedError
@@ -392,7 +395,7 @@ class LogicalElement(LogicalPart):
             c = make_logical(c)  # just for name normalization
             return (
                 True
-                # and (c.name in KANJI)
+                and (c.name in KANJI)
                 and (c.name not in self.FAKE)
                 and c.name != self.name
                 and not self._does_not_contain(c.name)
@@ -406,11 +409,14 @@ class LogicalElement(LogicalPart):
     def _hash(self):
         return '(' + ''.join(c._hash() for c in self.children) + ')'
 
+    def __hash__(self):
+        return hash(self._hash())
+
     def __eq__(self, other):
         if not isinstance(other, LogicalPart):
             raise NotImplementedError
         return _eq_or_missing(self.name, other.name) \
-            and _eq_zip(self.children, other.children)  # FIXME
+            and _eq_zip(self.children, other.children)
 
     # you have a problem. you try to fix it with inheritance. now you
     # have two problems.
