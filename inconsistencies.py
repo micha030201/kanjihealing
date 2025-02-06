@@ -30,6 +30,17 @@ def group(it, key=None):
     return [list(g) for k, g in groupby(sorted(it, key=key), key=key)]
 
 
+_norm = {
+    # logically different, but for the purposes of our comparison can be
+    # ignored
+    '辶': '⻌',
+}
+
+
+def normalize(name):
+    return _norm.get(name, name)
+
+
 def children_key(e):
     # return tuple(
     #     ('s', str(c.name)) if type(c) is LogicalStroke else ('e', str(c.name))
@@ -42,7 +53,7 @@ def children_key(e):
     #     for c in e.children
     #     if type(c) is LogicalElement)
     return sorted(tuple(
-        str(c.name)
+        normalize(str(c.name))
         for c in e.children
         if type(c) is LogicalElement))
 
@@ -50,7 +61,6 @@ def children_key(e):
 whoopsies = 0
 
 exceptions = {
-    # '𦥑',
     '𢦏',  # can't decide if it's 十 or 土
     # '齊',
     '鳥',  # sometimes written without the bottom 4 strokes
