@@ -1,6 +1,6 @@
 from functools import cached_property
 from itertools import (  # can you tell it's my favourite module
-    zip_longest, takewhile, islice, chain, combinations)
+    zip_longest, takewhile, islice, chain, combinations, groupby)
 from collections import Counter
 from pathlib import Path
 from typing import Iterable
@@ -108,13 +108,6 @@ class RawPart:
 
 
 class LogicalPart:
-    def __init__(self, raw_part: RawPart, alias=None):
-        self.alias = alias
-        self.raw = raw_part
-
-    def __hash__(self):
-        return hash(self._hash())
-
     @property
     def name(self):
         if self.alias is not None:
@@ -145,6 +138,42 @@ class LogicalPart:
         return f'<{type(self).__name__} {self.name}>'
 
 
+class ExistingLogicalPart(LogicalPart):
+    def __init__(self, raw_part: RawPart, alias=None):
+        self.alias = alias
+        self.raw = raw_part
+
+
+class LogicalElement(LogicalPart):
+    def _hash(self):
+        return '(' + ''.join(c._hash() for c in self.children) + ')'
+
+    def __hash__(self):
+        return hash(self._hash())
+
+    def __eq__(self, other):
+        if not isinstance(other, LogicalPart):
+            raise NotImplementedError
+        return _eq_or_missing(self.name, other.name) \
+            and _eq_zip(self.children, other.children)
+
+    def _print(self, level):
+        yield '・' * level + str(self.name) + ' ' + str(ord(str(self.name)[0]))
+        for c in self.children:
+            yield from c._print(level + 1)
+
+
+class NewLogicalElement(LogicalPart):
+    def __init__(self, alias, strokes, kanji):
+        self.strokes = tuple(strokes)
+        self.alias = alias
+        self.kanji = kanji
+
+    @property
+    def children(self):
+        return self.strokes
+
+
 class RawStroke(RawPart):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
@@ -173,7 +202,7 @@ class RawStroke(RawPart):
         yield '　' * level + (str(self.name) or '')
 
 
-class LogicalStroke(LogicalPart):
+class LogicalStroke(ExistingLogicalPart):
     # makes it useless
     NORMALIZE = [
         # ('㇐', '㇀', '㇒'),
@@ -261,100 +290,47 @@ class RawElement(RawPart):
         return '\n'.join(self._print(0)) + '\n'
 
 
-class LogicalElement(LogicalPart):
+class ElementSpec:
+    def __init__(self, name, *,
+                 stroke_count=None,
+                 elements=None,
+                 strokes_to_elements=None):
+        assert (
+            stroke_count is not None
+            + elements is not None
+            + strokes_to_elements is not None) == 1
+        # stroke_count is used when it's a leaf element
+        # elements should be a list containing ints and ElementSpecs, to
+        # indicate errant strokes and sub-elements
+        # strokes_to_elements should be a dict of int to None or
+        # ElementSpec, for the cases where elements overlap
+
+
+class E:
+    def __init__(self, *elem_names):
+        self.elem_names = elem_names
+
+
+class R:
+    def __init__(self, elem_name, variant=0):
+        self.elem_name = elem_name
+        self.variant = variant
+
+
+class ExistingLogicalElement(LogicalElement, ExistingLogicalPart):
     COMPOSITION = {
-        '日': {},
+        '齧': [
+            '三刀齒',
+            '彡刀齒'
+        ],
+        '囓': R('齧', 1)
+    }
+
+    FINAL = {  # FIXME
     }
 
     FAKE = {
         '丿', '丨', '丶', '一', None, '倠', '𦍒', '㐫', '𠔉', '𠫯', 'CDP-8CB8',
-    }
-
-    FINAL = {
-        # '立',
-        # '龶',
-        # '長', '衣',
-        # '里',
-        # '己',
-        # '貝',
-        # '豆',
-        # '血',
-        # '虫',
-        # '艹', '廿',
-        # '大',
-        # '糸',
-        # '王',
-        # '小',
-        # '土',
-        # '糸',
-        # '禾',
-        # '王',
-        # '而',
-        # '羊',
-        # '缶',
-        # '米',
-        # '百',
-        # '疋',
-        # '田', '电', '甲', '由',
-        # '生',
-        # '日', '白',
-        # '手',
-        # '四',
-        # '厶',
-        # '玉',
-        # '東', '束',
-        # '果',
-        # '示',
-        # '玄',
-        # '氺',
-        # '毎',
-        # '文',
-        # '攵',
-        # '彑',
-        # '弟',
-        # '廾',
-        # '广',
-        # '幺',
-        # '并',
-        # '巨',
-        # '工',
-        # '屮',
-        # '尚',
-        # '尓',
-        # '士',
-        # '咼',
-        # '申',
-        # '友',
-        # '半',
-        # '升',
-        # '卅',
-        # '千', '壬',
-        # '前',
-        # '冫', '氵',
-        # '冊',
-        # '勹', '卩', '円', '内', '禸',
-        # '共',
-        # '入',
-        # '先', '免',
-        # '儿', '兀',
-        # '令',
-        # '互',
-        # '了', '予', '子',
-        # '之',
-        # '主',
-        # '串',
-        # '丰',
-        # '业', '並',
-        # '七',
-        # '言',
-        # '止', '龰', '正',
-        # '叉',
-        # '关',
-        # '全',
-    }
-
-    VARIANTS = {
-        '': '',
     }
 
     DOES_NOT_CONTAIN = {
@@ -376,7 +352,7 @@ class LogicalElement(LogicalPart):
         '包': '巳',
         '匃': '匕',
         '算': '大',  # 大 vs 廾
-        '捲': '巻', # the top two strokes and the bottom element are different
+        '捲': '巻',  # the top two strokes and the bottom element are different
         '薀': '温',
     }
 
@@ -428,21 +404,21 @@ class LogicalElement(LogicalPart):
     }
 
     NORMALIZE = [
-        ('四', '罒'),
-        # '⻌辶',  # unfortunately, it's often not disassembled  like this
-        # '叉㕚',
-        '臼𦥑',
-        '匚匸',  # i think it's always written like that
-        '儿八',
-        '三彡',
-        '羊⺷',
-        '示礻',
-        # '母毋',
-        '手扌',
-        '小 ⺌',
-        '戍戌',
-        # '黒黑',
-        # '束柬'
+        # ('四', '罒'),
+        # # '⻌辶',  # unfortunately, it's often not disassembled  like this
+        # # '叉㕚',
+        # # '臼𦥑',
+        # '匸匚',  # i think it's always written like that
+        # '儿八',
+        # '三彡',
+        # # '羊⺷',
+        # '示礻',
+        # # '母毋',
+        # '手扌',
+        # '小 ⺌',
+        # '戍戌',
+        # # '黒黑',
+        # # '束柬'
     ]
 
     @property
@@ -456,10 +432,24 @@ class LogicalElement(LogicalPart):
     def strokes(self):
         return tuple(LogicalStroke(s) for s in self.raw.strokes)
 
+    _composition_data_checked = False
+
     @cached_property
     def children(self):
-        if self.name in self.FINAL:
-            return self.strokes
+        if not self._composition_data_checked:
+            ...  # TODO
+
+        def decompose(name):
+            try:
+                c = self.COMPOSITION[name]
+            except KeyError:
+                yield from CONSISTENT_COMPOSITION[name]
+            else:
+                if isinstance(c, list):
+                    yield from decompose(c[0])
+
+        if self.name in self.COMPOSITION:
+            ...
 
         def make_logical(c):
             alias = self.ALIASED.get(self.name, {}).get(c.name)
@@ -483,25 +473,6 @@ class LogicalElement(LogicalPart):
             )
 
         return tuple(make_logical(c) for c in self.raw._filtered_children(f))
-
-    def _hash(self):
-        return '(' + ''.join(c._hash() for c in self.children) + ')'
-
-    def __hash__(self):
-        return hash(self._hash())
-
-    def __eq__(self, other):
-        if not isinstance(other, LogicalPart):
-            raise NotImplementedError
-        return _eq_or_missing(self.name, other.name) \
-            and _eq_zip(self.children, other.children)
-
-    # you have a problem. you try to fix it with inheritance. now you
-    # have two problems.
-    def _print(self, level):
-        yield '・' * level + str(self.name) + ' ' + str(ord(str(self.name)[0]))
-        for c in self.children:
-            yield from c._print(level + 1)
 
 
 class Kanji(LogicalElement):
@@ -561,13 +532,55 @@ class Kanji(LogicalElement):
                 ), kanji=self)
 
 
+def extract_elements(e):
+    if isinstance(e, RawElement):
+        yield e
+        for c in e.children:
+            yield from extract_elements(c)
+
+
 KANJI = {}
+CONSISTENT_COMPOSITION = {}
 
 
-files = list(Path('kanjivg/kanji').glob('?????.svg'))
-for filename in files:
+for filename in Path('kanjivg/kanji').glob('?????.svg'):
     k = Kanji(filename)
-    # assert k.name not in KANJI, k.name
-    # if k.name in KANJI:
-    #     print(k.name)
     KANJI[k.raw.name] = k
+
+
+elements = []
+
+for k in KANJI.values():
+    elements.extend(extract_elements(k.raw))
+
+
+def group(it, key=None):
+    return [list(g) for k, g in groupby(sorted(it, key=key), key=key)]
+
+
+def unnamed(_index=[0]):
+    _index[0] += 1
+    return f'<unnamed element #{_index[0]}>'
+
+
+def children_key(e):
+    # return tuple(
+    #     ('s', str(c.name)) if type(c) is LogicalStroke else ('e', str(c.name))
+    #     for c in e.children)
+    return tuple(
+        ('s',) if type(c) is RawStroke else ('e', str(c.name))
+        for c in e.children)
+    # return tuple(
+    #     str(c.name)
+    #     for c in e.children
+    #     if type(c) is LogicalElement)
+    # return sorted([
+    #     str(c.name)
+    #     for c in e.children
+    #     if type(c) is LogicalElement])
+
+
+for g in group(elements, key=lambda e: e.name or unnamed()):
+    if group(g, key=children_key) == 1:
+        # g[any]
+        CONSISTENT_COMPOSITION[g[0].name] = g[0]

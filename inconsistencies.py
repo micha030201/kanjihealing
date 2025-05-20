@@ -1,6 +1,6 @@
 from itertools import groupby
 
-from kanjidb import KANJI, LogicalElement, LogicalStroke
+from kanjidb import KANJI, LogicalElement
 
 
 def unnamed(_index=[0]):
@@ -12,7 +12,6 @@ def extract_elements(e):
     if isinstance(e, LogicalElement):
         yield e
         for c in e.children:
-            #print(e.raw, c.raw)
             yield from extract_elements(c)
 
 
