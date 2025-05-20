@@ -401,7 +401,12 @@ class Kanji(LogicalElement):
                 ), kanji=self)
 
 
-import specinfo
+KANJI = {}
+
+
+for filename in Path('kanjivg/kanji').glob('?????.svg'):
+    k = Kanji(filename)
+    KANJI[k.raw.name] = k
 
 
 def extract_elements(e):
@@ -409,14 +414,6 @@ def extract_elements(e):
         yield e
         for c in e.children:
             yield from extract_elements(c)
-
-
-KANJI = {}
-
-
-for filename in Path('kanjivg/kanji').glob('?????.svg'):
-    k = Kanji(filename)
-    KANJI[k.raw.name] = k
 
 
 raw_elements = []
@@ -435,21 +432,41 @@ def unnamed(_index=[0]):
 
 
 def children_key(e):
+    # TODO we need to skip some children here. elements like 䍃 are not
+    # useful -- they don't have meaning and also differ between kanji (揺 vs 徭)
+
+    # maybe decide usefulness by the number of kanji it's present in?
     return tuple(
         ('s',) if type(c) is RawStroke else ('e', str(c.name))
         for c in e.children)
 
 
-inconsistent = {}
+import specinfo
+specinfo.spec(ElementSpec)
+
+
+raw_element_parents = {}
+
+
+def extract_elements_with_parent(e, p):
+    if isinstance(e, RawElement):
+        raw_element_parents[e] = p
+        for c in e.children:
+            extract_elements_with_parent(c, e)
+
+
+for k in KANJI.values():
+    extract_elements_with_parent(k.raw, k.raw)
 
 for g in group(raw_elements, key=lambda e: e.name or unnamed()):
     decomposed_identically = group(g, key=children_key)
-    if len(decomposed_identically) == 1:
-        # g[any]
-        elem = g[0]
+    # g[any]
+    elem = g[0]
 
-        if elem.name is None:
-            continue
+    specced_elem_names = {n.name for n in ElementSpec._DATA}
+    if elem.name is None or elem.name in specced_elem_names:
+        continue
+    if len(decomposed_identically) == 1:
 
         errant_strokes = tuple(c for c in elem.children if isinstance(c, RawStroke))
         errant_stroke_idxs = tuple(elem.strokes.index(s) + 1 for s in errant_strokes)
@@ -459,23 +476,19 @@ for g in group(raw_elements, key=lambda e: e.name or unnamed()):
             tuple(elem.strokes.index(s) + 1 for s in e.strokes): ElementSpec(e.name)
             for e in elements
         }
-        # print(elem.name, errant_stroke_idxs, strokes_to_elements)
 
-        if ElementSpec(elem.name) not in ElementSpec._DATA:  # FIXME
-            ElementSpec(elem.name).by_strokes_to_elements(
-                strokes_to_elements, errant_stroke_idxs)
-            # print(f'assuming decomposition {g[0]} for {g[0].name}')
+        ElementSpec(elem.name).by_strokes_to_elements(
+            strokes_to_elements, errant_stroke_idxs)
+        # print(f'assuming decomposition {g[0]} for {g[0].name}')
     else:
-        inconsistent[g[0].name] = decomposed_identically
-        # print(f'inconsistent decomposition: {g[0].name}')
-        # for sg in decomposed_identically:
-        #     print(f'variant {children_key(sg[0])}')
-        #     print('in kanji', ' '.join(e.kanji.spec.name for e in sg))
-        #     print(sg[0])
+        print(f'inconsistent decomposition: {g[0].name}')
+        for sg in decomposed_identically:
+            print(f'variant {children_key(sg[0])}')
+            # TODO write parent decomposition? to speed up the process
+            same_parent = group(sg, key=lambda e: raw_element_parents[e].name or '<unnamed>')
+            print('with parents', ' '.join((raw_element_parents[ssg[0]].name or '<unnamed>') + '(' + ' '.join(e.kanji.spec.name for e in ssg) + ')' for ssg in same_parent))
+            print(sg[0])
+        break
 
-# print(f'inconsistensies: {inconsistent}')
-
-#for k, v in inconsistent.items():
-#    for g in v:
-#        for k in g:
-#            print(k.kanji.elements)
+# TODO this is not the end -- we need to validate that we can correctly
+# decompose every kanji, we could (will) have stroke mismatch
