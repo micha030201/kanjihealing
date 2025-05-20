@@ -90,6 +90,10 @@ def powerset(iterable):
     return chain.from_iterable(combinations(s, r) for r in range(1, len(s)+1))
 
 
+def multiindex(collection, idxs):
+    return tuple(collection[i - 1] for i in idxs)
+
+
 class RawPart:
     def __init__(self, gs: Iterable[etree.Element], kanji):
         self.g = AgreeingAttributes(gs)
@@ -105,73 +109,6 @@ class RawPart:
 
     def __repr__(self):
         return f'<{type(self).__name__} {self.name}>'
-
-
-class LogicalPart:
-    @property
-    def name(self):
-        if self.alias is not None:
-            return self.alias
-
-        # we do a little caching
-        try:
-            equiv = type(self)._NORMALI
-        except AttributeError:
-            c = Counter(flatten(self.NORMALIZE))
-            if c:
-                if c.most_common(1)[0][1] > 1:
-                    raise Exception(f'Repeated in normalize: {c}')
-            equiv = type(self)._NORMALI = {
-                t: equiv_cls[0]
-                for equiv_cls in self.NORMALIZE
-                for t in equiv_cls}
-
-        try:
-            return equiv[self.raw.name]
-        except KeyError:
-            return self.raw.name
-
-    def __str__(self):
-        return '\n'.join(self._print(0)) + '\n'
-
-    def __repr__(self):
-        return f'<{type(self).__name__} {self.name}>'
-
-
-class ExistingLogicalPart(LogicalPart):
-    def __init__(self, raw_part: RawPart, alias=None):
-        self.alias = alias
-        self.raw = raw_part
-
-
-class LogicalElement(LogicalPart):
-    def _hash(self):
-        return '(' + ''.join(c._hash() for c in self.children) + ')'
-
-    def __hash__(self):
-        return hash(self._hash())
-
-    def __eq__(self, other):
-        if not isinstance(other, LogicalPart):
-            raise NotImplementedError
-        return _eq_or_missing(self.name, other.name) \
-            and _eq_zip(self.children, other.children)
-
-    def _print(self, level):
-        yield '・' * level + str(self.name) + ' ' + str(ord(str(self.name)[0]))
-        for c in self.children:
-            yield from c._print(level + 1)
-
-
-class NewLogicalElement(LogicalPart):
-    def __init__(self, alias, strokes, kanji):
-        self.strokes = tuple(strokes)
-        self.alias = alias
-        self.kanji = kanji
-
-    @property
-    def children(self):
-        return self.strokes
 
 
 class RawStroke(RawPart):
@@ -202,38 +139,9 @@ class RawStroke(RawPart):
         yield '　' * level + (str(self.name) or '')
 
 
-class LogicalStroke(ExistingLogicalPart):
-    # makes it useless
-    NORMALIZE = [
-        # ('㇐', '㇀', '㇒'),
-        # ('㇑', '㇕', '㇙', '㇏', '㇔'),
-        # ('㇆', '㇖', '㇇'),
-    ]
-
-    def _hash(self):
-        return '-'
-
-    def __hash__(self):
-        return hash(self._hash())
-
-    def __eq__(self, other):
-        if not isinstance(other, LogicalPart):
-            raise NotImplementedError
-        return True
-        # return _eq_or_missing(self.name, other.name)
-
-    def _print(self, level):
-        return ()
-        # yield '　' * level + (self.name or '')
-
-
 class RawElement(RawPart):
-    def __init__(self, *args, faux=False, **kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        if not faux:
-            self._sanity_check()
-
-    def _sanity_check(self):
         assert self.g.tag == SVG + 'g'
         if len(self.g) > 1:
             for i, g in enumerate(self.g):
@@ -290,189 +198,159 @@ class RawElement(RawPart):
         return '\n'.join(self._print(0)) + '\n'
 
 
-class ElementSpec:
-    def __init__(self, name, *,
-                 stroke_count=None,
-                 elements=None,
-                 strokes_to_elements=None):
+class _StrokesToElements:
+    def __init__(self, strokes_to_elements, errant_strokes):
         assert (
-            stroke_count is not None
-            + elements is not None
-            + strokes_to_elements is not None) == 1
-        # stroke_count is used when it's a leaf element
-        # elements should be a list containing ints and ElementSpecs, to
+            isinstance(errant_strokes, tuple)
+            and all(isinstance(x, int) for x in errant_strokes)
+        )
+        self.errant_strokes = errant_strokes
+
+        elements = []
+        for k, v in strokes_to_elements.items():
+            if isinstance(k, int):
+                k = (k,)
+            assert isinstance(k, tuple) and all(isinstance(x, int) for x in k)
+            assert isinstance(v, ElementSpec)
+            elements.append((v, k))
+        self.elements = tuple(elements)
+
+        counted_strokes = tuple(chain(
+            chain.from_iterable(s for e, s in self.elements),
+            self.errant_strokes
+        ))
+        assert (
+            min(counted_strokes) == 1 and
+            all(x in counted_strokes for x in range(1, max(counted_strokes)))
+        )
+        # it could be that len(counted_strokes) != max(counted_strokes)
+        self.stroke_count = max(counted_strokes)
+
+
+class ElementSpec:
+    _DATA = {}
+
+    def __init__(self, name, variation=None):
+        self.name = name
+        self.variation = variation
+
+    def __eq__(self, other):
+        if not isinstance(other, ElementSpec):
+            raise NotImplementedError
+        return (
+            self.name == other.name
+            and self.variation == other.variation
+        )
+
+    def __hash__(self):
+        return hash((self.name, self.variation))
+
+    def __repr__(self):
+        return f'<ElementSpec name={self.name} variation={self.variation}>'
+
+    # Specification:
+
+    def by_stroke_count(self, stroke_count):
+        # used when it's a leaf element
+        assert self not in self._DATA
+        self._DATA[self] = [stroke_count]
+
+    def by_elements(self, *elements):
+        # should be a list containing ints and ElementSpecs, to
         # indicate errant strokes and sub-elements
-        # strokes_to_elements should be a dict of int to None or
-        # ElementSpec, for the cases where elements overlap
 
+        # this is a bit annoying because it doesn't allow us to always
+        # know the stroke count of an ElementSpec on the specification
+        # stage, because some of the sub-elements may have not yet been
+        # specified. we will ensure the stroke count matches when
+        # parsing
+        assert self not in self._DATA
+        elements = tuple(
+            ElementSpec(s) if isinstance(s, str) else s
+            for s in elements)
+        assert all(isinstance(e, ElementSpec) or isinstance(e, int)
+                   for e in elements)
+        self._DATA[self] = elements
 
-class E:
-    def __init__(self, *elem_names):
-        self.elem_names = elem_names
+    def by_strokes_to_elements(self, strokes_to_elements, errant_strokes=()):
+        # for the cases where elements overlap
+        assert self not in self._DATA
+        strokes_to_elements = {k: ElementSpec(v) if isinstance(v, str) else v
+                               for k, v in strokes_to_elements.items()}
+        self._DATA[self] = _StrokesToElements(strokes_to_elements, errant_strokes)
 
+    # Parsing:
 
-class R:
-    def __init__(self, elem_name, variant=0):
-        self.elem_name = elem_name
-        self.variant = variant
-
-
-class ExistingLogicalElement(LogicalElement, ExistingLogicalPart):
-    COMPOSITION = {
-        '齧': [
-            '三刀齒',
-            '彡刀齒'
-        ],
-        '囓': R('齧', 1)
-    }
-
-    FINAL = {  # FIXME
-    }
-
-    FAKE = {
-        '丿', '丨', '丶', '一', None, '倠', '𦍒', '㐫', '𠔉', '𠫯', 'CDP-8CB8',
-    }
-
-    DOES_NOT_CONTAIN = {
-        '𢦏': {'土', '㇐'},
-        '𡗗': {'大'},
-        '𠔉': {'大'},
-        '𠂤': {'㠯'},
-        '竜': {'龍'},
-        '鼡': {'臼'},
-        '革': {'口'},  # kinda does contain ig
-        '遂': {'八'},
-        '鐵': {'載', '裁'},
-        '肅': {'聿'},
-        '章': {'音'},
-        # '黍': {None},
-        '眞': '具',
-        '烏': '鳥',
-        '攴': '攵',
-        '包': '巳',
-        '匃': '匕',
-        '算': '大',  # 大 vs 廾
-        '捲': '巻',  # the top two strokes and the bottom element are different
-        '薀': '温',
-    }
-
-    NOT_PRESENT_IN_KANJI = {
-        # lazy. space is technically also not present as an element so
-        # whatever
-        '頁': '獺 懶 癩 籟 嬾 藾',
-        '頼': '獺 懶 癩 籟 嬾 藾',
-        '静': '瀞',
-        '青': '蜻 猜 靜 菁 錆 倩 瀞 睛 鯖',
-        '難': '儺 攤',  # debatable tbh, one line difference
-        '載': '鐡',
-        '贈': '囎',
-        '裁': '殱 纎',
-        '艸': '趨 皺 蒭 芻 雛 鄒',
-        '乙': '巴',
-        '齊': '韲',
-        '闌': '蘭',  # it's a variant
-        '遂': '燧邃隧',
-        '肖': '哨 屑 逍 鮹 峭 悄 趙 稍 霄 銷 蛸',  # TODO fix files
-        '林': '瀝 癧 轣 櫪 靂',  # ig it's a variant but fuck it
-        '林': '瀝 癧 轣 櫪 靂',
-        '真': '癲 巓',
-        '十': '癲巓',
-        '皀': '梍',
-        '朕': '謄',
-        '月': '冑',
-        '儿': '曽',
-        '匕': '曷 藹 臈',
-        '人': '掲 謁 渇 褐 喝 吶 衲 靹 銓 蚋 訥',
-        '斉': '斎',
-        '戔': '賎',
-        '巽': '饌',
-        '奚': '鶏 渓',
-        '夾': '侠 頬',
-        '叟': '痩 捜',
-        '劵': '藤',
-        '䍃': '謡 瑶 揺 遥',
-        '顛': '癲 巓',
-        '戊': '戊 幾 譏 饑 機 磯',  # caused by our normalization
-    }
-
-    ALIASED = {
-        # 'A': {'B', 'C'}
-        # when element named B is an element named A's child, alias it to C
-        # i'm conflicted on this. the shape is like in 由, but the stroke order
-        # is like in 用
-        '専': {'用': '由'},
-    }
-
-    NORMALIZE = [
-        # ('四', '罒'),
-        # # '⻌辶',  # unfortunately, it's often not disassembled  like this
-        # # '叉㕚',
-        # # '臼𦥑',
-        # '匸匚',  # i think it's always written like that
-        # '儿八',
-        # '三彡',
-        # # '羊⺷',
-        # '示礻',
-        # # '母毋',
-        # '手扌',
-        # '小 ⺌',
-        # '戍戌',
-        # # '黒黑',
-        # # '束柬'
-    ]
+    # all elements should be specified at this stage. we are free to
+    # pull sub-elements from cache
 
     @property
-    def kanji(self):
-        return self.raw.kanji
+    def _spec(self):
+        spec = self._DATA[self]
 
-    def _does_not_contain(self, element_name):
-        return element_name in self.DOES_NOT_CONTAIN.get(self.name, [])
+        if isinstance(spec, list):
+            errant_strokes = []
+            strokes_to_elements = {}
+            i = 1  # we number strokes from 1
+            for c in spec:
+                if isinstance(c, int):
+                    for _ in range(c):
+                        errant_strokes.append(i)
+                        i += 1
+                elif isinstance(c, ElementSpec):
+                    strokes_to_elements[tuple(range(i, i + c.stroke_count))] = c
+                    i += c.stroke_count
+                else:
+                    raise Exception()
+            spec = _StrokesToElements(strokes_to_elements, tuple(errant_strokes))
+            self._DATA[self] = spec
+
+        return spec
 
     @property
-    def strokes(self):
-        return tuple(LogicalStroke(s) for s in self.raw.strokes)
+    def stroke_count(self):
+        return self._spec.stroke_count
 
-    _composition_data_checked = False
+    @property
+    def elements(self):
+        return self._spec.elements
+
+    @property
+    def errant_strokes(self):
+        return self._spec.errant_strokes
+
+
+class LogicalElement:
+    def __init__(self, spec, strokes, kanji):
+        self.strokes = tuple(strokes)
+        self.kanji = kanji
+        self.spec = spec
+
+    def _print(self, level):
+        yield '・' * level + str(self.spec.name) + ' ' + str(ord(str(self.spec.name)[0]))
+        for c in self.elements:
+            yield from c._print(level + 1)
+        if len(self.errant_strokes):
+            yield '　' * (level + 1) + f'{len(self.errant_strokes)} errant strokes'
+
+    def __str__(self):
+        return '\n'.join(self._print(0)) + '\n'
 
     @cached_property
-    def children(self):
-        if not self._composition_data_checked:
-            ...  # TODO
-
-        def decompose(name):
-            try:
-                c = self.COMPOSITION[name]
-            except KeyError:
-                yield from CONSISTENT_COMPOSITION[name]
-            else:
-                if isinstance(c, list):
-                    yield from decompose(c[0])
-
-        if self.name in self.COMPOSITION:
-            ...
-
-        def make_logical(c):
-            alias = self.ALIASED.get(self.name, {}).get(c.name)
-            if isinstance(c, RawStroke):
-                return LogicalStroke(c, alias=alias)
-            if isinstance(c, RawElement):
-                return LogicalElement(c, alias=alias)
-            raise Exception
-
-        def f(c):
-            c = make_logical(c)  # just for name normalization
-            return (
-                True
-                and (type(c) is LogicalStroke or c.name in KANJI)
-                and (c.name not in self.FAKE)
-                and c.name != self.name
-                and not self._does_not_contain(c.name)
-                # self.kanji.name == good_parent.kanji.name
-                and self.kanji.name not in
-                self.NOT_PRESENT_IN_KANJI.get(c.name, {})
+    @autoconsume(tuple)
+    def elements(self):
+        assert len(self.strokes) == self.spec.stroke_count
+        for spec, stroke_idxs in self.spec.elements:
+            yield LogicalElement(
+                spec,
+                multiindex(self.strokes, stroke_idxs),
+                self.kanji
             )
 
-        return tuple(make_logical(c) for c in self.raw._filtered_children(f))
+    @cached_property
+    def errant_strokes(self):
+        assert len(self.strokes) == self.spec.stroke_count
+        return multiindex(self.strokes, self.spec.errant_strokes)
 
 
 class Kanji(LogicalElement):
@@ -481,18 +359,9 @@ class Kanji(LogicalElement):
         g = root.xpath(f"//svg:g[@id='kvg:{filename.stem}']",
                        namespaces={'svg': SVG.strip('}{')})
         self.filename = filename
-        return super().__init__(RawElement(g, kanji=self))
-
-    @cached_property
-    def _elements_to_element(self):
-        # i knew xml element vs kanji element would come to bite me in
-        # the ass. make xml wasn't so wrong with this namespace thing
-        ret = {}
-        for p in self._parts_flattened:
-            if isinstance(p, RawElement):
-                for combo in powerset(p.g):
-                    ret[frozenset(combo)] = p
-        return ret
+        self.raw = RawElement(g, kanji=self)
+        return super().__init__(
+            ElementSpec(self.raw.name), self.raw.strokes, self)
 
     @cached_property
     @autoconsume(tuple)
@@ -532,6 +401,9 @@ class Kanji(LogicalElement):
                 ), kanji=self)
 
 
+import specinfo
+
+
 def extract_elements(e):
     if isinstance(e, RawElement):
         yield e
@@ -540,7 +412,6 @@ def extract_elements(e):
 
 
 KANJI = {}
-CONSISTENT_COMPOSITION = {}
 
 
 for filename in Path('kanjivg/kanji').glob('?????.svg'):
@@ -548,10 +419,10 @@ for filename in Path('kanjivg/kanji').glob('?????.svg'):
     KANJI[k.raw.name] = k
 
 
-elements = []
+raw_elements = []
 
 for k in KANJI.values():
-    elements.extend(extract_elements(k.raw))
+    raw_elements.extend(extract_elements(k.raw))
 
 
 def group(it, key=None):
@@ -564,23 +435,47 @@ def unnamed(_index=[0]):
 
 
 def children_key(e):
-    # return tuple(
-    #     ('s', str(c.name)) if type(c) is LogicalStroke else ('e', str(c.name))
-    #     for c in e.children)
     return tuple(
         ('s',) if type(c) is RawStroke else ('e', str(c.name))
         for c in e.children)
-    # return tuple(
-    #     str(c.name)
-    #     for c in e.children
-    #     if type(c) is LogicalElement)
-    # return sorted([
-    #     str(c.name)
-    #     for c in e.children
-    #     if type(c) is LogicalElement])
 
 
-for g in group(elements, key=lambda e: e.name or unnamed()):
-    if group(g, key=children_key) == 1:
+inconsistent = {}
+
+for g in group(raw_elements, key=lambda e: e.name or unnamed()):
+    decomposed_identically = group(g, key=children_key)
+    if len(decomposed_identically) == 1:
         # g[any]
-        CONSISTENT_COMPOSITION[g[0].name] = g[0]
+        elem = g[0]
+
+        if elem.name is None:
+            continue
+
+        errant_strokes = tuple(c for c in elem.children if isinstance(c, RawStroke))
+        errant_stroke_idxs = tuple(elem.strokes.index(s) + 1 for s in errant_strokes)
+
+        elements = tuple(c for c in elem.children if isinstance(c, RawElement))
+        strokes_to_elements = {
+            tuple(elem.strokes.index(s) + 1 for s in e.strokes): ElementSpec(e.name)
+            for e in elements
+        }
+        # print(elem.name, errant_stroke_idxs, strokes_to_elements)
+
+        if ElementSpec(elem.name) not in ElementSpec._DATA:  # FIXME
+            ElementSpec(elem.name).by_strokes_to_elements(
+                strokes_to_elements, errant_stroke_idxs)
+            # print(f'assuming decomposition {g[0]} for {g[0].name}')
+    else:
+        inconsistent[g[0].name] = decomposed_identically
+        # print(f'inconsistent decomposition: {g[0].name}')
+        # for sg in decomposed_identically:
+        #     print(f'variant {children_key(sg[0])}')
+        #     print('in kanji', ' '.join(e.kanji.spec.name for e in sg))
+        #     print(sg[0])
+
+# print(f'inconsistensies: {inconsistent}')
+
+#for k, v in inconsistent.items():
+#    for g in v:
+#        for k in g:
+#            print(k.kanji.elements)
