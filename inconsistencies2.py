@@ -58,6 +58,46 @@ def extract_elements_with_parent(e, p):
 for k in KANJI.values():
     extract_elements_with_parent(k.raw, k.raw)
 
+
+def infer_elementspec(elem):
+    errant_strokes = tuple(c for c in elem.children if isinstance(c, RawStroke))
+    errant_stroke_idxs = tuple(elem.strokes.index(s) + 1 for s in errant_strokes)
+
+    elements = tuple(c for c in elem.children if isinstance(c, RawElement))
+    strokes_to_elements = {
+        tuple(elem.strokes.index(s) + 1 for s in e.strokes): e.name
+        for e in elements
+    }
+
+    # if no overlap between elements
+    if sum(len(k) for k in strokes_to_elements) == len(set(i for k in strokes_to_elements for i in k)):
+        elements = [0]
+        stroke_to_element = {
+            i: e
+            for idxs, e in strokes_to_elements.items()
+            for i in idxs
+        }
+        for i in range(1, len(elem.strokes) + 1):
+            e = stroke_to_element.get(i, None)
+            if e is None:
+                if isinstance(elements[-1], int):
+                    elements[-1] += 1
+                else:
+                    elements.append(1)
+            else:
+                if elements[-1] != e:
+                    elements.append(e)
+
+        if elements[0] == 0:
+            elements = elements[1:]
+
+        return 'by_elements', elements
+
+    return 'by_strokes_to_elements', strokes_to_elements, errant_stroke_idxs
+    # ElementSpec(elem.name).by_strokes_to_elements(
+    #     strokes_to_elements, errant_stroke_idxs)
+
+
 for g in group(raw_elements, key=lambda e: e.name or unnamed()):
     decomposed_identically = group(g, key=children_key)
     # g[any]
@@ -67,23 +107,15 @@ for g in group(raw_elements, key=lambda e: e.name or unnamed()):
     if elem.name is None or elem.name in specced_elem_names:
         continue
     if len(decomposed_identically) == 1:
-
-        errant_strokes = tuple(c for c in elem.children if isinstance(c, RawStroke))
-        errant_stroke_idxs = tuple(elem.strokes.index(s) + 1 for s in errant_strokes)
-
-        elements = tuple(c for c in elem.children if isinstance(c, RawElement))
-        strokes_to_elements = {
-            tuple(elem.strokes.index(s) + 1 for s in e.strokes): ElementSpec(e.name)
-            for e in elements
-        }
-
-        ElementSpec(elem.name).by_strokes_to_elements(
-            strokes_to_elements, errant_stroke_idxs)
         # print(f'assuming decomposition {g[0]} for {g[0].name}')
+        method, *args = infer_elementspec(elem)
+        getattr(ElementSpec(elem.name), method)(*args)
     else:
         print(f'inconsistent decomposition: {g[0].name}')
         for sg in decomposed_identically:
-            print(f'variant {children_key(sg[0])}')
+            elem = sg[0]
+            method, *args = infer_elementspec(elem)
+            print(f'variant {args}')
             # TODO write parent decomposition? to speed up the process
             same_parent = group(sg, key=lambda e: raw_element_parents[e].name or '<unnamed>')
             print('with parents', ' '.join((raw_element_parents[ssg[0]].name or '<unnamed>') + '(' + ' '.join(e.kanji.spec.name for e in ssg) + ')' for ssg in same_parent))
