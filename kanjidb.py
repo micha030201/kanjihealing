@@ -53,15 +53,13 @@ class AgreeingAttributes:
         return thing == self._anything or thing in self._stuff
 
     def __hash__(self):
-        return hash((self._anything, self._stuff))
+        return hash(frozenset([self._anything, *self._stuff]))
 
     def __eq__(self, other):
         if not isinstance(other, AgreeingAttributes):
             raise NotImplementedError
-        return (
-            self._anything == other._anything and
-            self._stuff == other._stuff
-        )
+        return frozenset([self._anything, *self._stuff]) \
+            == frozenset([other._anything, *other._stuff])
 
 
 def flatten(forest):
