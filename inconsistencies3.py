@@ -1,6 +1,7 @@
 from itertools import groupby
 import unicodedata
 from graphlib import TopologicalSorter
+from collections import defaultdict
 
 from kanjidb import KANJI, RawElement, RawStroke
 
@@ -23,8 +24,8 @@ for k in KANJI.values():
     raw_elements.extend(extract_elements(k.raw))
 
 
-def group(it, key=None):
-    return [list(g) for k, g in groupby(sorted(it, key=key), key=key)]
+def group(it, key=lambda x: x, sort_key=lambda x: x):
+    return [list(g) for k, g in groupby(sorted(it, key=lambda x: (key(x), sort_key(x))), key=key)]
 
 
 def children_key(e):
@@ -113,50 +114,51 @@ ts = TopologicalSorter()
 content = {}
 
 
-for g in group(raw_elements, key=lambda e: e.name):
-    decomposed_identically = group(g, key=children_key)
-    children_sets = []
+def get_variant(n, _variants=defaultdict(int)):
+    _variants[n] += 1
+    return _variants[n] - 1
+
+
+for g in group(raw_elements, key=children_key, sort_key=lambda e: (len(e.strokes), e.name)):
     p = []
-    for sg in decomposed_identically:
-        elem = sg[0]
-        method, children, *args = infer_elementspec(elem)
-        children_sets.append(children)
+    elem = g[0]
+    method, children, *args = infer_elementspec(elem)
 
-        if allowed_as_identifier(elem.name):
-            p.append(f'{elem.name} = ')
-        if method == 'by_stroke_count':
-            stroke_count, = args
-            p.append(f"ElementSpec('{elem.name}').by_stroke_count({stroke_count})\n")
-        elif method == 'by_elements':
-            elements = ', '.join(encode(a) for a in args)
-            p.append(f"ElementSpec('{elem.name}').by_elements({elements})\n")
-        else:
-            strokes_to_elements, errant_stroke_idxs = args
-            p.append(f"ElementSpec('{elem.name}')")
-            p.append(".by_strokes_to_elements({\n")
-            for k, v in strokes_to_elements.items():
-                p.append(f'    {k}: {encode(v)},\n')
-            p.append('}')
-            if errant_stroke_idxs:
-                p.append(f', {errant_stroke_idxs}')
-            p.append(')\n')
+    if allowed_as_identifier(elem.name):
+        p.append(f'{elem.name} = ')
+    if method == 'by_stroke_count':
+        stroke_count, = args
+        p.append(f"ElementSpec('{elem.name}').by_stroke_count({stroke_count})\n")
+    elif method == 'by_elements':
+        elements = ', '.join(encode(a) for a in args)
+        p.append(f"ElementSpec('{elem.name}').by_elements({elements})\n")
+    else:
+        strokes_to_elements, errant_stroke_idxs = args
+        p.append(f"ElementSpec('{elem.name}')")
+        p.append(".by_strokes_to_elements({\n")
+        for k, v in strokes_to_elements.items():
+            p.append(f'    {k}: {encode(v)},\n')
+        p.append('}')
+        if errant_stroke_idxs:
+            p.append(f', {errant_stroke_idxs}')
+        p.append(')\n')
 
-        same_parent = group(sg, key=lambda e: raw_element_parents[e].name)
-        parent_with_kanjis = {raw_element_parents[ssg[0]].name: [e.kanji.spec.name for e in ssg] for ssg in same_parent}
-        if len(decomposed_identically) == 1:
-            del parent_with_kanjis[elem.name]
-        direct_kanji_parents = [p for p, ks in parent_with_kanjis.items() if len(ks) == 1 and ks[0] == p]
-        for par in direct_kanji_parents:
-            del parent_with_kanjis[par]
+    same_parent = group(g, key=lambda e: raw_element_parents[e].name)
+    parent_with_kanjis = {raw_element_parents[ssg[0]].name: [e.kanji.spec.name for e in ssg] for ssg in same_parent}
+    if elem.name in parent_with_kanjis:
+        del parent_with_kanjis[elem.name]
+    direct_kanji_parents = [p for p, ks in parent_with_kanjis.items() if len(ks) == 1 and ks[0] == p]
+    for par in direct_kanji_parents:
+        del parent_with_kanjis[par]
 
-        if direct_kanji_parents:
-            p.append(f'# {" ".join(direct_kanji_parents)}\n')
-        for par, ks in parent_with_kanjis.items():
-            p.append(f'# {par} ({" ".join(ks)})\n')
+    if direct_kanji_parents:
+        p.append(f'# {" ".join(direct_kanji_parents)}\n')
+    for par, ks in parent_with_kanjis.items():
+        p.append(f'# {par} ({" ".join(ks)})\n')
+
     content[elem.name] = ''.join(p)
 
-    # ts.add(elem.name, *max(children_sets, key=len))
-    ts.add(elem.name, *set.intersection(*children_sets))
+    ts.add(elem.name, *children)
 
 
 print('from kanjidb import ElementSpec\n')

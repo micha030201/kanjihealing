@@ -5,7 +5,7 @@ from kanjidb import KANJI, RawElement, RawStroke, ElementSpec
 
 FAKE = {
     '丿', '丨', '丶', '一', None, '倠', '𦍒', '㐫', '昷', '雁', '𠔉', '吋',
-    '𠫯', '厽', 'CDP-8CB8', '曷', '舄', '寍', '堇',
+    '𠫯', '厽', 'CDP-8CB8', '曷', '舄', '寍', '堇', '亅'
 }
 
 
@@ -60,17 +60,19 @@ for k in KANJI.values():
 
 
 def infer_elementspec(elem):
-    errant_strokes = tuple(c for c in elem.children if isinstance(c, RawStroke))
+    errant_strokes = tuple(c for c in elem._filtered_children(lambda c: isinstance(c, RawStroke) or (c.name in KANJI and c.name not in FAKE)) if isinstance(c, RawStroke))
     errant_stroke_idxs = tuple(elem.strokes.index(s) + 1 for s in errant_strokes)
 
-    elements = tuple(c for c in elem.children if isinstance(c, RawElement))
+    elements = tuple(elem._filtered_children(lambda c: c.name in KANJI and c.name not in FAKE))
     strokes_to_elements = {
         tuple(elem.strokes.index(s) + 1 for s in e.strokes): e.name
         for e in elements
     }
 
-    # if no overlap between elements
-    if sum(len(k) for k in strokes_to_elements) == len(set(i for k in strokes_to_elements for i in k)):
+    no_overlap = sum(len(k) for k in strokes_to_elements) \
+        == len(set(i for k in strokes_to_elements for i in k))
+    no_split = all(set(k) == set(range(min(k), max(k) + 1)) for k in strokes_to_elements)
+    if no_overlap and no_split:
         elements = [0]
         stroke_to_element = {
             i: e
@@ -91,7 +93,9 @@ def infer_elementspec(elem):
         if elements[0] == 0:
             elements = elements[1:]
 
-        return 'by_elements', elements
+        if len(elements) == 1 and isinstance(elements[0], int):
+            return 'by_stroke_count', elements[0]
+        return 'by_elements', *elements
 
     return 'by_strokes_to_elements', strokes_to_elements, errant_stroke_idxs
     # ElementSpec(elem.name).by_strokes_to_elements(
@@ -115,11 +119,13 @@ for g in group(raw_elements, key=lambda e: e.name or unnamed()):
         for sg in decomposed_identically:
             elem = sg[0]
             method, *args = infer_elementspec(elem)
-            print(f'variant {args}')
+            joined_args = ', '.join(repr(a) for a in args)
+            print(f"ElementSpec('{elem.name}').{method}({joined_args})")
             # TODO write parent decomposition? to speed up the process
             same_parent = group(sg, key=lambda e: raw_element_parents[e].name or '<unnamed>')
-            print('with parents', ' '.join((raw_element_parents[ssg[0]].name or '<unnamed>') + '(' + ' '.join(e.kanji.spec.name for e in ssg) + ')' for ssg in same_parent))
-            print(sg[0])
+            print(' with parents', ' '.join((raw_element_parents[ssg[0]].name or '<unnamed>') + '(' + ' '.join(e.kanji.spec.name for e in ssg) + ')' for ssg in same_parent))
+            # print(sg[0])
+        print()
         #break
 
 # TODO this is not the end -- we need to validate that we can correctly

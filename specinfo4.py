@@ -138,7 +138,22 @@ z = ElementSpec('z').by_stroke_count(3)
 
 x2e89 = ElementSpec('⺉').by_stroke_count(2)
 
-x2e8c = ElementSpec('⺌').by_stroke_count(3)
+小 = ElementSpec('小').by_stroke_count(3)
+# 穆 遼 瞭 鷯 療 撩 隙 齋 燎 潦 暸 寮 瑣 尖 亰 繚 鐐 僚
+# 叔 (叔 俶 寂 菽 椒 督 淑)
+# 余 (叙 畭 斜 蜍 塗 敘 除 餘 荼 敍 余 途 徐)
+# 京 (凉 蹴 諒 憬 京 掠 椋 景 黥 就 涼 鍄 鷲 影 勍 鯨)
+# 少 (尠 抄 鈔 炒 莎 裟 雀 娑 杪 眇 毟 鯊 沙 渉 隲 頻 砂 渺 緲 歩 劣 賓 紗 秒 少 妙 省)
+# 敝 (幣 斃 蔽 瞥 敝 鼈 暼 弊)
+# 県 (県 纛 懸 縣)
+# 肖 (屑 哨)
+# 尓 (珎 袮 祢 弥 寳 尓 迩 称)
+# 示 (斎)
+# 原 (原 源 愿 願)
+# 歳 (穢 歳)
+# 戚 (戚 蹙 槭)
+
+小_2 = ElementSpec('小', 2).by_stroke_count(3)  # ⺌
 # 鎖
 # 尚 (常 鐺 幤 堂 償 嘗 敞 瞠 淌 棠 蟷 裳 廠 螳 掌 襠 礑 蟐 厰 甞 黨 賞 嫦 儻 當 尚 党)
 # 肖 (霄 稍 蛸 硝 誚 峭 宵 悄 鞘 肖 消 鮹 梢 削 趙 銷)
@@ -146,6 +161,9 @@ x2e8c = ElementSpec('⺌').by_stroke_count(3)
 # 当 (档 当)
 # 敝 (斃)
 # 小 (逍)
+
+小_3 = ElementSpec('小', 4).by_stroke_count(2)
+# 少 (嬪 蘋 繽 瀕 顰 捗 濱 擯 陟 檳 鬢 殯)
 
 x2e8d = ElementSpec('⺍').by_stroke_count(3)
 # 畄 脳 挙 獣 学 営 桜 悩 栄 労 鴬 珱 蛍 巣 図 誉
@@ -174,7 +192,13 @@ x2e95 = ElementSpec('⺕').by_stroke_count(3)
 # 龜 (鬮 龜 龝)
 # 当 (档 当)
 
-x2e97 = ElementSpec('⺗').by_stroke_count(4)
+
+心 = ElementSpec('心').by_stroke_count(4)
+
+心_1 = ElementSpec('心', 1).by_stroke_count(3)  # 忄
+
+# XXX
+心_2 = ElementSpec('心', 1).by_stroke_count(4)  # ⺗
 # 慕 恭
 # 忝 (添 忝)
 
@@ -813,10 +837,10 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 八 = ElementSpec('八', 2).by_stroke_count(2)
 
-並_1 = ElementSpec('並', 1).by_elements(八, 一, 5)
+# 並 = ElementSpec('並', 1).by_elements(八, 一, 5)
 # 普
 
-並_2 = ElementSpec('並', 2).by_elements(2, 一, 5)
+並 = ElementSpec('並', 2).by_elements(2, 一, 5)
 # 椪
 # 普 (譜)
 
@@ -943,9 +967,10 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 佻 = ElementSpec('佻').by_elements(亻, 兆)
 
+# TODO make upper element
 先 = ElementSpec('先').by_elements(4, 儿)
 
-光 = ElementSpec('光').by_elements(x2e8c, 兀)
+光 = ElementSpec('光').by_elements(小_2, 兀)
 
 兎 = ElementSpec('兎', 1).by_elements(4, 儿, 1)
 
@@ -1279,6 +1304,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 咢 = ElementSpec('咢').by_elements(口, 口, 二, 1)
 
+# TODO make element
 咼 = ElementSpec('咼').by_elements(4, 冂, 口)
 
 品 = ElementSpec('品').by_elements(口, 口, 口)
@@ -1520,25 +1546,6 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 将 = ElementSpec('将').by_elements(x2ea6, x2ea4, 寸)
 
-# XXX
-小_2 = ElementSpec('小', 2).by_stroke_count(2)
-# 少 (嬪 蘋 繽 瀕 顰 捗 濱 擯 陟 檳 鬢 殯)
-
-小 = ElementSpec('小', 3).by_stroke_count(3)
-# 穆 遼 瞭 鷯 療 撩 隙 齋 燎 潦 暸 寮 瑣 尖 亰 繚 鐐 僚
-# 叔 (叔 俶 寂 菽 椒 督 淑)
-# 余 (叙 畭 斜 蜍 塗 敘 除 餘 荼 敍 余 途 徐)
-# 京 (凉 蹴 諒 憬 京 掠 椋 景 黥 就 涼 鍄 鷲 影 勍 鯨)
-# 少 (尠 抄 鈔 炒 莎 裟 雀 娑 杪 眇 毟 鯊 沙 渉 隲 頻 砂 渺 緲 歩 劣 賓 紗 秒 少 妙 省)
-# 敝 (幣 斃 蔽 瞥 敝 鼈 暼 弊)
-# 県 (県 纛 懸 縣)
-# 肖 (屑 哨)
-# 尓 (珎 袮 祢 弥 寳 尓 迩 称)
-# 示 (斎)
-# 原 (原 源 愿 願)
-# 歳 (穢 歳)
-# 戚 (戚 蹙 槭)
-
 京 = ElementSpec('京').by_elements(亠, 口, 小)
 
 凉 = ElementSpec('凉').by_elements(冫, 京)
@@ -1551,7 +1558,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 寂 = ElementSpec('寂').by_elements(宀, 叔)
 
-少_1 = ElementSpec('少', 1).by_elements(小_2, 1)
+少_1 = ElementSpec('少', 1).by_elements(小_3, 1)
 # 賓 (嬪 繽 濱 擯 檳 鬢 殯)
 # 歩 (蘋 瀕 顰 捗 陟)
 
@@ -1563,7 +1570,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 尓 = ElementSpec('尓').by_elements(2, 小)
 
-尚 = ElementSpec('尚').by_elements(x2e8c, 冂, 口)
+尚 = ElementSpec('尚').by_elements(小_2, 冂, 口)
 
 # XXX
 党 = ElementSpec('党').by_strokes_to_elements({
@@ -1939,7 +1946,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 冱 = ElementSpec('冱').by_elements(冫, 互)
 
-当 = ElementSpec('当').by_elements(x2e8c, x2e95)
+当 = ElementSpec('当').by_elements(小_2, x2e95)
 # 档
 
 # XXX 丰 is not in kanjivg
@@ -1963,10 +1970,6 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 後 = ElementSpec('後').by_elements(彳, 幺, 夂)
 
-心 = ElementSpec('心').by_stroke_count(4)
-
-忄 = ElementSpec('忄').by_stroke_count(3)
-
 必 = ElementSpec('必').by_strokes_to_elements({
     (1, 3, 4, 5): 心,
 }, (2,))
@@ -1977,19 +1980,19 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 忍 = ElementSpec('忍').by_elements(刃, 心)
 
-忖 = ElementSpec('忖').by_elements(忄, 寸)
+忖 = ElementSpec('忖').by_elements(心_1, 寸)
 
 忘 = ElementSpec('忘').by_elements(亡, 心)
 
-忙 = ElementSpec('忙').by_elements(忄, 亡)
+忙 = ElementSpec('忙').by_elements(心_1, 亡)
 
 応 = ElementSpec('応').by_elements(广, 心)
 
 忠 = ElementSpec('忠').by_elements(中, 心)
 
-忱 = ElementSpec('忱').by_elements(忄, 冖, 儿)
+忱 = ElementSpec('忱').by_elements(心_1, 冖, 儿)
 
-忸 = ElementSpec('忸').by_elements(忄, 丑)
+忸 = ElementSpec('忸').by_elements(心_1, 丑)
 
 忽 = ElementSpec('忽').by_elements(勿, 心)
 
@@ -1997,73 +2000,73 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 怎 = ElementSpec('怎').by_elements(乍, 心)
 
-怐 = ElementSpec('怐').by_elements(忄, 句)
+怐 = ElementSpec('怐').by_elements(心_1, 句)
 
 怒 = ElementSpec('怒').by_elements(奴, 心)
 
-怖 = ElementSpec('怖').by_elements(忄, 布)
+怖 = ElementSpec('怖').by_elements(心_1, 布)
 
 怠 = ElementSpec('怠').by_elements(台, 心)
 
-怡 = ElementSpec('怡').by_elements(忄, 台)
+怡 = ElementSpec('怡').by_elements(心_1, 台)
 
 怨 = ElementSpec('怨').by_elements(夕, 卩, 心)
 
-怫 = ElementSpec('怫').by_elements(忄, 弗)
+怫 = ElementSpec('怫').by_elements(心_1, 弗)
 
 怱 = ElementSpec('怱').by_elements(匆, 心)
 
 偬 = ElementSpec('偬').by_elements(亻, 怱)
 
-恆 = ElementSpec('恆').by_elements(忄, 亙)
+恆 = ElementSpec('恆').by_elements(心_1, 亙)
 
-恊 = ElementSpec('恊').by_elements(忄, 力, 力, 力)
+恊 = ElementSpec('恊').by_elements(心_1, 力, 力, 力)
 
 恋 = ElementSpec('恋').by_elements(亦, 心)
 
-恍 = ElementSpec('恍').by_elements(忄, 光)
+恍 = ElementSpec('恍').by_elements(心_1, 光)
 
 恕 = ElementSpec('恕').by_elements(如, 心)
 
-恟 = ElementSpec('恟').by_elements(忄, 匈)
+恟 = ElementSpec('恟').by_elements(心_1, 匈)
 
-恪 = ElementSpec('恪').by_elements(忄, 各)
+恪 = ElementSpec('恪').by_elements(心_1, 各)
 
-恫 = ElementSpec('恫').by_elements(忄, 同)
+恫 = ElementSpec('恫').by_elements(心_1, 同)
 
-恭 = ElementSpec('恭').by_elements(共, x2e97)
+恭 = ElementSpec('恭').by_elements(共, 心_2)
 
-悌 = ElementSpec('悌').by_elements(忄, 弟)
+悌 = ElementSpec('悌').by_elements(心_1, 弟)
 
-悛 = ElementSpec('悛').by_elements(忄, 允, 夂)
+悛 = ElementSpec('悛').by_elements(心_1, 允, 夂)
 
-悟 = ElementSpec('悟').by_elements(忄, 吾)
+悟 = ElementSpec('悟').by_elements(心_1, 吾)
 
 患 = ElementSpec('患').by_elements(串, 心)
 
-悦 = ElementSpec('悦').by_elements(忄, 兌)
+悦 = ElementSpec('悦').by_elements(心_1, 兌)
 
-悩 = ElementSpec('悩').by_elements(忄, x2e8d, 凶)
+悩 = ElementSpec('悩').by_elements(心_1, x2e8d, 凶)
 
 悪 = ElementSpec('悪').by_elements(亜, 心)
 
-悽 = ElementSpec('悽').by_elements(忄, 妻)
+悽 = ElementSpec('悽').by_elements(心_1, 妻)
 
-惇 = ElementSpec('惇').by_elements(忄, 享)
+惇 = ElementSpec('惇').by_elements(心_1, 享)
 
-惚 = ElementSpec('惚').by_elements(忄, 忽)
+惚 = ElementSpec('惚').by_elements(心_1, 忽)
 
 惡 = ElementSpec('惡', 1).by_elements(亞, 心)
 
-惱 = ElementSpec('惱').by_elements(忄, 巛, 3, 乂, 1)
+惱 = ElementSpec('惱').by_elements(心_1, 巛, 3, 乂, 1)
 
-愕 = ElementSpec('愕').by_elements(忄, 咢)
+愕 = ElementSpec('愕').by_elements(心_1, 咢)
 
 愛 = ElementSpec('愛').by_elements(x2ea4, 冖, 心, 夂)
 
-愡 = ElementSpec('愡').by_elements(忄, 怱)
+愡 = ElementSpec('愡').by_elements(心_1, 怱)
 
-慊 = ElementSpec('慊').by_elements(忄, 兼_2)
+慊 = ElementSpec('慊').by_elements(心_1, 兼_2)
 
 慧 = ElementSpec('慧').by_elements(彗, 心)
 
@@ -2169,6 +2172,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 扌 = ElementSpec('扌').by_stroke_count(3)
 
 # XXX upsetting
+# 丁 + ノ variant
 才 = ElementSpec('才').by_elements(扌)
 # 閉 犲 財 材 豺
 
@@ -2340,7 +2344,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 改 = ElementSpec('改').by_elements(己, 攵)
 
-敝_1 = ElementSpec('敝', 1).by_elements(x2e8c, 冂, 小, 攵)
+敝_1 = ElementSpec('敝', 1).by_elements(小_2, 冂, 小, 攵)
 敝_2 = ElementSpec('敝', 2).by_elements(小, 冂, 小, 攵)
 
 幣 = ElementSpec('幣').by_elements(敝_1, 巾)
@@ -2363,7 +2367,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 対 = ElementSpec('対').by_elements(文, 寸)
 
-悋 = ElementSpec('悋').by_elements(忄, 吝)
+悋 = ElementSpec('悋').by_elements(心_1, 吝)
 
 斈 = ElementSpec('斈').by_elements(文, 子)
 
@@ -2393,7 +2397,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 岳 = ElementSpec('岳').by_elements(丘, 山)
 
-忻 = ElementSpec('忻').by_elements(忄, 斤)
+忻 = ElementSpec('忻').by_elements(心_1, 斤)
 
 所 = ElementSpec('所').by_elements(戸, 斤)
 
@@ -2454,6 +2458,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 月 = ElementSpec('月', 2).by_stroke_count(4)
 
 # XXX somewhat upsetting
+# 目 + 一
 且 = ElementSpec('且').by_elements(月, 一)
 # 詛 徂 柤 沮 砠 齟 組 粗 疂 疽 租 狙 疊 阻 姐 俎 蛆 苴 畳 爼 岨 咀 祖 雎
 # 宜 (宜 萓 誼)
@@ -2479,7 +2484,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 徂 = ElementSpec('徂').by_elements(彳, 且)
 
-悁 = ElementSpec('悁').by_elements(忄, 口, 月)
+悁 = ElementSpec('悁').by_elements(心_1, 口, 月)
 
 捐 = ElementSpec('捐').by_elements(扌, 口, 月)
 
@@ -2552,9 +2557,9 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 恷 = ElementSpec('恷').by_elements(休, 心)
 
-悃 = ElementSpec('悃').by_elements(忄, 困)
+悃 = ElementSpec('悃').by_elements(心_1, 困)
 
-懆 = ElementSpec('懆').by_elements(忄, 品, 木)
+懆 = ElementSpec('懆').by_elements(心_1, 品, 木)
 
 探 = ElementSpec('探').by_elements(扌, 㓁, 木)
 
@@ -2693,7 +2698,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 栗 = ElementSpec('栗').by_elements(6, 木)
 
-慄 = ElementSpec('慄').by_elements(忄, 栗)
+慄 = ElementSpec('慄').by_elements(心_1, 栗)
 
 株 = ElementSpec('株').by_elements(木, 朱)
 
@@ -2776,7 +2781,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 椨 = ElementSpec('椨').by_elements(木, 府)
 
-椪 = ElementSpec('椪').by_elements(木, 並_2)
+椪 = ElementSpec('椪').by_elements(木, 並)
 
 椶 = ElementSpec('椶').by_elements(木, 兇, 夂)
 
@@ -2835,11 +2840,12 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 # 止_1 = ElementSpec('止', 1).by_elements(卜)
 # 正 (卸 御 禦 啣)
 
-# 止_2 = ElementSpec('止', 2).by_elements(卜, 1)
+止_2 = ElementSpec('止', 2).by_elements(卜, 1)
 # 正 (蜒 涎 麪 蜑 莚 筵 眄 堽)
 # 此 (呰)
 
 # XXX 土?
+# probably make leaf
 止 = ElementSpec('止', 3).by_elements(卜, 2)
 # 企 肯 渋 澁 沚 趾 澀 蕋 耻 凪 阯 址 祉 徙 歸
 # 此 (砦 髭 雌 嘴 觜 些 貲 紫 眥 眦 疵 柴 此)
@@ -2853,6 +2859,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 凪 = ElementSpec('凪').by_elements(几, 止)
 
+# TODO make last element?
 徙 = ElementSpec('徙').by_elements(彳, 止, 4)
 
 武 = ElementSpec('武').by_strokes_to_elements({
@@ -2957,7 +2964,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 侮 = ElementSpec('侮').by_elements(亻, 毎_1)
 
-悔 = ElementSpec('悔').by_elements(忄, 毎_1)
+悔 = ElementSpec('悔').by_elements(心_1, 毎_1)
 
 敏 = ElementSpec('敏').by_elements(毎_1, 攵)
 
@@ -3022,7 +3029,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 丞 = ElementSpec('丞').by_strokes_to_elements({
     (1, 2): 了,
-    (3, 2, 4, 5): 水,  # XXX stroke order wrong
+    (3, 2, 4, 5): 水,
     (6,): 一,
 })
 # .by_elements(了, 水_1)
@@ -3055,7 +3062,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 咏 = ElementSpec('咏').by_elements(口, 永)
 
-怺 = ElementSpec('怺').by_elements(忄, 永)
+怺 = ElementSpec('怺').by_elements(心_1, 永)
 
 氺 = ElementSpec('氺', 1).by_elements(1, 冫, 2)
 
@@ -3311,7 +3318,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 灰 = ElementSpec('灰').by_elements(厂, 火)
 
-恢 = ElementSpec('恢').by_elements(忄, 灰)
+恢 = ElementSpec('恢').by_elements(心_1, 灰)
 
 灼 = ElementSpec('灼').by_elements(火, 勺)
 
@@ -3373,7 +3380,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 廡 = ElementSpec('廡').by_elements(广, 無)
 
-憮 = ElementSpec('憮').by_elements(忄, 無)
+憮 = ElementSpec('憮').by_elements(心_1, 無)
 
 撫 = ElementSpec('撫').by_elements(扌, 無)
 
@@ -3507,6 +3514,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 吽 = ElementSpec('吽').by_elements(口, 牛)
 
 # XXX uhhh u sure?
+# sensei
 告 = ElementSpec('告').by_elements(牛, 口)
 # 浩 梏 晧 鵠 靠 皓 誥 窖 酷
 # 造 (慥 造)
@@ -3639,7 +3647,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 徃 = ElementSpec('徃').by_elements(彳, 生)
 
-性 = ElementSpec('性').by_elements(忄, 生)
+性 = ElementSpec('性').by_elements(心_1, 生)
 
 旌 = ElementSpec('旌').by_elements(方, 2, 生)
 
@@ -3651,7 +3659,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 傭 = ElementSpec('傭').by_elements(亻, 庸)
 
-慵 = ElementSpec('慵').by_elements(忄, 庸)
+慵 = ElementSpec('慵').by_elements(心_1, 庸)
 
 甫 = ElementSpec('甫').by_elements(1, 用, 1)
 
@@ -3838,6 +3846,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 # 礻_1 = ElementSpec('礻', 1).by_elements(示)
 # 神 (鰰)
 
+# TODO join
 礻 = ElementSpec('礻', 2).by_stroke_count(4)
 # 祖 祉 祈 禍 祷 祥 社 祝 福 神 祐 禎 視 礼 祢 禅 禄
 
@@ -3877,7 +3886,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 嫖 = ElementSpec('嫖').by_elements(女, 票)
 
-慓 = ElementSpec('慓').by_elements(忄, 票)
+慓 = ElementSpec('慓').by_elements(心_1, 票)
 
 標 = ElementSpec('標').by_elements(木, 票)
 
@@ -3948,9 +3957,9 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 季 = ElementSpec('季').by_elements(禾, 子)
 
-悧 = ElementSpec('悧').by_elements(忄, 利)
+悧 = ElementSpec('悧').by_elements(心_1, 利)
 
-悸 = ElementSpec('悸').by_elements(忄, 季)
+悸 = ElementSpec('悸').by_elements(心_1, 季)
 
 林 = ElementSpec('林', 1).by_elements(木, 木)
 # 麓 痲 埜 梺 彬 霖 歴 痳 淋 罧 潸 爨 森 梵 暦 梦 婪 焚 琳 醂 菻
@@ -4028,7 +4037,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 啾 = ElementSpec('啾').by_elements(口, 秋)
 
-愀 = ElementSpec('愀').by_elements(忄, 秋)
+愀 = ElementSpec('愀').by_elements(心_1, 秋)
 
 愁 = ElementSpec('愁').by_elements(秋, 心)
 
@@ -4064,7 +4073,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 廩 = ElementSpec('廩').by_elements(广, 稟)
 
-懍 = ElementSpec('懍').by_elements(忄, 稟)
+懍 = ElementSpec('懍').by_elements(心_1, 稟)
 
 穉 = ElementSpec('穉').by_elements(禾, 犀)
 
@@ -4357,7 +4366,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 氣 = ElementSpec('氣').by_elements(气, 米)
 
-愾 = ElementSpec('愾').by_elements(忄, 氣)
+愾 = ElementSpec('愾').by_elements(心_1, 氣)
 
 渊 = ElementSpec('渊').by_elements(氵, 1, 米, 1)
 
@@ -4601,7 +4610,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 様 = ElementSpec('様').by_strokes_to_elements({
     (1, 2, 3, 4): 木,
     (5, 6, 7, 8, 9, 10): 羊,
-    (1, 12, 10, 13, 14): 氺,  # XXX stroke order
+    (10, 11, 12, 13, 14): 氺,  # TODO join with water
 })
 # by_elements(木, 羊, 氺_2)
 
@@ -4698,7 +4707,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 喘 = ElementSpec('喘').by_elements(口, 山, 而)
 
-惴 = ElementSpec('惴').by_elements(忄, 山, 而)
+惴 = ElementSpec('惴').by_elements(心_1, 山, 而)
 
 揣 = ElementSpec('揣').by_elements(扌, 山, 而)
 
@@ -4792,7 +4801,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 囁 = ElementSpec('囁').by_elements(口, 聶)
 
-懾 = ElementSpec('懾').by_elements(忄, 聶)
+懾 = ElementSpec('懾').by_elements(心_1, 聶)
 
 攝 = ElementSpec('攝').by_elements(扌, 聶)
 
@@ -4822,6 +4831,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 筆 = ElementSpec('筆').by_elements(竹, 聿)
 
 # XXX wrong stroke order on second element
+# TODO make last element
 粛 = ElementSpec('粛').by_elements(x2e95, 米, 2)
 # 繍
 
@@ -4830,7 +4840,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 十 = ElementSpec('十').by_elements(一, 1)
 
 肅 = ElementSpec('肅').by_strokes_to_elements({
-    (1, 2, 3): x2e95,
+    (1, 2, 3): x2e95,  # TODO maybe replace this part? or make variant of brush
     (4, 10): 十,  # XXX wrong stroke order
     (5, 6, 7, 11): 片,
     (8, 9, 12, 13): 爿,
@@ -4858,12 +4868,12 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 肓 = ElementSpec('肓').by_elements(亡, 月)
 
-# FIXME is x2e8c just a variant of 小?
-肖 = ElementSpec('肖').by_elements(x2e8c, 月)
-# 肖_1 = ElementSpec('肖', 1).by_elements(x2e8c, 月)
+# FIXME is 小_2 just a variant of 小?
+肖 = ElementSpec('肖').by_elements(小_2, 月)
+# 肖_1 = ElementSpec('肖', 1).by_elements(小_2, 月)
 # 悄 霄 削 稍 消 硝 銷 誚 宵 梢 趙 峭 蛸 鮹 鞘
 
-# 肖_2 = ElementSpec('肖', 2).by_elements(小, 月)
+肖_2 = ElementSpec('肖', 2).by_elements(小, 月)
 # 逍
 
 # 肖_2 = ElementSpec('肖', 3).by_elements(小, 月)
@@ -4873,21 +4883,22 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 哨 = ElementSpec('哨').by_elements(口, 肖_2)
 
-宵 = ElementSpec('宵').by_elements(宀, 肖_1)
+宵 = ElementSpec('宵').by_elements(宀, 肖)
 
 屑 = ElementSpec('屑').by_elements(尸, 肖_2)
 
-峭 = ElementSpec('峭').by_elements(山, 肖_1)
+峭 = ElementSpec('峭').by_elements(山, 肖_2)
 
-悄 = ElementSpec('悄').by_elements(忄, 肖_1)
+# TODO join
+悄 = ElementSpec('悄').by_elements(心_1, 肖_2)
 
-梢 = ElementSpec('梢').by_elements(木, 肖_1)
+梢 = ElementSpec('梢').by_elements(木, 肖)
 
-消 = ElementSpec('消').by_elements(氵, 肖_1)
+消 = ElementSpec('消').by_elements(氵, 肖)
 
-硝 = ElementSpec('硝').by_elements(石, 肖_1)
+硝 = ElementSpec('硝').by_elements(石, 肖)
 
-稍 = ElementSpec('稍').by_elements(禾, 肖_1)
+稍 = ElementSpec('稍').by_elements(禾, 肖_2)
 
 肘 = ElementSpec('肘').by_elements(月, 寸)
 
@@ -5040,7 +5051,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 # 桀 (傑 桀 磔)
 # 舜 (瞬 舜)
 
-憐 = ElementSpec('憐').by_elements(忄, 米, 舛_2)
+憐 = ElementSpec('憐').by_elements(心_1, 米, 舛_2)
 
 桀 = ElementSpec('桀').by_elements(舛_2, 木)
 # 傑 磔
@@ -5127,7 +5138,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 很 = ElementSpec('很').by_elements(彳, 艮_2)
 
-恨 = ElementSpec('恨').by_elements(忄, 艮_2)
+恨 = ElementSpec('恨').by_elements(心_1, 艮_2)
 
 既_1 = ElementSpec('既', 1).by_elements(艮_1, 旡_2)
 # 慨 概
@@ -5137,7 +5148,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 厩 = ElementSpec('厩').by_elements(厂, 既_2)
 
-慨 = ElementSpec('慨').by_elements(忄, 既_1)
+慨 = ElementSpec('慨').by_elements(心_1, 既_1)
 
 根 = ElementSpec('根').by_elements(木, 艮_2)
 
@@ -5256,7 +5267,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 蛮 = ElementSpec('蛮').by_elements(亦, 虫)
 
-蛸 = ElementSpec('蛸').by_elements(虫, 肖_1)
+蛸 = ElementSpec('蛸').by_elements(虫, 肖_2)
 
 蛹 = ElementSpec('蛹').by_elements(虫, 甬)
 
@@ -5280,6 +5291,7 @@ x30fb = ElementSpec('・').by_stroke_count(1)
 
 蝌 = ElementSpec('蝌').by_elements(虫, 科)
 
+# taberu
 蝕 = ElementSpec('蝕').by_elements(9, 虫)  # XXX
 
 蝣 = ElementSpec('蝣').by_elements(虫, 方, 2, 子)
@@ -5584,7 +5596,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 誘 = ElementSpec('誘').by_elements(言, 秀)
 
-誚 = ElementSpec('誚').by_elements(言, 肖_1)
+誚 = ElementSpec('誚').by_elements(言, 肖_2)
 
 語 = ElementSpec('語').by_elements(言, 吾)
 
@@ -5901,7 +5913,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 慙 = ElementSpec('慙').by_elements(斬, 心)
 
-慚 = ElementSpec('慚').by_elements(忄, 斬)
+慚 = ElementSpec('慚').by_elements(心_1, 斬)
 
 槧 = ElementSpec('槧').by_elements(斬, 木)
 
@@ -6092,7 +6104,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 造_2 = ElementSpec('造', 2).by_elements(告, 辶)
 
-慥 = ElementSpec('慥').by_elements(忄, 造_2)
+慥 = ElementSpec('慥').by_elements(心_1, 造_2)
 
 逡 = ElementSpec('逡').by_elements(允, 夂, 辶)
 
@@ -6163,7 +6175,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 邑 = ElementSpec('邑').by_elements(口, 巴)
 
-悒 = ElementSpec('悒').by_elements(忄, 邑)
+悒 = ElementSpec('悒').by_elements(心_1, 邑)
 
 扈 = ElementSpec('扈').by_elements(戸, 邑)
 
@@ -6427,7 +6439,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
     (11, 12, 13, 14): 戈,
 })
 
-銷 = ElementSpec('銷').by_elements(金, 肖_1)
+銷 = ElementSpec('銷').by_elements(金, 肖_2)
 
 銹 = ElementSpec('銹').by_elements(金, 秀)
 
@@ -6519,7 +6531,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 張 = ElementSpec('張').by_elements(弓, 長_3)
 # 漲
 
-悵 = ElementSpec('悵').by_elements(忄, 長_3)
+悵 = ElementSpec('悵').by_elements(心_1, 長_3)
 
 漲 = ElementSpec('漲').by_elements(氵, 張)
 
@@ -6555,7 +6567,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 閔 = ElementSpec('閔').by_elements(門, 文)
 
-憫 = ElementSpec('憫').by_elements(忄, 閔)
+憫 = ElementSpec('憫').by_elements(心_1, 閔)
 
 閖 = ElementSpec('閖').by_elements(門, 水)
 
@@ -6656,7 +6668,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 康 = ElementSpec('康').by_elements(广, 隶)
 
-慷 = ElementSpec('慷').by_elements(忄, 康)
+慷 = ElementSpec('慷').by_elements(心_1, 康)
 
 棣 = ElementSpec('棣').by_elements(木, 隶)
 
@@ -6679,7 +6691,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 唯 = ElementSpec('唯').by_elements(口, 隹)
 
 寉_1 = ElementSpec('寉', 1).by_strokes_to_elements({
-    (1, 2, 3): 宀,  # XXX order wrong (but semantically correct?)
+    (1, 2, 3): 宀,  # order wrong (but semantically correct?)
     (3, 4, 5, 6, 7, 8, 9, 10): 隹,
 })
 # 鶴 確
@@ -6694,7 +6706,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 廱 = ElementSpec('廱').by_elements(广, 巛, 邑, 隹)
 
-惟 = ElementSpec('惟').by_elements(忄, 隹)
+惟 = ElementSpec('惟').by_elements(心_1, 隹)
 
 戳 = ElementSpec('戳').by_elements(羽, 隹, 戈)
 
@@ -6729,7 +6741,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 焦 = ElementSpec('焦').by_elements(隹, 灬)
 
-憔 = ElementSpec('憔').by_elements(忄, 焦)
+憔 = ElementSpec('憔').by_elements(心_1, 焦)
 
 樵 = ElementSpec('樵').by_elements(木, 焦)
 
@@ -6858,7 +6870,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 孺 = ElementSpec('孺').by_elements(子, 需)
 
-懦 = ElementSpec('懦').by_elements(忄, 需)
+懦 = ElementSpec('懦').by_elements(心_1, 需)
 
 濡 = ElementSpec('濡').by_elements(氵, 需)
 
@@ -6874,7 +6886,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 轜 = ElementSpec('轜').by_elements(車, 需)
 
-霄 = ElementSpec('霄').by_elements(雨, 肖_1)
+霄 = ElementSpec('霄').by_elements(雨, 肖_2)
 
 震 = ElementSpec('震').by_elements(雨, 辰)
 
@@ -6908,7 +6920,6 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 靉 = ElementSpec('靉').by_elements(雲, 愛)
 
-# XXX
 青_1 = ElementSpec('青', 1).by_elements(4, 月)
 # 静 精 晴 請 靖 清 情
 
@@ -6918,7 +6929,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 倩 = ElementSpec('倩').by_elements(亻, 青_2)
 
-情 = ElementSpec('情').by_elements(忄, 青_1)
+情 = ElementSpec('情').by_elements(心_1, 青_1)
 
 清 = ElementSpec('清').by_elements(氵, 青_1)
 
@@ -6976,6 +6987,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 靠 = ElementSpec('靠').by_elements(告, 非)
 
+# 目
 # XXX
 面 = ElementSpec('面').by_stroke_count(9)
 
@@ -6985,10 +6997,10 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 
 靤 = ElementSpec('靤').by_elements(面, 包_2)
 
-# XXX
 韋_1 = ElementSpec('韋', 1).by_elements(3, 口, 3)
 # 圍 幃
 
+# XXX ヰ
 韋_2 = ElementSpec('韋', 2).by_elements(3, 口, 4)
 # 葦 衛 韓 偉 韜 諱 違 緯
 
@@ -7178,6 +7190,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 驫 = ElementSpec('驫').by_elements(馬, 馬, 馬)
 
 # XXX no semantic shit here, really? add a roof at least
+# 過
 骨 = ElementSpec('骨').by_elements(6, 月)
 # 骸 髓 骭 磆 髀 鶻 骼 髄 體 滑 骰 髑 髏 猾 榾
 
@@ -7238,6 +7251,7 @@ x2ec3 = ElementSpec('⻃').by_elements(西)
 鬆 = ElementSpec('鬆').by_elements(髟, 松)
 
 # XXX
+# 鼠
 鬣 = ElementSpec('鬣').by_elements(髟, 巛, 2, 乂, 8)
 
 # post code radical lmao
@@ -7561,9 +7575,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 急 = ElementSpec('急').by_elements(𠂊, x2e95, 心)
 
-悗 = ElementSpec('悗').by_elements(忄, 免_2)
+悗 = ElementSpec('悗').by_elements(心_1, 免_2)
 
-憺 = ElementSpec('憺').by_elements(忄, 𠂊, 4, 言)
+憺 = ElementSpec('憺').by_elements(心_1, 𠂊, 4, 言)
 
 # TODO unify
 成 = ElementSpec('成').by_strokes_to_elements({
@@ -7620,6 +7634,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 蟾 = ElementSpec('蟾').by_elements(虫, 𠂊, 4, 言)
 
 # XXX
+# 月
 角 = ElementSpec('角').by_elements(𠂊, 5)
 # 觝 桷 觸 埆 觚 触 觧 鵤 觴
 # 解 (蠏 邂 懈 解 廨 蟹)
@@ -7641,7 +7656,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 廨 = ElementSpec('廨').by_elements(广, 解)
 
-懈 = ElementSpec('懈').by_elements(忄, 解)
+懈 = ElementSpec('懈').by_elements(心_1, 解)
 
 蟹 = ElementSpec('蟹').by_elements(解, 虫)
 
@@ -7660,6 +7675,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 譫 = ElementSpec('譫').by_elements(言, 𠂊, 4, 言)
 
 # XXX
+# create element
 象 = ElementSpec('象').by_elements(𠂊, 3, 豕)
 # 像 橡 豫
 
@@ -7697,7 +7713,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 龝 = ElementSpec('龝').by_elements(禾, 龜)
 
-# XXX should this be joined with bird or something
+# XXX should this be joined with bird or something -- no
 𠂤 = ElementSpec('𠂤').by_stroke_count(6)
 # 追 (鎚 縋 追 槌)
 # 阜 (阜 埠)
@@ -7738,7 +7754,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 歟 = ElementSpec('歟').by_elements(與, 欠)
 
 興 = ElementSpec('興').by_strokes_to_elements({
-    (1, 2, 3, 4, 11, 12, 13): 𦥑_1,
+    (1, 2, 3, 4, 11, 12, 13): 𦥑,
     (5, 6, 7, 8, 9, 10): 同,
     (15, 16): 八,
 }, (14,))
@@ -7886,7 +7902,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 感 = ElementSpec('感').by_elements(咸, 心)
 
-憾 = ElementSpec('憾').by_elements(忄, 感)
+憾 = ElementSpec('憾').by_elements(心_1, 感)
 
 撼 = ElementSpec('撼').by_elements(扌, 感)
 
@@ -7912,63 +7928,22 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鹹 = ElementSpec('鹹').by_elements(鹵, 咸)
 
-# XXX this is sometimes roof
-人_5 = ElementSpec('人', 5).by_stroke_count(2)
-# 个 倹 拳 企 咎 仝 撲 騰 剣 俎 験 実 検 庚 舗 茶 豢 鹸 蹼 剱 険 珍 傘 臥 樸 眷 閃 診 羮 璞
-# 縢 (籘 縢)
-# 合 (拾 鴿 哈 箚 剳 盒 恰 洽 給 蛤 龕 峇 姶 歙 拿 塔 翕 閤 合 袷 鞳 粭 搭 答 荅)
-# 从 (狭 齪 挾 齧 雜 縱 籤 誣 檣 碎 悴 挫 筮 傘 齒 薔 賚 瘁 從 孅 聳 齠 鋏 从 淬 筴 陜 狹 埣 麩 囃 麥 卒 噬 篋 挟 慫 醉 夾 倅 纖 麭 齣 頰 來 麪 憖 膵 坐 齶 穡 鵐 齦 座 牆 懺 齔 蹤 齲 囓 靈 翠 峡 艢 墻 蓙 讖 嗇 峽 頬 萊 齡 樅 萃 齷 殲 齬 徠 齟 莢 粹 巫 覡 浹 猝)
-# 僉 (斂 劔 險 臉 匳 劍 瞼 檢 簽 僉 歛 儉 瀲 劒 嶮 驗)
-# 疋 (疏 縦 堤 碇 疎 綻 擬 疋 従 醍 定 礙 匙 掟 聢 楚 是 諚 胥 旋 礎 蛋 淀 嶷 題 壻 提 癡 疑 凝 婿 寔 錠 嚏)
-# 囚 (媼 囚 鰮 薀 蘊 褞 瘟 泅 膃 慍 饂 榲)
-# 大 (棒 訣 袂 抉 蓁 捲 夬 决 惷 決 捧 券 巻 椿 泰 舂 榛 缺 奉 蠢 謄 秦 臻 圏 俸 刔 鰆 快 春 鴃)
-# 仄 (仄 昃)
-# 亥 (垓 該 劾 核 刻 孩 亥 骸 駭 咳)
-# 令 (齢 囹 令 冷 齡 玲 鴒 蛉 零 伶 澪 怜 聆 鈴 嶺 苓 羚 領)
-# 令 (零 嶺 聆 玲 羚 鈴 冷 令 領)
-# 余 (叙 斜 塗 蜍 畭 除 餘 荼 敘 余 敍 途 徐)
-# 卷 (倦 蜷 綣 圈 卷 惓)
-# 介 (界 畍 堺 价 芥 介 疥)
-# 以 (似 苡 以)
-# 參 (慘 驂 參 蔘 鰺 滲)
-# 倉 (創 瘡 槍 艙 倉 滄 搶 鎗 愴 蒼 蹌)
-# 今 (吟 蔭 陰 莟 黔 頷 今 岑 捻 含 唸 稔 琴 矜 衾 貪 衿 棯 念 鯰)
-# 劵 (劵 藤 椦 勝)
-# 禽 (擒 檎 禽)
-# 曷 (偈 蝎 蠍 鞨 遏 歇 竭 碣 葛 羯)
-# 内 (鞆 内 病 陋 納 柄 炳 丙)
-# 會 (獪 膾 鱠 薈 檜 會 繪)
-# 龠 (龠 籥 鑰)
-# 会 (会 桧 絵)
-# 舎 (捨 舎)
-# 匕 (臈 靄 藹 曷)
-# 臾 (臾 萸 諛 腴)
-# 舍 (舍 舘 舖 舒)
-# 侖 (輪 侖 倫 崙 棆 論 崘 綸 淪)
-# 滕 (滕 籐)
-# 幹 (幹 澣)
-# 脊 (脊 瘠 鶺 蹐)
-# 全 (全 詮 栓 筌 痊)
-# 僕 (濮 僕)
-# 奏 (奏 湊 輳)
-# 命 (掵 命)
-# 入 (肭)
+个 = ElementSpec('个').by_elements(𠆢, 1)
 
-个 = ElementSpec('个').by_elements(人_5, 1)
-
-亥 = ElementSpec('亥').by_elements(亠, 2, 人_5)
+亥 = ElementSpec('亥').by_elements(亠, 2, 人)
 # 該 垓 劾 核 駭 孩 骸 刻 咳
 
-仄 = ElementSpec('仄').by_elements(厂, 人_5)
+仄 = ElementSpec('仄').by_elements(厂, 人)
 # 昃
 
-今 = ElementSpec('今').by_elements(人_5, 一, 1)
+今 = ElementSpec('今').by_elements(𠆢, 一, 1)
 # 黔 岑 衾 吟 琴 矜 衿 貪
 # 陰 (蔭 陰)
 # 念 (捻 唸 棯 念 鯰 稔)
 # 含 (頷 莟 含)
 
-介 = ElementSpec('介').by_elements(人_5, 2)
+# TODO new element
+介 = ElementSpec('介').by_elements(𠆢, 2)
 # 畍 芥 疥 价
 # 界 (堺 界)
 
@@ -7976,7 +7951,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 峡 狭 挟
 # 夾 (頬)
 
-从_2 = ElementSpec('从', 2).by_elements(人_5, 人_5)
+从 = ElementSpec('从', 2).by_elements(人, 人)
 # 懺 讖 籤 傘 纖 殲 孅
 # 齒 (齪 齦 齲 齡 齟 齧 囓 齠 齒 齷 齬 齣 齶 齔)
 # 卒 (翠 瘁 萃 倅 膵 碎 粹 埣 淬 卒 醉 猝 悴)
@@ -7987,50 +7962,55 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 坐 (座 坐 蓙 挫)
 # 雜 (雜 囃)
 
-令_1 = ElementSpec('令', 1).by_elements(人_5, 一, マ)
+令_1 = ElementSpec('令', 1).by_elements(𠆢, 一, マ)
 # 蛉 伶 聆 冷 苓 鈴 怜 玲 齡 羚 囹
 # 零 (澪 零)
 # 領 (嶺)
 
-令_2 = ElementSpec('令', 2).by_elements(人_5, 一, 卩)
+令_2 = ElementSpec('令', 2).by_elements(𠆢, 一, 卩)
 # 鴒 領 齢
 
-以 = ElementSpec('以').by_elements(3, 人_5)
+# XXX lookalike
+ElementSpec('令').by_elements(令_2)
+# 聆 零 冷 玲 羚 鈴
+# 領 (嶺 領)
+
+以 = ElementSpec('以').by_elements(3, 人)
 # 苡 似
 
 价 = ElementSpec('价').by_elements(亻, 介)
 
-企 = ElementSpec('企').by_elements(人_5, 止)
+企 = ElementSpec('企').by_elements(𠆢, 止)
 
-会 = ElementSpec('会').by_elements(人_5, 云)
+会 = ElementSpec('会').by_elements(𠆢, 云)
 # 桧 絵
 
 伶 = ElementSpec('伶').by_elements(亻, 令_1)
 
 似 = ElementSpec('似').by_elements(亻, 以)
 
-余 = ElementSpec('余').by_elements(人_5, 2, 小)
+余 = ElementSpec('余').by_elements(𠆢, 2, 小)
 # 叙 塗 途 蜍 除 斜 荼 敘 敍 畭 徐 餘
 
 來 = ElementSpec('來').by_strokes_to_elements({
     (1, 6, 7, 8): 木,
-    (2, 3, 4, 5): 从_2,
+    (2, 3, 4, 5): 从,
 })
 # 賚 憖 徠 萊
 # 麥 (麩 麪 麭 麥)
 
-俎 = ElementSpec('俎').by_elements(人_5, 人_5, 且)
+俎 = ElementSpec('俎').by_elements(人, 人, 且)
 
-倉 = ElementSpec('倉').by_elements(人_5, 5, 口)
+倉 = ElementSpec('倉').by_elements(𠆢, 5, 口)
 # 滄 創 鎗 瘡 艙 愴 蒼 蹌 搶 槍
 
-倹 = ElementSpec('倹').by_elements(亻, 人_5, 一, 口, 人_5)
+倹 = ElementSpec('倹').by_elements(亻, 𠆢, 一, 口, 人)
 
-僉 = ElementSpec('僉').by_elements(人_5, 一, 口, 口, 人_5, 人_5)
+僉 = ElementSpec('僉').by_elements(𠆢, 一, 口, 口, 人, 人)
 # 儉 嶮 險 檢 劒 匳 簽 臉 劍 歛 驗 劔 瞼
 # 斂 (斂 瀲)
 
-僕 = ElementSpec('僕').by_elements(亻, 7, 三, 人_5)
+僕 = ElementSpec('僕').by_elements(亻, 7, 三, 人)
 # 濮
 
 儉 = ElementSpec('儉').by_elements(亻, 僉)
@@ -8039,10 +8019,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 内 (肭)
 
 入 = ElementSpec('入', 2).by_stroke_count(2)
-# 陝 杁 込 鳰 圦 叺 糴
-# 人 (衲 銓 吶 訥 靹 蚋) XXX circular
-# 兪 (兪 踰 偸 揄 喩 渝 鍮 逾 瘉 蝓 瑜 愉 癒 楡 喻 愈 輸 覦 諭)
-# 兩 (裲 滿 蹣 瞞 魎 倆 兩 懣 輛)
 
 兩 = ElementSpec('兩', 1).by_elements(一, 冂, 1, 入, 入)
 
@@ -8060,9 +8036,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 刻 = ElementSpec('刻').by_elements(亥, 刂)
 
-剣 = ElementSpec('剣').by_elements(人_5, 一, 口, 人_5, 刂)
+剣 = ElementSpec('剣').by_elements(𠆢, 一, 口, 人, 刂)
 
-剱 = ElementSpec('剱').by_elements(人_5, 一, 口, 人_5, 刄)
+剱 = ElementSpec('剱').by_elements(𠆢, 一, 口, 人, 刄)
 
 創 = ElementSpec('創').by_elements(倉, 刂)
 
@@ -8072,24 +8048,23 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 劔 = ElementSpec('劔').by_elements(僉, 刄)
 
-劵_1 = ElementSpec('劵', 1).by_elements(2, 二, 人_5, 力)
+劵_1 = ElementSpec('劵', 1).by_elements(2, 二, 人, 力)
 # 椦 勝
 
-劵_2 = ElementSpec('劵', 2).by_elements(2, 二, 人_5, 氺)
+劵_2 = ElementSpec('劵', 2).by_elements(2, 二, 人, 氺)
 # 滕 (藤)
 
 劾 = ElementSpec('劾').by_elements(亥, 力)
 
 勝 = ElementSpec('勝').by_elements(月, 劵_1)
 
-# XXX
 # 匕_1 = ElementSpec('匕', 1).by_elements(一, 1)
 # 七 (叱)
 
-匕_2 = ElementSpec('匕', 2).by_elements(人_5, 1)
+# 匕_2 = ElementSpec('匕', 2).by_elements(人_5, 1)
 # 曷 (臈 靄 藹 曷)
 
-匕_3 = ElementSpec('匕', 3).by_stroke_count(2)
+匕 = ElementSpec('匕', 3).by_stroke_count(2)
 # 齔 匂 肄 鴇 牝 匙 壱
 # 它 (它 鉈 蛇 沱 舵 鴕 詑 駝 佗 柁 陀)
 # 比 (麑 粃 驪 鯤 昆 楷 麋 菎 鹿 麌 毘 砒 巉 麗 屁 秕 箟 比 豼 偕 漉 儷 灑 皆 篦 麝 麓 麟 琵 諧 纔 棍 鏖 紕 揩 箆 陛 麕 混 轆 蓖 麒 崑 貔 枇 麈 麁 焜 階 塵 批 庇 妣 讒)
@@ -8112,18 +8087,17 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 七_3 = ElementSpec('七', 3).by_elements(匕_1)
 # 叱
 
-# TODO make sure there is no redefinition
 # 人_1 = ElementSpec('人', 1).by_elements(入)
 # 内 (衲 吶 訥 靹 蚋)
 # 全 (銓)
 
-# 人_2 = ElementSpec('人', 2).by_elements(匕_3)
+# 人_2 = ElementSpec('人', 2).by_elements(匕)
 # 匂 (渇 謁 喝 褐 掲)
 
 # 内_3 = ElementSpec('内', 1).by_elements(冂, 人_1)
 # 衲 吶 靹 訥 蚋
 
-内_2 = ElementSpec('内', 2).by_elements(冂, 人_5)
+内_2 = ElementSpec('内', 2).by_elements(冂, 人)
 # 納
 # 丙 (鞆 病 陋 柄 炳 丙)
 
@@ -8136,13 +8110,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 匂 = ElementSpec('匂', 1).by_elements(勹, 人_2)
 # 曷 (渇 謁 喝 褐 掲)
 
-匂 = ElementSpec('匂', 2).by_elements(勹, 匕_3)
+匂 = ElementSpec('匂', 2).by_elements(勹, 匕)
 
-化 = ElementSpec('化').by_elements(亻, 匕_3)
+化 = ElementSpec('化').by_elements(亻, 匕)
 # 訛 囮 貨 靴
 # 花 (椛 糀 錵 硴 埖 花)
 
-北 = ElementSpec('北').by_elements(3, 匕_3)
+北 = ElementSpec('北').by_elements(3, 匕)
 # 背
 # 乘 (剩 乘)
 # 冀 (驥 冀)
@@ -8154,7 +8128,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (3, 4, 5, 6, 7): 北,
 })
 
-剩 = ElementSpec('剩').by_elements(乘_2, 刂)
+剩 = ElementSpec('剩').by_elements(乘, 刂)
 
 匳 = ElementSpec('匳').by_strokes_to_elements({
     (1, 15): 匸,
@@ -8166,7 +8140,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 廿 (貰 笹 喋 葉 諜 牒 世 鰈 蝶 渫 紲 楪 泄 緤)
 # 甲 (単)
 
-# 十_2 = ElementSpec('十', 2).by_elements(匕_3)
+# 十_2 = ElementSpec('十', 2).by_elements(匕)
 # 眞 (癲)
 # 真 (巓)
 
@@ -8221,7 +8195,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 什 = ElementSpec('什').by_elements(亻, 十)
 
-傘 = ElementSpec('傘').by_elements(人_5, 从_2, 从_2, 十)
+傘 = ElementSpec('傘').by_elements(𠆢, 从, 从, 十)
 
 # 千 = ElementSpec('千', 1).by_elements(1, 十_3, 1)
 # 熏 (醺 燻 勳 熏)
@@ -8273,7 +8247,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 卍 = ElementSpec('卍').by_elements(1, 十, 3)
 
-卒 = ElementSpec('卒').by_elements(亠, 从_2, 十)
+卒 = ElementSpec('卒').by_elements(亠, 从, 十)
 # 翠 猝 埣 淬 悴 瘁 粹 倅 醉 碎
 # 萃 (萃 膵)
 
@@ -8282,12 +8256,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 協 = ElementSpec('協').by_elements(十, 力, 力, 力)
 
 # XXX is this hat its own element?
-卷 = ElementSpec('卷').by_elements(2, 二, 人_5, 卩)
+卷 = ElementSpec('卷').by_elements(2, 二, 人, 卩)
 # 蜷 倦 惓 圈 綣
 
 倦 = ElementSpec('倦').by_elements(亻, 卷)
 
-參 = ElementSpec('參').by_elements(厶, 厶, 厶, 人_5, 彡)
+參 = ElementSpec('參').by_elements(厶, 厶, 厶, 人, 彡)
 # 蔘 慘 滲 驂 鰺
 
 叙 = ElementSpec('叙').by_elements(余, 又)
@@ -8313,7 +8287,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 叺 = ElementSpec('叺').by_elements(口, 入)
 
-合 = ElementSpec('合').by_elements(人_5, 一, 口)
+合 = ElementSpec('合').by_elements(𠆢, 一, 口)
 
 吟 = ElementSpec('吟').by_elements(口, 今)
 
@@ -8321,11 +8295,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 吶 = ElementSpec('吶').by_elements(口, 内_3)
 
-命 = ElementSpec('命').by_elements(人_5, 一, 口, 卩)
+命 = ElementSpec('命').by_elements(𠆢, 一, 口, 卩)
 
 咎 = ElementSpec('咎').by_strokes_to_elements({
     (1, 2, 3, 6, 7, 8): 各,
-    (4, 5): 人_5,
+    (4, 5): 人,
 })
 
 咳 = ElementSpec('咳').by_elements(口, 亥)
@@ -8346,7 +8320,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 囚 = ElementSpec('囚').by_strokes_to_elements({
     (1, 2, 5): 口,
-    (3, 4): 人_5,
+    (3, 4): 人,
 })
 
 囮 = ElementSpec('囮').by_strokes_to_elements({
@@ -8422,6 +8396,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 再 = ElementSpec('再').by_elements(一, 冉)
 
 # XXX is the top bit an element?
+# 井
 冓 = ElementSpec('冓').by_strokes_to_elements({
     (1, 4, 5): 三,
     (5, 6, 7, 8, 9, 10): 再,
@@ -8477,7 +8452,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 坏 = ElementSpec('坏').by_elements(土, 不)
 
-坐 = ElementSpec('坐', 1).by_elements(从_2, 土)
+坐 = ElementSpec('坐', 1).by_elements(从, 土)
 
 坑 = ElementSpec('坑').by_elements(土, 亢)
 
@@ -8662,10 +8637,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 壯 = ElementSpec('壯').by_elements(爿, 士)
 
 # XXX door?
+# variation of new element?
 声 = ElementSpec('声').by_elements(士, 4)
 # 聲 謦 磬 馨
 
-壱 = ElementSpec('壱').by_elements(士, 冖, 匕_3)
+壱 = ElementSpec('壱').by_elements(士, 冖, 匕)
 
 売 = ElementSpec('売').by_elements(士, 冖, 儿)
 # 涜 続 読
@@ -8684,7 +8660,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 壼 = ElementSpec('壼').by_elements(士, 冖, 亞)
 
-大 = ElementSpec('大', 1).by_elements(一, 人_5)
+大 = ElementSpec('大', 1).by_elements(一, 人)
 # 舂 泰
 # 秦 (秦 臻 蓁 榛)
 # 奉 (奉 棒 捧 俸)
@@ -8750,7 +8726,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 参 = ElementSpec('参').by_elements(厶, 大, 彡)
 # 鯵 惨
 
-# XXX which is it?
 呉_1 = ElementSpec('呉', 1).by_elements(口, 1, 大)
 # 蜈 茣 麌
 
@@ -8779,14 +8754,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 俣 = ElementSpec('俣').by_elements(亻, 口, 天)
 
-# XXX whyyyyy
-关_1 = ElementSpec('关', 1).by_elements(八, 天)
+关 = ElementSpec('关', 1).by_elements(八, 天)
 # 送 (鎹)
 
-关_2 = ElementSpec('关', 2).by_elements(2, 天)
+# 关 = ElementSpec('关', 2).by_elements(2, 天)
 # 朕 関 送 渕 咲
 
-咲 = ElementSpec('咲').by_elements(口, 关_2)
+咲 = ElementSpec('咲').by_elements(口, 关)
 
 太 = ElementSpec('太').by_elements(大, 1)
 # 汰 駄 葢
@@ -8844,18 +8818,17 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # })
 # 頬
 
+夾_1 = ElementSpec('夾', 3).by_strokes_to_elements({
+    (1, 6, 7): 大,
+    (2, 3, 4, 5): 从,
+})
+
 # XXX is the right part an element? 釆?
 夾_2 = ElementSpec('夾', 2).by_strokes_to_elements({
     (1, 4): 二,
     (1, 5, 6): 大,
 }, (2, 3))
 # 侠
-
-夾_3 = ElementSpec('夾', 3).by_strokes_to_elements({
-    (1, 6, 7): 大,
-    (2, 3, 4, 5): 从_2,
-})
-# 浹 狹 頰 筴 挾 篋 莢 陜 鋏 峽
 
 侠 = ElementSpec('侠').by_elements(亻, 夾_2)
 
@@ -8880,7 +8853,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 奎 = ElementSpec('奎').by_elements(大, 圭)
 
-奏 = ElementSpec('奏').by_elements(三, 人_5, 天)
+奏 = ElementSpec('奏').by_elements(三, 人, 天)
 # 輳 湊
 
 奐 = ElementSpec('奐').by_elements(𠂊, 冂, 儿, 大)
@@ -8899,7 +8872,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 奘 = ElementSpec('奘').by_elements(壯, 大)
 
-# XXX semantic?
 # 奚_1 = ElementSpec('奚', 1).by_elements(x2ea4, 夫)
 # 渓 鶏
 
@@ -8951,7 +8923,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 孅 = ElementSpec('孅').by_strokes_to_elements({
     (1, 2, 3): 女,
-    (4, 5, 6, 7): 从_2,
+    (4, 5, 6, 7): 从,
     (8, 18, 19, 20): 戈,
     (9, 10, 11, 12, 13, 14, 15, 16, 17): 韭,
 })
@@ -8962,11 +8934,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 孩 = ElementSpec('孩').by_elements(子, 亥)
 
-它 = ElementSpec('它').by_elements(宀, 匕_3)
+它 = ElementSpec('它').by_elements(宀, 匕)
 
 佗 = ElementSpec('佗').by_elements(亻, 它)
 
-実 = ElementSpec('実').by_elements(宀, 三, 人_5)
+実 = ElementSpec('実').by_elements(宀, 三, 人)
 
 寄 = ElementSpec('寄').by_elements(宀, 奇)
 
@@ -8979,6 +8951,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 尅 = ElementSpec('尅').by_elements(克, 寸)
 
 # XXX oil? field?
+# old variation of 専
 專 = ElementSpec('專').by_strokes_to_elements({
     (1, 6): 十,
     (9, 10, 11): 寸,
@@ -8995,7 +8968,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 尖 = ElementSpec('尖').by_elements(小, 大)
 
-尼 = ElementSpec('尼').by_elements(尸, 匕_3)
+尼 = ElementSpec('尼').by_elements(尸, 匕)
 
 居 = ElementSpec('居').by_elements(尸, 古)
 
@@ -9009,14 +8982,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 峙 = ElementSpec('峙').by_elements(山, 寺)
 
-峡 = ElementSpec('峡').by_strokes_to_elements({
-    (1, 2, 3): 山,
-    (4, 7): 二,
-    (4, 8, 9): 大,
-    (5, 6, 7): 从_1,
-})
+峡 = ElementSpec('峡').by_elements(山, 夾_2)
 
-峽 = ElementSpec('峽').by_elements(山, 夾_3)
+峽 = ElementSpec('峽').by_elements(山, 夾_1)
 
 崎 = ElementSpec('崎').by_elements(山, 奇)
 
@@ -9030,16 +8998,16 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 嶮 = ElementSpec('嶮').by_elements(山, 僉)
 
-工_1 = ElementSpec('工', 1).by_elements(一, 2)
+# 工 = ElementSpec('工', 1).by_elements(一, 2)
 # 巫
 
-工_2 = ElementSpec('工', 2).by_elements(土_1)
+# 工 = ElementSpec('工', 2).by_elements(土_1)
 # 巫 (嗇)
 
-工_3 = ElementSpec('工', 3).by_elements(土)
+# 工 = ElementSpec('工', 3).by_elements(土)
 # 巫 (牆 檣 艢 薔 穡)
 
-工_4 = ElementSpec('工', 4).by_stroke_count(3)
+工 = ElementSpec('工', 4).by_stroke_count(3)
 # 矼 脛 逕 扛 攻 缸 勁 訌 功 噐 肛 項 徑 蛩 穩 汞 巧 輕 隱 經 跫 紅 鞏 杢 痙 莖 仝 剄 恐 杠 虹 頸
 # 江 (江 鴻)
 # 左 (膸 橢 惰 楕 左 佐 髓 隋 隨 墮)
@@ -9052,71 +9020,45 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 筑 (築 筑)
 # 尋 (潯 尋 蕁)
 
-仝 = ElementSpec('仝').by_elements(人_5, 工_4)
+仝 = ElementSpec('仝').by_elements(𠆢, 工)
 
-剄 = ElementSpec('剄').by_elements(一, 巛, 工_4, 刂)
+剄 = ElementSpec('剄').by_elements(一, 巛, 工, 刂)
 
-功 = ElementSpec('功').by_elements(工_4, 力)
+功 = ElementSpec('功').by_elements(工, 力)
 
-勁 = ElementSpec('勁').by_elements(一, 巛, 工_4, 力)
+勁 = ElementSpec('勁').by_elements(一, 巛, 工, 力)
 
-噐 = ElementSpec('噐').by_elements(口, 口, 工_4, 口, 口)
+噐 = ElementSpec('噐').by_elements(口, 口, 工, 口, 口)
 
-壽_1 = ElementSpec('壽', 1).by_elements(士, 1, 工_4, 一, 吋)
+壽 = ElementSpec('壽', 1).by_elements(士, 1, 工, 一, 吋)
 # 檮 鑄 擣 濤 躊 籌 儔 疇
 
-壽_2 = ElementSpec('壽', 2).by_elements(士, 1, 工_4, 1, 吋)
+# 壽 = ElementSpec('壽', 2).by_elements(士, 1, 工, 1, 吋)
 # 禱
 
-儔 = ElementSpec('儔').by_elements(亻, 壽_1)
+儔 = ElementSpec('儔').by_elements(亻, 壽)
 
-尋 = ElementSpec('尋').by_elements(x2e95, 工_4, 口, 寸)
+尋 = ElementSpec('尋').by_elements(x2e95, 工, 口, 寸)
 # 蕁 潯
 
-左 = ElementSpec('左').by_elements(2, 工_4)
+左 = ElementSpec('左').by_elements(2, 工)
 # 佐 惰 髓 膸 楕
 # 隋 (隨 墮 橢 隋)
 
 佐 = ElementSpec('佐').by_elements(亻, 左)
 
-巧 = ElementSpec('巧').by_elements(工_4, 2)
+巧 = ElementSpec('巧').by_elements(工, 2)
 
-巫_1 = ElementSpec('巫', 1).by_strokes_to_elements({
-    (1, 2, 7): 工_1,
-    (3, 4, 5, 6): 从_2,
+巫 = ElementSpec('巫', 1).by_strokes_to_elements({
+    (1, 2, 7): 工,
+    (3, 4, 5, 6): 从,
 })
 
-巫_2 = ElementSpec('巫', 2).by_strokes_to_elements({
-    (1, 2, 7): 工_2,
-    (3, 4, 5, 6): 从_2,
-})
-# 嗇
+嗇 = ElementSpec('嗇', 1).by_elements(巫, 回)
 
-巫_3 = ElementSpec('巫', 3).by_strokes_to_elements({
-    (1, 2, 7): 工_3,
-    (3, 4, 5, 6): 从_2,
-})
-# 嗇 (牆 檣 艢 薔 穡)
+墻 = ElementSpec('墻').by_elements(土, 嗇)
 
-巫_4 = ElementSpec('巫', 4).by_strokes_to_elements({
-    (1, 2, 7): 工_4,
-    (3, 4, 5, 6): 从_2,
-})
-# 覡 鵐 誣 靈
-# 嗇 (墻)
-# 筮 (筮 噬)
-
-嗇_1 = ElementSpec('嗇', 1).by_elements(巫_2, 回)
-
-嗇_2 = ElementSpec('嗇', 2).by_elements(巫_3, 回)
-# 穡 薔 檣 牆 艢
-
-嗇_3 = ElementSpec('嗇', 3).by_elements(巫_4, 回)
-# 墻
-
-墻 = ElementSpec('墻').by_elements(土, 嗇_3)
-
-差 = ElementSpec('差').by_elements(羊, 1, 工_4)
+差 = ElementSpec('差').by_elements(羊, 1, 工)
 # 嵳 嵯 蹉 搓 磋 瑳 縒 嗟 槎
 
 嗟 = ElementSpec('嗟').by_elements(口, 差)
@@ -9125,6 +9067,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 嵳 = ElementSpec('嵳').by_elements(山, 差)
 
+# XXX
 巻_1 = ElementSpec('巻', 1).by_strokes_to_elements({
     (3, 4): 二,
     (4, 5, 6): 大,
@@ -9148,17 +9091,17 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 幇 = ElementSpec('幇').by_elements(封, 巾)
 
-干_1 = ElementSpec('干', 1).by_elements(一, 十)
+干 = ElementSpec('干', 1).by_elements(一, 十)
 # 平
 
-干_2 = ElementSpec('干', 2).by_elements(十_3)
+# 干_2 = ElementSpec('干', 2).by_elements(十_3)
 # 形 枅 笄 開 妍 研
 # 刑 (型 刑 荊)
 
-干_3 = ElementSpec('干', 3).by_elements(1, 十_3, 1)
-# 年
+# 干_3 = ElementSpec('干', 3).by_elements(1, 十_3, 1)
+# 年 XXX ヰ
 
-干_4 = ElementSpec('干', 4).by_elements(1, 十)
+# 干_4 = ElementSpec('干', 4).by_elements(1, 十)
 # 岸 研 笄 訐 形 骭 開 罕 汗 鼾 刊 軒 奸 竿 扞 杆 肝 妍 枅
 # 旱 (旱 駻 稈 捍 桿 悍)
 # 平 (秤 岼 怦 鮃 評 坪 泙 苹 萍)
@@ -9170,81 +9113,73 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 刑 (型 刑 荊)
 # 幹 (幹 澣)
 
-刊 = ElementSpec('刊').by_elements(干_4, 刂)
+廾 = ElementSpec('廾').by_stroke_count(3)
 
-刑 = ElementSpec('刑').by_elements(干_4, 干_2, 刂)
+幵 = ElementSpec('幵').by_elements(干, 干)
+# 栞
+# 并 (餠)
+
+# XXX variant of above?
+#开 = ElementSpec('开').by_strokes_to_elements({
+#    (1, 2, 3): 干,
+#    (1, 2, 4): 干,
+#})
+开 = ElementSpec('开').by_elements(1, 廾)
+
+刊 = ElementSpec('刊').by_elements(干, 刂)
+
+刑 = ElementSpec('刑').by_elements(开, 刂)
 # 荊 型
 
-午 = ElementSpec('午').by_elements(1, 干_4)
+午 = ElementSpec('午').by_elements(1, 干)
 # 忤 杵
 # 卸 (卸 御 禦 啣)
 # 許 (許 滸)
 
-南 = ElementSpec('南').by_elements(十, 冂, 2, 干_4)
+南 = ElementSpec('南').by_elements(十, 冂, 2, 干)
 # 楠 遖 献 喃
 
 喃 = ElementSpec('喃').by_elements(口, 南)
 
 型 = ElementSpec('型').by_elements(刑, 土)
 
-奸 = ElementSpec('奸').by_elements(女, 干_4)
+奸 = ElementSpec('奸').by_elements(女, 干)
 
-妍 = ElementSpec('妍').by_elements(女, 干_4, 干_2)
+妍 = ElementSpec('妍').by_elements(女, 开)
 
-岸 = ElementSpec('岸').by_elements(山, 厂, 干_4)
+岸 = ElementSpec('岸').by_elements(山, 厂, 干)
 
-平_1 = ElementSpec('平', 1).by_strokes_to_elements({
-    (1, 4, 5): 干_1,
+平 = ElementSpec('平', 1).by_strokes_to_elements({
+    (1, 4, 5): 干,
 }, (2, 3))
 
-平_2 = ElementSpec('平', 2).by_strokes_to_elements({
-    (1, 4, 5): 干_4,
-}, (2, 3))
-# 岼 秤 苹 評 坪 鮃 怦
-# 泙 (泙 萍)
+坪 = ElementSpec('坪').by_elements(土, 平)
 
-坪 = ElementSpec('坪').by_elements(土, 平_2)
+岼 = ElementSpec('岼').by_elements(山, 平)
 
-岼 = ElementSpec('岼').by_elements(山, 平_2)
-
+# TODO old katakana
 年 = ElementSpec('年').by_strokes_to_elements({
-    (2, 3, 6): 干_3,
+    (2, 3, 6): 干,
 }, (1, 4, 5))
 
-幵 = ElementSpec('幵').by_elements(干_4, 干_4)
-# 栞
-# 并 (餠)
+# FIXME hat
+并_1 = ElementSpec('并', 1).by_elements(2, 开)
 
-并_1 = ElementSpec('并', 1).by_strokes_to_elements({
-    (1, 2): 八,
-    (3, 4, 6): 干_4,
-}, (5,))
-
-并_2 = ElementSpec('并', 2).by_strokes_to_elements({
-    (2, 3, 4, 6, 7, 8): 幵,
-}, (1, 5))
+并_2 = ElementSpec('并', 2).by_strokes_to_elements(2, 幵)
 # 餠
 
-并_3 = ElementSpec('并', 3).by_strokes_to_elements({
-    (3, 4, 6): 干_4,
-}, (1, 2, 5))
-# 胼 迸 併 駢 絣 垪 瓶 餅 剏
-# 屏 (屏 塀)
+併 = ElementSpec('併').by_elements(亻, 并_1)
 
-併 = ElementSpec('併').by_elements(亻, 并_3)
+剏 = ElementSpec('剏').by_elements(并_1, 刄)
 
-剏 = ElementSpec('剏').by_elements(并_3, 刄)
+垪 = ElementSpec('垪').by_elements(土, 并_1)
 
-垪 = ElementSpec('垪').by_elements(土, 并_3)
-
-屏 = ElementSpec('屏').by_elements(尸, 并_3)
-# 塀
+屏 = ElementSpec('屏').by_elements(尸, 并_1)
 
 塀 = ElementSpec('塀').by_elements(土, 屏)
 
-幸 = ElementSpec('幸').by_elements(土, 2, 干_4)
-# 澤 懌 釋 驛 倖 逹 鐸 繹 圉 報 擇 睾 譯
-# 執 (執 鷙 贄 摯 蟄)
+# FIXME hat
+幸 = ElementSpec('幸').by_elements(土, 2, 干)
 
 倖 = ElementSpec('倖').by_elements(亻, 幸)
 
@@ -9254,17 +9189,14 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 })
 
 執 = ElementSpec('執').by_elements(幸, 丸)
-# 鷙 摯 贄 蟄
 
 報 = ElementSpec('報').by_elements(幸, 卩, 又)
 
 庄 = ElementSpec('庄').by_elements(广, 土)
-# 粧 賍
 
-庚 = ElementSpec('庚').by_elements(广, x2e95, 人_5)
+庚 = ElementSpec('庚').by_elements(广, x2e95, 人)
 
 座 = ElementSpec('座').by_elements(广, 坐)
-# 蓙
 
 廚 = ElementSpec('廚').by_strokes_to_elements({
     (1, 2, 3): 广,
@@ -9273,16 +9205,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (13, 14, 15): 寸,
 })
 
-廾_1 = ElementSpec('廾', 1).by_elements(一, 2)
+# definition moved above
+
+# 廾_1 = ElementSpec('廾', 1).by_elements(一, 2)
 # 卅 (丗)
 # 廿 (丗)
 
-廾_2 = ElementSpec('廾', 2).by_elements(十_3)
+# 廾_2 = ElementSpec('廾', 2).by_elements(十_3)
 # 升 (飜 飛)
 
-廾_3 = ElementSpec('廾', 3).by_strokes_to_elements({
-    (1, 3): 十,
-}, (2,))
+# 廾_3 = ElementSpec('廾', 3).by_strokes_to_elements({
+#     (1, 3): 十,
+# }, (2,))
 # 算 彝 弉 弊 葬 彜 舁 聨
 # 昔 (錯 醋 惜 借 昔 藉 措 鵲 籍)
 # 井 (丼 囲 耕 井 穽 畊)
@@ -9298,96 +9232,101 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 鼻 (嚊 嬶 鼻)
 # 展 (展 碾 輾)
 
-廾_4 = ElementSpec('廾', 4).by_strokes_to_elements({
-    (1, 3): 十,
-}, (2, 4))
+# 廾_4 = ElementSpec('廾', 4).by_strokes_to_elements({
+#     (1, 3): 十,
+# }, (2, 4))
 # 曲 (曹 艚 儂 膿 漕 糟 腆 遭 農 槽 濃)
 
-廾_5 = ElementSpec('廾', 5).by_elements(大_3)
+# 廾_5 = ElementSpec('廾', 5).by_elements(大_3)
 # 算 (纂 簒)
 
-廾_6 = ElementSpec('廾', 6).by_stroke_count(1)
+# 廾_6 = ElementSpec('廾', 6).by_stroke_count(1)
 # 升 (飛)
 
-廾_7 = ElementSpec('廾', 7).by_elements(1, 十_3)
+# 廾_7 = ElementSpec('廾', 7).by_elements(1, 十_3)
 # 升 (飜)
 
-廾_8 = ElementSpec('廾', 8).by_elements(1, 十)
+# 廾_8 = ElementSpec('廾', 8).by_elements(1, 十)
 # 升 (升 昇 枡 陞)
 # 冊 (刪 籥 冊 柵 鑰 珊 跚)
 # 曲 (典 豊)
 
-廾_9 = ElementSpec('廾', 9).by_stroke_count(2)
+# 廾_9 = ElementSpec('廾', 9).by_stroke_count(2)
 # 冊 (嗣)
 
-廾_10 = ElementSpec('廾', 10).by_stroke_count(3)
+# 廾_10 = ElementSpec('廾', 10).by_stroke_count(3)
 # 曲
 # 冊 (龠)
 # 鼻 (鼾)
 
 井 = ElementSpec('井').by_strokes_to_elements({
     (1, 2): 二,
-    (2, 3, 4): 廾_3,
+    (2, 3, 4): 廾,
 })
 # 丼 耕 畊 穽 囲
 
 丼 = ElementSpec('丼').by_elements(井, 1)
 
-冊_1 = ElementSpec('冊', 1).by_strokes_to_elements({
-    (1, 2): 冂,
-    (3, 5): 十,
-    (4, 5): 廾_9,
-})
+# XXX
+# the last 3 strokes are in the wrong order to be the 廾 element
+冊 = ElementSpec('冊').by_elements(冂, 3)
+
+# 冊 = ElementSpec('冊', 1).by_strokes_to_elements({
+#     (1, 2): 冂,
+#     (3, 5): 十,
+#     (4, 5): 廾_9,
+# })
 # 嗣
 
-冊_2 = ElementSpec('冊', 2).by_elements(冂, 廾_3)
+# 冊 = ElementSpec('冊', 2).by_elements(冂, 廾_3)
 # 扁 (偏 騙 諞 篇 遍 翩 編 扁 褊 蝙)
 # 侖 (輪 侖 崙 倫 棆 崘 論 綸 淪)
 
-冊_3 = ElementSpec('冊', 3).by_elements(冂, 廾_8)
+# 冊 = ElementSpec('冊', 3).by_elements(冂, 廾_8)
 # 跚 柵 刪 珊
 # 龠 (籥 鑰)
 
-冊_4 = ElementSpec('冊', 4).by_elements(冂, 廾_10)
+# 冊 = ElementSpec('冊', 4).by_elements(冂, 廾_10)
 # 龠
 
-侖 = ElementSpec('侖').by_elements(人_5, 一, 冊_2)
+侖 = ElementSpec('侖').by_elements(𠆢, 一, 冊)
 # 倫 崙 棆 輪 論 崘 綸 淪
 
 倫 = ElementSpec('倫').by_elements(亻, 侖)
 
-刪 = ElementSpec('刪').by_elements(冊_3, 刂)
+刪 = ElementSpec('刪').by_elements(冊, 刂)
 
-卅_1 = ElementSpec('卅', 1).by_strokes_to_elements({
-    (1, 2, 3): 廾_1,
+# XXX
+卅 = ElementSpec('卅').by_strokes_to_elements({
+    (1, 2, 3): 廾,
     (2, 3, 4): 川,
 })
 # 丗
 
-卅_2 = ElementSpec('卅', 2).by_strokes_to_elements({
-    (1, 2, 3): 廾_3,
-    (2, 3, 4): 川,
-})
+# 卅 = ElementSpec('卅', 2).by_strokes_to_elements({
+#     (1, 2, 3): 廾_3,
+#     (2, 3, 4): 川,
+# })
 # 丗 (棄 滞)
 
-卅_3 = ElementSpec('卅', 3).by_elements(廾_3, 1)
+# 卅 = ElementSpec('卅', 3).by_elements(廾_3, 1)
 # 丗 (帯)
 
-升_1 = ElementSpec('升', 1).by_elements(十_3, 1, 廾_6, 廾_2)
+# 升 = ElementSpec('升', 1).by_elements(十_3, 1, 廾_6, 廾_2)
 # 飛
 
-升_2 = ElementSpec('升', 2).by_elements(1, 廾_8)
+升 = ElementSpec('升').by_elements(1, 廾)
 # 陞 枡 昇
 
-升_3 = ElementSpec('升', 3).by_elements(1, 廾_7, 廾_2)
+# 升 = ElementSpec('升', 3).by_elements(1, 廾_7, 廾_2)
 # 飛 (飜)
 
-卉 = ElementSpec('卉').by_elements(十, 廾_3)
+卉 = ElementSpec('卉').by_elements(十, 廾)
 # 奔 蠎
 # 尭 (尭 焼 暁)
 # 賁 (憤 濆 噴 墳 賁)
 
-嗣 = ElementSpec('嗣').by_elements(口, 冊_1, 司)
+嗣 = ElementSpec('嗣').by_elements(口, 冊, 司)
 
 囲 = ElementSpec('囲').by_strokes_to_elements({
     (1, 2, 7): 口,
@@ -9396,9 +9335,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 奔 = ElementSpec('奔').by_elements(大, 卉)
 
-尭 = ElementSpec('尭').by_elements(卉, 兀_1, 儿)
+# XXX
+尭 = ElementSpec('尭').by_elements(卉, 兀)
 # 暁 焼
 
+# TODO new element
+# XXX grass
 展 = ElementSpec('展').by_elements(尸, 廾_3, 4)
 # 輾 碾
 
@@ -9406,40 +9348,36 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 崙 = ElementSpec('崙').by_elements(山, 侖)
 
-弁 = ElementSpec('弁').by_elements(厶, 廾_3)
-# 弃 峅
+弁 = ElementSpec('弁').by_elements(厶, 廾)
 
 峅 = ElementSpec('峅').by_elements(山, 弁)
 
 弃 = ElementSpec('弃').by_elements(亠, 弁)
 
-弉 = ElementSpec('弉').by_elements(壯, 廾_3)
+弉 = ElementSpec('弉').by_elements(壯, 廾)
 
-弊 = ElementSpec('弊').by_elements(敝_1, 廾_3)
+弊 = ElementSpec('弊').by_elements(敝_1, 廾)
 
 式 = ElementSpec('式').by_strokes_to_elements({
     (1, 5, 6): 弋,
-    (2, 3, 4): 工_4,
+    (2, 3, 4): 工,
 })
-# 拭 試 軾 弑
 
 弑 = ElementSpec('弑').by_elements(乂, 木, 式)
 
-彜 = ElementSpec('彜').by_elements(彑, 粉, 廾_3)
+彜 = ElementSpec('彜').by_elements(彑, 粉, 廾)
 
-彝 = ElementSpec('彝').by_elements(彑, 米, 糸, 廾_3)
+彝 = ElementSpec('彝').by_elements(彑, 米, 糸, 廾)
 
-形 = ElementSpec('形').by_elements(干_4, 干_2, 彡)
+形 = ElementSpec('形').by_elements(开, 彡)
 
 彫 = ElementSpec('彫').by_elements(周, 彡)
-# 簓
 
 彭 = ElementSpec('彭').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6): 吉,
     (3, 4, 5, 6, 7, 8, 9): 豆,
     (10, 11, 12): 彡,
 })
-# 膨 澎
 
 径 = ElementSpec('径').by_elements(彳, 圣)
 
@@ -9447,99 +9385,95 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 徐 = ElementSpec('徐').by_elements(彳, 余)
 
-徑 = ElementSpec('徑').by_elements(彳, 一, 巛, 工_4)
+徑 = ElementSpec('徑').by_elements(彳, 一, 巛, 工)
 
-從 = ElementSpec('從').by_elements(彳, 从_2, 4)
-# 蹤 慫 縱 樅 聳
+# TODO new element legs
+從 = ElementSpec('從').by_elements(彳, 从, 4)
 
 徠 = ElementSpec('徠').by_elements(彳, 來)
 
 志 = ElementSpec('志').by_elements(士, 心)
-# 誌 痣
 
-忝 = ElementSpec('忝').by_elements(夭, x2e97)
-# 添
+忝 = ElementSpec('忝').by_elements(夭, 心_2)
 
-忤 = ElementSpec('忤').by_elements(忄, 午)
+忤 = ElementSpec('忤').by_elements(心_1, 午)
 
-快 = ElementSpec('快').by_elements(忄, 夬)
+快 = ElementSpec('快').by_elements(心_1, 夬)
 
-忰 = ElementSpec('忰').by_elements(忄, 卆)
+忰 = ElementSpec('忰').by_elements(心_1, 卆)
 
 念 = ElementSpec('念').by_elements(今, 心)
-# 捻 唸 稔 棯 鯰
 
 唸 = ElementSpec('唸').by_elements(口, 念)
 
-怏 = ElementSpec('怏').by_elements(忄, 央)
+怏 = ElementSpec('怏').by_elements(心_1, 央)
 
-怙 = ElementSpec('怙').by_elements(忄, 古)
+怙 = ElementSpec('怙').by_elements(心_1, 古)
 
-怜 = ElementSpec('怜').by_elements(忄, 令_1)
+怜 = ElementSpec('怜').by_elements(心_1, 令_1)
 
-怦 = ElementSpec('怦').by_elements(忄, 平_2)
+怦 = ElementSpec('怦').by_elements(心_1, 平)
 
-怩 = ElementSpec('怩').by_elements(忄, 尼)
+怩 = ElementSpec('怩').by_elements(心_1, 尼)
 
-怪 = ElementSpec('怪').by_elements(忄, 圣)
+怪 = ElementSpec('怪').by_elements(心_1, 圣)
 
-怯 = ElementSpec('怯').by_elements(忄, 去)
+怯 = ElementSpec('怯').by_elements(心_1, 去)
 
-恃 = ElementSpec('恃').by_elements(忄, 寺)
+恃 = ElementSpec('恃').by_elements(心_1, 寺)
 
-恐 = ElementSpec('恐').by_elements(工_4, 凡, 心)
+恐 = ElementSpec('恐').by_elements(工, 凡, 心)
 
 恚 = ElementSpec('恚').by_elements(圭, 心)
 
-恠 = ElementSpec('恠').by_elements(忄, 在)
+恠 = ElementSpec('恠').by_elements(心_1, 在)
 
 恩 = ElementSpec('恩').by_elements(因, 心)
 
-恰 = ElementSpec('恰').by_elements(忄, 合)
+恰 = ElementSpec('恰').by_elements(心_1, 合)
 
-悖 = ElementSpec('悖').by_elements(忄, 孛)
+悖 = ElementSpec('悖').by_elements(心_1, 孛)
 
-悴 = ElementSpec('悴').by_elements(忄, 卒)
+悴 = ElementSpec('悴').by_elements(心_1, 卒)
 
-惆 = ElementSpec('惆').by_elements(忄, 周)
+惆 = ElementSpec('惆').by_elements(心_1, 周)
 
-惓 = ElementSpec('惓').by_elements(忄, 卷)
+惓 = ElementSpec('惓').by_elements(心_1, 卷)
 
-惨 = ElementSpec('惨').by_elements(忄, 参)
+惨 = ElementSpec('惨').by_elements(心_1, 参)
 
-惰 = ElementSpec('惰').by_elements(忄, 左, 月)
+惰 = ElementSpec('惰').by_elements(心_1, 左, 月)
 
 愈 = ElementSpec('愈').by_elements(兪, 心)
-# 癒
 
-愉 = ElementSpec('愉').by_elements(忄, 兪)
+愉 = ElementSpec('愉').by_elements(心_1, 兪)
 
 愨 = ElementSpec('愨').by_elements(士, 冖, 1, 殳, 心)
 
-愴 = ElementSpec('愴').by_elements(忄, 倉)
+愴 = ElementSpec('愴').by_elements(心_1, 倉)
 
-慘 = ElementSpec('慘').by_elements(忄, 參)
+慘 = ElementSpec('慘').by_elements(心_1, 參)
 
 慫 = ElementSpec('慫').by_elements(從, 心)
 
-慱 = ElementSpec('慱').by_elements(忄, 專)
+慱 = ElementSpec('慱').by_elements(心_1, 專)
 
-慳 = ElementSpec('慳').by_elements(忄, 堅)
+慳 = ElementSpec('慳').by_elements(心_1, 堅)
 
 憙 = ElementSpec('憙').by_elements(喜, 心)
 
-懊 = ElementSpec('懊').by_elements(忄, 奧)
+懊 = ElementSpec('懊').by_elements(心_1, 奧)
 
 懴 = ElementSpec('懴').by_strokes_to_elements({
-    (1, 2, 3): 忄,
+    (1, 2, 3): 心_1,
     (4, 5, 6): 土,
     (6, 16, 17, 18): 戈,
     (7, 8, 9, 10, 11, 12, 13, 14, 15): 韭,
 })
 
 懺 = ElementSpec('懺').by_strokes_to_elements({
-    (1, 2, 3): 忄,
-    (4, 5, 6, 7): 从_2,
+    (1, 2, 3): 心_1,
+    (4, 5, 6, 7): 从,
     (8, 18, 19, 20): 戈,
     (9, 10, 11, 12, 13, 14, 15, 16, 17): 韭,
 })
@@ -9550,19 +9484,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (1, 4, 5, 6): 戈,
     (2, 3): 十,
 })
-# 絨 賊
 
-戒_1 = ElementSpec('戒', 1).by_strokes_to_elements({
+戒 = ElementSpec('戒', 1).by_strokes_to_elements({
     (1, 5, 6, 7): 戈,
-    (2, 3, 4): 廾_3,
+    (2, 3, 4): 廾,
 })
-# 械
-
-戒_2 = ElementSpec('戒', 2).by_strokes_to_elements({
-    (1, 2, 6, 7): 戈,
-    (3, 4, 5): 廾_3,
-})
-# 誡
 
 截 = ElementSpec('截').by_strokes_to_elements({
     (1, 2): 十,
@@ -9571,18 +9497,16 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 })
 
 戻 = ElementSpec('戻').by_elements(戸, 大)
-# 綟 唳 涙 捩
 
 唳 = ElementSpec('唳').by_elements(口, 戻)
 
-扁 = ElementSpec('扁').by_elements(戸, 冊_2)
-# 翩 篇 褊 遍 偏 蝙 編 騙 諞
+扁 = ElementSpec('扁').by_elements(戸, 冊)
 
 偏 = ElementSpec('偏').by_elements(亻, 扁)
 
-扛 = ElementSpec('扛').by_elements(扌, 工_4)
+扛 = ElementSpec('扛').by_elements(扌, 工)
 
-扞 = ElementSpec('扞').by_elements(扌, 干_4)
+扞 = ElementSpec('扞').by_elements(扌, 干)
 
 扶 = ElementSpec('扶').by_elements(扌, 夫)
 
@@ -9594,7 +9518,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 拮 = ElementSpec('拮').by_elements(扌, 吉)
 
-拳 = ElementSpec('拳').by_elements(2, 二, 人_5, 手)
+拳 = ElementSpec('拳').by_elements(2, 二, 人, 手)
 
 拾 = ElementSpec('拾').by_elements(扌, 合)
 
@@ -9604,16 +9528,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 挂 = ElementSpec('挂').by_elements(扌, 圭)
 
-挟 = ElementSpec('挟').by_strokes_to_elements({
-    (1, 2, 3): 扌,
-    (4, 7): 二,
-    (4, 8, 9): 大,
-    (5, 6, 7): 从_1,
-})
+
+挟 = ElementSpec('挟').by_elements(扌, 夾_1)
+# by_strokes_to_elements({
+#     (1, 2, 3): 扌,
+#     (4, 7): 二,
+#     (4, 8, 9): 大,
+#     (5, 6, 7): 从_1,
+# })
 
 挫 = ElementSpec('挫').by_elements(扌, 坐)
 
-挾 = ElementSpec('挾').by_elements(扌, 夾_3)
+挾 = ElementSpec('挾').by_elements(扌, 夾_1)
 
 捧 = ElementSpec('捧').by_elements(扌, 奉)
 
@@ -9659,13 +9585,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 撓 = ElementSpec('撓').by_elements(扌, 堯)
 
-撲 = ElementSpec('撲').by_elements(扌, 7, 三, 人_5)
+撲 = ElementSpec('撲').by_elements(扌, 7, 三, 人)
 
-擣 = ElementSpec('擣').by_elements(扌, 壽_1)
+擣 = ElementSpec('擣').by_elements(扌, 壽)
 
 支 = ElementSpec('支').by_elements(十, 又)
-# 伎 妓 翅 枝 肢 技 跂 屐 岐
-# 鼓 (瞽 鼕 鼓)
 
 伎 = ElementSpec('伎').by_elements(亻, 支)
 
@@ -9677,17 +9601,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 技 = ElementSpec('技').by_elements(扌, 支)
 
-攻 = ElementSpec('攻').by_elements(工_4, 攵)
+攻 = ElementSpec('攻').by_elements(工, 攵)
 
 故 = ElementSpec('故').by_elements(古, 攵)
-# 做
 
 做 = ElementSpec('做').by_elements(亻, 故)
 
 敍 = ElementSpec('敍').by_elements(余, 攴)
 
 敖 = ElementSpec('敖').by_elements(土, 放)
-# 鰲 贅 遨 嗷 螯 鼇 傲 熬
 
 傲 = ElementSpec('傲').by_elements(亻, 敖)
 
@@ -9698,38 +9620,37 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 敵 = ElementSpec('敵').by_elements(亠, 2, 冂, 古, 攵)
 
 斂 = ElementSpec('斂').by_elements(僉, 攵)
-# 瀲
 
 斜 = ElementSpec('斜').by_elements(余, 斗)
 
-日_1 = ElementSpec('日', 1).by_elements(冂, 二)
+# 日_1 = ElementSpec('日', 1).by_elements(冂, 二)
 # 冕 冐
 
-日_2 = ElementSpec('日', 2).by_elements(冂, 2)
+# 日_2 = ElementSpec('日', 2).by_elements(冂, 2)
 # 冒
 
-日_3 = ElementSpec('日', 3).by_elements(口)
+# 日_3 = ElementSpec('日', 3).by_elements(口)
 # 束 (欄)
 
-日_4 = ElementSpec('日', 4).by_strokes_to_elements({
-    (1, 2, 4): 口,
-}, (3,))
+# 日_4 = ElementSpec('日', 4).by_strokes_to_elements({
+#     (1, 2, 4): 口,
+# }, (3,))
 # 束 (蘭)
 
-日_5 = ElementSpec('日', 5).by_elements(囚)
+# 日_5 = ElementSpec('日', 5).by_elements(囚)
 # 温 (薀)
 
-日_6 = ElementSpec('日', 6).by_elements(月)
+# 日_6 = ElementSpec('日', 6).by_elements(月)
 # 癇
 # 間 (繝 燗 嫺)
 
-日_7 = ElementSpec('日', 7).by_elements(2, 二)
+# 日_7 = ElementSpec('日', 7).by_elements(2, 二)
 # 冒 (瑁)
 
-日_8 = ElementSpec('日', 8).by_stroke_count(3)
+# 日_8 = ElementSpec('日', 8).by_stroke_count(3)
 # 曲 (曹 遭 農 醴 漕 軆 豊 典 儂 膿 糟 艚 體 艶 鱧 腆 禮 椣 槽 濃)
 
-日_9 = ElementSpec('日', 9).by_stroke_count(4)
+日 = ElementSpec('日').by_stroke_count(4)
 # 晒 曚 蠶 昿 晩 譖 暼 昂 暸 寮 蝿 鐐 暇 遼 晄 旻 衵 曄 暈 晦 書 暹 鷯 晤 温 暑 暦 暫 榻 晋 暝 亰 昶 縄 晨 昴 昨 曩 療 偃 暗 汨 暃 曠 暄 顯 旭 暾 暎 鰛 挿 緡 昃 繚 晁 濳 晞 曖 旺 僭 曜 暮 昇 隙 厚 晴 暉 涅 潦 曝 搨 晏 晰 僚 竃 撩 湿 宴 晧 暁 隰 曙 簪 晢 電 暖 勗 瞭 煦 晟 昧 捏 曦 燎 映 杲 曉 顕 智 昵 堰 昊 暘 潛 杳 濕
 # 昔 (錯 醋 惜 借 昔 藉 措 鵲 籍)
 # 由 (由 娉 袖 聘 専 胄 軸 舳 冑 釉 演 寅 騁 岫 穂 蚰 抽 宙 鼬 廸 迪 紬 恵 柚 油 届)
@@ -9791,105 +9712,93 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 果 (課)
 # 曲 (髷 曲)
 
-日_10 = ElementSpec('日', 10).by_stroke_count(5)
+# 日_10 = ElementSpec('日', 10).by_stroke_count(5)
 # 東 (煉)
 
-亀 = ElementSpec('亀').by_elements(𠂊, 日_9, 日_9, 1)
-# 穐
+亀 = ElementSpec('亀').by_elements(𠂊, 日, 日, 1)
 
-亰 = ElementSpec('亰').by_elements(亠, 日_9, 小)
+亰 = ElementSpec('亰').by_elements(亠, 日, 小)
 
 偃 = ElementSpec('偃').by_strokes_to_elements({
     (1, 2): 亻,
     (3, 11): 匸,
-    (4, 5, 6, 7): 日_9,
+    (4, 5, 6, 7): 日,
     (8, 9, 10): 女,
 })
 
-僚 = ElementSpec('僚').by_elements(亻, 大, 2, 日_9, 小)
+僚 = ElementSpec('僚').by_elements(亻, 大, 2, 日, 小)
 
-僭 = ElementSpec('僭').by_elements(亻, 旡_1, 旡_1, 日_9)
+僭 = ElementSpec('僭').by_elements(亻, 旡_1, 旡_1, 日)
 
-冐 = ElementSpec('冐').by_elements(日_1, 月)
+冐 = ElementSpec('冐').by_elements(冂, 二, 月)
 
-冕 = ElementSpec('冕').by_elements(日_1, 免_2)
+冕 = ElementSpec('冕').by_elements(冂, 二, 免_2)
 
-冥 = ElementSpec('冥').by_elements(冖, 日_9, 六)
-# 溟 螟 榠 瞑 暝 幎
+冥 = ElementSpec('冥').by_elements(冖, 日, 六)
 
-勗 = ElementSpec('勗').by_elements(日_9, 助)
+勗 = ElementSpec('勗').by_elements(日, 助)
 
-厚 = ElementSpec('厚').by_elements(厂, 日_9, 子)
+厚 = ElementSpec('厚').by_elements(厂, 日, 子)
 
 堰 = ElementSpec('堰').by_strokes_to_elements({
     (1, 2, 3): 土,
     (4, 12): 匸,
-    (5, 6, 7, 8): 日_9,
+    (5, 6, 7, 8): 日,
     (9, 10, 11): 女,
 })
 
-复 = ElementSpec('复').by_elements(2, 日_9, 夂)
+# XXX
+复 = ElementSpec('复').by_elements(2, 日, 夂)
 # 複 馥 鰒 愎 輹 蝮 腹
 # 復 (覆 履 復)
 
-奄 = ElementSpec('奄').by_elements(大, 日_9, 1)
-# 閹 罨 俺 淹 掩 菴 庵
+奄 = ElementSpec('奄').by_elements(大, 日, 1)
 
 俺 = ElementSpec('俺').by_elements(亻, 奄)
 
-宴 = ElementSpec('宴').by_elements(宀, 日_9, 女)
+宴 = ElementSpec('宴').by_elements(宀, 日, 女)
 
-寮 = ElementSpec('寮').by_elements(宀, 大, 2, 日_9, 小)
+寮 = ElementSpec('寮').by_elements(宀, 大, 2, 日, 小)
 
 幎 = ElementSpec('幎').by_elements(巾, 冥)
 
 庵 = ElementSpec('庵').by_elements(广, 奄)
 
 復 = ElementSpec('復').by_elements(彳, 复)
-# 覆 履
 
 履 = ElementSpec('履').by_elements(尸, 復)
 
 惠 = ElementSpec('惠').by_strokes_to_elements({
     (1, 6): 十,
-    (2, 3, 4, 5): 日_9,
+    (2, 3, 4, 5): 日,
     (9, 10, 11, 12): 心,
 }, (7, 8))
-# 穗
 
-愎 = ElementSpec('愎').by_elements(忄, 复)
+愎 = ElementSpec('愎').by_elements(心_1, 复)
 
 挿 = ElementSpec('挿').by_strokes_to_elements({
     (1, 2, 3): 扌,
     (4, 10): 千_3,
     (5, 10): 十,
-    (6, 7, 8, 9): 日_9,
+    (6, 7, 8, 9): 日,
 })
 
-捏 = ElementSpec('捏').by_elements(扌, 日_9, 土)
+捏 = ElementSpec('捏').by_elements(扌, 日, 土)
 
 掩 = ElementSpec('掩').by_elements(扌, 奄)
 
-搨 = ElementSpec('搨').by_elements(扌, 日_9, 羽)
+搨 = ElementSpec('搨').by_elements(扌, 日, 羽)
 
-撩 = ElementSpec('撩').by_elements(扌, 大, 2, 日_9, 小)
+撩 = ElementSpec('撩').by_elements(扌, 大, 2, 日, 小)
 
-旦 = ElementSpec('旦').by_elements(日_9, 一)
-# 坦 担 袒 靼 曁 晝 得 妲 怛 昼 碍 胆 疸 但
-# 亘 (萱 諠 恒 垣 桓 愃 暄 喧 宣 亘)
-# 昜 (盪 暢 揚 觴 煬 蕩 蝪 膓 陽 瘍 慯 昜 暘 殤 腸 傷 湯 楊 場 蘯 塲)
-# 亶 (壇 亶 氈 擅 檀 顫 羶)
-# 量 (量 糧)
+旦 = ElementSpec('旦').by_elements(日, 一)
 
 亘 = ElementSpec('亘').by_strokes_to_elements({
     (1, 6): 二,
     (2, 3, 4, 5, 6): 旦,
 })
-# 恒 垣 桓
-# 宣 (萱 諠 愃 暄 喧 宣)
 
 亶 = ElementSpec('亶').by_elements(亠, 回, 旦)
-# 羶 擅 壇 檀 顫 氈
 
 但 = ElementSpec('但').by_elements(亻, 旦)
 
@@ -9902,56 +9811,44 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 妲 = ElementSpec('妲').by_elements(女, 旦)
 
 宣 = ElementSpec('宣').by_elements(宀, 亘)
-# 諠 喧 萱 愃 暄
 
 喧 = ElementSpec('喧').by_elements(口, 宣)
 
 得 = ElementSpec('得').by_elements(彳, 旦, 寸)
 
-怛 = ElementSpec('怛').by_elements(忄, 旦)
+怛 = ElementSpec('怛').by_elements(心_1, 旦)
 
-恒 = ElementSpec('恒').by_elements(忄, 亘)
+恒 = ElementSpec('恒').by_elements(心_1, 亘)
 
-愃 = ElementSpec('愃').by_elements(忄, 宣)
+愃 = ElementSpec('愃').by_elements(心_1, 宣)
 
 担 = ElementSpec('担').by_elements(扌, 旦)
 
 擅 = ElementSpec('擅').by_elements(扌, 亶)
 
-旧 = ElementSpec('旧').by_elements(1, 日_9)
-# 焔 児 稲 陥
+旧 = ElementSpec('旧').by_elements(1, 日)
 
 児 = ElementSpec('児').by_elements(旧, 儿)
 
-旨 = ElementSpec('旨').by_elements(匕_3, 日_9)
-# 指 稽 鮨 嘗 詣 脂
+旨 = ElementSpec('旨').by_elements(匕, 日)
 
 嘗 = ElementSpec('嘗').by_elements(尚, 旨)
 
 指 = ElementSpec('指').by_elements(扌, 旨)
 
-早 = ElementSpec('早').by_elements(日_9, 十)
-# 韓 戟 草 斡 乾
-# 章 (鱆 瘴 障 嶂 彰 璋 章 樟)
-# 卓 (悼 棹 倬 罩 啅 卓 綽 掉)
-# 覃 (蕈 覃 鐔 譚 簟 潭)
-# 朝 (嘲 潮 朝 廟)
-# 翰 (瀚 翰)
-# 幹 (幹 澣)
+早 = ElementSpec('早').by_elements(日, 十)
 
 乾 = ElementSpec('乾').by_elements(十, 早, 乞)
 
 卓 = ElementSpec('卓').by_elements(卜, 早)
-# 綽 啅 罩 棹 悼 掉 倬
 
 倬 = ElementSpec('倬').by_elements(亻, 卓)
 
 啅 = ElementSpec('啅').by_elements(口, 卓)
 
-幹 = ElementSpec('幹').by_elements(十, 早, 人_5, 干_4)
-# 澣
+幹 = ElementSpec('幹').by_elements(十, 早, 𠆢, 干)
 
-悼 = ElementSpec('悼').by_elements(忄, 卓)
+悼 = ElementSpec('悼').by_elements(心_1, 卓)
 
 戟 = ElementSpec('戟').by_elements(十, 早, 戈)
 
@@ -9959,34 +9856,31 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 斡 = ElementSpec('斡').by_elements(十, 早, 2, 斗)
 
-旬 = ElementSpec('旬').by_elements(勹, 日_9)
-# 絢 荀 筍 殉 恂 洵 徇 詢
+旬 = ElementSpec('旬').by_elements(勹, 日)
 
 徇 = ElementSpec('徇').by_elements(彳, 旬)
 
-恂 = ElementSpec('恂').by_elements(忄, 旬)
+恂 = ElementSpec('恂').by_elements(心_1, 旬)
 
-旭 = ElementSpec('旭').by_elements(九, 日_9)
+旭 = ElementSpec('旭').by_elements(九, 日)
 
-旱 = ElementSpec('旱').by_elements(日_9, 干_4)
-# 悍 桿 駻 稈 捍
+旱 = ElementSpec('旱').by_elements(日, 干)
 
-悍 = ElementSpec('悍').by_elements(忄, 旱)
+悍 = ElementSpec('悍').by_elements(心_1, 旱)
 
 捍 = ElementSpec('捍').by_elements(扌, 旱)
 
-旻 = ElementSpec('旻').by_elements(日_9, 文)
+旻 = ElementSpec('旻').by_elements(日, 文)
 
-昂 = ElementSpec('昂').by_elements(日_9, 2, 卩)
+昂 = ElementSpec('昂').by_elements(日, 2, 卩)
 
-昃 = ElementSpec('昃').by_elements(日_9, 仄)
+昃 = ElementSpec('昃').by_elements(日, 仄)
 
-昇 = ElementSpec('昇').by_elements(日_9, 升_2)
+昇 = ElementSpec('昇').by_elements(日, 升)
 
-昊 = ElementSpec('昊').by_elements(日_9, 天)
+昊 = ElementSpec('昊').by_elements(日, 天)
 
-昌 = ElementSpec('昌').by_elements(日_9, 日_9)
-# 唱 猖 椙 倡 娼 菖
+昌 = ElementSpec('昌').by_elements(日, 日)
 
 倡 = ElementSpec('倡').by_elements(亻, 昌)
 
@@ -9994,31 +9888,27 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 娼 = ElementSpec('娼').by_elements(女, 昌)
 
-明 = ElementSpec('明').by_elements(日_9, 月)
-# 盟 萌
+明 = ElementSpec('明').by_elements(日, 月)
 
-昏 = ElementSpec('昏').by_elements(氏, 日_9)
+昏 = ElementSpec('昏').by_elements(氏, 日)
 # 棔 婚
 
 婚 = ElementSpec('婚').by_elements(女, 昏)
 
-易 = ElementSpec('易').by_elements(日_9, 勿)
-# 剔 鯣 賜 錫 裼 蜴
+易 = ElementSpec('易').by_elements(日, 勿)
 
 剔 = ElementSpec('剔').by_elements(易, 刂)
 
-昔 = ElementSpec('昔').by_elements(廾_3, 1, 日_9)
-# 措 鵲 借 錯 醋 籍 藉 惜
+# XXX grass
+昔 = ElementSpec('昔').by_elements(廾_3, 1, 日)
 
 借 = ElementSpec('借').by_elements(亻, 昔)
 
-惜 = ElementSpec('惜').by_elements(忄, 昔)
+惜 = ElementSpec('惜').by_elements(心_1, 昔)
 
 措 = ElementSpec('措').by_elements(扌, 昔)
 
 昜 = ElementSpec('昜').by_elements(旦, 勿)
-# 瘍 暘 陽 傷 煬 殤 揚 楊 慯 蝪 觴 暢 腸 塲 膓 場
-# 湯 (盪 蘯 蕩 湯)
 
 傷 = ElementSpec('傷').by_elements(亻, 2, 昜)
 
@@ -10026,257 +9916,239 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 塲 = ElementSpec('塲').by_elements(土, 2, 昜)
 
-慯 = ElementSpec('慯').by_elements(忄, 2, 昜)
+慯 = ElementSpec('慯').by_elements(心_1, 2, 昜)
 
 揚 = ElementSpec('揚').by_elements(扌, 昜)
 
-星 = ElementSpec('星').by_elements(日_9, 生)
-# 腥 惺 猩 醒
+星 = ElementSpec('星').by_elements(日, 生)
 
-惺 = ElementSpec('惺').by_elements(忄, 星)
+惺 = ElementSpec('惺').by_elements(心_1, 星)
 
-映 = ElementSpec('映').by_elements(日_9, 央)
+映 = ElementSpec('映').by_elements(日, 央)
 
 春 = ElementSpec('春').by_strokes_to_elements({
     (1, 2, 3): 三,
     (3, 4, 5): 大,
-    (6, 7, 8, 9): 日_9,
+    (6, 7, 8, 9): 日,
 })
-# 惷 蠢 鰆 椿
 
 惷 = ElementSpec('惷').by_elements(春, 心)
 
-昧 = ElementSpec('昧').by_elements(日_9, 未)
+昧 = ElementSpec('昧').by_elements(日, 未)
 
-昨 = ElementSpec('昨').by_elements(日_9, 乍)
+昨 = ElementSpec('昨').by_elements(日, 乍)
 
-昭 = ElementSpec('昭').by_elements(日_9, 召)
-# 照
+昭 = ElementSpec('昭').by_elements(日, 召)
 
-昴 = ElementSpec('昴').by_elements(日_9, 卯)
+昴 = ElementSpec('昴').by_elements(日, 卯)
 
-昵 = ElementSpec('昵').by_elements(日_9, 尼)
+昵 = ElementSpec('昵').by_elements(日, 尼)
 
-昶 = ElementSpec('昶').by_elements(永, 日_9)
+昶 = ElementSpec('昶').by_elements(永, 日)
 
 昼 = ElementSpec('昼').by_elements(尺, 旦)
 
-昿 = ElementSpec('昿').by_elements(日_9, 広)
+昿 = ElementSpec('昿').by_elements(日, 広)
 
-晁 = ElementSpec('晁').by_elements(日_9, 兆)
+晁 = ElementSpec('晁').by_elements(日, 兆)
 
-時 = ElementSpec('時').by_elements(日_9, 寺)
-# 塒 蒔
+時 = ElementSpec('時').by_elements(日, 寺)
 
 塒 = ElementSpec('塒').by_elements(土, 時)
 
-晃 = ElementSpec('晃').by_elements(日_9, 光)
-# 滉 幌
+晃 = ElementSpec('晃').by_elements(日, 光)
 
 幌 = ElementSpec('幌').by_elements(巾, 晃)
 
-晄 = ElementSpec('晄').by_elements(日_9, 光)
+晄 = ElementSpec('晄').by_elements(日, 光)
 
 晉 = ElementSpec('晉').by_strokes_to_elements({
     (1, 6): 二,
     (2, 3): 厶,
     (4, 5): 厶,
-    (7, 8, 9, 10): 日_9,
+    (7, 8, 9, 10): 日,
 })
-# 縉
 
 晋 = ElementSpec('晋').by_strokes_to_elements({
     (1, 6): 二,
-    (7, 8, 9, 10): 日_9,
+    (7, 8, 9, 10): 日,
 }, (2, 3, 4, 5))
 
-晏 = ElementSpec('晏').by_elements(日_9, 安)
+晏 = ElementSpec('晏').by_elements(日, 安)
 
-晒 = ElementSpec('晒').by_elements(日_9, 西)
+晒 = ElementSpec('晒').by_elements(日, 西)
 
 晝 = ElementSpec('晝').by_elements(聿, 旦)
 
-晞 = ElementSpec('晞').by_elements(日_9, 希)
+晞 = ElementSpec('晞').by_elements(日, 希)
 
-晟 = ElementSpec('晟').by_elements(日_9, 成)
+晟 = ElementSpec('晟').by_elements(日, 成)
 
-晢 = ElementSpec('晢').by_elements(折, 日_9)
+晢 = ElementSpec('晢').by_elements(折, 日)
 
-晤 = ElementSpec('晤').by_elements(日_9, 吾)
+晤 = ElementSpec('晤').by_elements(日, 吾)
 
-晦 = ElementSpec('晦').by_elements(日_9, 毎_2)
+晦 = ElementSpec('晦').by_elements(日, 毎_2)
 
-晧 = ElementSpec('晧').by_elements(日_9, 告)
+晧 = ElementSpec('晧').by_elements(日, 告)
 
-晨 = ElementSpec('晨').by_elements(日_9, 辰)
+晨 = ElementSpec('晨').by_elements(日, 辰)
 
-晩 = ElementSpec('晩').by_elements(日_9, 免_4)
+晩 = ElementSpec('晩').by_elements(日, 免_4)
 
-普_1 = ElementSpec('普', 1).by_elements(並_1, 日_9)
+普 = ElementSpec('普').by_elements(並, 日)
 
-普_2 = ElementSpec('普', 2).by_elements(並_2, 日_9)
+# 普 = ElementSpec('普', 2).by_elements(並, 日)
 # 譜
 
-景 = ElementSpec('景').by_elements(日_9, 京)
-# 影 憬
+景 = ElementSpec('景').by_elements(日, 京)
 
 影 = ElementSpec('影').by_elements(景, 彡)
 
-憬 = ElementSpec('憬').by_elements(忄, 景)
+憬 = ElementSpec('憬').by_elements(心_1, 景)
 
-晰 = ElementSpec('晰').by_elements(日_9, 析)
+晰 = ElementSpec('晰').by_elements(日, 析)
 
-晴 = ElementSpec('晴').by_elements(日_9, 青_1)
+晴 = ElementSpec('晴').by_elements(日, 青_1)
 
-晶 = ElementSpec('晶').by_elements(日_9, 日_9, 日_9)
-# 橸
+晶 = ElementSpec('晶').by_elements(日, 日, 日)
 
-暁 = ElementSpec('暁').by_elements(日_9, 尭)
+暁 = ElementSpec('暁').by_elements(日, 尭)
 
-暃 = ElementSpec('暃').by_elements(日_9, 非)
+暃 = ElementSpec('暃').by_elements(日, 非)
 
-暄 = ElementSpec('暄').by_elements(日_9, 宣)
+暄 = ElementSpec('暄').by_elements(日, 宣)
 
-暇 = ElementSpec('暇').by_elements(日_9, 7, 又)
+暇 = ElementSpec('暇').by_elements(日, 7, 又)
 
-暈 = ElementSpec('暈').by_elements(日_9, 軍)
+暈 = ElementSpec('暈').by_elements(日, 軍)
 
-暉 = ElementSpec('暉').by_elements(日_9, 軍)
+暉 = ElementSpec('暉').by_elements(日, 軍)
 
-暖 = ElementSpec('暖').by_elements(日_9, 爰)
+暖 = ElementSpec('暖').by_elements(日, 爰)
 
-暘 = ElementSpec('暘').by_elements(日_9, 昜)
+暘 = ElementSpec('暘').by_elements(日, 昜)
 
-暝 = ElementSpec('暝').by_elements(日_9, 冥)
+暝 = ElementSpec('暝').by_elements(日, 冥)
 
-暦 = ElementSpec('暦').by_elements(厂, 林, 日_9)
+暦 = ElementSpec('暦').by_elements(厂, 林, 日)
 
-暫 = ElementSpec('暫').by_elements(斬, 日_9)
+暫 = ElementSpec('暫').by_elements(斬, 日)
 
-暴 = ElementSpec('暴').by_elements(日_9, 共, 氺)
-# 爆 曝 瀑
+暴 = ElementSpec('暴').by_elements(日, 共, 氺)
 
-暸 = ElementSpec('暸').by_elements(日_9, 大, 2, 日_9, 小)
+暸 = ElementSpec('暸').by_elements(日, 大, 2, 日, 小)
 
-暹 = ElementSpec('暹').by_elements(日_9, 隹, 辶)
+暹 = ElementSpec('暹').by_elements(日, 隹, 辶)
 
-暼 = ElementSpec('暼').by_elements(敝_2, 日_9)
+暼 = ElementSpec('暼').by_elements(敝_2, 日)
 
-暾 = ElementSpec('暾').by_elements(日_9, 敦)
+暾 = ElementSpec('暾').by_elements(日, 敦)
 
-曇 = ElementSpec('曇').by_elements(日_9, 雲)
-# 壜 罎
+曇 = ElementSpec('曇').by_elements(日, 雲)
 
 壜 = ElementSpec('壜').by_elements(土, 曇)
 
-曉 = ElementSpec('曉').by_elements(日_9, 堯)
+曉 = ElementSpec('曉').by_elements(日, 堯)
 
-曖 = ElementSpec('曖').by_elements(日_9, 愛)
+曖 = ElementSpec('曖').by_elements(日, 愛)
 
-曜 = ElementSpec('曜').by_elements(日_9, 羽, 隹)
+曜 = ElementSpec('曜').by_elements(日, 羽, 隹)
 
-曝 = ElementSpec('曝').by_elements(日_9, 暴)
+曝 = ElementSpec('曝').by_elements(日, 暴)
 
-曦 = ElementSpec('曦').by_elements(日_9, 羲)
+曦 = ElementSpec('曦').by_elements(日, 羲)
 
-曩 = ElementSpec('曩').by_elements(日_9, 襄)
+曩 = ElementSpec('曩').by_elements(日, 襄)
 
-曲_1 = ElementSpec('曲', 1).by_strokes_to_elements({
-    (1, 2, 6): 日_8,
-    (3, 4, 5): 廾_3,
-})
+# 曲 = ElementSpec('曲', 1).by_strokes_to_elements({
+#     (1, 2, 6): 日_8,
+#     (3, 4, 5): 廾_3,
+# })
 # 豊 (醴 鱧 禮 軆 體 艶)
 # 典 (椣)
 
-曲_2 = ElementSpec('曲', 2).by_strokes_to_elements({
-    (1, 2, 5): 日_8,
-    (3, 4, 5, 6): 廾_4,
-})
+# 曲 = ElementSpec('曲', 2).by_strokes_to_elements({
+#     (1, 2, 5): 日_8,
+#     (3, 4, 5, 6): 廾_4,
+# })
 # 曹 (曹 艚 漕 糟 遭 槽)
 # 農 (儂 濃 農 膿)
 # 典 (腆)
 
-曲_3 = ElementSpec('曲', 3).by_strokes_to_elements({
-    (1, 2, 6): 日_8,
-    (3, 4, 5): 廾_8,
-})
+# 曲 = ElementSpec('曲', 3).by_strokes_to_elements({
+#     (1, 2, 6): 日_8,
+#     (3, 4, 5): 廾_8,
+# })
 # 典 豊
 
-曲_4 = ElementSpec('曲', 4).by_strokes_to_elements({
-    (1, 2, 5, 6): 日_9,
-    (3, 4, 5): 廾_3,
+曲 = ElementSpec('曲').by_strokes_to_elements({
+    (1, 2, 5, 6): 日,
+    (3, 4, 5): 廾,  # XXX
 })
 # 髷
 
-曲_5 = ElementSpec('曲', 5).by_strokes_to_elements({
-    (1, 2, 5, 6): 日_9,
-    (3, 4, 5): 廾_10,
-})
+# 曲 = ElementSpec('曲', 5).by_strokes_to_elements({
+#     (1, 2, 5, 6): 日,
+#     (3, 4, 5): 廾_10,
+# })
 
-典_1 = ElementSpec('典', 1).by_elements(曲_1, 八)
-# 椣
+典 = ElementSpec('典').by_elements(曲, 八)
 
-典_2 = ElementSpec('典', 2).by_elements(曲_2, 八)
-# 腆
-
-典_3 = ElementSpec('典', 3).by_elements(曲_3, 八)
-
-曳 = ElementSpec('曳').by_elements(日_9, 2)
+曳 = ElementSpec('曳').by_elements(日, 2)
 # 絏 洩 曵
 
-更_1 = ElementSpec('更', 1).by_elements(一, 日_9, 乂)
+更 = ElementSpec('更', 1).by_elements(一, 日, 乂)
 # 甦
 
-更_2 = ElementSpec('更', 2).by_elements(1, 日_9, 乂)
+# 更 = ElementSpec('更', 2).by_elements(1, 日, 乂)
 # 峺 哽 粳 硬 梗
 # 便 (便 鞭)
 
-便 = ElementSpec('便').by_elements(亻, 更_2)
+便 = ElementSpec('便').by_elements(亻, 更)
 # 鞭
 
-哽 = ElementSpec('哽').by_elements(口, 更_2)
+哽 = ElementSpec('哽').by_elements(口, 更)
 
-峺 = ElementSpec('峺').by_elements(山, 更_2)
+峺 = ElementSpec('峺').by_elements(山, 更)
 
 曵 = ElementSpec('曵').by_elements(曳, 1)
 
-曷_1 = ElementSpec('曷', 1).by_elements(日_9, 勹, 人_5, 1)
+曷 = ElementSpec('曷', 1).by_elements(日, 勹, 人, 1)
 # 羯 遏 偈 竭 葛 鞨 碣 蝎
 # 歇 (歇 蠍)
 
-曷_2 = ElementSpec('曷', 2).by_elements(日_9, 勹, 匕_2)
+# 曷_2 = ElementSpec('曷', 2).by_elements(日, 勹, 匕_2)
 # 葛 (臈)
 # 謁 (藹 靄)
 
-曷_3 = ElementSpec('曷', 3).by_elements(日_9, 匂)
+曷_3 = ElementSpec('曷', 3).by_elements(日, 匂)
 # 喝 褐 渇 謁 掲
 
-偈 = ElementSpec('偈').by_elements(亻, 曷_1)
+偈 = ElementSpec('偈').by_elements(亻, 曷)
 
 喝 = ElementSpec('喝').by_elements(口, 曷_3)
 
 掲 = ElementSpec('掲').by_elements(扌, 曷_3)
 
-書 = ElementSpec('書').by_elements(聿, 日_9)
+書 = ElementSpec('書').by_elements(聿, 日)
 
-曹 = ElementSpec('曹').by_elements(1, 曲_2, 日_9)
-# 漕 槽 糟 艚 遭
+曹 = ElementSpec('曹').by_elements(1, 曲, 日)
 
-替 = ElementSpec('替').by_elements(夫, 夫, 日_9)
-# 譛 潜 僣
+替 = ElementSpec('替').by_elements(夫, 夫, 日)
 
 僣 = ElementSpec('僣').by_elements(亻, 替)
 
-最 = ElementSpec('最').by_elements(日_9, 取)
-# 撮 樶
+最 = ElementSpec('最').by_elements(日, 取)
 
 撮 = ElementSpec('撮').by_elements(扌, 最)
 
-會 = ElementSpec('會').by_elements(人_5, 7, 日_9)
+會 = ElementSpec('會').by_elements(𠆢, 7, 日)
 # 獪 鱠 薈 檜 繪 膾
 
-朕_1 = ElementSpec('朕', 1).by_elements(月, 关_2)
+朕_1 = ElementSpec('朕', 1).by_elements(月, 关)
 
+# TODO new element?
 朕_2 = ElementSpec('朕', 2).by_strokes_to_elements({
     (1, 2, 3, 4): 月,
     (7, 8): 二,
@@ -10293,11 +10165,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 杁 = ElementSpec('杁').by_elements(木, 入)
 
-杆 = ElementSpec('杆').by_elements(木, 干_4)
+杆 = ElementSpec('杆').by_elements(木, 干)
 
 杜 = ElementSpec('杜').by_elements(木, 土)
 
-束_1 = ElementSpec('束', 1).by_strokes_to_elements({
+束 = ElementSpec('束').by_strokes_to_elements({
     (1, 5, 6, 7): 木,
     (2, 3, 4): 口,
 })
@@ -10307,68 +10179,66 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 頼 (癩 籟 藾 嬾 獺 頼 懶 瀬)
 # 剌 (溂 喇 剌)
 
-束_2 = ElementSpec('束', 2).by_strokes_to_elements({
-    (1, 6, 7, 8): 木,
-    (2, 3, 5): 日_3,
-}, (4,))
+# 束_2 = ElementSpec('束', 2).by_strokes_to_elements({
+#     (1, 6, 7, 8): 木,
+#     (2, 3, 5): 日_3,
+# }, (4,))
 # 柬 (欄)
 
-束_3 = ElementSpec('束', 3).by_strokes_to_elements({
-    (1, 6, 7, 8): 木,
-    (2, 3, 4, 5): 日_4,
-})
+# 束_3 = ElementSpec('束', 3).by_strokes_to_elements({
+#     (1, 6, 7, 8): 木,
+#     (2, 3, 4, 5): 日_4,
+# })
 # 東 (蘭)
 
-剌 = ElementSpec('剌').by_elements(束_1, 刂)
-# 溂 喇
+剌 = ElementSpec('剌').by_elements(束, 刂)
 
-勅 = ElementSpec('勅').by_elements(束_1, 力)
+勅 = ElementSpec('勅').by_elements(束, 力)
 
 喇 = ElementSpec('喇').by_elements(口, 剌)
 
-嗽 = ElementSpec('嗽').by_elements(口, 束_1, 欠)
+嗽 = ElementSpec('嗽').by_elements(口, 束, 欠)
 
-悚 = ElementSpec('悚').by_elements(忄, 束_1)
+悚 = ElementSpec('悚').by_elements(心_1, 束)
 
-敕 = ElementSpec('敕').by_elements(束_1, 攵)
-# 整 嫩
+敕 = ElementSpec('敕').by_elements(束, 攵)
 
 嫩 = ElementSpec('嫩').by_elements(女, 敕)
 
-杠 = ElementSpec('杠').by_elements(木, 工_4)
+杠 = ElementSpec('杠').by_elements(木, 工)
 
-杢 = ElementSpec('杢').by_elements(木, 工_4)
+杢 = ElementSpec('杢').by_elements(木, 工)
 
-東_1 = ElementSpec('東', 1).by_strokes_to_elements({
-    (1, 6, 7, 8): 木,
-    (2, 3, 4, 5): 日_9,
+東 = ElementSpec('東').by_strokes_to_elements({
+    (1, 2, 3, 5, 6, 7, 8): 束,
+    (2, 3, 4, 5): 日,
 })
 # 練 棟 諌 錬 凍 陳 鶇
 
-東_2 = ElementSpec('東', 2).by_strokes_to_elements({
-    (1, 7, 8, 9): 木,
-    (2, 3, 4, 5, 6): 日_10,
-})
+# 東_2 = ElementSpec('東', 2).by_strokes_to_elements({
+#     (1, 7, 8, 9): 木,
+#     (2, 3, 4, 5, 6): 日_10,
+# })
 # 煉
 
-東_3 = ElementSpec('東', 3).by_elements(束_3)
+# 東_3 = ElementSpec('東', 3).by_elements(束_3)
 # 闌 (蘭)
 
-凍 = ElementSpec('凍').by_elements(冫, 東_1)
+凍 = ElementSpec('凍').by_elements(冫, 東)
 
-杲 = ElementSpec('杲').by_elements(日_9, 木)
+杲 = ElementSpec('杲').by_elements(日, 木)
 
-杳 = ElementSpec('杳').by_elements(木, 日_9)
+杳 = ElementSpec('杳').by_elements(木, 日)
 
 杵 = ElementSpec('杵').by_elements(木, 午)
 
-枅 = ElementSpec('枅').by_elements(木, 干_4, 干_2)
+枅 = ElementSpec('枅').by_elements(木, 开)
 
 枝 = ElementSpec('枝').by_elements(木, 支)
 
 枠 = ElementSpec('枠').by_elements(木, 卆)
 
-枡 = ElementSpec('枡').by_elements(木, 升_2)
+枡 = ElementSpec('枡').by_elements(木, 升)
 
 枯 = ElementSpec('枯').by_elements(木, 古)
 
@@ -10376,18 +10246,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 柄 = ElementSpec('柄').by_elements(木, 丙)
 
-柬_1 = ElementSpec('柬', 1).by_strokes_to_elements({
-    (1, 2, 3, 6, 7, 8, 9): 束_1,
+柬 = ElementSpec('柬', 1).by_strokes_to_elements({
+    (1, 2, 3, 6, 7, 8, 9): 束,
 }, (4, 5))
 # 諫 鰊 楝 鶫 揀
 # 闌 (闌 襴 瀾 爛)
 
-柬_2 = ElementSpec('柬', 2).by_elements(束_2)
+# 柬_2 = ElementSpec('柬', 2).by_elements(束_2)
 # 闌 (欄)
 
-揀 = ElementSpec('揀').by_elements(扌, 柬_1)
+揀 = ElementSpec('揀').by_elements(扌, 柬)
 
-柵 = ElementSpec('柵').by_elements(木, 冊_3)
+柵 = ElementSpec('柵').by_elements(木, 冊)
 
 栞 = ElementSpec('栞').by_elements(幵, 木)
 
@@ -10411,9 +10281,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 桿 = ElementSpec('桿').by_elements(木, 旱)
 
-梗 = ElementSpec('梗').by_elements(木, 更_2)
+梗 = ElementSpec('梗').by_elements(木, 更)
 
-械 = ElementSpec('械').by_elements(木, 戒_1)
+械 = ElementSpec('械').by_elements(木, 戒)
 
 棆 = ElementSpec('棆').by_elements(木, 侖)
 
@@ -10421,7 +10291,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 棔 = ElementSpec('棔').by_elements(木, 昏)
 
-棟 = ElementSpec('棟').by_elements(木, 東_1)
+棟 = ElementSpec('棟').by_elements(木, 東)
 
 棯 = ElementSpec('棯').by_elements(木, 念)
 
@@ -10431,9 +10301,10 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 椙 = ElementSpec('椙').by_elements(木, 昌)
 
-検 = ElementSpec('検').by_elements(木, 人_5, 一, 口, 人_5)
+# XXX the right part is present in a bunch or kanji
+検 = ElementSpec('検').by_elements(木, 𠆢, 一, 口, 人)
 
-椣 = ElementSpec('椣').by_elements(木, 典_1)
+椣 = ElementSpec('椣').by_elements(木, 典)
 
 椦 = ElementSpec('椦').by_elements(木, 劵_1)
 
@@ -10445,7 +10316,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 楕 = ElementSpec('楕').by_elements(木, 左, 月)
 
-楝 = ElementSpec('楝').by_elements(木, 柬_1)
+楝 = ElementSpec('楝').by_elements(木, 柬)
 
 楠 = ElementSpec('楠').by_elements(木, 南)
 
@@ -10453,7 +10324,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 榠 = ElementSpec('榠').by_elements(木, 冥)
 
-榻 = ElementSpec('榻').by_elements(木, 日_9, 羽)
+榻 = ElementSpec('榻').by_elements(木, 日, 羽)
 
 構 = ElementSpec('構').by_elements(木, 冓)
 
@@ -10467,6 +10338,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 樅 = ElementSpec('樅').by_elements(木, 從)
 
+# upsetting
 樊_1 = ElementSpec('樊', 1).by_elements(木, 爻, 木, 大)
 # 礬
 
@@ -10479,7 +10351,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 樶 = ElementSpec('樶').by_elements(木, 最)
 
-樸 = ElementSpec('樸').by_elements(木, 7, 三, 人_5)
+樸 = ElementSpec('樸').by_elements(木, 7, 三, 人)
 
 樹 = ElementSpec('樹').by_strokes_to_elements({
     (1, 2, 3, 4): 木,
@@ -10502,9 +10374,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 檢 = ElementSpec('檢').by_elements(木, 僉)
 
-檣 = ElementSpec('檣').by_elements(木, 嗇_2)
+檣 = ElementSpec('檣').by_elements(木, 嗇)
 
-檮 = ElementSpec('檮').by_elements(木, 壽_1)
+檮 = ElementSpec('檮').by_elements(木, 壽)
 
 欹 = ElementSpec('欹').by_elements(奇, 欠)
 
@@ -10516,25 +10388,24 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (10, 11, 12, 13): 欠,
 })
 
-歇 = ElementSpec('歇').by_elements(曷_1, 欠)
-# 蠍
+歇 = ElementSpec('歇').by_elements(曷, 欠)
 
 歛 = ElementSpec('歛').by_elements(僉, 欠)
 
-正_1 = ElementSpec('正', 1).by_elements(一, 止)
+正 = ElementSpec('正', 1).by_elements(一, 止)
 # 焉 歪
 
-正_2 = ElementSpec('正', 2).by_strokes_to_elements({
-    (1, 2): 十,
-    (2, 3): 止_1,
-}, (4, 5))
+# 正_2 = ElementSpec('正', 2).by_strokes_to_elements({
+#     (1, 2): 十,
+#     (2, 3): 止_1,
+# }, (4, 5))
 # 卸 (卸 御 禦 啣)
 
-正_3 = ElementSpec('正', 3).by_elements(1, 止_2)
+正_1 = ElementSpec('正', 3).by_elements(1, 止_2)
 # 堽 麪 眄
 # 延 (蜒 涎 蜑 莚 筵)
 
-正_4 = ElementSpec('正', 4).by_elements(1, 止)
+# 正 = ElementSpec('正', 4).by_elements(1, 止)
 # 証 鉦 政 柾 症 征 整
 # 延 (誕 延)
 # 焉 (嫣 篶)
@@ -10549,27 +10420,27 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 啣 = ElementSpec('啣').by_elements(口, 卸)
 
-延_1 = ElementSpec('延', 1).by_elements(正_3, 廴)
+延_1 = ElementSpec('延', 1).by_elements(正_1, 廴)
 # 蜒 筵 蜑 莚 涎
 
-延_2 = ElementSpec('延', 2).by_elements(正_4, 廴)
+延_2 = ElementSpec('延', 2).by_elements(正, 廴)
 # 誕
 
-征 = ElementSpec('征').by_elements(彳, 正_4)
+征 = ElementSpec('征').by_elements(彳, 正)
 
 御 = ElementSpec('御').by_elements(彳, 卸)
 # 禦
 
-政 = ElementSpec('政').by_elements(正_4, 攵)
+政 = ElementSpec('政').by_elements(正, 攵)
 
-整 = ElementSpec('整').by_elements(敕, 正_4)
+整 = ElementSpec('整').by_elements(敕, 正)
 
-柾 = ElementSpec('柾').by_elements(木, 正_4)
+柾 = ElementSpec('柾').by_elements(木, 正)
 
-此_1 = ElementSpec('此', 1).by_elements(止_2, 匕_3)
+此_1 = ElementSpec('此', 1).by_elements(止_2, 匕)
 # 呰
 
-此_2 = ElementSpec('此', 2).by_elements(止, 匕_3)
+此_2 = ElementSpec('此', 2).by_elements(止, 匕)
 # 紫 髭 眦 眥 柴 雌 砦 貲 疵 些
 # 觜 (嘴 觜)
 
@@ -10581,11 +10452,10 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 歪 = ElementSpec('歪').by_strokes_to_elements({
     (1, 2, 3, 4, 5): 丕,
-    (5, 6, 7, 8, 9): 正_1,
+    (5, 6, 7, 8, 9): 正,
 })
 
-死 = ElementSpec('死').by_elements(歹, 匕_3)
-# 葬 斃 薨 屍
+死 = ElementSpec('死').by_elements(歹, 匕)
 
 屍 = ElementSpec('屍').by_elements(尸, 死)
 
@@ -10603,7 +10473,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 殲 = ElementSpec('殲').by_strokes_to_elements({
     (1, 2, 3, 4): 歹,
-    (5, 6, 7, 8): 从_2,
+    (5, 6, 7, 8): 从,
     (9, 19, 20, 21): 戈,
     (10, 11, 12, 13, 14, 15, 16, 17, 18): 韭,
 })
@@ -10613,13 +10483,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 殼 = ElementSpec('殼').by_elements(士, 冖, 1, 几, 殳)
 
 毀 = ElementSpec('毀').by_elements(臼, 土, 殳)
-# 燬
 
-比 = ElementSpec('比').by_elements(2, 匕_3)
-# 紕 秕 屁 毘 琵 蓖 枇 讒 貔 砒 陛 纔 庇 箆 豼 粃 篦 妣 批 巉
-# 鹿 (麑 驪 麋 鹿 麌 麗 漉 灑 儷 麝 麓 麟 鏖 麕 轆 麒 麈 麁 塵)
-# 皆 (諧 揩 偕 楷 階 皆)
-# 昆 (焜 棍 鯤 昆 菎 混 崑 箟)
+# TODO is the left part an element?
+比 = ElementSpec('比').by_elements(2, 匕)
 
 妣 = ElementSpec('妣').by_elements(女, 比)
 
@@ -10631,8 +10497,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 批 = ElementSpec('批').by_elements(扌, 比)
 
-昆 = ElementSpec('昆').by_elements(日_9, 比)
-# 混 菎 箟 崑 焜 棍 鯤
+昆 = ElementSpec('昆').by_elements(日, 比)
 
 崑 = ElementSpec('崑').by_elements(山, 昆)
 
@@ -10646,16 +10511,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 汁 = ElementSpec('汁').by_elements(氵, 十)
 
-汗 = ElementSpec('汗').by_elements(氵, 干_4)
+汗 = ElementSpec('汗').by_elements(氵, 干)
 
-汞 = ElementSpec('汞').by_elements(工_4, 水)
+汞 = ElementSpec('汞').by_elements(工, 水)
 
-江 = ElementSpec('江').by_elements(氵, 工_4)
-# 鴻
+江 = ElementSpec('江').by_elements(氵, 工)
 
 汢 = ElementSpec('汢').by_elements(氵, 土)
 
-汨 = ElementSpec('汨').by_elements(氵, 日_9)
+汨 = ElementSpec('汨').by_elements(氵, 日)
 
 汰 = ElementSpec('汰').by_elements(氵, 太)
 
@@ -10663,8 +10527,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 沃 = ElementSpec('沃').by_elements(氵, 夭)
 
-沓 = ElementSpec('沓').by_elements(水, 日_9)
-# 鞜 踏
+沓 = ElementSpec('沓').by_elements(水, 日)
 
 沱 = ElementSpec('沱').by_elements(氵, 它)
 
@@ -10673,10 +10536,8 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 泅 = ElementSpec('泅').by_elements(氵, 囚)
 
 法 = ElementSpec('法').by_elements(氵, 去)
-# 琺
 
-泙 = ElementSpec('泙').by_elements(氵, 平_2)
-# 萍
+泙 = ElementSpec('泙').by_elements(氵, 平)
 
 泥 = ElementSpec('泥').by_elements(氵, 尼)
 
@@ -10696,9 +10557,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 洽 = ElementSpec('洽').by_elements(氵, 合)
 
-浹 = ElementSpec('浹').by_elements(氵, 夾_3)
+浹 = ElementSpec('浹').by_elements(氵, 夾_1)
 
-涅 = ElementSpec('涅').by_elements(氵, 日_9, 土)
+涅 = ElementSpec('涅').by_elements(氵, 日, 土)
 
 涎 = ElementSpec('涎').by_elements(氵, 延_1)
 
@@ -10724,9 +10585,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 渇 = ElementSpec('渇').by_elements(氵, 曷_3)
 
-渓 = ElementSpec('渓').by_elements(氵, 奚_1)
+渓 = ElementSpec('渓').by_elements(氵, x2ea4, 夫)
 
-渕 = ElementSpec('渕').by_elements(氵, 关_2, 刂)
+渕 = ElementSpec('渕').by_elements(氵, 关, 刂)
 
 渙 = ElementSpec('渙').by_elements(氵, 奐)
 
@@ -10739,10 +10600,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 湮 = ElementSpec('湮').by_elements(氵, 6, 土)
 
 湯 = ElementSpec('湯').by_elements(氵, 昜)
-# 盪
-# 蕩 (蘯 蕩)
 
-湿 = ElementSpec('湿').by_elements(氵, 日_9, 5)
+# TODO element
+湿 = ElementSpec('湿').by_elements(氵, 日, 5)
 
 溂 = ElementSpec('溂').by_elements(氵, 剌)
 
@@ -10759,7 +10619,8 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 滕_1 = ElementSpec('滕', 1).by_elements(月, 劵_2)
 # 藤
 
-滕_2 = ElementSpec('滕', 2).by_elements(月, 2, 二, 人_5, 氺)
+# XXX
+滕_2 = ElementSpec('滕', 2).by_elements(月, 2, 二, 人, 氺)
 # 籐
 
 滲 = ElementSpec('滲').by_elements(氵, 參)
@@ -10768,13 +10629,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 漕 = ElementSpec('漕').by_elements(氵, 曹)
 
-漱 = ElementSpec('漱').by_elements(氵, 束_1, 欠)
+漱 = ElementSpec('漱').by_elements(氵, 束, 欠)
 
-潛 = ElementSpec('潛').by_elements(氵, 旡_1, 旡_1, 日_9)
+潛 = ElementSpec('潛').by_elements(氵, 旡_1, 旡_1, 日)
 
 潜 = ElementSpec('潜').by_elements(氵, 替)
 
-潦 = ElementSpec('潦').by_elements(氵, 大, 2, 日_9, 小)
+潦 = ElementSpec('潦').by_elements(氵, 大, 2, 日, 小)
 
 潮 = ElementSpec('潮').by_elements(氵, 朝)
 
@@ -10788,13 +10649,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 澳 = ElementSpec('澳').by_elements(氵, 奧)
 
-濕 = ElementSpec('濕').by_elements(氵, 日_9, 幺, 幺, 灬)
+濕 = ElementSpec('濕').by_elements(氵, 日, 幺, 幺, 灬)
 
-濤 = ElementSpec('濤').by_elements(氵, 壽_1)
+濤 = ElementSpec('濤').by_elements(氵, 壽)
 
 濮 = ElementSpec('濮').by_elements(氵, 僕)
 
-濳 = ElementSpec('濳').by_elements(氵, 先, 先, 日_9)
+濳 = ElementSpec('濳').by_elements(氵, 先, 先, 日)
 
 瀑 = ElementSpec('瀑').by_elements(氵, 暴)
 
@@ -10804,12 +10665,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 烟 = ElementSpec('烟').by_elements(火, 因)
 
-焉_1 = ElementSpec('焉', 1).by_elements(正_1, 2, 灬)
+焉 = ElementSpec('焉').by_elements(正, 2, 灬)
 
-焉_2 = ElementSpec('焉', 2).by_elements(正_4, 2, 灬)
-# 嫣 篶
-
-嫣 = ElementSpec('嫣').by_elements(女, 焉_2)
+嫣 = ElementSpec('嫣').by_elements(女, 焉)
 
 焔 = ElementSpec('焔').by_elements(火, 𠂊, 旧)
 
@@ -10817,7 +10675,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 焼 = ElementSpec('焼').by_elements(火, 尭)
 
-煉 = ElementSpec('煉').by_elements(火, 東_2)
+煉 = ElementSpec('煉').by_elements(火, 柬)
 
 煙 = ElementSpec('煙').by_elements(火, 6, 土)
 
@@ -10825,7 +10683,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 煥 = ElementSpec('煥').by_elements(火, 奐)
 
-煦 = ElementSpec('煦').by_elements(日_9, 句, 灬)
+煦 = ElementSpec('煦').by_elements(日, 句, 灬)
 
 照 = ElementSpec('照').by_elements(昭, 灬)
 
@@ -10837,7 +10695,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 熹 = ElementSpec('熹').by_elements(喜, 灬)
 
-燎 = ElementSpec('燎').by_elements(火, 大, 2, 日_9, 小)
+燎 = ElementSpec('燎').by_elements(火, 大, 2, 日, 小)
 
 燒 = ElementSpec('燒').by_elements(火, 堯)
 
@@ -10862,56 +10720,50 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (6, 7, 8, 9): 爻,
 })
 
-牆 = ElementSpec('牆').by_elements(爿, 嗇_2)
+牆 = ElementSpec('牆').by_elements(爿, 嗇)
 
-牝 = ElementSpec('牝').by_elements(牛, 匕_3)
+牝 = ElementSpec('牝').by_elements(牛, 匕)
 
 牡 = ElementSpec('牡').by_elements(牛, 土)
 
 特 = ElementSpec('特').by_elements(牛, 寺)
 
-犬_1 = ElementSpec('犬', 1).by_elements(大_6, 2)
+# 犬_1 = ElementSpec('犬', 1).by_elements(大_6, 2)
 # 跋
 
-犬_2 = ElementSpec('犬', 2).by_elements(大, 1)
+犬 = ElementSpec('犬').by_elements(大, 1)
 # 憖 秡 飆 獻 嗅 髮 獎 闃 魃 状 拔 猷 獸 祓 獣 哭 默 吠 献 黙 黻 倏
 # 伏 (茯 袱 伏)
 # 獄 (獄 嶽)
 # 然 (燃 撚 然)
 # 厭 (壓 厭 靨 黶 魘)
 
-伏 = ElementSpec('伏').by_elements(亻, 犬_2)
-# 袱 茯
+伏 = ElementSpec('伏').by_elements(亻, 犬)
 
-倏 = ElementSpec('倏').by_elements(攸, 犬_2)
+倏 = ElementSpec('倏').by_elements(攸, 犬)
 
-厭_1 = ElementSpec('厭', 1).by_elements(厂, 日_9, 月, 犬_2)
-# 靨
+厭 = ElementSpec('厭', 1).by_elements(厂, 日, 月, 犬)
 
-厭_2 = ElementSpec('厭', 2).by_elements(厂, 日_9, 月, 犬_2)
-# 魘 黶 壓
+吠 = ElementSpec('吠').by_elements(口, 犬)
 
-吠 = ElementSpec('吠').by_elements(口, 犬_2)
+哭 = ElementSpec('哭').by_elements(口, 口, 犬)
 
-哭 = ElementSpec('哭').by_elements(口, 口, 犬_2)
+壓 = ElementSpec('壓').by_elements(厭, 土)
 
-壓 = ElementSpec('壓').by_elements(厭_2, 土)
-
-憖 = ElementSpec('憖').by_elements(來, 犬_2, 心)
+憖 = ElementSpec('憖').by_elements(來, 犬, 心)
 
 拔 = ElementSpec('拔').by_strokes_to_elements({
     (1, 2, 3): 扌,
-    (4, 5, 7, 8): 犬_2,
+    (4, 5, 7, 8): 犬,
 }, (6,))
 
-然 = ElementSpec('然').by_elements(月, 犬_2, 灬)
-# 撚 燃
+然 = ElementSpec('然').by_elements(月, 犬, 灬)
 
 撚 = ElementSpec('撚').by_elements(扌, 然)
 
 燃 = ElementSpec('燃').by_elements(火, 然)
 
-状 = ElementSpec('状').by_elements(x2ea6, 犬_2)
+状 = ElementSpec('状').by_elements(x2ea6, 犬)
 
 狭 = ElementSpec('狭').by_strokes_to_elements({
     (1, 2, 3): x2ea8,
@@ -10920,7 +10772,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (5, 6, 7): 从_1,
 })
 
-狹 = ElementSpec('狹').by_elements(x2ea8, 夾_3)
+狹 = ElementSpec('狹').by_elements(x2ea8, 夾_1)
 
 猖 = ElementSpec('猖').by_elements(x2ea8, 昌)
 
@@ -10930,23 +10782,22 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 猩 = ElementSpec('猩').by_elements(x2ea8, 星)
 
-献 = ElementSpec('献').by_elements(南, 犬_2)
+献 = ElementSpec('献').by_elements(南, 犬)
 
-猷 = ElementSpec('猷').by_elements(酋, 犬_2)
+猷 = ElementSpec('猷').by_elements(酋, 犬)
 
-獄 = ElementSpec('獄').by_elements(x2ea8, 言, 犬_2)
-# 嶽
+獄 = ElementSpec('獄').by_elements(x2ea8, 言, 犬)
 
 嶽 = ElementSpec('嶽').by_elements(山, 獄)
 
-獎 = ElementSpec('獎').by_elements(將, 犬_2)
+獎 = ElementSpec('獎').by_elements(將, 犬)
 
 獪 = ElementSpec('獪').by_elements(x2ea8, 會)
 
-獻 = ElementSpec('獻').by_elements(虍, 鬲, 犬_2)
+獻 = ElementSpec('獻').by_elements(虍, 鬲, 犬)
 
+# TODO water variation
 率 = ElementSpec('率').by_elements(玄, 冫, 2, 十)
-# 蟀
 
 瓠 = ElementSpec('瓠').by_elements(夸, 瓜)
 
@@ -10954,20 +10805,20 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 瓩 = ElementSpec('瓩').by_elements(瓦, 千)
 
-瓶 = ElementSpec('瓶').by_elements(并_3, 瓦)
+瓶 = ElementSpec('瓶').by_elements(并_1, 瓦)
 
 甄 = ElementSpec('甄').by_elements(6, 土, 瓦)
 
 甎 = ElementSpec('甎').by_elements(專, 瓦)
 
-甦 = ElementSpec('甦').by_elements(更_1, 生)
+甦 = ElementSpec('甦').by_elements(更, 生)
 
-田_1 = ElementSpec('田', 1).by_elements(日_9, 1)
+# 田 = ElementSpec('田', 1).by_elements(日, 1)
 # 禺 (禺 萬 蠣 糲 愚 遇 礪 癘 寓 邁 隅 藕 偶 嵎 勵)
 # 果 (剿 裹 巣 踝 樔 勦 彙 夥 菓 果 裸)
 # 卑 (髀 脾)
 
-田_2 = ElementSpec('田', 2).by_stroke_count(5)
+田 = ElementSpec('田').by_stroke_count(5)
 # 橿 畔 僵 沺 罍 疂 畄 畳 緇 畩 畭 略 彊 疆 塁 薑 壘 畷 儡 畤 奮 衡 鵯 疇 輜 細 嚏 畋 畠 疉 畿 畧 獣 畝 櫑 禝 稷 甼 畸 佃 疊 畚 毘 嚔 澑 畛 畑 謖 畉 錙 畆 畊 獸 鴫 鯔 町 璢 畦 畍 甸 鈿 畴
 # 魚 (鯔 鮟 鮪 鰹 鯖 蘓 鯆 鰤 鮑 鱗 鰈 鮎 鯨 鱚 鱧 魯 鯀 鮗 鯵 鮃 鮫 鰕 艪 鰒 鰥 鰊 鰻 鰍 鰓 鰰 鰡 鱆 鰯 癬 鯲 鯒 鱈 鰐 鮹 鯡 鱇 鯉 薊 鰌 鮭 鮠 鯰 鯑 魚 鰾 鯛 櫓 鮮 鯊 鯢 鮒 鰮 鰭 鰺 鰔 鯏 鱶 鱒 鯤 鮴 鮨 鰄 鮖 鱠 鮓 鱸 鯱 蘇 魴 鰛 鰉 漁 蘚 鰆 鰲 鯣)
 # 卑 (稗 牌 婢 碑 痺 卑 顰 睥 俾 裨)
@@ -10993,122 +10844,114 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 雷 (擂 蕾 雷)
 # 畜 (畜 蓄)
 
-田_3 = ElementSpec('田', 3).by_stroke_count(6)
+# 田_3 = ElementSpec('田', 3).by_stroke_count(6)
 # 曽 (噌 甑)
 # 曾 (曾 囎)
 
-佃 = ElementSpec('佃').by_elements(亻, 田_2)
+佃 = ElementSpec('佃').by_elements(亻, 田)
 
-僵 = ElementSpec('僵').by_elements(亻, 一, 田_2, 一, 田_2, 一)
+僵 = ElementSpec('僵').by_elements(亻, 一, 田, 一, 田, 一)
 
-儡 = ElementSpec('儡').by_elements(亻, 田_2, 田_2, 田_2)
+儡 = ElementSpec('儡').by_elements(亻, 田, 田, 田)
 
-卑_1 = ElementSpec('卑', 1).by_elements(1, 田_1, 十)
-# 髀 脾
+卑_1 = ElementSpec('卑', 1).by_elements(1, 田, 十)
+# 髀 脾 俾 痺 婢 顰 牌 稗 睥 裨
 
-卑_2 = ElementSpec('卑', 2).by_elements(1, 田_2, 十)
-# 俾 痺 婢 顰 牌 稗 睥 裨
-
-卑_3 = ElementSpec('卑', 3).by_elements(1, 田_2, 1, 十)
+卑_2 = ElementSpec('卑', 3).by_elements(1, 田, 1, 十)
 # 碑
 
-俾 = ElementSpec('俾').by_elements(亻, 卑_2)
+俾 = ElementSpec('俾').by_elements(亻, 卑_1)
 
-嚔 = ElementSpec('嚔').by_elements(口, 4, 田_2, 厶, 4)
+嚔 = ElementSpec('嚔').by_elements(口, 4, 田, 厶, 4)
 
-塁 = ElementSpec('塁').by_elements(田_2, 冫, 2, 土)
+塁 = ElementSpec('塁').by_elements(田, 冫, 2, 土)
 
-壘 = ElementSpec('壘').by_elements(田_2, 田_2, 田_2, 土)
+壘 = ElementSpec('壘').by_elements(田, 田, 田, 土)
 
-奮 = ElementSpec('奮').by_elements(大, 隹, 田_2)
+奮 = ElementSpec('奮').by_elements(大, 隹, 田)
 
-婢 = ElementSpec('婢').by_elements(女, 卑_2)
+婢 = ElementSpec('婢').by_elements(女, 卑_1)
 
-彊 = ElementSpec('彊').by_elements(弓, 一, 田_2, 一, 田_2, 一)
+彊 = ElementSpec('彊').by_elements(弓, 一, 田, 一, 田, 一)
 
-思 = ElementSpec('思').by_elements(田_2, 心)
-# 偲 鰓 腮 顋
-# 慮 (慮 鑢 濾)
+思 = ElementSpec('思').by_elements(田, 心)
 
 偲 = ElementSpec('偲').by_elements(亻, 思)
 
 慮 = ElementSpec('慮').by_elements(虍, 思)
-# 鑢 濾
 
-曽_1 = ElementSpec('曽', 1).by_elements(八, 田_2, 日_9)
+曽 = ElementSpec('曽', 1).by_elements(八, 田, 日)
 
-曽_2 = ElementSpec('曽', 2).by_elements(2, 田_2, 日_9)
+# 曽 = ElementSpec('曽', 2).by_elements(2, 田, 日)
 # 僧 贈 増 層 憎
 
-曽_3 = ElementSpec('曽', 3).by_elements(2, 田_3, 日_9)
+# 曾 = ElementSpec('曾').by_elements(八, 田_3, 日)
+曾 = ElementSpec('曾').by_elements(八, 6, 日)
 # 甑 噌
-
-僧 = ElementSpec('僧').by_elements(亻, 曽_2)
-
-噌 = ElementSpec('噌').by_elements(口, 曽_3)
-
-増 = ElementSpec('増').by_elements(土, 曽_2)
-
-層 = ElementSpec('層').by_elements(尸, 曽_2)
-
-憎 = ElementSpec('憎').by_elements(忄, 曽_2)
-
-曾 = ElementSpec('曾').by_elements(八, 田_3, 日_9)
 # 贈 (囎)
 
-橿 = ElementSpec('橿').by_elements(木, 一, 田_2, 一, 田_2, 一)
+僧 = ElementSpec('僧').by_elements(亻, 曽)
 
-櫑 = ElementSpec('櫑').by_elements(木, 田_2, 田_2, 田_2)
+噌 = ElementSpec('噌').by_elements(口, 曾)
 
-毘 = ElementSpec('毘').by_elements(田_2, 比)
+増 = ElementSpec('増').by_elements(土, 曽)
 
-沺 = ElementSpec('沺').by_elements(氵, 田_2)
+層 = ElementSpec('層').by_elements(尸, 曽)
 
-澑 = ElementSpec('澑').by_elements(氵, 7, 田_2)
+憎 = ElementSpec('憎').by_elements(心_1, 曽)
+
+橿 = ElementSpec('橿').by_elements(木, 一, 田, 一, 田, 一)
+
+櫑 = ElementSpec('櫑').by_elements(木, 田, 田, 田)
+
+毘 = ElementSpec('毘').by_elements(田, 比)
+
+沺 = ElementSpec('沺').by_elements(氵, 田)
+
+澑 = ElementSpec('澑').by_elements(氵, 7, 田)
 
 濾 = ElementSpec('濾').by_elements(氵, 慮)
 
-牌 = ElementSpec('牌').by_elements(片, 卑_2)
+牌 = ElementSpec('牌').by_elements(片, 卑_1)
 
-獣 = ElementSpec('獣').by_elements(x2e8d, 田_2, 1, 口, 犬_2)
+獣 = ElementSpec('獣').by_elements(x2e8d, 田, 1, 口, 犬)
 
-獸 = ElementSpec('獸').by_elements(口, 口, 田_2, 1, 口, 犬_2)
+獸 = ElementSpec('獸').by_elements(口, 口, 田, 1, 口, 犬)
 
-甑 = ElementSpec('甑').by_elements(曽_3, 瓦)
+甑 = ElementSpec('甑').by_elements(曾, 瓦)
 
-由_1 = ElementSpec('由', 1).by_strokes_to_elements({
-    (1, 2, 4, 5): 日_9,
-}, (3,))
+# 由 = ElementSpec('由', 1).by_strokes_to_elements({
+#     (1, 2, 4, 5): 日,
+# }, (3,))
 # 軸 油 岫 抽 廸 宙 舳 騁 鼬 専 袖 胄 蚰 聘 柚 届 迪 娉 釉 冑 紬
 # 恵 (恵 穂)
 # 寅 (演 寅)
 
-由_2 = ElementSpec('由', 2).by_elements(田_2)
+由 = ElementSpec('由').by_elements(田)
 # 画
 
-由_3 = ElementSpec('由', 3).by_stroke_count(5)
+# 由 = ElementSpec('由', 3).by_stroke_count(5)
 # 笛
 # 黃 (曠 廣 簧 鑛 黌 黃 擴 壙 礦)
 # 黄 (黄 横)
 
-冑 = ElementSpec('冑').by_elements(由_1, 月)
+冑 = ElementSpec('冑').by_elements(由, 月)
 
-娉 = ElementSpec('娉').by_elements(女, 由_1, 2)
+娉 = ElementSpec('娉').by_elements(女, 由, 2)
 
-宙 = ElementSpec('宙').by_elements(宀, 由_1)
+宙 = ElementSpec('宙').by_elements(宀, 由)
 
-寅 = ElementSpec('寅').by_elements(宀, 1, 由_1, 八)
-# 演
+寅 = ElementSpec('寅').by_elements(宀, 1, 由, 八)
 
-専_1 = ElementSpec('専', 1).by_elements(1, 用, 寸)
+# 専_1 = ElementSpec('専', 1).by_elements(1, 用, 寸)
 # 尃 (縛 傅 搏 榑 尃 簿 愽 博 溥 薄 膊 賻)
 
-専_2 = ElementSpec('専', 2).by_elements(1, 由_1, 寸)
+専 = ElementSpec('専').by_elements(1, 由, 寸)
 
 尃 = ElementSpec('尃').by_strokes_to_elements({
-    (1, 2, 3, 4, 5, 6, 7): 甫,
-    (1, 2, 3, 4, 5, 6, 8, 9, 10): 専_1,
-})
+    # (1, 2, 3, 4, 5, 6, 7): 甫,
+    (1, 2, 3, 4, 5, 6, 8, 9, 10): 専,
+}, (7,))
 # 膊 縛 榑 傅 賻 搏 愽 博
 # 溥 (薄 溥 簿)
 
@@ -11116,133 +10959,134 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 博 = ElementSpec('博').by_elements(十, 尃)
 
-届 = ElementSpec('届').by_elements(尸, 由_1)
+届 = ElementSpec('届').by_elements(尸, 由)
 
-岫 = ElementSpec('岫').by_elements(山, 由_1)
+岫 = ElementSpec('岫').by_elements(山, 由)
 
-廸 = ElementSpec('廸').by_elements(由_1, 廴)
+廸 = ElementSpec('廸').by_elements(由, 廴)
 
-恵 = ElementSpec('恵').by_elements(1, 由_1, 心)
-# 穂
+恵 = ElementSpec('恵').by_elements(1, 由, 心)
 
-愽 = ElementSpec('愽').by_elements(忄, 尃)
+愽 = ElementSpec('愽').by_elements(心_1, 尃)
 
-抽 = ElementSpec('抽').by_elements(扌, 由_1)
+抽 = ElementSpec('抽').by_elements(扌, 由)
 
 搏 = ElementSpec('搏').by_elements(扌, 尃)
 
-柚 = ElementSpec('柚').by_elements(木, 由_1)
+柚 = ElementSpec('柚').by_elements(木, 由)
 
 榑 = ElementSpec('榑').by_elements(木, 尃)
 
-油 = ElementSpec('油').by_elements(氵, 由_1)
+油 = ElementSpec('油').by_elements(氵, 由)
 
 溥 = ElementSpec('溥').by_elements(氵, 尃)
-# 薄 簿
 
 演 = ElementSpec('演').by_elements(氵, 寅)
 
-甲_1 = ElementSpec('甲', 1).by_elements(日_9, 一, 1)
+# 甲_1 = ElementSpec('甲', 1).by_elements(日, 一, 1)
 # 単 (蝉 戦 箪 騨 褝 禅 弾)
 
-甲_2 = ElementSpec('甲', 2).by_elements(日_9, 十_1)
+# 甲_2 = ElementSpec('甲', 2).by_elements(日, 十_1)
 # 単
 
-甲_3 = ElementSpec('甲', 3).by_elements(日_9, 1)
+甲 = ElementSpec('甲').by_elements(日, 1)
 # 狎 岬 胛 呷 押 匣 鴨 閘
 # 單 (簞 憚 闡 單 嬋 殫 禪 襌 彈 戰 鄲)
 # 果 (顆)
 
-甲_4 = ElementSpec('甲', 4).by_elements(日_9, 2)
+# 甲_4 = ElementSpec('甲', 4).by_elements(日, 2)
 # 單 (蟬)
 
 匣 = ElementSpec('匣').by_strokes_to_elements({
     (1, 7): 匸,
-    (2, 3, 4, 5, 6): 甲_3,
+    (2, 3, 4, 5, 6): 甲,
 })
 
-単_1 = ElementSpec('単', 1).by_elements(x2e8d, 甲_1)
-# 箪 禅 蝉 戦 騨 褝 弾
+単 = ElementSpec('単').by_strokes_to_elements({
+    (1, 2, 3): x2e8d,
+    (4, 5, 6, 7, 9): 甲,
+    (8,): 一,
+})
 
-単_2 = ElementSpec('単', 2).by_elements(x2e8d, 甲_2)
+呷 = ElementSpec('呷').by_elements(口, 甲)
 
-呷 = ElementSpec('呷').by_elements(口, 甲_3)
-
-單_1 = ElementSpec('單', 1).by_elements(口, 口, 甲_4)
+# 單 = ElementSpec('單', 1).by_elements(口, 口, 甲_4)
 # 蟬
 
-單_2 = ElementSpec('單', 2).by_strokes_to_elements({
+單 = ElementSpec('單').by_strokes_to_elements({
     (1, 2, 3): 口,
     (4, 5, 6): 口,
-    (7, 8, 9, 10, 12): 甲_3,
+    (7, 8, 9, 10, 12): 甲,
     (11,): 一,
 })
 # 彈 戰 鄲 襌 禪 闡 殫 憚 嬋
 
-單_3 = ElementSpec('單', 3).by_strokes_to_elements({
-    (1, 2, 3): 口,
-    (4, 5, 6): 口,
-    (7, 8, 9, 10, 12): 甲_3,
-}, (11,))
+# 單 = ElementSpec('單', 3).by_strokes_to_elements({
+#     (1, 2, 3): 口,
+#     (4, 5, 6): 口,
+#     (7, 8, 9, 10, 12): 甲,
+# }, (11,))
 # 簞
 
-嬋 = ElementSpec('嬋').by_elements(女, 單_2)
+嬋 = ElementSpec('嬋').by_elements(女, 單)
 
-岬 = ElementSpec('岬').by_elements(山, 甲_3)
+岬 = ElementSpec('岬').by_elements(山, 甲)
 
-弾 = ElementSpec('弾').by_elements(弓, 単_1)
+弾 = ElementSpec('弾').by_elements(弓, 単)
 
-彈 = ElementSpec('彈').by_elements(弓, 單_2)
+彈 = ElementSpec('彈').by_elements(弓, 單)
 
-憚 = ElementSpec('憚').by_elements(忄, 單_2)
+憚 = ElementSpec('憚').by_elements(心_1, 單)
 
-戦 = ElementSpec('戦').by_elements(単_1, 戈)
+戦 = ElementSpec('戦').by_elements(単, 戈)
 
-戰 = ElementSpec('戰').by_elements(單_2, 戈)
+戰 = ElementSpec('戰').by_elements(單, 戈)
 
-押 = ElementSpec('押').by_elements(扌, 甲_3)
+押 = ElementSpec('押').by_elements(扌, 甲)
 
-果_1 = ElementSpec('果', 1).by_elements(日_9, 木)
+# XXX i suppose
+# 果 = ElementSpec('果', 1).by_elements(日, 木)
 # 課
 
-果_2 = ElementSpec('果', 2).by_strokes_to_elements({
-    (1, 2, 3, 4, 6): 田_1,
-    (5, 6, 7, 8): 木,
-})
+# 果 = ElementSpec('果', 2).by_strokes_to_elements({
+#     (1, 2, 3, 4, 6): 田,
+#     (5, 6, 7, 8): 木,
+# })
 # 裹 巣 樔 踝 裸 剿 彙 菓 夥 勦
 
-果_3 = ElementSpec('果', 3).by_strokes_to_elements({
-    (1, 2, 3, 4, 6): 甲_3,
+果 = ElementSpec('果').by_strokes_to_elements({
+    (1, 2, 3, 4, 6): 甲,
     (5, 6, 7, 8): 木,
 })
 # 顆
 
-剿 = ElementSpec('剿').by_elements(巛, 果_2, 刂)
+剿 = ElementSpec('剿').by_elements(巛, 果, 刂)
 
-勦 = ElementSpec('勦').by_elements(巛, 果_2, 力)
+勦 = ElementSpec('勦').by_elements(巛, 果, 力)
 
-夥 = ElementSpec('夥').by_elements(果_2, 多)
+夥 = ElementSpec('夥').by_elements(果, 多)
 
-巣 = ElementSpec('巣').by_elements(x2e8d, 果_2)
+巣 = ElementSpec('巣').by_elements(x2e8d, 果)
 
-彙 = ElementSpec('彙').by_elements(彑, 冖, 果_2)
+彙 = ElementSpec('彙').by_elements(彑, 冖, 果)
 
-樔 = ElementSpec('樔').by_elements(木, 巛, 果_2)
+樔 = ElementSpec('樔').by_elements(木, 巛, 果)
 
-殫 = ElementSpec('殫').by_elements(歹, 單_2)
+殫 = ElementSpec('殫').by_elements(歹, 單)
 
-狎 = ElementSpec('狎').by_elements(x2ea8, 甲_3)
+狎 = ElementSpec('狎').by_elements(x2ea8, 甲)
 
-申 = ElementSpec('申').by_elements(日_9, 1)
+申 = ElementSpec('申').by_elements(日, 1)
 # 暢 坤 抻 呻 紳 伸
 # 神 (榊 鰰 神)
 # 叟 (痩 捜)
 
 伸 = ElementSpec('伸').by_elements(亻, 申)
 
-叟_1 = ElementSpec('叟', 1).by_elements(申, 又)
+# 叟_1 = ElementSpec('叟', 1).by_elements(申, 又)
 # 痩 捜
 
+# mildly upsetting
 叟_2 = ElementSpec('叟', 2).by_elements(臼, 1, 又)
 # 嫂 搜
 
@@ -11257,7 +11101,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 抻 = ElementSpec('抻').by_elements(扌, 申)
 
-捜 = ElementSpec('捜').by_elements(扌, 叟_1)
+捜 = ElementSpec('捜').by_elements(扌, 申, 又)
 
 搜 = ElementSpec('搜').by_elements(扌, 叟_2)
 
@@ -11265,16 +11109,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 溲 = ElementSpec('溲').by_elements(氵, 叟_3)
 
-男 = ElementSpec('男').by_elements(田_2, 力)
-# 舅 虜 嬲 甥
-# 勇 (湧 踴 勇)
-# 娚 (嬲 嫐 娚)
+男 = ElementSpec('男').by_elements(田, 力)
 
 勇 = ElementSpec('勇').by_elements(マ, 男)
-# 湧 踴
 
 娚 = ElementSpec('娚').by_elements(女, 男)
-# 嬲 嫐
 
 嫐 = ElementSpec('嫐').by_elements(娚, 女)
 
@@ -11284,91 +11123,82 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 甥 = ElementSpec('甥').by_elements(生, 男)
 
-甸 = ElementSpec('甸').by_elements(勹, 田_2)
+甸 = ElementSpec('甸').by_elements(勹, 田)
 
-町 = ElementSpec('町').by_elements(田_2, 丁)
+町 = ElementSpec('町').by_elements(田, 丁)
 
-画 = ElementSpec('画').by_elements(一, 由_2, 凵)
+画 = ElementSpec('画').by_elements(一, 由, 凵)
 
-甼 = ElementSpec('甼').by_elements(田_2, 丁)
+甼 = ElementSpec('甼').by_elements(田, 丁)
 
-畄 = ElementSpec('畄').by_elements(x2e8d, 田_2)
+畄 = ElementSpec('畄').by_elements(x2e8d, 田)
 
-畆 = ElementSpec('畆').by_elements(亠, 田_2, 厶)
+畆 = ElementSpec('畆').by_elements(亠, 田, 厶)
 
-畉 = ElementSpec('畉').by_elements(田_2, 夫)
+畉 = ElementSpec('畉').by_elements(田, 夫)
 
-畊 = ElementSpec('畊').by_elements(田_2, 井)
+畊 = ElementSpec('畊').by_elements(田, 井)
 
-畋 = ElementSpec('畋').by_elements(田_2, 攵)
+畋 = ElementSpec('畋').by_elements(田, 攵)
 
-界 = ElementSpec('界').by_elements(田_2, 介)
-# 堺
+界 = ElementSpec('界').by_elements(田, 介)
 
 堺 = ElementSpec('堺').by_elements(土, 界)
 
-畍 = ElementSpec('畍').by_elements(田_2, 介)
+畍 = ElementSpec('畍').by_elements(田, 介)
 
-畏 = ElementSpec('畏').by_elements(田_2, 一, 3)
+# TODO new leg element
+畏 = ElementSpec('畏').by_elements(田, 一, 3)
 # 隈 猥
 
 猥 = ElementSpec('猥').by_elements(x2ea8, 畏)
 
-畐 = ElementSpec('畐').by_elements(一, 口, 田_2)
-# 富 冨 幅 逼 輻 福 蝠 副
-# 匐 (蔔 匐)
+畐 = ElementSpec('畐').by_elements(一, 口, 田)
 
 冨 = ElementSpec('冨').by_elements(冖, 畐)
 
 副 = ElementSpec('副').by_elements(畐, 刂)
 
 匐 = ElementSpec('匐').by_elements(勹, 畐)
-# 蔔
 
 富 = ElementSpec('富').by_elements(宀, 畐)
 
 幅 = ElementSpec('幅').by_elements(巾, 畐)
 
-畑 = ElementSpec('畑').by_elements(火, 田_2)
+畑 = ElementSpec('畑').by_elements(火, 田)
 
-畔 = ElementSpec('畔').by_elements(田_2, 半)
+畔 = ElementSpec('畔').by_elements(田, 半)
 
-留 = ElementSpec('留').by_elements(卯, 田_2)
-# 霤 鰡 餾 籀 瑠 溜 瘤 榴
+留 = ElementSpec('留').by_elements(卯, 田)
 
 榴 = ElementSpec('榴').by_elements(木, 留)
 
 溜 = ElementSpec('溜').by_elements(氵, 留)
 
-畚 = ElementSpec('畚').by_elements(厶, 大, 田_2)
+畚 = ElementSpec('畚').by_elements(厶, 大, 田)
 
-畛 = ElementSpec('畛').by_elements(田_2, 2, 彡)
+畛 = ElementSpec('畛').by_elements(田, 𠆢, 彡)
 
-畜 = ElementSpec('畜').by_elements(玄, 田_2)
-# 蓄
+畜 = ElementSpec('畜').by_elements(玄, 田)
 
-畝 = ElementSpec('畝').by_elements(亠, 田_2, 久)
+畝 = ElementSpec('畝').by_elements(亠, 田, 久)
 
-畢 = ElementSpec('畢').by_elements(田_2, 6)
+畢 = ElementSpec('畢').by_elements(田, 6)
 # 蹕 篳
 
-畤 = ElementSpec('畤').by_elements(田_2, 寺)
+畤 = ElementSpec('畤').by_elements(田, 寺)
 
-略 = ElementSpec('略').by_elements(田_2, 各)
+略 = ElementSpec('略').by_elements(田, 各)
 
-畦 = ElementSpec('畦').by_elements(田_2, 圭)
+畦 = ElementSpec('畦').by_elements(田, 圭)
 
-畧 = ElementSpec('畧').by_elements(田_2, 各)
+畧 = ElementSpec('畧').by_elements(田, 各)
 
-畩 = ElementSpec('畩').by_elements(田_2, 衣)
+畩 = ElementSpec('畩').by_elements(田, 衣)
 
-番 = ElementSpec('番').by_elements(釆, 田_2)
-# 播 繙 燔 飜 膰 鐇 蟠 旙 翻 蕃 鷭 幡 旛
-# 審 (瀋 審)
-# 潘 (藩 潘)
+番 = ElementSpec('番').by_elements(釆, 田)
 
 審 = ElementSpec('審').by_elements(宀, 番)
-# 瀋
 
 幡 = ElementSpec('幡').by_elements(巾, 番)
 
@@ -11379,22 +11209,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 旛 = ElementSpec('旛').by_elements(方, 2, 番)
 
 潘 = ElementSpec('潘').by_elements(氵, 番)
-# 藩
 
 瀋 = ElementSpec('瀋').by_elements(氵, 審)
 
 燔 = ElementSpec('燔').by_elements(火, 番)
 
-畫 = ElementSpec('畫').by_elements(聿, 田_2, 一)
-# 劃
+畫 = ElementSpec('畫').by_elements(聿, 田, 一)
 
 劃 = ElementSpec('劃').by_elements(畫, 刂)
 
-畭 = ElementSpec('畭').by_elements(田_2, 余)
+畭 = ElementSpec('畭').by_elements(田, 余)
 
-異 = ElementSpec('異').by_elements(田_2, 共)
-# 戴 翼 糞
-# 冀 (驥 冀)
+異 = ElementSpec('異').by_elements(田, 共)
 
 冀 = ElementSpec('冀').by_elements(北, 異)
 # 驥
@@ -11405,35 +11231,35 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14): 異,
 })
 
-畳 = ElementSpec('畳').by_elements(田_2, 冖, 且)
+畳 = ElementSpec('畳').by_elements(田, 冖, 且)
 
-畴 = ElementSpec('畴').by_elements(田_2, 寿)
+畴 = ElementSpec('畴').by_elements(田, 寿)
 
-當 = ElementSpec('當').by_elements(尚, 田_2)
-# 襠 礑 蟷 鐺
+當 = ElementSpec('當').by_elements(尚, 田)
 
-畷 = ElementSpec('畷').by_elements(田_2, 又, 又, 又, 又)
+畷 = ElementSpec('畷').by_elements(田, 又, 又, 又, 又)
 
-畸 = ElementSpec('畸').by_elements(田_2, 奇)
+畸 = ElementSpec('畸').by_elements(田, 奇)
 
 畿 = ElementSpec('畿').by_strokes_to_elements({
     (1, 2, 3): 幺,
     (4, 5, 6): 幺,
     (7, 13, 14, 15): 戈,
-    (8, 9, 10, 11, 12): 田_2,
+    (8, 9, 10, 11, 12): 田,
 })
 
-疂 = ElementSpec('疂').by_elements(田_2, 冫, 2, 冖, 且)
+疂 = ElementSpec('疂').by_elements(田, 冫, 2, 冖, 且)
 
-疆 = ElementSpec('疆').by_elements(弓, 土, 一, 田_2, 一, 田_2, 一)
+疆 = ElementSpec('疆').by_elements(弓, 土, 一, 田, 一, 田, 一)
 
-疇 = ElementSpec('疇').by_elements(田_2, 壽_1)
+疇 = ElementSpec('疇').by_elements(田, 壽)
 
-疉 = ElementSpec('疉').by_elements(田_2, 田_2, 田_2, 宀, 4)
+疉 = ElementSpec('疉').by_elements(田, 田, 田, 宀, 4)
 
-疊 = ElementSpec('疊').by_elements(田_2, 田_2, 田_2, 冖, 且)
+疊 = ElementSpec('疊').by_elements(田, 田, 田, 冖, 且)
 
-疋_1 = ElementSpec('疋', 1).by_elements(1, 卜, 人_5)
+# TODO legs
+疋 = ElementSpec('疋').by_elements(1, 卜, 人)
 # 嚏 旋 蛋 疏 疎
 # 疑 (擬 癡 疑 礙 凝 嶷)
 # 是 (題 是 堤 提 醍 匙 寔)
@@ -11442,25 +11268,25 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 楚 (礎 楚)
 # 胥 (胥 婿 壻)
 
-疋_2 = ElementSpec('疋', 2).by_elements(1, 卜, 2)
+# 疋_2 = ElementSpec('疋', 2).by_elements(1, 卜, 2)
 # 疏 (蔬)
 
-嚏 = ElementSpec('嚏').by_elements(口, 4, 田_2, 疋_1)
+嚏 = ElementSpec('嚏').by_elements(口, 4, 田, 疋)
 
-定 = ElementSpec('定').by_elements(宀, 疋_1)
+定 = ElementSpec('定').by_elements(宀, 疋)
 # 聢 碇 諚 淀 綻 錠 掟
 
-従 = ElementSpec('従').by_elements(彳, 2, 疋_1)
+従 = ElementSpec('従').by_elements(彳, 2, 疋)
 # 縦
 
 掟 = ElementSpec('掟').by_elements(扌, 定)
 
-旋 = ElementSpec('旋').by_elements(方, 2, 疋_1)
+旋 = ElementSpec('旋').by_elements(方, 2, 疋)
 
-是 = ElementSpec('是').by_elements(日_9, 疋_1)
+是 = ElementSpec('是').by_elements(日, 疋)
 # 醍 堤 題 寔 提 匙
 
-匙 = ElementSpec('匙').by_elements(是, 匕_3)
+匙 = ElementSpec('匙').by_elements(是, 匕)
 
 堤 = ElementSpec('堤').by_elements(土, 是)
 
@@ -11468,17 +11294,14 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 提 = ElementSpec('提').by_elements(扌, 是)
 
-楚 = ElementSpec('楚').by_elements(林, 疋_1)
+楚 = ElementSpec('楚').by_elements(林, 疋)
 # 礎
 
 淀 = ElementSpec('淀').by_elements(氵, 定)
 
-疎 = ElementSpec('疎').by_elements(疋_1, 束_1)
+疎 = ElementSpec('疎').by_elements(疋, 束)
 
-疏_1 = ElementSpec('疏', 1).by_elements(疋_1, 㐬)
-
-疏_2 = ElementSpec('疏', 2).by_elements(疋_2, 㐬)
-# 蔬
+疏 = ElementSpec('疏', 1).by_elements(疋, 㐬)
 
 疥 = ElementSpec('疥').by_elements(疒, 介)
 
@@ -11488,19 +11311,19 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 病 = ElementSpec('病').by_elements(疒, 丙)
 
-症 = ElementSpec('症').by_elements(疒, 正_4)
+症 = ElementSpec('症').by_elements(疒, 正)
 
 痍 = ElementSpec('痍').by_elements(疒, 夷)
 
 痔 = ElementSpec('痔').by_elements(疒, 寺)
 
-痙 = ElementSpec('痙').by_elements(疒, 一, 巛, 工_4)
+痙 = ElementSpec('痙').by_elements(疒, 一, 巛, 工)
 
 痣 = ElementSpec('痣').by_elements(疒, 志)
 
-痩 = ElementSpec('痩').by_elements(疒, 叟_1)
+痩 = ElementSpec('痩').by_elements(疒, 申, 又)
 
-痺 = ElementSpec('痺').by_elements(疒, 卑_2)
+痺 = ElementSpec('痺').by_elements(疒, 卑_1)
 
 痼 = ElementSpec('痼').by_elements(疒, 固)
 
@@ -11514,9 +11337,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 瘤 = ElementSpec('瘤').by_elements(疒, 留)
 
-療 = ElementSpec('療').by_elements(疒, 大, 2, 日_9, 小)
+療 = ElementSpec('療').by_elements(疒, 大, 2, 日, 小)
 
-癇 = ElementSpec('癇').by_elements(疒, 門, 日_6)
+癇 = ElementSpec('癇').by_elements(疒, 門, 月)
 
 癒 = ElementSpec('癒').by_elements(疒, 愈)
 
@@ -11525,142 +11348,97 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 揆 = ElementSpec('揆').by_elements(扌, 癸)
 
-白_1 = ElementSpec('白', 1).by_elements(1, 日_9)
-# 魄 檄 袙 激 狛 穆 怕 皎 皙 覈 碧 岶 兜 柏 邀 皋 皈 畠 迫 拍 珀 皓 皚 竅 的 粕 伯 徼 皖 葩 舶
-# 皆 (諧 揩 偕 楷 階 皆)
-# 原 (源 原 愿 願)
-# 皇 (蝗 煌 徨 凰 鍠 湟 隍 篁 皇 鰉 惶 遑)
-# 楽 (檪 楽 薬)
-# 泉 (腺 楾 泉 湶 線)
-# 百 (縮 鏥 瓸 竡 貊 栢 陌 粨 佰 弼 宿 百 蓿)
-# 帛 (帛 綿 棉 緜 錦)
-# 樂 (樂 轢 擽 鑠 礫 爍 櫟 藥)
-# 皀 (曁 皀 廐 梍 廏)
-# 皃 (貌 藐 皃)
-# 泊 (泊 箔)
-# 皐 (皐 槹)
-# 習 (摺 翫 習 褶 慴)
+白 = ElementSpec('白').by_elements(1, 日)
 
-白_2 = ElementSpec('白', 2).by_stroke_count(5)
-# 百 (戞)
+伯 = ElementSpec('伯').by_elements(亻, 白)
 
-伯 = ElementSpec('伯').by_elements(亻, 白_1)
+兜 = ElementSpec('兜').by_elements(白, 4, 儿)
 
-兜 = ElementSpec('兜').by_elements(白_1, 4, 儿)
+原 = ElementSpec('原').by_elements(厂, 白, 小)
 
-原 = ElementSpec('原').by_elements(厂, 白_1, 小)
-# 願 源 愿
+岶 = ElementSpec('岶').by_elements(山, 白)
 
-岶 = ElementSpec('岶').by_elements(山, 白_1)
+帛 = ElementSpec('帛').by_elements(白, 巾)
 
-帛 = ElementSpec('帛').by_elements(白_1, 巾)
-# 錦 棉 綿 緜
+徼 = ElementSpec('徼').by_elements(彳, 白, 放)
 
-徼 = ElementSpec('徼').by_elements(彳, 白_1, 放)
-
-怕 = ElementSpec('怕').by_elements(忄, 白_1)
+怕 = ElementSpec('怕').by_elements(心_1, 白)
 
 愿 = ElementSpec('愿').by_elements(原, 心)
 
-拍 = ElementSpec('拍').by_elements(扌, 白_1)
+拍 = ElementSpec('拍').by_elements(扌, 白)
 
-柏 = ElementSpec('柏').by_elements(木, 白_1)
+柏 = ElementSpec('柏').by_elements(木, 白)
 
 棉 = ElementSpec('棉').by_elements(木, 帛)
 
-楽 = ElementSpec('楽').by_elements(白_1, 冫, 2, 木)
+楽 = ElementSpec('楽').by_elements(白, 冫, 2, 木)
 # 薬 檪
 
-樂 = ElementSpec('樂').by_elements(白_1, 幺, 幺, 木)
-# 櫟 鑠 礫 轢 爍 藥 擽
+樂 = ElementSpec('樂').by_elements(白, 幺, 幺, 木)
 
 擽 = ElementSpec('擽').by_elements(扌, 樂)
 
-檄 = ElementSpec('檄').by_elements(木, 白_1, 放)
+檄 = ElementSpec('檄').by_elements(木, 白, 放)
 
 檪 = ElementSpec('檪').by_elements(木, 楽)
 
 櫟 = ElementSpec('櫟').by_elements(木, 樂)
 
-泉 = ElementSpec('泉').by_elements(白_1, 水)
-# 腺 線 楾 湶
+泉 = ElementSpec('泉').by_elements(白, 水)
 
 楾 = ElementSpec('楾').by_elements(木, 泉)
 
-泊 = ElementSpec('泊').by_elements(氵, 白_1)
-# 箔
+泊 = ElementSpec('泊').by_elements(氵, 白)
 
 湶 = ElementSpec('湶').by_elements(氵, 泉)
 
 源 = ElementSpec('源').by_elements(氵, 原)
 
-激 = ElementSpec('激').by_elements(氵, 白_1, 放)
+激 = ElementSpec('激').by_elements(氵, 白, 放)
 
 爍 = ElementSpec('爍').by_elements(火, 樂)
 
-狛 = ElementSpec('狛').by_elements(x2ea8, 白_1)
+狛 = ElementSpec('狛').by_elements(x2ea8, 白)
 
-畠 = ElementSpec('畠').by_elements(白_1, 田_2)
+畠 = ElementSpec('畠').by_elements(白, 田)
 
-百_1 = ElementSpec('百', 1).by_elements(一, 白_1)
+百 = ElementSpec('百', 1).by_elements(一, 白)
 
-百_2 = ElementSpec('百', 2).by_elements(一, 1, 日_9)
-# 憂
-
-百_3 = ElementSpec('百', 3).by_elements(1, 白_1)
-# 陌 貊 竡 粨 弼 栢 瓸
-# 佰 (縮 鏥 佰 宿 蓿)
-
-百_4 = ElementSpec('百', 4).by_elements(1, 白_2)
-# 戞
-
-百_5 = ElementSpec('百', 5).by_elements(2, 日_9)
-# 憂 (優 擾)
-
-佰 = ElementSpec('佰').by_elements(亻, 百_3)
+佰 = ElementSpec('佰').by_elements(亻, 百)
 # 宿 (蓿 宿 縮 鏥)
 
 宿 = ElementSpec('宿').by_elements(宀, 佰)
-# 縮 蓿 鏥
 
-弼 = ElementSpec('弼').by_elements(弓, 百_3, 弓)
+弼 = ElementSpec('弼').by_elements(弓, 百, 弓)
 
-憂_1 = ElementSpec('憂', 1).by_elements(百_2, 冖, 心, 夂)
+憂 = ElementSpec('憂', 1).by_elements(百, 冖, 心, 夂)
 
-憂_2 = ElementSpec('憂', 2).by_elements(百_5, 冖, 心, 夂)
-# 擾 優
+優 = ElementSpec('優').by_elements(亻, 憂)
 
-優 = ElementSpec('優').by_elements(亻, 憂_2)
+戞 = ElementSpec('戞').by_elements(百, 冖, 戈)
 
-戞 = ElementSpec('戞').by_elements(百_4, 冖, 戈)
+擾 = ElementSpec('擾').by_elements(扌, 憂)
 
-擾 = ElementSpec('擾').by_elements(扌, 憂_2)
+栢 = ElementSpec('栢').by_elements(木, 百)
 
-栢 = ElementSpec('栢').by_elements(木, 百_3)
+瓸 = ElementSpec('瓸').by_elements(瓦, 百)
 
-瓸 = ElementSpec('瓸').by_elements(瓦, 百_3)
+皀 = ElementSpec('皀', 1).by_elements(白, 七)
 
-皀_1 = ElementSpec('皀', 1).by_elements(白_1, 七)
-# 梍
+廏 = ElementSpec('廏').by_elements(广, 皀, 殳)
 
-皀_2 = ElementSpec('皀', 2).by_elements(白_1, 匕_3)
-# 廏 曁 廐
+廐 = ElementSpec('廐').by_elements(广, 皀, 旡_1)
 
-廏 = ElementSpec('廏').by_elements(广, 皀_2, 殳)
+曁 = ElementSpec('曁').by_elements(皀, 旡_1, 旦)
 
-廐 = ElementSpec('廐').by_elements(广, 皀_2, 旡_1)
+梍 = ElementSpec('梍').by_elements(木, 皀)
 
-曁 = ElementSpec('曁').by_elements(皀_2, 旡_1, 旦)
+皃 = ElementSpec('皃').by_elements(白, 儿)
 
-梍 = ElementSpec('梍').by_elements(木, 皀_1)
+的 = ElementSpec('的').by_elements(白, 勺)
 
-皃 = ElementSpec('皃').by_elements(白_1, 儿)
-# 貌 (貌 藐)
-
-的 = ElementSpec('的').by_elements(白_1, 勺)
-
-皆 = ElementSpec('皆').by_elements(比, 白_1)
-# 諧 揩 偕 楷 階
+皆 = ElementSpec('皆').by_elements(比, 白)
 
 偕 = ElementSpec('偕').by_elements(亻, 皆)
 
@@ -11668,24 +11446,23 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 楷 = ElementSpec('楷').by_elements(木, 皆)
 
-皈 = ElementSpec('皈').by_elements(白_1, 反)
+皈 = ElementSpec('皈').by_elements(白, 反)
 
-皋 = ElementSpec('皋').by_elements(白_1, 夲)
+皋 = ElementSpec('皋').by_elements(白, 夲)
 
-皎 = ElementSpec('皎').by_elements(白_1, 交)
+皎 = ElementSpec('皎').by_elements(白, 交)
 
-皐 = ElementSpec('皐').by_elements(白_1, 二, 二, 十)
-# 槹
+皐 = ElementSpec('皐').by_elements(白, 二, 二, 十)
 
 槹 = ElementSpec('槹').by_elements(木, 皐)
 
-皓 = ElementSpec('皓').by_elements(白_1, 告)
+皓 = ElementSpec('皓').by_elements(白, 告)
 
-皖 = ElementSpec('皖').by_elements(白_1, 完)
+皖 = ElementSpec('皖').by_elements(白, 完)
 
-皙 = ElementSpec('皙').by_elements(析, 白_1)
+皙 = ElementSpec('皙').by_elements(析, 白)
 
-皚 = ElementSpec('皚').by_elements(白_1, 豈)
+皚 = ElementSpec('皚').by_elements(白, 豈)
 
 皷 = ElementSpec('皷').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6): 吉,
@@ -11711,13 +11488,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 候 = ElementSpec('候').by_elements(亻, 3, 矢)
 
-医_1 = ElementSpec('医', 1).by_strokes_to_elements({
-    (1, 7): 匸,
-    (2, 3, 4, 5, 6): 矢,
-})
-# 翳 醫
-
-医_2 = ElementSpec('医', 2).by_strokes_to_elements({
+医 = ElementSpec('医', 1).by_strokes_to_elements({
     (1, 7): 匸,
     (2, 3, 4, 5, 6): 矢,
 })
@@ -11731,8 +11502,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 猴 = ElementSpec('猴').by_elements(x2ea8, 侯)
 
-疑 = ElementSpec('疑').by_elements(匕_3, 矢, マ, 疋_1)
-# 礙 凝 嶷 擬 癡
+疑 = ElementSpec('疑').by_elements(匕, 矢, マ, 疋)
 
 凝 = ElementSpec('凝').by_elements(冫, 疑)
 
@@ -11741,14 +11511,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 擬 = ElementSpec('擬').by_elements(扌, 疑)
 
 疾 = ElementSpec('疾').by_elements(疒, 矢)
-# 嫉
 
 嫉 = ElementSpec('嫉').by_elements(女, 疾)
 
 癡 = ElementSpec('癡').by_elements(疒, 疑)
 
 矣 = ElementSpec('矣').by_elements(厶, 矢)
-# 挨 欸 埃 俟 竢
 
 俟 = ElementSpec('俟').by_elements(亻, 矣)
 
@@ -11759,9 +11527,8 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 欸 = ElementSpec('欸').by_elements(矣, 欠)
 
 知 = ElementSpec('知').by_elements(矢, 口)
-# 智 踟 蜘 痴 椥 聟
 
-智 = ElementSpec('智').by_elements(知, 日_9)
+智 = ElementSpec('智').by_elements(知, 日)
 
 椥 = ElementSpec('椥').by_elements(木, 知)
 
@@ -11777,11 +11544,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 矯 = ElementSpec('矯').by_elements(矢, 喬)
 
-矼 = ElementSpec('矼').by_elements(石, 工_4)
+矼 = ElementSpec('矼').by_elements(石, 工)
 
 砒 = ElementSpec('砒').by_elements(石, 比)
 
-研 = ElementSpec('研').by_elements(石, 干_4, 干_2)
+研 = ElementSpec('研').by_elements(石, 开)
 
 砕 = ElementSpec('砕').by_elements(石, 卆)
 
@@ -11789,7 +11556,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 硅 = ElementSpec('硅').by_elements(石, 圭)
 
-硬 = ElementSpec('硬').by_elements(石, 更_2)
+硬 = ElementSpec('硬').by_elements(石, 更)
 
 碇 = ElementSpec('碇').by_elements(石, 定)
 
@@ -11797,11 +11564,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 碎 = ElementSpec('碎').by_elements(石, 卒)
 
-碑 = ElementSpec('碑').by_elements(石, 卑_3)
+碑 = ElementSpec('碑').by_elements(石, 卑_2)
 
 碕 = ElementSpec('碕').by_elements(石, 奇)
 
-碣 = ElementSpec('碣').by_elements(石, 曷_1)
+碣 = ElementSpec('碣').by_elements(石, 曷)
 
 碾 = ElementSpec('碾').by_elements(石, 展)
 
@@ -11829,41 +11596,36 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 祓 = ElementSpec('祓').by_strokes_to_elements({
     (1, 2, 3, 4, 5): 示,
-    (6, 7, 9, 10): 犬_2,
+    (6, 7, 9, 10): 犬,
 }, (8,))
 
 神_1 = ElementSpec('神', 1).by_elements(示, 申)
-# 榊
+# 榊 鰰
 
-神_2 = ElementSpec('神', 2).by_elements(礻_1, 申)
-# 鰰
-
-神_3 = ElementSpec('神', 3).by_elements(礻, 申)
+神_2 = ElementSpec('神', 3).by_elements(礻, 申)
 
 榊 = ElementSpec('榊').by_elements(木, 神_1)
 
-禅 = ElementSpec('禅').by_elements(礻, 単_1)
+禅 = ElementSpec('禅').by_elements(礻, 単)
 
 禊 = ElementSpec('禊').by_elements(示, 契)
 
 福 = ElementSpec('福').by_elements(礻, 畐)
 
-禝 = ElementSpec('禝').by_elements(示, 田_2, 2, 夂)
+禝 = ElementSpec('禝').by_elements(示, 田, 2, 夂)
 
 禦 = ElementSpec('禦').by_elements(御, 示)
 
 禧 = ElementSpec('禧').by_elements(示, 喜)
 
-禪 = ElementSpec('禪').by_elements(示, 單_2)
+禪 = ElementSpec('禪').by_elements(示, 單)
 
-禱 = ElementSpec('禱').by_elements(示, 壽_2)
+禱 = ElementSpec('禱').by_elements(示, 壽)
 
 禺 = ElementSpec('禺').by_strokes_to_elements({
-    (1, 2, 3, 4, 7): 田_1,
+    (1, 2, 3, 4, 7): 田,
     (5, 6, 7, 8, 9): 禸_2,
 })
-# 嵎 藕 偶 隅 愚 寓 遇
-# 萬 (萬 蠣 糲 礪 癘 邁 勵)
 
 偶 = ElementSpec('偶').by_elements(亻, 禺)
 
@@ -11873,8 +11635,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 愚 = ElementSpec('愚').by_elements(禺, 心)
 
-禽 = ElementSpec('禽').by_elements(人_5, 离_2)
-# 檎 擒
+禽 = ElementSpec('禽').by_elements(𠆢, 离_2)
 
 擒 = ElementSpec('擒').by_elements(扌, 禽)
 
@@ -11882,19 +11643,19 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 秕 = ElementSpec('秕').by_elements(禾, 比)
 
+# XXX wtf
 秡 = ElementSpec('秡').by_strokes_to_elements({
     (1, 2, 3, 4, 5): 禾,
-    (6, 7, 9, 10): 犬_2,
+    (6, 7, 9, 10): 犬,
 }, (8,))
 
-秤 = ElementSpec('秤').by_elements(禾, 平_2)
+秤 = ElementSpec('秤').by_elements(禾, 平)
 
 秦 = ElementSpec('秦').by_strokes_to_elements({
     (1, 2, 3): 三,
     (3, 4, 5): 大,
     (6, 7, 8, 9, 10): 禾,
 })
-# 蓁 榛 臻
 
 榛 = ElementSpec('榛').by_elements(木, 秦)
 
@@ -11906,10 +11667,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 稔 = ElementSpec('稔').by_elements(禾, 念)
 
-稗 = ElementSpec('稗').by_elements(禾, 卑_2)
+稗 = ElementSpec('稗').by_elements(禾, 卑_1)
 
 稜 = ElementSpec('稜').by_elements(禾, 土, 八, 夂)
-# 薐
 
 稠 = ElementSpec('稠').by_elements(禾, 周)
 
@@ -11917,7 +11677,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 稲 = ElementSpec('稲').by_elements(禾, x2ea4, 旧)
 
-稷 = ElementSpec('稷').by_elements(禾, 田_2, 2, 夂)
+稷 = ElementSpec('稷').by_elements(禾, 田, 2, 夂)
 
 稽 = ElementSpec('稽').by_elements(禾, 尤, 旨)
 
@@ -11925,17 +11685,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 穂 = ElementSpec('穂').by_elements(禾, 恵)
 
-穆 = ElementSpec('穆').by_elements(禾, 白_1, 小, 彡)
+穆 = ElementSpec('穆').by_elements(禾, 白, 小, 彡)
 
 穐 = ElementSpec('穐').by_elements(禾, 亀)
 
 穗 = ElementSpec('穗').by_elements(禾, 惠)
 
-穡 = ElementSpec('穡').by_elements(禾, 嗇_2)
+穡 = ElementSpec('穡').by_elements(禾, 嗇)
 
-穩 = ElementSpec('穩').by_elements(禾, x2ea4, 工_4, x2e95, 心)
+穩 = ElementSpec('穩').by_elements(禾, x2ea4, 工, x2e95, 心)
 
-空 = ElementSpec('空').by_elements(穴, 工_4)
+# XXX
+空 = ElementSpec('空').by_elements(穴, 工)
 # 控 啌 倥 箜 腔 椌
 
 倥 = ElementSpec('倥').by_elements(亻, 空)
@@ -11952,9 +11713,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 窪 = ElementSpec('窪').by_elements(穴, 氵, 圭)
 
-竃 = ElementSpec('竃').by_elements(穴, 土, 日_9, 日_9, 1)
+竃 = ElementSpec('竃').by_elements(穴, 土, 日, 日, 1)
 
-竅 = ElementSpec('竅').by_elements(穴, 白_1, 放)
+竅 = ElementSpec('竅').by_elements(穴, 白, 放)
 
 竈 = ElementSpec('竈').by_elements(穴, 土, 黽)
 
@@ -11962,21 +11723,21 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 竏 = ElementSpec('竏').by_elements(立, 千)
 
-竡 = ElementSpec('竡').by_elements(立, 百_3)
+竡 = ElementSpec('竡').by_elements(立, 百)
 
 竢 = ElementSpec('竢').by_elements(立, 矣)
 
-竦 = ElementSpec('竦').by_elements(立, 束_1)
+竦 = ElementSpec('竦').by_elements(立, 束)
 
-竭 = ElementSpec('竭').by_elements(立, 曷_1)
+竭 = ElementSpec('竭').by_elements(立, 曷)
 
-竿 = ElementSpec('竿').by_elements(竹, 干_4)
+竿 = ElementSpec('竿').by_elements(竹, 干)
 
-笄 = ElementSpec('笄').by_elements(竹, 干_4, 干_2)
+笄 = ElementSpec('笄').by_elements(竹, 开)
 
 笑 = ElementSpec('笑').by_elements(竹, 夭)
 
-笛 = ElementSpec('笛').by_elements(竹, 由_3)
+笛 = ElementSpec('笛').by_elements(竹, 由)
 
 笶 = ElementSpec('笶').by_elements(竹, 矢)
 
@@ -11984,18 +11745,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 筍 = ElementSpec('筍').by_elements(竹, 旬)
 
-筑 = ElementSpec('筑').by_elements(竹, 工_4, 凡)
-# 築
+筑 = ElementSpec('筑').by_elements(竹, 工, 凡)
 
 答 = ElementSpec('答').by_elements(竹, 合)
-# 箚
 
-筮 = ElementSpec('筮').by_elements(竹, 巫_4)
-# 噬
+筮 = ElementSpec('筮').by_elements(竹, 巫)
 
 噬 = ElementSpec('噬').by_elements(口, 筮)
 
-筴 = ElementSpec('筴').by_elements(竹, 夾_3)
+筴 = ElementSpec('筴').by_elements(竹, 夾_1)
 
 筵 = ElementSpec('筵').by_elements(竹, 延_1)
 
@@ -12011,13 +11769,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 箟 = ElementSpec('箟').by_elements(竹, 昆)
 
-箪 = ElementSpec('箪').by_elements(竹, 単_1)
+箪 = ElementSpec('箪').by_elements(竹, 単)
 
 篇 = ElementSpec('篇').by_elements(竹, 扁)
 
 築 = ElementSpec('築').by_elements(筑, 木)
 
-篋 = ElementSpec('篋').by_elements(竹, 匚_1, 夾_3, 匚_1)
+篋 = ElementSpec('篋').by_strokes_to_elements({
+    (1, 2, 3, 4, 5, 6): 竹,
+    (7, 15): 竹,
+    (8, 9, 10, 11, 12, 13, 14): 夾_1,
+})
+# by_elements(竹, 匚_1, 夾_1, 匚_1)
 
 篌 = ElementSpec('篌').by_elements(竹, 侯)
 
@@ -12027,15 +11790,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 篳 = ElementSpec('篳').by_elements(竹, 畢)
 
-篶 = ElementSpec('篶').by_elements(竹, 焉_2)
+篶 = ElementSpec('篶').by_elements(竹, 焉)
 
 簇 = ElementSpec('簇').by_elements(竹, 族)
 
 簓 = ElementSpec('簓').by_elements(竹, 彫)
 
-簞 = ElementSpec('簞').by_elements(竹, 單_3)
+簞 = ElementSpec('簞').by_elements(竹, 單)
 
-簪 = ElementSpec('簪').by_elements(竹, 旡_2, 旡_2, 日_9)
+簪 = ElementSpec('簪').by_elements(竹, 旡_2, 旡_2, 日)
 
 簽 = ElementSpec('簽').by_elements(竹, 僉)
 
@@ -12043,7 +11806,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 籀 = ElementSpec('籀').by_elements(竹, 扌, 留)
 
-籌 = ElementSpec('籌').by_elements(竹, 壽_1)
+籌 = ElementSpec('籌').by_elements(竹, 壽)
 
 籍 = ElementSpec('籍').by_elements(竹, 耒, 昔)
 
@@ -12058,7 +11821,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 籤 = ElementSpec('籤').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6): 竹,
-    (7, 8, 9, 10): 从_2,
+    (7, 8, 9, 10): 从,
     (11, 21, 22, 23): 戈,
     (12, 13, 14, 15, 16, 17, 18, 19, 20): 韭,
 })
@@ -12071,15 +11834,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 粋 = ElementSpec('粋').by_elements(米, 卆)
 
-粕 = ElementSpec('粕').by_elements(米, 白_1)
+粕 = ElementSpec('粕').by_elements(米, 白)
 
 粧 = ElementSpec('粧').by_elements(米, 庄)
 
-粨 = ElementSpec('粨').by_elements(米, 百_3)
+粨 = ElementSpec('粨').by_elements(米, 百)
 
 粭 = ElementSpec('粭').by_elements(米, 合)
 
-粳 = ElementSpec('粳').by_elements(米, 更_2)
+粳 = ElementSpec('粳').by_elements(米, 更)
 
 粹 = ElementSpec('粹').by_elements(米, 卒)
 
@@ -12089,7 +11852,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 糴 = ElementSpec('糴').by_elements(入, 米, 羽, 隹)
 
-紅 = ElementSpec('紅').by_elements(糸, 工_4)
+紅 = ElementSpec('紅').by_elements(糸, 工)
 
 納 = ElementSpec('納').by_elements(糸, 内_2)
 
@@ -12099,14 +11862,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 紫 = ElementSpec('紫').by_elements(此_2, 糸)
 
-紬 = ElementSpec('紬').by_elements(糸, 由_1)
+紬 = ElementSpec('紬').by_elements(糸, 由)
 
-累 = ElementSpec('累').by_elements(田_2, 糸)
-# 騾 瘰 螺 縲
+累 = ElementSpec('累').by_elements(田, 糸)
 
 瘰 = ElementSpec('瘰').by_elements(疒, 累)
 
-細 = ElementSpec('細').by_elements(糸, 田_2)
+細 = ElementSpec('細').by_elements(糸, 田)
 
 紳 = ElementSpec('紳').by_elements(糸, 申)
 
@@ -12120,7 +11882,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 絢 = ElementSpec('絢').by_elements(糸, 旬)
 
-絣 = ElementSpec('絣').by_elements(糸, 并_3)
+絣 = ElementSpec('絣').by_elements(糸, 并_1)
 
 給 = ElementSpec('給').by_elements(糸, 合)
 
@@ -12128,7 +11890,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 絵 = ElementSpec('絵').by_elements(糸, 会)
 
-經 = ElementSpec('經').by_elements(糸, 一, 巛, 工_4)
+經 = ElementSpec('經').by_elements(糸, 一, 巛, 工)
 
 続 = ElementSpec('続').by_elements(糸, 売)
 
@@ -12150,19 +11912,19 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 綿 = ElementSpec('綿').by_elements(糸, 帛)
 
-緇 = ElementSpec('緇').by_elements(糸, 巛, 田_2)
+緇 = ElementSpec('緇').by_elements(糸, 巛, 田)
 
 線 = ElementSpec('線').by_elements(糸, 泉)
 
 緜 = ElementSpec('緜').by_elements(帛, 系)
 
-緡 = ElementSpec('緡').by_elements(糸, 民, 日_9)
+緡 = ElementSpec('緡').by_elements(糸, 民, 日)
 
 編 = ElementSpec('編').by_elements(糸, 扁)
 
-練 = ElementSpec('練').by_elements(糸, 東_1)
+練 = ElementSpec('練').by_elements(糸, 東)
 
-縄 = ElementSpec('縄').by_elements(糸, 日_9, 日_9, 1)
+縄 = ElementSpec('縄').by_elements(糸, 日, 日, 1)
 
 縉 = ElementSpec('縉').by_elements(糸, 晉)
 
@@ -12170,7 +11932,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 縛 = ElementSpec('縛').by_elements(糸, 尃)
 
-縢 = ElementSpec('縢').by_elements(月, 2, 二, 人_5, 糸)
+縢 = ElementSpec('縢').by_elements(月, 2, 二, 人, 糸)
 # 籘
 
 籘 = ElementSpec('籘').by_elements(竹, 縢)
@@ -12191,7 +11953,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 繙 = ElementSpec('繙').by_elements(糸, 番)
 
-繚 = ElementSpec('繚').by_elements(糸, 大, 2, 日_9, 小)
+繚 = ElementSpec('繚').by_elements(糸, 大, 2, 日, 小)
 
 繞 = ElementSpec('繞').by_elements(糸, 堯)
 
@@ -12201,47 +11963,42 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 纖 = ElementSpec('纖').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6): 糸,
-    (7, 8, 9, 10): 从_2,
+    (7, 8, 9, 10): 从,
     (11, 21, 22, 23): 戈,
     (12, 13, 14, 15, 16, 17, 18, 19, 20): 韭,
 })
 
-缸 = ElementSpec('缸').by_elements(缶, 工_4)
+缸 = ElementSpec('缸').by_elements(缶, 工)
 
 缺 = ElementSpec('缺').by_elements(缶, 夬)
 
-罍 = ElementSpec('罍').by_elements(田_2, 田_2, 田_2, 缶)
+罍 = ElementSpec('罍').by_elements(田, 田, 田, 缶)
 
 罎 = ElementSpec('罎').by_elements(缶, 曇)
 
-美_1 = ElementSpec('美', 1).by_elements(羊, 大)
-# 躾 羹
-
-美_2 = ElementSpec('美', 2).by_elements(6, 大)
+美 = ElementSpec('美').by_elements(羊, 大)
 
 羚 = ElementSpec('羚').by_elements(6, 令_1)
 
-羮 = ElementSpec('羮').by_elements(羔, 三, 人_5)
+羮 = ElementSpec('羮').by_elements(羔, 三, 人)
 
-羯 = ElementSpec('羯').by_elements(羊, 曷_1)
+羯 = ElementSpec('羯').by_elements(羊, 曷)
 
 羶 = ElementSpec('羶').by_elements(羊, 亶)
 
-羹 = ElementSpec('羹').by_elements(羔, 美_1)
+羹 = ElementSpec('羹').by_elements(羔, 美)
 
 翅 = ElementSpec('翅').by_elements(支, 羽)
 
 翆 = ElementSpec('翆').by_elements(羽, 卆)
 
-習 = ElementSpec('習').by_elements(羽, 白_1)
-# 翫 摺 褶 慴
+習 = ElementSpec('習').by_elements(羽, 白)
 
-慴 = ElementSpec('慴').by_elements(忄, 習)
+慴 = ElementSpec('慴').by_elements(心_1, 習)
 
 摺 = ElementSpec('摺').by_elements(扌, 習)
 
 翕 = ElementSpec('翕').by_elements(合, 羽)
-# 歙
 
 歙 = ElementSpec('歙').by_elements(翕, 欠)
 
@@ -12251,12 +12008,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 翫 = ElementSpec('翫').by_elements(習, 元)
 
-翰 = ElementSpec('翰').by_elements(十, 早, 2, 羽)
-# 瀚
+翰 = ElementSpec('翰').by_elements(十, 早, 𠆢, 羽)
 
 瀚 = ElementSpec('瀚').by_elements(氵, 翰)
 
-翳 = ElementSpec('翳').by_elements(医_1, 殳, 羽)
+翳 = ElementSpec('翳').by_elements(医, 殳, 羽)
 
 翹 = ElementSpec('翹').by_elements(堯, 羽)
 
@@ -12264,33 +12020,21 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 翼 = ElementSpec('翼').by_elements(羽, 異)
 
-耂_1 = ElementSpec('耂', 1).by_elements(土, 1)
-# 孝
+耂 = ElementSpec('耂').by_elements(土, 1)
 
-耂_2 = ElementSpec('耂', 2).by_elements(土, 1)
-# 考 (拷 栲 考)
-# 者 (諸 藷 赭 儲 署 堵 都 者 奢 躇 緒 渚 偖 豬 暑 屠 賭 睹 煮 墸 闍 薯 著 箸 覩 曙 潴 猪 楮 瀦)
-# 老 (咾 耄 鰭 老 嗜 姥 蓍 耆 耋 蛯)
-# 孝 (酵 哮 教)
+孝 = ElementSpec('孝').by_elements(耂, 子)
 
-孝_1 = ElementSpec('孝', 1).by_elements(耂_1, 子)
+哮 = ElementSpec('哮').by_elements(口, 孝)
 
-孝_2 = ElementSpec('孝', 2).by_elements(耂_2, 子)
-# 教 哮 酵
+教 = ElementSpec('教').by_elements(孝, 攵)
 
-哮 = ElementSpec('哮').by_elements(口, 孝_2)
-
-教 = ElementSpec('教').by_elements(孝_2, 攵)
-
-老 = ElementSpec('老').by_elements(耂_2, 匕_3)
-# 咾 耄 姥 蛯 耋
-# 耆 (蓍 鰭 耆 嗜)
+老 = ElementSpec('老').by_elements(耂, 匕)
 
 咾 = ElementSpec('咾').by_elements(口, 老)
 
 姥 = ElementSpec('姥').by_elements(女, 老)
 
-考 = ElementSpec('考').by_elements(耂_2, 2)
+考 = ElementSpec('考').by_elements(耂, 2)
 # 拷 栲
 
 拷 = ElementSpec('拷').by_elements(扌, 考)
@@ -12299,11 +12043,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 耄 = ElementSpec('耄').by_elements(老, 毛)
 
-者_1 = ElementSpec('者', 1).by_elements(耂_2, 日_9)
+者_1 = ElementSpec('者', 1).by_elements(耂, 日)
 # 諸 緒 煮 暑 都 著 猪 渚
 # 署 (曙 署)
 
-者_2 = ElementSpec('者', 2).by_elements(耂_2, 1, 日_9)
+者_2 = ElementSpec('者', 2).by_elements(耂, 1, 日)
 # 偖 闍 賭 堵 赭 箸 奢 睹 楮 覩 屠
 # 諸 (儲 藷)
 # 猪 (潴)
@@ -12319,7 +12063,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 屠 = ElementSpec('屠').by_elements(尸, 者_2)
 
-暑 = ElementSpec('暑').by_elements(日_9, 者_1)
+暑 = ElementSpec('暑').by_elements(日, 者_1)
 
 楮 = ElementSpec('楮').by_elements(木, 者_2)
 
@@ -12338,8 +12082,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 緒 = ElementSpec('緒').by_elements(糸, 者_1)
 
-耆 = ElementSpec('耆').by_elements(老, 日_9)
-# 鰭 嗜 蓍
+耆 = ElementSpec('耆').by_elements(老, 日)
 
 嗜 = ElementSpec('嗜').by_elements(口, 耆)
 
@@ -12347,38 +12090,37 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 聆 = ElementSpec('聆').by_elements(耳, 令_1)
 
-聘 = ElementSpec('聘').by_elements(耳, 由_1, 2)
+聘 = ElementSpec('聘').by_elements(耳, 由, 2)
 
 聟 = ElementSpec('聟').by_elements(知, 耳)
 
 聢 = ElementSpec('聢').by_elements(耳, 定)
 
-聨 = ElementSpec('聨').by_elements(耳, 幺, 幺, 廾_3)
+聨 = ElementSpec('聨').by_elements(耳, 幺, 幺, 廾)
 
 聲 = ElementSpec('聲').by_elements(声, 殳, 耳)
 
 聳 = ElementSpec('聳').by_elements(從, 耳)
 
-肄 = ElementSpec('肄').by_elements(匕_3, 矢, 聿)
+肄 = ElementSpec('肄').by_elements(匕, 矢, 聿)
 
 肚 = ElementSpec('肚').by_elements(月, 土)
 
-肛 = ElementSpec('肛').by_elements(月, 工_4)
+肛 = ElementSpec('肛').by_elements(月, 工)
 
-肝 = ElementSpec('肝').by_elements(月, 干_4)
+肝 = ElementSpec('肝').by_elements(月, 干)
 
 肢 = ElementSpec('肢').by_elements(月, 支)
 
 肭 = ElementSpec('肭').by_elements(月, 内_3)
 
-胃 = ElementSpec('胃').by_elements(田_2, 月)
-# 渭 膚 喟 蝟 謂
+胃 = ElementSpec('胃').by_elements(田, 月)
 
 喟 = ElementSpec('喟').by_elements(口, 胃)
 
 渭 = ElementSpec('渭').by_elements(氵, 胃)
 
-胄 = ElementSpec('胄').by_elements(由_1, 月)
+胄 = ElementSpec('胄').by_elements(由, 月)
 
 胆 = ElementSpec('胆').by_elements(月, 旦)
 
@@ -12386,10 +12128,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 胖 = ElementSpec('胖').by_elements(月, 半)
 
-胛 = ElementSpec('胛').by_elements(月, 甲_3)
+胛 = ElementSpec('胛').by_elements(月, 甲)
 
 胡 = ElementSpec('胡').by_elements(古, 月)
-# 醐 楜 瑚 蝴 糊 湖 餬 葫
 
 楜 = ElementSpec('楜').by_elements(木, 胡)
 
@@ -12397,8 +12138,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 糊 = ElementSpec('糊').by_elements(米, 胡)
 
-胥 = ElementSpec('胥').by_elements(疋_1, 月)
-# 婿 壻
+胥 = ElementSpec('胥').by_elements(疋, 月)
 
 壻 = ElementSpec('壻').by_elements(士, 胥)
 
@@ -12406,32 +12146,27 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 胯 = ElementSpec('胯').by_elements(月, 夸)
 
-胼 = ElementSpec('胼').by_elements(月, 并_3)
+胼 = ElementSpec('胼').by_elements(月, 并_1)
 
-能 = ElementSpec('能').by_elements(厶, 月, 匕_3, 匕_3)
-# 態
-# 罷 (羆 罷 擺)
-# 熊 (羆 熊)
+能 = ElementSpec('能').by_elements(厶, 月, 匕, 匕)
 
 態 = ElementSpec('態').by_elements(能, 心)
 
 熊 = ElementSpec('熊').by_elements(能, 灬)
-# 羆
 
 脂 = ElementSpec('脂').by_elements(月, 旨)
 
-脊 = ElementSpec('脊').by_elements(人_5, 二, 二, 月)
-# 鶺 蹐 瘠
+脊 = ElementSpec('脊').by_elements(人, 二, 二, 月)
 
 瘠 = ElementSpec('瘠').by_elements(疒, 脊)
 
 脚 = ElementSpec('脚').by_elements(月, 却)
 
-脛 = ElementSpec('脛').by_elements(月, 一, 巛, 工_4)
+脛 = ElementSpec('脛').by_elements(月, 一, 巛, 工)
 
 脾 = ElementSpec('脾').by_elements(月, 卑_1)
 
-腆 = ElementSpec('腆').by_elements(月, 典_2)
+腆 = ElementSpec('腆').by_elements(月, 典)
 
 腔 = ElementSpec('腔').by_elements(月, 空)
 
@@ -12461,7 +12196,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 臉 = ElementSpec('臉').by_elements(月, 僉)
 
-臥 = ElementSpec('臥').by_elements(臣, 人_5)
+臥 = ElementSpec('臥').by_elements(臣, 人)
 
 至 = ElementSpec('至').by_elements(1, 厶, 土)
 # 蛭 耋 咥 臻 姪 桎 垤 鵄 輊
@@ -12473,7 +12208,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 室 (室 榁 腟)
 
 到 = ElementSpec('到').by_elements(至, 刂)
-# 椡 倒
 
 倒 = ElementSpec('倒').by_elements(亻, 到)
 
@@ -12484,10 +12218,8 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 姪 = ElementSpec('姪').by_elements(女, 至)
 
 室 = ElementSpec('室').by_elements(宀, 至)
-# 腟 榁
 
 屋 = ElementSpec('屋').by_elements(尸, 至)
-# 握 渥 幄 齷
 
 幄 = ElementSpec('幄').by_elements(巾, 屋)
 
@@ -12502,7 +12234,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 渥 = ElementSpec('渥').by_elements(氵, 屋)
 
 窒 = ElementSpec('窒').by_elements(穴, 至)
-# 膣
 
 耋 = ElementSpec('耋').by_elements(老, 至)
 
@@ -12511,26 +12242,20 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 膣 = ElementSpec('膣').by_elements(月, 窒)
 
 致 = ElementSpec('致').by_elements(至, 攵)
-# 緻
 
 緻 = ElementSpec('緻').by_elements(糸, 致)
 
 臺 = ElementSpec('臺').by_elements(吉, 冖, 至)
-# 擡 薹
 
 擡 = ElementSpec('擡').by_elements(扌, 臺)
 
 臻 = ElementSpec('臻').by_elements(至, 秦)
 
-臾_1 = ElementSpec('臾', 1).by_elements(臼, 人_5)
-# 諛
+臾 = ElementSpec('臾', 1).by_elements(臼, 人)
 
-臾_2 = ElementSpec('臾', 2).by_elements(𦥑, 人_5)
-# 萸 腴
+腴 = ElementSpec('腴').by_elements(月, 臾)
 
-腴 = ElementSpec('腴').by_elements(月, 臾_2)
-
-舁 = ElementSpec('舁').by_elements(臼, 廾_3)
+舁 = ElementSpec('舁').by_elements(臼, 廾)
 
 舂 = ElementSpec('舂').by_strokes_to_elements({
     (1, 2, 3): 三,
@@ -12541,21 +12266,16 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 舅 = ElementSpec('舅').by_elements(臼, 男)
 
 舌 = ElementSpec('舌').by_elements(千, 口)
-# 乱 辞 銛 筈 括 濶 蛞 刮 聒 舐 憩 恬 話
-# 活 (活 闊)
-# 舍 (舍 舘 舖 舒)
-# 甜 (憇 甜)
 
 乱 = ElementSpec('乱').by_elements(舌, 乙)
 
 刮 = ElementSpec('刮').by_elements(舌, 刂)
 
-恬 = ElementSpec('恬').by_elements(忄, 舌)
+恬 = ElementSpec('恬').by_elements(心_1, 舌)
 
 括 = ElementSpec('括').by_elements(扌, 舌)
 
 活 = ElementSpec('活').by_elements(氵, 舌)
-# 闊
 
 濶 = ElementSpec('濶').by_elements(氵, 門, 舌)
 
@@ -12563,11 +12283,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 聒 = ElementSpec('聒').by_elements(耳, 舌)
 
-舍 = ElementSpec('舍').by_elements(人_5, 舌)
-# 舖 舒 舘
+舍 = ElementSpec('舍').by_elements(𠆢, 舌)
 
-舎 = ElementSpec('舎').by_elements(人_5, 吉)
-# 捨
+舎 = ElementSpec('舎').by_elements(𠆢, 吉)
 
 捨 = ElementSpec('捨').by_elements(扌, 舎)
 
@@ -12577,15 +12295,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 舖 = ElementSpec('舖').by_elements(舍, 甫)
 
-舗 = ElementSpec('舗').by_elements(人_5, 吉, 甫)
+舗 = ElementSpec('舗').by_elements(𠆢, 吉, 甫)
 
 舘 = ElementSpec('舘').by_elements(舍, 官)
 
-舳 = ElementSpec('舳').by_elements(舟, 由_1)
+舳 = ElementSpec('舳').by_elements(舟, 由)
 
 舵 = ElementSpec('舵').by_elements(舟, 它)
 
-舶 = ElementSpec('舶').by_elements(舟, 白_1)
+舶 = ElementSpec('舶').by_elements(舟, 白)
 
 艘 = ElementSpec('艘').by_elements(舟, 叟_3)
 
@@ -12593,70 +12311,36 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 艚 = ElementSpec('艚').by_elements(舟, 曹)
 
-艢 = ElementSpec('艢').by_elements(舟, 嗇_2)
+艢 = ElementSpec('艢').by_elements(舟, 嗇)
 
-艹_1 = ElementSpec('艹', 1).by_elements(亠_1, 2)
+# 艹_1 = ElementSpec('艹', 1).by_elements(亠_1, 2)
 # 茲 磁 滋
 
-艹_2 = ElementSpec('艹', 2).by_elements(八_1, 1)
+# 艹_2 = ElementSpec('艹', 2).by_elements(八_1, 1)
 # 慈
 # 茲 (孳)
 
-艹_3 = ElementSpec('艹', 3).by_elements(十, 1)
+# 艹_3 = ElementSpec('艹', 3).by_elements(十, 1)
 # 満
 # 廿 (覲 燕 饉 儺 懃 艱 攤 槿 瑾)
 
-艹_4 = ElementSpec('艹', 4).by_stroke_count(3)
-# 苑 蕃 蔀 菜 苺 嘆 萎 蓊 芍 荀 蒟 苧 芹 萓 荐 蘿 蕨 藻 蒸 蘂 荼 蔣 萩 蔬 蕎 菲 薊 蕉 鑵 藐 蘊 萍 蔟 荵 薩 茆 葦 僅 蔭 萄 萵 葆 蓖 荻 葹 蓮 芟 漢 蓿 莊 苳 茹 歎 茜 芫 蘋 莵 莇 菰 苔 菴 葺 蓍 菖 莢 蕣 蓴 薪 菽 勸 茨 茉 苜 罐 藍 蓉 蠖 蔽 藕 寛 莎 蓑 謹 茯 蕋 薯 藤 薈 藩 莱 蒭 繭 莟 舊 薤 灌 蕪 葢 茶 草 苙 讙 莚 芭 薺 葉 萇 蘭 萸 葭 蓐 萠 芬 苞 荳 薑 顴 莠 藹 蓆 薮 芝 蕚 韮 菊 蒔 藥 蔕 蒋 蕗 薨 獲 菅 茴 萱 薙 茎 菱 荷 蘰 蔚 蕁 菌 薀 芋 莉 蘇 糒 蒡 菓 茄 苹 甍 薫 歡 苴 蓋 苓 薬 葵 薦 蠎 蕕 難 藪 芦 蘢 苦 藜 芙 蕊 蒄 苡 薹 蔓 蓼 薗 蓄 藾 懽 茸 苣 薄 蘆 茘 蔔 驩 葫 薇 落 蒹 蒻 茅 荊 蔆 薐 萼 萢 茂 芯 莅 鸛 鞴 蘓 蕘 苻 葮 菠 蕀 權 莖 藉 葡 護 穫 蘚 艾 菟 菷 藷 蒐 荏 蒲 苅 蓙 菁 葷 萌 葎 蔗 蕾 薔 莓 茗 茣 菘 萪 范 芸 苫 莞 董 茫 蔦 莪 葩 莨 茖 蓬 荘 蒼 蕷 蕈 茵 苒 茱 葱 芥 蒜 菎 萋 葬 芽 蔡 蓚 菩 蔘 蒂 萊 蓁 菻 葯
-# 苟 (敬 苟 驚 警 檠)
-# 蒿 (嚆 藁 蒿)
-# 夢 (夢 儚)
-# 觀 (欟 觀)
-# 莫 (募 羃 蟆 寞 蟇 膜 暮 墓 驀 莫 冪 謨 幕 慕 貘 模 摸 糢 獏 漠)
-# 芒 (鋩 芒)
-# 萬 (萬 蠣 糲 礪 癘 邁 勵)
-# 荅 (鞳 搭 剳 塔 荅)
-# 花 (椛 糀 錵 硴 埖 花)
-# 蕩 (蘯 蕩)
-# 英 (暎 霙 英 瑛)
-# 蒙 (檬 矇 曚 蒙 朦 濛 艨)
-# 葛 (臈 葛)
-# 薜 (蘗 薜)
-# 藏 (臟 藏)
-# 藺 (藺 躪)
-# 苛 (渮 苛)
-# 芳 (錺 芳 餝)
-# 藝 (藝 囈)
-# 若 (慝 諾 惹 若 匿)
-# 菫 (勤 菫)
-# 華 (樺 嘩 曄 譁 華)
-# 著 (墸 著 躇)
-# 備 (備 憊)
-# 萃 (萃 膵)
-# 苗 (錨 苗 描 猫)
-# 蔑 (襪 韈 蔑)
-# 蔵 (臓 蔵)
-# 荒 (慌 荒)
-# 莽 (蟒 莽)
-# 薛 (薛 蘖)
-# 蕭 (蕭 瀟)
+艹 = ElementSpec('艹').by_stroke_count(3)
 
-艹_5 = ElementSpec('艹', 5).by_stroke_count(4)
+# 艹_5 = ElementSpec('艹', 5).by_stroke_count(4)
 # 難 (灘)
 
-備 = ElementSpec('備').by_elements(亻, 艹_4, 厂, 用)
-# 憊
+備 = ElementSpec('備').by_elements(亻, 艹, 厂, 用)
 
-僅 = ElementSpec('僅').by_elements(亻, 艹_4, 5, 三)
+僅 = ElementSpec('僅').by_elements(亻, 艹, 5, 三)
 
-勸 = ElementSpec('勸').by_elements(艹_4, 口, 口, 隹, 力)
+勸 = ElementSpec('勸').by_elements(艹, 口, 口, 隹, 力)
 
-嘆 = ElementSpec('嘆').by_elements(口, 艹_4, 口, 夫)
+嘆 = ElementSpec('嘆').by_elements(口, 艹, 口, 夫)
 
-廿_1 = ElementSpec('廿', 1).by_elements(十_1, 2)
+# 廿 = ElementSpec('廿', 1).by_elements(十_1, 2)
 # 世 (貰 喋 葉 世 諜 鰈 牒 緤 蝶 渫 紲 楪 笹 泄)
 
-廿_2 = ElementSpec('廿', 2).by_elements(十, 2)
+# 廿 = ElementSpec('廿', 2).by_elements(十, 2)
 # 瞞
 # 甘 (尠 甜 旗 煤 期 某 疳 籏 椹 碪 箝 基 騏 淇 糂 酣 勘 坩 斯 憇 謀 楳 湛 堪 嵌 厮 簸 柑 斟 朞 嘶 甞 廝 麒 碁 其 棊 甘 篏 拑 鍖 欺 箕 紺 撕 稘 祺 媒 棋 戡 蚶 邯 甚 鉗)
 # 席 (席 蓆)
@@ -12667,63 +12351,45 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 帶 (滯 帶 蔕)
 # 度 (鍍 度 渡)
 
-廿_3 = ElementSpec('廿', 3).by_elements(十_5, 1)
+# 廿_3 = ElementSpec('廿', 3).by_elements(十_5, 1)
 # 蹣
 
-廿_4 = ElementSpec('廿', 4).by_elements(廾_1, 1)
+# 廿 = ElementSpec('廿', 4).by_elements(廾_1, 1)
 # 丗
 
-廿_5 = ElementSpec('廿', 5).by_elements(廾_3, 1)
+# 廿 = ElementSpec('廿', 5).by_elements(廾_3, 1)
 # 丗 (帯 棄 滞)
 
-廿_6 = ElementSpec('廿', 6).by_elements(艹_3, 1)
+廿 = ElementSpec('廿', 6).by_elements(艹, 1)
 # 覲 饉 槿 燕 艱 瑾
 # 難 (儺 攤)
 # 菫 (懃)
 
-廿_7 = ElementSpec('廿', 7).by_stroke_count(4)
+# 廿 = ElementSpec('廿', 7).by_stroke_count(4)
 # 黃 (曠 廣 簧 鑛 黌 黃 擴 壙 礦)
 
-世 = ElementSpec('世').by_elements(廿_1, 1)
+世 = ElementSpec('世').by_elements(廿, 1)
 # 楪 蝶 諜 緤 葉 泄 紲 牒 喋 鰈 笹 渫 貰
 
-丗_1 = ElementSpec('丗', 1).by_strokes_to_elements({
-    (1, 2, 3, 4): 卅_1,
-    (1, 2, 3, 5): 廿_4,
+丗 = ElementSpec('丗', 1).by_strokes_to_elements({
+    (1, 2, 3, 4): 卅,
+    (1, 2, 3, 5): 廿,
 })
-
-丗_2 = ElementSpec('丗', 2).by_strokes_to_elements({
-    (1, 2, 3, 4): 卅_2,
-    (1, 2, 3, 5): 廿_5,
-})
-# 棄
-# 帯 (滞)
-
-丗_3 = ElementSpec('丗', 3).by_strokes_to_elements({
-    (1, 2, 3, 4): 卅_3,
-    (1, 2, 3, 5): 廿_5,
-})
-# 帯
 
 喋 = ElementSpec('喋').by_elements(口, 世, 木)
 
-席 = ElementSpec('席').by_elements(广, 廿_2, 巾)
-# 蓆
+席 = ElementSpec('席').by_elements(广, 廿, 巾)
 
-帯_1 = ElementSpec('帯', 1).by_elements(丗_2, 冖, 巾)
-# 滞
+帯 = ElementSpec('帯', 1).by_elements(丗, 冖, 巾)
 
-帯_2 = ElementSpec('帯', 2).by_elements(丗_3, 冖, 巾)
-
-帶 = ElementSpec('帶').by_elements(廿_2, 2, 冖, 巾)
+帶 = ElementSpec('帶').by_elements(廿, 2, 冖, 巾)
 # 蔕 滯
 
-度 = ElementSpec('度').by_elements(广, 廿_2, 又)
-# 鍍 渡
+度 = ElementSpec('度').by_elements(广, 廿, 又)
 
-庶 = ElementSpec('庶').by_elements(广, 廿_2, 灬)
-# 鷓 蔗 蹠 遮
+庶 = ElementSpec('庶').by_elements(广, 廿, 灬)
 
+# TODO new element
 慈 = ElementSpec('慈').by_strokes_to_elements({
     (1, 2, 3): 艹_2,
     (1, 4, 5, 6): 玄_1,
@@ -12733,19 +12399,19 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 憊 = ElementSpec('憊').by_elements(備, 心)
 
-懽 = ElementSpec('懽').by_elements(忄, 艹_4, 口, 口, 隹)
+懽 = ElementSpec('懽').by_elements(心_1, 艹, 口, 口, 隹)
 
-棄 = ElementSpec('棄').by_elements(亠, 厶, 丗_2, 木)
+棄 = ElementSpec('棄').by_elements(亠, 厶, 丗, 木)
 
 楪 = ElementSpec('楪').by_elements(木, 世, 木)
 
-槿 = ElementSpec('槿').by_elements(木, 廿_6, 4, 三)
+槿 = ElementSpec('槿').by_elements(木, 廿, 4, 三)
 
-權 = ElementSpec('權').by_elements(木, 艹_4, 口, 口, 隹)
+權 = ElementSpec('權').by_elements(木, 艹, 口, 口, 隹)
 
-歎 = ElementSpec('歎').by_elements(艹_4, 1, 口, 夫, 欠)
+歎 = ElementSpec('歎').by_elements(艹, 1, 口, 夫, 欠)
 
-歡 = ElementSpec('歡').by_elements(艹_4, 口, 口, 隹, 欠)
+歡 = ElementSpec('歡').by_elements(艹, 口, 口, 隹, 欠)
 
 泄 = ElementSpec('泄').by_elements(氵, 世)
 
@@ -12753,7 +12419,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 渫 = ElementSpec('渫').by_elements(氵, 世, 木)
 
-満 = ElementSpec('満').by_elements(氵, 艹_3, 両)
+満 = ElementSpec('満').by_elements(氵, 艹, 両)
 
 滋 = ElementSpec('滋').by_strokes_to_elements({
     (1, 2, 3): 氵,
@@ -12762,36 +12428,32 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (10, 11, 12): 玄_4,
 })
 
-滞 = ElementSpec('滞').by_elements(氵, 帯_1)
+滞 = ElementSpec('滞').by_elements(氵, 帯)
 
 滯 = ElementSpec('滯').by_elements(氵, 帶)
 
 滿 = ElementSpec('滿').by_strokes_to_elements({
     (1, 2, 3): 氵,
-    (4, 5, 6, 7): 廿_2,
+    (4, 5, 6, 7): 廿,
     (7, 8, 9, 10, 11, 12, 13, 14): 兩,
 })
-# 懣
 
 懣 = ElementSpec('懣').by_elements(滿, 心)
 
-漢 = ElementSpec('漢').by_elements(氵, 艹_4, 口, 夫)
+漢 = ElementSpec('漢').by_elements(氵, 艹, 口, 夫)
 
-灌 = ElementSpec('灌').by_elements(氵, 艹_4, 口, 口, 隹)
+灌 = ElementSpec('灌').by_elements(氵, 艹, 口, 口, 隹)
 
-燕_1 = ElementSpec('燕', 1).by_elements(廿_2, 口, 北, 灬)
-# 讌 臙 嚥
+燕 = ElementSpec('燕', 1).by_elements(廿, 口, 北, 灬)
 
-燕_2 = ElementSpec('燕', 2).by_elements(廿_6, 口, 北, 灬)
-
-嚥 = ElementSpec('嚥').by_elements(口, 燕_1)
+嚥 = ElementSpec('嚥').by_elements(口, 燕)
 
 牒 = ElementSpec('牒').by_elements(片, 世, 木)
 
-獲 = ElementSpec('獲').by_elements(x2ea8, 艹_4, 隻)
+獲 = ElementSpec('獲').by_elements(x2ea8, 艹, 隻)
 
 甘 = ElementSpec('甘').by_strokes_to_elements({
-    (1, 2, 3, 5): 廿_2,
+    (1, 2, 3, 5): 廿,
 }, (4,))
 # 紺 邯 篏 坩 鉗 嵌 疳 蚶 柑 酣 甞
 # 其 (旗 期 籏 基 騏 淇 斯 厮 簸 朞 嘶 廝 麒 碁 其 棊 欺 箕 稘 祺 棋 撕)
@@ -12812,10 +12474,8 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 嵌 = ElementSpec('嵌').by_elements(山, 甘, 欠)
 
 拑 = ElementSpec('拑').by_elements(扌, 甘)
-# 箝
 
 斯 = ElementSpec('斯').by_elements(其, 斤)
-# 嘶 厮 廝 撕
 
 厮 = ElementSpec('厮').by_elements(厂, 斯)
 
@@ -12833,7 +12493,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 期 = ElementSpec('期').by_elements(其, 月)
 
 某 = ElementSpec('某').by_elements(甘, 木)
-# 煤 媒 楳 謀
 
 媒 = ElementSpec('媒').by_elements(女, 某)
 
@@ -12851,28 +12510,23 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 煤 = ElementSpec('煤').by_elements(火, 某)
 
-甚_1 = ElementSpec('甚', 1).by_elements(甘, 匹)
-# 斟 碪 鍖 戡 糂 湛 椹 勘 堪
+甚 = ElementSpec('甚', 1).by_elements(甘, 匹)
 
-甚_2 = ElementSpec('甚', 2).by_elements(甘, 匹)
-# 尠
+勘 = ElementSpec('勘').by_elements(甚, 力)
 
-勘 = ElementSpec('勘').by_elements(甚_1, 力)
+堪 = ElementSpec('堪').by_elements(土, 甚)
 
-堪 = ElementSpec('堪').by_elements(土, 甚_1)
+尠 = ElementSpec('尠').by_elements(甚, 少)
 
-尠 = ElementSpec('尠').by_elements(甚_2, 少)
+戡 = ElementSpec('戡').by_elements(甚, 戈)
 
-戡 = ElementSpec('戡').by_elements(甚_1, 戈)
+斟 = ElementSpec('斟').by_elements(甚, 斗)
 
-斟 = ElementSpec('斟').by_elements(甚_1, 斗)
+椹 = ElementSpec('椹').by_elements(木, 甚)
 
-椹 = ElementSpec('椹').by_elements(木, 甚_1)
-
-湛 = ElementSpec('湛').by_elements(氵, 甚_1)
+湛 = ElementSpec('湛').by_elements(氵, 甚)
 
 甜 = ElementSpec('甜').by_elements(舌, 甘)
-# 憇
 
 憇 = ElementSpec('憇').by_elements(甜, 心)
 
@@ -12882,7 +12536,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 碁 = ElementSpec('碁').by_elements(其, 石)
 
-碪 = ElementSpec('碪').by_elements(石, 甚_1)
+碪 = ElementSpec('碪').by_elements(石, 甚)
 
 磁 = ElementSpec('磁').by_strokes_to_elements({
     (1, 2, 3, 4, 5): 石,
@@ -12895,7 +12549,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 稘 = ElementSpec('稘').by_elements(禾, 其)
 
-穫 = ElementSpec('穫').by_elements(禾, 艹_4, 隻)
+穫 = ElementSpec('穫').by_elements(禾, 艹, 隻)
 
 笹 = ElementSpec('笹').by_elements(竹, 世)
 
@@ -12909,9 +12563,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 籏 = ElementSpec('籏').by_elements(竹, 旗)
 
-糂 = ElementSpec('糂').by_elements(米, 甚_1)
+糂 = ElementSpec('糂').by_elements(米, 甚)
 
-糒 = ElementSpec('糒').by_elements(米, 艹_4, 厂, 用)
+糒 = ElementSpec('糒').by_elements(米, 艹, 厂, 用)
 
 紲 = ElementSpec('紲').by_elements(糸, 世)
 
@@ -12919,45 +12573,43 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 緤 = ElementSpec('緤').by_elements(糸, 世, 木)
 
-繭 = ElementSpec('繭').by_elements(艹_4, 冂, 1, 糸, 虫)
+繭 = ElementSpec('繭').by_elements(艹, 冂, 1, 糸, 虫)
 
-罐 = ElementSpec('罐').by_elements(缶, 艹_4, 口, 口, 隹)
+罐 = ElementSpec('罐').by_elements(缶, 艹, 口, 口, 隹)
 
-臙 = ElementSpec('臙').by_elements(月, 燕_1)
+臙 = ElementSpec('臙').by_elements(月, 燕)
 
-舊 = ElementSpec('舊').by_elements(艹_4, 隹, 臼)
+舊 = ElementSpec('舊').by_elements(艹, 隹, 臼)
 
-艱 = ElementSpec('艱').by_elements(廿_6, 口, 夫, 艮_2)
+艱 = ElementSpec('艱').by_elements(廿, 口, 夫, 艮_2)
 
-艾 = ElementSpec('艾').by_elements(艹_4, 乂)
+艾 = ElementSpec('艾').by_elements(艹, 乂)
 
-芋 = ElementSpec('芋').by_elements(艹_4, 于)
+芋 = ElementSpec('芋').by_elements(艹, 于)
 
-芍 = ElementSpec('芍').by_elements(艹_4, 勺)
+芍 = ElementSpec('芍').by_elements(艹, 勺)
 
-芒 = ElementSpec('芒').by_elements(艹_4, 亡)
-# 鋩
+芒 = ElementSpec('芒').by_elements(艹, 亡)
 
-芙 = ElementSpec('芙').by_elements(艹_4, 夫)
+芙 = ElementSpec('芙').by_elements(艹, 夫)
 
-芝 = ElementSpec('芝').by_elements(艹_4, 之)
+芝 = ElementSpec('芝').by_elements(艹, 之)
 
-芟 = ElementSpec('芟').by_elements(艹_4, 殳)
+芟 = ElementSpec('芟').by_elements(艹, 殳)
 
-芥 = ElementSpec('芥').by_elements(艹_4, 介)
+芥 = ElementSpec('芥').by_elements(艹, 介)
 
-芦 = ElementSpec('芦').by_elements(艹_4, 戸)
+芦 = ElementSpec('芦').by_elements(艹, 戸)
 
-芫 = ElementSpec('芫').by_elements(艹_4, 元)
+芫 = ElementSpec('芫').by_elements(艹, 元)
 
-芬 = ElementSpec('芬').by_elements(艹_4, 分)
+芬 = ElementSpec('芬').by_elements(艹, 分)
 
-芭 = ElementSpec('芭').by_elements(艹_4, 巴)
+芭 = ElementSpec('芭').by_elements(艹, 巴)
 
-芯 = ElementSpec('芯').by_elements(艹_4, 心)
+芯 = ElementSpec('芯').by_elements(艹, 心)
 
-花 = ElementSpec('花').by_elements(艹_4, 化)
-# 錵 椛 硴 糀 埖
+花 = ElementSpec('花').by_elements(艹, 化)
 
 埖 = ElementSpec('埖').by_elements(土, 花)
 
@@ -12967,154 +12619,141 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 糀 = ElementSpec('糀').by_elements(米, 花)
 
-芳 = ElementSpec('芳').by_elements(艹_4, 方)
-# 餝 錺
+芳 = ElementSpec('芳').by_elements(艹, 方)
 
-芸 = ElementSpec('芸').by_elements(艹_4, 云)
+芸 = ElementSpec('芸').by_elements(艹, 云)
 
-芹 = ElementSpec('芹').by_elements(艹_4, 斤)
+芹 = ElementSpec('芹').by_elements(艹, 斤)
 
-芽 = ElementSpec('芽').by_elements(艹_4, 牙_2)
+芽 = ElementSpec('芽').by_elements(艹, 牙_2)
 
-苅 = ElementSpec('苅').by_elements(艹_4, 刈)
+苅 = ElementSpec('苅').by_elements(艹, 刈)
 
-苑 = ElementSpec('苑').by_elements(艹_4, 夕, 卩)
+苑 = ElementSpec('苑').by_elements(艹, 夕, 卩)
 
-苒 = ElementSpec('苒').by_elements(艹_4, 冉)
+苒 = ElementSpec('苒').by_elements(艹, 冉)
 
-苓 = ElementSpec('苓').by_elements(艹_4, 令_1)
+苓 = ElementSpec('苓').by_elements(艹, 令_1)
 
-苔 = ElementSpec('苔').by_elements(艹_4, 台)
+苔 = ElementSpec('苔').by_elements(艹, 台)
 
-苗 = ElementSpec('苗').by_elements(艹_4, 田_2)
-# 猫 描 錨
+苗 = ElementSpec('苗').by_elements(艹, 田)
 
 描 = ElementSpec('描').by_elements(扌, 苗)
 
 猫 = ElementSpec('猫').by_elements(x2ea8, 苗)
 
-苙 = ElementSpec('苙').by_elements(艹_4, 立)
+苙 = ElementSpec('苙').by_elements(艹, 立)
 
-苛 = ElementSpec('苛').by_elements(艹_4, 可)
-# 渮
+苛 = ElementSpec('苛').by_elements(艹, 可)
 
 渮 = ElementSpec('渮').by_elements(氵, 苛)
 
-苞 = ElementSpec('苞').by_elements(艹_4, 包_2)
+苞 = ElementSpec('苞').by_elements(艹, 包_2)
 
-苟 = ElementSpec('苟').by_elements(艹_4, 句)
-# 敬 (驚 敬 警 檠)
+苟 = ElementSpec('苟').by_elements(艹, 句)
 
 敬 = ElementSpec('敬').by_elements(苟, 攵)
-# 警 驚 檠
 
 檠 = ElementSpec('檠').by_elements(敬, 木)
 
-苡 = ElementSpec('苡').by_elements(艹_4, 以)
+苡 = ElementSpec('苡').by_elements(艹, 以)
 
-苣 = ElementSpec('苣').by_elements(艹_4, 巨)
+苣 = ElementSpec('苣').by_elements(艹, 巨)
 
-若 = ElementSpec('若').by_elements(艹_4, 右)
-# 惹 諾
-# 匿 (慝 匿)
+若 = ElementSpec('若').by_elements(艹, 右)
 
-匿_1 = ElementSpec('匿', 1).by_strokes_to_elements({
-    (1, 10): 匸,
-    (2, 3, 4, 5, 6, 7, 8, 9): 若,
-})
-# 慝
-
-匿_2 = ElementSpec('匿', 2).by_strokes_to_elements({
+匿 = ElementSpec('匿', 1).by_strokes_to_elements({
     (1, 10): 匸,
     (2, 3, 4, 5, 6, 7, 8, 9): 若,
 })
 
 惹 = ElementSpec('惹').by_elements(若, 心)
 
-慝 = ElementSpec('慝').by_elements(匿_1, 心)
+慝 = ElementSpec('慝').by_elements(匿, 心)
 
-苦 = ElementSpec('苦').by_elements(艹_4, 古)
+苦 = ElementSpec('苦').by_elements(艹, 古)
 
-苧 = ElementSpec('苧').by_elements(艹_4, 宀, 丁)
+苧 = ElementSpec('苧').by_elements(艹, 宀, 丁)
 
-苫 = ElementSpec('苫').by_elements(艹_4, 占)
+苫 = ElementSpec('苫').by_elements(艹, 占)
 
-英 = ElementSpec('英').by_elements(艹_4, 央)
-# 霙 瑛 暎
+英 = ElementSpec('英').by_elements(艹, 央)
 
-暎 = ElementSpec('暎').by_elements(日_9, 英)
+暎 = ElementSpec('暎').by_elements(日, 英)
 
-苳 = ElementSpec('苳').by_elements(艹_4, 冬)
+苳 = ElementSpec('苳').by_elements(艹, 冬)
 
-苴 = ElementSpec('苴').by_elements(艹_4, 且)
+苴 = ElementSpec('苴').by_elements(艹, 且)
 
-苹 = ElementSpec('苹').by_elements(艹_4, 平_2)
+苹 = ElementSpec('苹').by_elements(艹, 平)
 
-苺 = ElementSpec('苺').by_elements(艹_4, 母)
+苺 = ElementSpec('苺').by_elements(艹, 母)
 
-苻 = ElementSpec('苻').by_elements(艹_4, 付)
+苻 = ElementSpec('苻').by_elements(艹, 付)
 
-茂 = ElementSpec('茂').by_elements(艹_4, 戊)
+茂 = ElementSpec('茂').by_elements(艹, 戊)
 
-范 = ElementSpec('范').by_elements(艹_4, 氾)
+范 = ElementSpec('范').by_elements(艹, 氾)
 
-茄 = ElementSpec('茄').by_elements(艹_4, 加)
+茄 = ElementSpec('茄').by_elements(艹, 加)
 
-茅 = ElementSpec('茅').by_elements(艹_4, 矛)
+茅 = ElementSpec('茅').by_elements(艹, 矛)
 
-茆 = ElementSpec('茆').by_elements(艹_4, 卯)
+茆 = ElementSpec('茆').by_elements(艹, 卯)
 
-茉 = ElementSpec('茉').by_elements(艹_4, 末)
+茉 = ElementSpec('茉').by_elements(艹, 末)
 
-茎 = ElementSpec('茎').by_elements(艹_4, 圣)
+茎 = ElementSpec('茎').by_elements(艹, 圣)
 
-茖 = ElementSpec('茖').by_elements(艹_4, 各)
+茖 = ElementSpec('茖').by_elements(艹, 各)
 
-茗 = ElementSpec('茗').by_elements(艹_4, 名)
+茗 = ElementSpec('茗').by_elements(艹, 名)
 
-茘 = ElementSpec('茘').by_elements(艹_4, 刀, 刀, 刀)
+茘 = ElementSpec('茘').by_elements(艹, 刀, 刀, 刀)
 
-茜 = ElementSpec('茜').by_elements(艹_4, 西)
+茜 = ElementSpec('茜').by_elements(艹, 西)
 
-茣 = ElementSpec('茣').by_elements(艹_4, 呉_1)
+茣 = ElementSpec('茣').by_elements(艹, 呉_1)
 
-茨 = ElementSpec('茨').by_elements(艹_4, 次)
+茨 = ElementSpec('茨').by_elements(艹, 次)
 
-茫 = ElementSpec('茫').by_elements(艹_4, 氵, 亡)
+茫 = ElementSpec('茫').by_elements(艹, 氵, 亡)
 
-茯 = ElementSpec('茯').by_elements(艹_4, 伏)
+茯 = ElementSpec('茯').by_elements(艹, 伏)
 
-茱 = ElementSpec('茱').by_elements(艹_4, 朱)
+茱 = ElementSpec('茱').by_elements(艹, 朱)
 
-茲_1 = ElementSpec('茲', 1).by_strokes_to_elements({
-    (1, 2, 3): 艹_1,
-    (1, 4, 5, 6): 玄_1,
-    (7, 8, 9): 玄_4,
-})
+茲 = ElementSpec('茲', 1).by_elements(艹, 玄, 玄)
+# by_strokes_to_elements({
+#     (1, 2, 3): 艹_1,
+#     (1, 4, 5, 6): 玄_1,
+#     (7, 8, 9): 玄_4,
+# })
 
-茲_2 = ElementSpec('茲', 2).by_strokes_to_elements({
-    (1, 2, 3): 艹_2,
-    (1, 4, 5, 6): 玄_1,
-    (7, 8, 9): 玄_4,
-})
+# 茲_2 = ElementSpec('茲', 2).by_strokes_to_elements({
+#     (1, 2, 3): 艹_2,
+#     (1, 4, 5, 6): 玄_1,
+#     (7, 8, 9): 玄_4,
+# })
 # 孳
 
+# TODO new element
 孳 = ElementSpec('孳').by_elements(茲_2, 子)
 
-茴 = ElementSpec('茴').by_elements(艹_4, 回)
+茴 = ElementSpec('茴').by_elements(艹, 回)
 
-茵 = ElementSpec('茵').by_elements(艹_4, 因)
+茵 = ElementSpec('茵').by_elements(艹, 因)
 
-茶 = ElementSpec('茶').by_elements(艹_4, 人_5, 木)
+茶 = ElementSpec('茶').by_elements(艹, 𠆢, 木)
 
-茸 = ElementSpec('茸').by_elements(艹_4, 耳)
+茸 = ElementSpec('茸').by_elements(艹, 耳)
 
-茹 = ElementSpec('茹').by_elements(艹_4, 如)
+茹 = ElementSpec('茹').by_elements(艹, 如)
 
-荀 = ElementSpec('荀').by_elements(艹_4, 旬)
+荀 = ElementSpec('荀').by_elements(艹, 旬)
 
-荅 = ElementSpec('荅').by_elements(艹_4, 合)
-# 塔 搭 剳 鞳
+荅 = ElementSpec('荅').by_elements(艹, 合)
 
 剳 = ElementSpec('剳').by_elements(荅, 刂)
 
@@ -13122,60 +12761,57 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 搭 = ElementSpec('搭').by_elements(扌, 荅)
 
-草 = ElementSpec('草').by_elements(艹_4, 早)
+草 = ElementSpec('草').by_elements(艹, 早)
 
-荊 = ElementSpec('荊').by_elements(艹_4, 刑)
+荊 = ElementSpec('荊').by_elements(艹, 刑)
 
-荐 = ElementSpec('荐').by_elements(艹_4, 存)
+荐 = ElementSpec('荐').by_elements(艹, 存)
 
-荒 = ElementSpec('荒').by_elements(艹_4, 亡, 川)
-# 慌
+荒 = ElementSpec('荒').by_elements(艹, 亡, 川)
 
-慌 = ElementSpec('慌').by_elements(忄, 荒)
+慌 = ElementSpec('慌').by_elements(心_1, 荒)
 
-荘 = ElementSpec('荘').by_elements(艹_4, 壮)
+荘 = ElementSpec('荘').by_elements(艹, 壮)
 
-荳 = ElementSpec('荳').by_elements(艹_4, 豆)
+荳 = ElementSpec('荳').by_elements(艹, 豆)
 
-荵 = ElementSpec('荵').by_elements(艹_4, 忍)
+荵 = ElementSpec('荵').by_elements(艹, 忍)
 
-荷 = ElementSpec('荷').by_elements(艹_4, 何)
+荷 = ElementSpec('荷').by_elements(艹, 何)
 
-荻 = ElementSpec('荻').by_elements(艹_4, 狄)
+荻 = ElementSpec('荻').by_elements(艹, 狄)
 
-荼 = ElementSpec('荼').by_elements(艹_4, 余)
+荼 = ElementSpec('荼').by_elements(艹, 余)
 
-莅 = ElementSpec('莅').by_elements(艹_4, 位)
+莅 = ElementSpec('莅').by_elements(艹, 位)
 
-莇 = ElementSpec('莇').by_elements(艹_4, 助)
+莇 = ElementSpec('莇').by_elements(艹, 助)
 
-莉 = ElementSpec('莉').by_elements(艹_4, 利)
+莉 = ElementSpec('莉').by_elements(艹, 利)
 
-莊 = ElementSpec('莊').by_elements(艹_4, 壯)
+莊 = ElementSpec('莊').by_elements(艹, 壯)
 
-莎 = ElementSpec('莎').by_elements(艹_4, 沙)
+莎 = ElementSpec('莎').by_elements(艹, 沙)
 
-莓 = ElementSpec('莓').by_elements(艹_4, 毎_2)
+莓 = ElementSpec('莓').by_elements(艹, 毎_2)
 
-莖 = ElementSpec('莖').by_elements(艹_4, 一, 巛, 工_4)
+莖 = ElementSpec('莖').by_elements(艹, 一, 巛, 工)
 
-莚 = ElementSpec('莚').by_elements(艹_4, 延_1)
+莚 = ElementSpec('莚').by_elements(艹, 延_1)
 
-莞 = ElementSpec('莞').by_elements(艹_4, 完)
+莞 = ElementSpec('莞').by_elements(艹, 完)
 
-莟 = ElementSpec('莟').by_elements(艹_4, 含)
+莟 = ElementSpec('莟').by_elements(艹, 含)
 
-莠 = ElementSpec('莠').by_elements(艹_4, 秀)
+莠 = ElementSpec('莠').by_elements(艹, 秀)
 
-莢 = ElementSpec('莢').by_elements(艹_4, 夾_3)
+莢 = ElementSpec('莢').by_elements(艹, 夾_1)
 
-莨 = ElementSpec('莨').by_elements(艹_4, 良_2)
+莨 = ElementSpec('莨').by_elements(艹, 良_2)
 
-莪 = ElementSpec('莪').by_elements(艹_4, 我)
+莪 = ElementSpec('莪').by_elements(艹, 我)
 
-莫 = ElementSpec('莫').by_elements(艹_4, 日_9, 大)
-# 蟇 貘 驀 墓 暮 漠 模 膜 蟆 寞 糢 募 慕 獏 謨 摸
-# 幕 (羃 冪 幕)
+莫 = ElementSpec('莫').by_elements(艹, 日, 大)
 
 募 = ElementSpec('募').by_elements(莫, 力)
 
@@ -13184,15 +12820,14 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 寞 = ElementSpec('寞').by_elements(宀, 莫)
 
 幕 = ElementSpec('幕').by_elements(莫, 巾)
-# 冪 羃
 
 冪 = ElementSpec('冪').by_elements(冖, 幕)
 
-慕 = ElementSpec('慕').by_elements(莫, x2e97)
+慕 = ElementSpec('慕').by_elements(莫, 心_2)
 
 摸 = ElementSpec('摸').by_elements(扌, 莫)
 
-暮 = ElementSpec('暮').by_elements(莫, 日_9)
+暮 = ElementSpec('暮').by_elements(莫, 日)
 
 模 = ElementSpec('模').by_elements(木, 莫)
 
@@ -13204,48 +12839,48 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 膜 = ElementSpec('膜').by_elements(月, 莫)
 
-莱 = ElementSpec('莱').by_elements(艹_4, 来)
+莱 = ElementSpec('莱').by_elements(艹, 来)
 
-莵 = ElementSpec('莵').by_elements(艹_4, 兎)
+莵 = ElementSpec('莵').by_elements(艹, 兎)
 
-莽 = ElementSpec('莽').by_elements(艹_4, 大, 廾_3)
-# 蟒
+莽 = ElementSpec('莽').by_elements(艹, 大, 廾)
 
-菁 = ElementSpec('菁').by_elements(艹_4, 青_2)
+菁 = ElementSpec('菁').by_elements(艹, 青_2)
 
-菅 = ElementSpec('菅').by_elements(艹_4, 官)
+菅 = ElementSpec('菅').by_elements(艹, 官)
 
-菊 = ElementSpec('菊').by_elements(艹_4, 勹, 米)
+菊 = ElementSpec('菊').by_elements(艹, 勹, 米)
 
 菌 = ElementSpec('菌').by_strokes_to_elements({
-    (1, 2, 3): 艹_4,
+    (1, 2, 3): 艹,
     (4, 5, 11): 口,
     (6, 7, 8, 9, 10): 禾,
 })
 
-菎 = ElementSpec('菎').by_elements(艹_4, 昆)
+菎 = ElementSpec('菎').by_elements(艹, 昆)
 
-菓 = ElementSpec('菓').by_elements(艹_4, 果_2)
+菓 = ElementSpec('菓').by_elements(艹, 果)
 
-菖 = ElementSpec('菖').by_elements(艹_4, 昌)
+菖 = ElementSpec('菖').by_elements(艹, 昌)
 
-菘 = ElementSpec('菘').by_elements(艹_4, 松)
+菘 = ElementSpec('菘').by_elements(艹, 松)
 
-菜 = ElementSpec('菜').by_elements(艹_4, 采)
+菜 = ElementSpec('菜').by_elements(艹, 采)
 
-菟 = ElementSpec('菟').by_elements(艹_4, 兔_3, 1)
+菟 = ElementSpec('菟').by_elements(艹, 兔_4)
 
-菠 = ElementSpec('菠').by_elements(艹_4, 波)
+菠 = ElementSpec('菠').by_elements(艹, 波)
 
-菩 = ElementSpec('菩').by_elements(艹_4, 立, 口)
+菩 = ElementSpec('菩').by_elements(艹, 立, 口)
 
-菫_1 = ElementSpec('菫', 1).by_elements(廿_6, 4, 三)
+# upsetting
+菫_1 = ElementSpec('菫', 1).by_elements(廿, 4, 三)
 # 勤 (懃)
 
-菫_2 = ElementSpec('菫', 2).by_elements(艹_4, 4, 三)
+菫_2 = ElementSpec('菫', 2).by_elements(艹, 4, 三)
 # 勤
 
-菫_3 = ElementSpec('菫', 3).by_elements(艹_4, 5, 三)
+菫_3 = ElementSpec('菫', 3).by_elements(艹, 5, 三)
 
 勤_1 = ElementSpec('勤', 1).by_elements(菫_1, 力)
 # 懃
@@ -13254,60 +12889,58 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 懃 = ElementSpec('懃').by_elements(勤_1, 心)
 
-華 = ElementSpec('華').by_elements(艹_4, 7)
+華 = ElementSpec('華').by_elements(艹, 7)
 # 嘩 樺 曄 譁
 
 嘩 = ElementSpec('嘩').by_elements(口, 華)
 
-曄 = ElementSpec('曄').by_elements(日_9, 華)
+曄 = ElementSpec('曄').by_elements(日, 華)
 
 樺 = ElementSpec('樺').by_elements(木, 華)
 
-菰 = ElementSpec('菰').by_elements(艹_4, 孤)
+菰 = ElementSpec('菰').by_elements(艹, 孤)
 
-菱 = ElementSpec('菱').by_elements(艹_4, 土, 八, 夂)
+菱 = ElementSpec('菱').by_elements(艹, 土, 八, 夂)
 
-菲 = ElementSpec('菲').by_elements(艹_4, 非)
+菲 = ElementSpec('菲').by_elements(艹, 非)
 
-菴 = ElementSpec('菴').by_elements(艹_4, 奄)
+菴 = ElementSpec('菴').by_elements(艹, 奄)
 
-菷 = ElementSpec('菷').by_elements(艹_4, 帚)
+菷 = ElementSpec('菷').by_elements(艹, 帚)
 
-菻 = ElementSpec('菻').by_elements(艹_4, 林)
+菻 = ElementSpec('菻').by_elements(艹, 林)
 
-菽 = ElementSpec('菽').by_elements(艹_4, 叔)
+菽 = ElementSpec('菽').by_elements(艹, 叔)
 
-萃 = ElementSpec('萃').by_elements(艹_4, 卒)
-# 膵
+萃 = ElementSpec('萃').by_elements(艹, 卒)
 
 膵 = ElementSpec('膵').by_elements(月, 萃)
 
-萄 = ElementSpec('萄').by_elements(艹_4, 勹, 缶)
+萄 = ElementSpec('萄').by_elements(艹, 勹, 缶)
 
-萇 = ElementSpec('萇').by_elements(艹_4, 長_3)
+萇 = ElementSpec('萇').by_elements(艹, 長_3)
 
-萊 = ElementSpec('萊').by_elements(艹_4, 來)
+萊 = ElementSpec('萊').by_elements(艹, 來)
 
-萋 = ElementSpec('萋').by_elements(艹_4, 妻)
+萋 = ElementSpec('萋').by_elements(艹, 妻)
 
-萌 = ElementSpec('萌').by_elements(艹_4, 明)
+萌 = ElementSpec('萌').by_elements(艹, 明)
 
-萍 = ElementSpec('萍').by_elements(艹_4, 泙)
+萍 = ElementSpec('萍').by_elements(艹, 泙)
 
-萎 = ElementSpec('萎').by_elements(艹_4, 委)
+萎 = ElementSpec('萎').by_elements(艹, 委)
 
-萓 = ElementSpec('萓').by_elements(艹_4, 宜)
+萓 = ElementSpec('萓').by_elements(艹, 宜)
 
-萠 = ElementSpec('萠').by_elements(艹_4, 朋)
+萠 = ElementSpec('萠').by_elements(艹, 朋)
 
-萢 = ElementSpec('萢').by_elements(艹_4, 泡)
+萢 = ElementSpec('萢').by_elements(艹, 泡)
 
-萩 = ElementSpec('萩').by_elements(艹_4, 秋)
+萩 = ElementSpec('萩').by_elements(艹, 秋)
 
-萪 = ElementSpec('萪').by_elements(艹_4, 科)
+萪 = ElementSpec('萪').by_elements(艹, 科)
 
-萬 = ElementSpec('萬').by_elements(艹_4, 禺)
-# 勵 癘 糲 礪 蠣 邁
+萬 = ElementSpec('萬').by_elements(艹, 禺)
 
 勵 = ElementSpec('勵').by_elements(厂, 萬, 力)
 
@@ -13317,74 +12950,74 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 糲 = ElementSpec('糲').by_elements(米, 厂, 萬)
 
-萱 = ElementSpec('萱').by_elements(艹_4, 宣)
+萱 = ElementSpec('萱').by_elements(艹, 宣)
 
-萵 = ElementSpec('萵').by_elements(艹_4, 咼)
+萵 = ElementSpec('萵').by_elements(艹, 咼)
 
-萸 = ElementSpec('萸').by_elements(艹_4, 臾_2)
+萸 = ElementSpec('萸').by_elements(艹, 臾)
 
-萼 = ElementSpec('萼').by_elements(艹_4, 咢)
+萼 = ElementSpec('萼').by_elements(艹, 咢)
 
-落 = ElementSpec('落').by_elements(艹_4, 洛)
+落 = ElementSpec('落').by_elements(艹, 洛)
 
-葆 = ElementSpec('葆').by_elements(艹_4, 保)
+葆 = ElementSpec('葆').by_elements(艹, 保)
 
-葉 = ElementSpec('葉').by_elements(艹_4, 世, 木)
+葉 = ElementSpec('葉').by_elements(艹, 世, 木)
 
-葎 = ElementSpec('葎').by_elements(艹_4, 律)
+葎 = ElementSpec('葎').by_elements(艹, 律)
 
-著_1 = ElementSpec('著', 1).by_elements(艹_4, 者_1)
+著_1 = ElementSpec('著', 1).by_elements(艹, 者_1)
 
-著_2 = ElementSpec('著', 2).by_elements(艹_4, 者_2)
+著_2 = ElementSpec('著', 2).by_elements(艹, 者_2)
 # 墸 躇
 
 墸 = ElementSpec('墸').by_elements(土, 著_2)
 
-葛_1 = ElementSpec('葛', 1).by_elements(艹_4, 曷_1)
+葛 = ElementSpec('葛', 1).by_elements(艹, 曷)
 
-葛_2 = ElementSpec('葛', 2).by_elements(艹_4, 曷_2)
+# 葛_2 = ElementSpec('葛', 2).by_elements(艹, 曷_2)
 # 臈
 
-臈 = ElementSpec('臈').by_elements(月, 葛_2)
+臈 = ElementSpec('臈').by_elements(月, 葛)
 
-葡 = ElementSpec('葡').by_elements(艹_4, 匍)
+葡 = ElementSpec('葡').by_elements(艹, 匍)
 
-葦 = ElementSpec('葦').by_elements(艹_4, 韋_2)
+葦 = ElementSpec('葦').by_elements(艹, 韋_2)
 
-葩 = ElementSpec('葩').by_elements(艹_4, 白_1, 巴)
+葩 = ElementSpec('葩').by_elements(艹, 白, 巴)
 
-葫 = ElementSpec('葫').by_elements(艹_4, 胡)
+葫 = ElementSpec('葫').by_elements(艹, 胡)
 
-葬 = ElementSpec('葬').by_elements(艹_4, 死, 廾_3)
+葬 = ElementSpec('葬').by_elements(艹, 死, 廾)
 
-葭 = ElementSpec('葭').by_elements(艹_4, 7, 又)
+葭 = ElementSpec('葭').by_elements(艹, 7, 又)
 
-葮 = ElementSpec('葮').by_elements(艹_4, 段)
+葮 = ElementSpec('葮').by_elements(艹, 段)
 
-葯 = ElementSpec('葯').by_elements(艹_4, 約)
+葯 = ElementSpec('葯').by_elements(艹, 約)
 
-葱 = ElementSpec('葱').by_elements(艹_4, 怱)
+葱 = ElementSpec('葱').by_elements(艹, 怱)
 
-葵 = ElementSpec('葵').by_elements(艹_4, 癸)
+葵 = ElementSpec('葵').by_elements(艹, 癸)
 
-葷 = ElementSpec('葷').by_elements(艹_4, 軍)
+葷 = ElementSpec('葷').by_elements(艹, 軍)
 
-葹 = ElementSpec('葹').by_elements(艹_4, 施)
+葹 = ElementSpec('葹').by_elements(艹, 施)
 
-葺 = ElementSpec('葺').by_elements(艹_4, 口, 耳)
+葺 = ElementSpec('葺').by_elements(艹, 口, 耳)
 
-蒂 = ElementSpec('蒂').by_elements(艹_4, 帝)
+蒂 = ElementSpec('蒂').by_elements(艹, 帝)
 
-蒄 = ElementSpec('蒄').by_elements(艹_4, 冠)
+蒄 = ElementSpec('蒄').by_elements(艹, 冠)
 
-蒋 = ElementSpec('蒋').by_elements(艹_4, 将)
+蒋 = ElementSpec('蒋').by_elements(艹, 将)
 
-蒔 = ElementSpec('蒔').by_elements(艹_4, 時)
+蒔 = ElementSpec('蒔').by_elements(艹, 時)
 
-蒙 = ElementSpec('蒙').by_elements(艹_4, 冖, 1, 豕)
+蒙 = ElementSpec('蒙').by_elements(艹, 冖, 1, 豕)
 # 濛 曚 矇 朦 艨 檬
 
-曚 = ElementSpec('曚').by_elements(日_9, 蒙)
+曚 = ElementSpec('曚').by_elements(日, 蒙)
 
 朦 = ElementSpec('朦').by_elements(月, 蒙)
 
@@ -13394,91 +13027,90 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 艨 = ElementSpec('艨').by_elements(舟, 蒙)
 
-蒜 = ElementSpec('蒜').by_elements(艹_4, 示, 示)
+蒜 = ElementSpec('蒜').by_elements(艹, 示, 示)
 
-蒟 = ElementSpec('蒟').by_elements(艹_4, 立, 句)
+蒟 = ElementSpec('蒟').by_elements(艹, 立, 句)
 
-蒡 = ElementSpec('蒡').by_elements(艹_4, 旁)
+蒡 = ElementSpec('蒡').by_elements(艹, 旁)
 
-蒭 = ElementSpec('蒭').by_elements(艹_4, 芻)
+蒭 = ElementSpec('蒭').by_elements(艹, 芻)
 
-蒲 = ElementSpec('蒲').by_elements(艹_4, 浦)
+蒲 = ElementSpec('蒲').by_elements(艹, 浦)
 
-蒸 = ElementSpec('蒸').by_elements(艹_4, 烝)
+蒸 = ElementSpec('蒸').by_elements(艹, 烝)
 
-蒹 = ElementSpec('蒹').by_elements(艹_4, 兼_2)
+蒹 = ElementSpec('蒹').by_elements(艹, 兼_2)
 
-蒻 = ElementSpec('蒻').by_elements(艹_4, 弱)
+蒻 = ElementSpec('蒻').by_elements(艹, 弱)
 
-蒼 = ElementSpec('蒼').by_elements(艹_4, 倉)
+蒼 = ElementSpec('蒼').by_elements(艹, 倉)
 
-蒿 = ElementSpec('蒿').by_elements(艹_4, 高)
-# 藁 嚆
+蒿 = ElementSpec('蒿').by_elements(艹, 高)
 
 嚆 = ElementSpec('嚆').by_elements(口, 蒿)
 
-蓁 = ElementSpec('蓁').by_elements(艹_4, 秦)
+蓁 = ElementSpec('蓁').by_elements(艹, 秦)
 
-蓄 = ElementSpec('蓄').by_elements(艹_4, 畜)
+蓄 = ElementSpec('蓄').by_elements(艹, 畜)
 
-蓆 = ElementSpec('蓆').by_elements(艹_4, 席)
+蓆 = ElementSpec('蓆').by_elements(艹, 席)
 
-蓉 = ElementSpec('蓉').by_elements(艹_4, 容)
+蓉 = ElementSpec('蓉').by_elements(艹, 容)
 
-蓊 = ElementSpec('蓊').by_elements(艹_4, 翁)
+蓊 = ElementSpec('蓊').by_elements(艹, 翁)
 
-蓍 = ElementSpec('蓍').by_elements(艹_4, 耆)
+蓍 = ElementSpec('蓍').by_elements(艹, 耆)
 
-蓐 = ElementSpec('蓐').by_elements(艹_4, 辱)
+蓐 = ElementSpec('蓐').by_elements(艹, 辱)
 
-蓑 = ElementSpec('蓑').by_elements(艹_4, 衰_1)
+蓑 = ElementSpec('蓑').by_elements(艹, 衰_1)
 
-蓖 = ElementSpec('蓖').by_elements(艹_4, 3, 乂, 1, 比)
+蓖 = ElementSpec('蓖').by_elements(艹, 3, 乂, 1, 比)
 
-蓙 = ElementSpec('蓙').by_elements(艹_4, 座)
+蓙 = ElementSpec('蓙').by_elements(艹, 座)
 
-蓚 = ElementSpec('蓚').by_elements(艹_4, 修)
+蓚 = ElementSpec('蓚').by_elements(艹, 修)
 
-蓬 = ElementSpec('蓬').by_elements(艹_4, 逢_2)
+蓬 = ElementSpec('蓬').by_elements(艹, 逢_2)
 
-蓮 = ElementSpec('蓮').by_elements(艹_4, 連_1)
+蓮 = ElementSpec('蓮').by_elements(艹, 連_1)
 
-蓴 = ElementSpec('蓴').by_elements(艹_4, 專)
+蓴 = ElementSpec('蓴').by_elements(艹, 專)
 
-蓼 = ElementSpec('蓼').by_elements(艹_4, 羽, 2, 彡)
+蓼 = ElementSpec('蓼').by_elements(艹, 羽, 2, 彡)
 
-蓿 = ElementSpec('蓿').by_elements(艹_4, 宿)
+蓿 = ElementSpec('蓿').by_elements(艹, 宿)
 
-蔀 = ElementSpec('蔀').by_elements(艹_4, 部)
+蔀 = ElementSpec('蔀').by_elements(艹, 部)
 
 蔆 = ElementSpec('蔆').by_strokes_to_elements({
-    (1, 2, 3): 艹_4,
+    (1, 2, 3): 艹,
     (4, 5, 6): 氵,
     (5, 6, 7, 8, 9, 10, 11, 12, 13, 14): 凌,
 })
 
-蔔 = ElementSpec('蔔').by_elements(艹_4, 匐)
+蔔 = ElementSpec('蔔').by_elements(艹, 匐)
 
-蔕 = ElementSpec('蔕').by_elements(艹_4, 帶)
+蔕 = ElementSpec('蔕').by_elements(艹, 帶)
 
-蔗 = ElementSpec('蔗').by_elements(艹_4, 庶)
+蔗 = ElementSpec('蔗').by_elements(艹, 庶)
 
-蔘 = ElementSpec('蔘').by_elements(艹_4, 參)
+蔘 = ElementSpec('蔘').by_elements(艹, 參)
 
-蔚 = ElementSpec('蔚').by_elements(艹_4, 尉)
+蔚 = ElementSpec('蔚').by_elements(艹, 尉)
 
-蔟 = ElementSpec('蔟').by_elements(艹_4, 族)
+蔟 = ElementSpec('蔟').by_elements(艹, 族)
 
-蔡 = ElementSpec('蔡').by_elements(艹_4, 祭)
+蔡 = ElementSpec('蔡').by_elements(艹, 祭)
 
-蔣 = ElementSpec('蔣').by_elements(艹_4, 將)
+蔣 = ElementSpec('蔣').by_elements(艹, 將)
 
-蔦 = ElementSpec('蔦').by_elements(艹_4, 鳥_1)
+蔦 = ElementSpec('蔦').by_elements(艹, 鳥_1)
 
-蔬 = ElementSpec('蔬').by_elements(艹_4, 疏_2)
+蔬 = ElementSpec('蔬').by_elements(艹, 疏)
 
 蔵 = ElementSpec('蔵').by_strokes_to_elements({
-    (1, 2, 3): 艹_4,
+    (1, 2, 3): 艹,
     (4, 5): 厂,
     (5, 13, 14, 15): 戈,
     (6, 7, 8, 9, 10, 11, 12): 臣,
@@ -13487,122 +13119,117 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 臓 = ElementSpec('臓').by_elements(月, 蔵)
 
-蔽 = ElementSpec('蔽').by_elements(艹_4, 敝_2)
+蔽 = ElementSpec('蔽').by_elements(艹, 敝_2)
 
-蕀 = ElementSpec('蕀').by_elements(艹_4, 棘)
+蕀 = ElementSpec('蕀').by_elements(艹, 棘)
 
-蕁 = ElementSpec('蕁').by_elements(艹_4, 尋)
+蕁 = ElementSpec('蕁').by_elements(艹, 尋)
 
-蕃 = ElementSpec('蕃').by_elements(艹_4, 番)
+蕃 = ElementSpec('蕃').by_elements(艹, 番)
 
-蕉 = ElementSpec('蕉').by_elements(艹_4, 焦)
+蕉 = ElementSpec('蕉').by_elements(艹, 焦)
 
-蕊 = ElementSpec('蕊').by_elements(艹_4, 心, 心, 心)
+蕊 = ElementSpec('蕊').by_elements(艹, 心, 心, 心)
 
-蕋 = ElementSpec('蕋').by_elements(艹_4, 止, 止, 止)
+蕋 = ElementSpec('蕋').by_elements(艹, 止, 止, 止)
 
-蕎 = ElementSpec('蕎').by_elements(艹_4, 喬)
+蕎 = ElementSpec('蕎').by_elements(艹, 喬)
 
-蕕 = ElementSpec('蕕').by_elements(艹_4, 猶)
+蕕 = ElementSpec('蕕').by_elements(艹, 猶)
 
-蕗 = ElementSpec('蕗').by_elements(艹_4, 路)
+蕗 = ElementSpec('蕗').by_elements(艹, 路)
 
-蕘 = ElementSpec('蕘').by_elements(艹_4, 堯)
+蕘 = ElementSpec('蕘').by_elements(艹, 堯)
 
 蕚 = ElementSpec('蕚').by_strokes_to_elements({
-    (1, 2, 3): 艹_4,
+    (1, 2, 3): 艹,
     (4, 5, 6, 7, 8, 9, 10, 11, 12): 品,
     (7, 8, 9, 10, 11, 12, 13, 14, 15): 咢,
 })
 
-蕣 = ElementSpec('蕣').by_elements(艹_4, 舜_1)
+蕣 = ElementSpec('蕣').by_elements(艹, 舜_1)
 
-蕨 = ElementSpec('蕨').by_elements(艹_4, 厥)
+蕨 = ElementSpec('蕨').by_elements(艹, 厥)
 
-蕩 = ElementSpec('蕩').by_elements(艹_4, 湯)
-# 蘯
+蕩 = ElementSpec('蕩').by_elements(艹, 湯)
 
-蕪 = ElementSpec('蕪').by_elements(艹_4, 無)
+蕪 = ElementSpec('蕪').by_elements(艹, 無)
 
-蕭 = ElementSpec('蕭').by_elements(艹_4, 肅)
-# 瀟
+蕭 = ElementSpec('蕭').by_elements(艹, 肅)
 
 瀟 = ElementSpec('瀟').by_elements(氵, 蕭)
 
-薄 = ElementSpec('薄').by_elements(艹_4, 溥)
+薄 = ElementSpec('薄').by_elements(艹, 溥)
 
-薇 = ElementSpec('薇').by_elements(艹_4, 微)
+薇 = ElementSpec('薇').by_elements(艹, 微)
 
-薈 = ElementSpec('薈').by_elements(艹_4, 會)
+薈 = ElementSpec('薈').by_elements(艹, 會)
 
-薐 = ElementSpec('薐').by_elements(艹_4, 稜)
+薐 = ElementSpec('薐').by_elements(艹, 稜)
 
-薑 = ElementSpec('薑').by_elements(艹_4, 一, 田_2, 一, 田_2, 一)
+薑 = ElementSpec('薑').by_elements(艹, 一, 田, 一, 田, 一)
 
-薔 = ElementSpec('薔').by_elements(艹_4, 嗇_2)
+薔 = ElementSpec('薔').by_elements(艹, 嗇)
 
-薤 = ElementSpec('薤').by_elements(艹_4, 歹, 韭)
+薤 = ElementSpec('薤').by_elements(艹, 歹, 韭)
 
-薦 = ElementSpec('薦').by_elements(艹_4, 广, 6, 灬)
+薦 = ElementSpec('薦').by_elements(艹, 广, 6, 灬)
 
-薩 = ElementSpec('薩').by_elements(艹_4, x2ed6, 産)
+薩 = ElementSpec('薩').by_elements(艹, x2ed6, 産)
 
-薪 = ElementSpec('薪').by_elements(艹_4, 新)
+薪 = ElementSpec('薪').by_elements(艹, 新)
 
-薬 = ElementSpec('薬').by_elements(艹_4, 楽)
+薬 = ElementSpec('薬').by_elements(艹, 楽)
 
-薮 = ElementSpec('薮').by_elements(艹_4, 数)
+薮 = ElementSpec('薮').by_elements(艹, 数)
 
-薹 = ElementSpec('薹').by_elements(艹_4, 臺)
+薹 = ElementSpec('薹').by_elements(艹, 臺)
 
-薺 = ElementSpec('薺').by_elements(艹_4, 齊_2)
+薺 = ElementSpec('薺').by_elements(艹, 齊_2)
 
 藁 = ElementSpec('藁').by_elements(蒿, 木)
 
-藉 = ElementSpec('藉').by_elements(艹_4, 耒, 昔)
+藉 = ElementSpec('藉').by_elements(艹, 耒, 昔)
 
-藏 = ElementSpec('藏').by_elements(艹_4, 臧)
-# 臟
+藏 = ElementSpec('藏').by_elements(艹, 臧)
 
 臟 = ElementSpec('臟').by_elements(月, 藏)
 
-藕 = ElementSpec('藕').by_elements(艹_4, 耒, 禺)
+藕 = ElementSpec('藕').by_elements(艹, 耒, 禺)
 
-藜 = ElementSpec('藜').by_elements(艹_4, 黎)
+藜 = ElementSpec('藜').by_elements(艹, 黎)
 
-藝 = ElementSpec('藝').by_elements(艹_4, 埶, 云)
-# 囈
+藝 = ElementSpec('藝').by_elements(艹, 埶, 云)
 
 囈 = ElementSpec('囈').by_elements(口, 藝)
 
-藤 = ElementSpec('藤').by_elements(艹_4, 滕_1)
+藤 = ElementSpec('藤').by_elements(艹, 滕_1)
 
-藥 = ElementSpec('藥').by_elements(艹_4, 樂)
+藥 = ElementSpec('藥').by_elements(艹, 樂)
 
-藩 = ElementSpec('藩').by_elements(艹_4, 潘)
+藩 = ElementSpec('藩').by_elements(艹, 潘)
 
-藪 = ElementSpec('藪').by_elements(艹_4, 數)
+藪 = ElementSpec('藪').by_elements(艹, 數)
 
-藺 = ElementSpec('藺').by_elements(艹_4, 門, 隹)
-# 躪
+藺 = ElementSpec('藺').by_elements(艹, 門, 隹)
 
-藻 = ElementSpec('藻').by_elements(艹_4, 澡)
+藻 = ElementSpec('藻').by_elements(艹, 澡)
 
-蘂 = ElementSpec('蘂').by_elements(艹_4, 心, 心, 心, 木)
+蘂 = ElementSpec('蘂').by_elements(艹, 心, 心, 心, 木)
 
-蘢 = ElementSpec('蘢').by_elements(艹_4, 龍)
+蘢 = ElementSpec('蘢').by_elements(艹, 龍)
 
 虜 = ElementSpec('虜').by_elements(虍, 男)
 
 虞 = ElementSpec('虞').by_elements(虍, 呉_2)
 
-虹 = ElementSpec('虹').by_elements(虫, 工_4)
+虹 = ElementSpec('虹').by_elements(虫, 工)
 
 蚋 = ElementSpec('蚋').by_elements(虫, 内_3)
 
 蚕 = ElementSpec('蚕').by_elements(天, 虫)
 
-蚰 = ElementSpec('蚰').by_elements(虫, 由_1)
+蚰 = ElementSpec('蚰').by_elements(虫, 由)
 
 蚶 = ElementSpec('蚶').by_elements(虫, 甘)
 
@@ -13612,7 +13239,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蛉 = ElementSpec('蛉').by_elements(虫, 令_1)
 
-蛋 = ElementSpec('蛋').by_elements(疋_1, 虫)
+蛋 = ElementSpec('蛋').by_elements(疋, 虫)
 
 蛙 = ElementSpec('蛙').by_elements(虫, 圭)
 
@@ -13620,7 +13247,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蛤 = ElementSpec('蛤').by_elements(虫, 合)
 
-蛩 = ElementSpec('蛩').by_elements(工_4, 凡, 虫)
+蛩 = ElementSpec('蛩').by_elements(工, 凡, 虫)
 
 蛭 = ElementSpec('蛭').by_elements(虫, 至)
 
@@ -13642,9 +13269,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蜷 = ElementSpec('蜷').by_elements(虫, 卷)
 
-蝉 = ElementSpec('蝉').by_elements(虫, 単_1)
+蝉 = ElementSpec('蝉').by_elements(虫, 単)
 
-蝎 = ElementSpec('蝎').by_elements(虫, 曷_1)
+蝎 = ElementSpec('蝎').by_elements(虫, 曷)
 
 蝓 = ElementSpec('蝓').by_elements(虫, 兪)
 
@@ -13664,7 +13291,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蝶 = ElementSpec('蝶').by_elements(虫, 世, 木)
 
-蝿 = ElementSpec('蝿').by_elements(虫, 日_9, 日_9, 1)
+蝿 = ElementSpec('蝿').by_elements(虫, 日, 日, 1)
 
 螟 = ElementSpec('螟').by_elements(虫, 冥)
 
@@ -13686,7 +13313,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蟠 = ElementSpec('蟠').by_elements(虫, 番)
 
-蟬 = ElementSpec('蟬').by_elements(虫, 單_1)
+蟬 = ElementSpec('蟬').by_elements(虫, 單)
 
 蟯 = ElementSpec('蟯').by_elements(虫, 堯)
 
@@ -13694,9 +13321,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蠍 = ElementSpec('蠍').by_elements(虫, 歇)
 
-蠎 = ElementSpec('蠎').by_elements(虫, 艹_4, 大, 卉)
+蠎 = ElementSpec('蠎').by_elements(虫, 艹, 大, 卉)
 
-蠖 = ElementSpec('蠖').by_elements(虫, 艹_4, 隻)
+蠖 = ElementSpec('蠖').by_elements(虫, 艹, 隻)
 
 蠢 = ElementSpec('蠢').by_elements(春, 虫, 虫)
 
@@ -13704,7 +13331,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蠧 = ElementSpec('蠧').by_elements(士, 冖, 石, 虫, 虫)
 
-蠶 = ElementSpec('蠶').by_elements(旡_2, 旡_2, 日_9, 虫, 虫)
+蠶 = ElementSpec('蠶').by_elements(旡_2, 旡_2, 日, 虫, 虫)
 
 街 = ElementSpec('街').by_strokes_to_elements({
     (1, 2, 3, 10, 11, 12): 行,
@@ -13714,13 +13341,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 衡 = ElementSpec('衡').by_strokes_to_elements({
     (1, 2, 3, 14, 15, 16): 行,
     (4, 5): 𠂊,
-    (6, 7, 8, 9, 10): 田_2,
+    (6, 7, 8, 9, 10): 田,
     (11, 12, 13): 大,
 })
 
 衲 = ElementSpec('衲').by_elements(衤, 内_3)
 
-衵 = ElementSpec('衵').by_elements(衤, 日_9)
+衵 = ElementSpec('衵').by_elements(衤, 日)
 
 衾 = ElementSpec('衾').by_elements(今, 衣)
 
@@ -13731,26 +13358,23 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (3, 7, 8, 9, 10): 衣_2,
     (4, 5, 6): 口,
 })
-# 猿 轅 遠
-# 園 (園 薗)
 
 園 = ElementSpec('園').by_strokes_to_elements({
     (1, 2, 13): 口,
     (3, 4, 5, 6, 7, 8, 9, 10, 11, 12): 袁,
 })
-# 薗
 
 猿 = ElementSpec('猿').by_elements(x2ea8, 袁)
 
-薗 = ElementSpec('薗').by_elements(艹_4, 園)
+薗 = ElementSpec('薗').by_elements(艹, 園)
 
 袂 = ElementSpec('袂').by_elements(衤, 夬)
 
 袒 = ElementSpec('袒').by_elements(衤, 旦)
 
-袖 = ElementSpec('袖').by_elements(衤, 由_1)
+袖 = ElementSpec('袖').by_elements(衤, 由)
 
-袙 = ElementSpec('袙').by_elements(衤, 白_1)
+袙 = ElementSpec('袙').by_elements(衤, 白)
 
 袢 = ElementSpec('袢').by_elements(衤, 半)
 
@@ -13766,15 +13390,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 裝 = ElementSpec('裝').by_elements(壯, 衣)
 
-裨 = ElementSpec('裨').by_elements(衤, 卑_2)
+裨 = ElementSpec('裨').by_elements(衤, 卑_1)
 
 裲 = ElementSpec('裲').by_elements(衤, 兩)
 
-裸 = ElementSpec('裸').by_elements(衤, 果_2)
+裸 = ElementSpec('裸').by_elements(衤, 果)
 
 裹 = ElementSpec('裹').by_strokes_to_elements({
     (1, 2, 11, 12, 13, 14): 衣,
-    (3, 4, 5, 6, 7, 8, 9, 10): 果_2,
+    (3, 4, 5, 6, 7, 8, 9, 10): 果,
 })
 
 裼 = ElementSpec('裼').by_elements(衤, 易)
@@ -13789,7 +13413,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 褐 = ElementSpec('褐').by_elements(衤, 曷_3)
 
-褝 = ElementSpec('褝').by_elements(衤, 単_1)
+褝 = ElementSpec('褝').by_elements(衤, 単)
 
 褶 = ElementSpec('褶').by_elements(衤, 習)
 
@@ -13798,7 +13422,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13): 埶,
 })
 
-襌 = ElementSpec('襌').by_elements(衤, 單_2)
+襌 = ElementSpec('襌').by_elements(衤, 單)
 
 襖 = ElementSpec('襖').by_elements(衤, 奧)
 
@@ -13811,14 +13435,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 簟 = ElementSpec('簟').by_elements(竹, 覃)
 
-蕈 = ElementSpec('蕈').by_elements(艹_4, 覃)
+蕈 = ElementSpec('蕈').by_elements(艹, 覃)
 
 覆 = ElementSpec('覆').by_elements(6, 復)
 
-覈 = ElementSpec('覈').by_elements(6, 白_1, 放)
+覈 = ElementSpec('覈').by_elements(6, 白, 放)
 
 觜 = ElementSpec('觜').by_elements(此_2, 角)
-# 嘴
 
 嘴 = ElementSpec('嘴').by_elements(口, 觜)
 
@@ -13828,9 +13451,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 訊 = ElementSpec('訊').by_elements(言, 乙, 十)
 
-訌 = ElementSpec('訌').by_elements(言, 工_4)
+訌 = ElementSpec('訌').by_elements(言, 工)
 
-訐 = ElementSpec('訐').by_elements(言, 干_4)
+訐 = ElementSpec('訐').by_elements(言, 干)
 
 訛 = ElementSpec('訛').by_elements(言, 化)
 
@@ -13839,19 +13462,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 訥 = ElementSpec('訥').by_elements(言, 内_3)
 
 許 = ElementSpec('許').by_elements(言, 午)
-# 滸
 
 滸 = ElementSpec('滸').by_elements(氵, 許)
 
-診 = ElementSpec('診').by_elements(言, 人_5, 彡)
+診 = ElementSpec('診').by_elements(言, 𠆢, 彡)
 
-証 = ElementSpec('証').by_elements(言, 正_4)
+証 = ElementSpec('証').by_elements(言, 正)
 
 詁 = ElementSpec('詁').by_elements(言, 古)
 
 詑 = ElementSpec('詑').by_elements(言, 它)
 
-評 = ElementSpec('評').by_elements(言, 平_2)
+評 = ElementSpec('評').by_elements(言, 平)
 
 詢 = ElementSpec('詢').by_elements(言, 旬)
 
@@ -13873,25 +13495,25 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 誕 = ElementSpec('誕').by_elements(言, 延_2)
 
-誡 = ElementSpec('誡').by_elements(言, 戒_2)
+誡 = ElementSpec('誡').by_elements(言, 戒)
 
-誣 = ElementSpec('誣').by_elements(言, 巫_4)
+誣 = ElementSpec('誣').by_elements(言, 巫)
 
 誤 = ElementSpec('誤').by_elements(言, 呉_2)
 
 読 = ElementSpec('読').by_elements(言, 売)
 
-課 = ElementSpec('課').by_elements(言, 果_1)
+課 = ElementSpec('課').by_elements(言, 果)
 
 調 = ElementSpec('調').by_elements(言, 周)
 
-諌 = ElementSpec('諌').by_elements(言, 東_1)
+諌 = ElementSpec('諌').by_elements(言, 東)
 
 論 = ElementSpec('論').by_elements(言, 侖)
 
 諚 = ElementSpec('諚').by_elements(言, 定)
 
-諛 = ElementSpec('諛').by_elements(言, 臾_1)
+諛 = ElementSpec('諛').by_elements(言, 臾)
 
 諜 = ElementSpec('諜').by_elements(言, 世, 木)
 
@@ -13901,7 +13523,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 諧 = ElementSpec('諧').by_elements(言, 皆)
 
-諫 = ElementSpec('諫').by_elements(言, 柬_1)
+諫 = ElementSpec('諫').by_elements(言, 柬)
 
 諭 = ElementSpec('諭').by_elements(言, 兪)
 
@@ -13912,24 +13534,24 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 儲 = ElementSpec('儲').by_elements(亻, 諸_2)
 
-藷 = ElementSpec('藷').by_elements(艹_4, 諸_2)
+藷 = ElementSpec('藷').by_elements(艹, 諸_2)
 
 諾 = ElementSpec('諾').by_elements(言, 若)
 
 謀 = ElementSpec('謀').by_elements(言, 某)
 
-謁_1 = ElementSpec('謁', 1).by_elements(言, 曷_2)
+謁_1 = ElementSpec('謁', 1).by_elements(言, 曷)
 # 藹 靄
 
 謁_2 = ElementSpec('謁', 2).by_elements(言, 曷_3)
 
-藹 = ElementSpec('藹').by_elements(艹_4, 謁_1)
+藹 = ElementSpec('藹').by_elements(艹, 謁_1)
 
 謂 = ElementSpec('謂').by_elements(言, 胃)
 
 謄 = ElementSpec('謄').by_elements(朕_2, 言)
 
-謖 = ElementSpec('謖').by_elements(言, 田_2, 2, 夂)
+謖 = ElementSpec('謖').by_elements(言, 田, 2, 夂)
 
 講 = ElementSpec('講').by_elements(言, 冓)
 
@@ -13939,64 +13561,56 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 謫 = ElementSpec('謫').by_elements(言, 亠, 2, 冂, 古)
 
-謹 = ElementSpec('謹').by_elements(言, 艹_4, 口, 1, 三)
+謹 = ElementSpec('謹').by_elements(言, 艹, 口, 1, 三)
 
 譁 = ElementSpec('譁').by_elements(言, 華)
 
-譖 = ElementSpec('譖').by_elements(言, 旡_1, 旡_1, 日_9)
+譖 = ElementSpec('譖').by_elements(言, 旡_1, 旡_1, 日)
 
 譚 = ElementSpec('譚').by_elements(言, 覃)
 
 譛 = ElementSpec('譛').by_elements(言, 替)
 
-譜 = ElementSpec('譜').by_elements(言, 普_2)
+譜 = ElementSpec('譜').by_elements(言, 普)
 
 警 = ElementSpec('警').by_elements(敬, 言)
 
-護 = ElementSpec('護').by_elements(言, 艹_4, 隻)
+護 = ElementSpec('護').by_elements(言, 艹, 隻)
 
-讌 = ElementSpec('讌').by_elements(言, 燕_1)
+讌 = ElementSpec('讌').by_elements(言, 燕)
 
 讒 = ElementSpec('讒').by_elements(言, 𠂊, 口, 比, 兔_2)
 
 讖 = ElementSpec('讖').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6, 7): 言,
-    (8, 9, 10, 11): 从_2,
+    (8, 9, 10, 11): 从,
     (12, 22, 23, 24): 戈,
     (13, 14, 15, 16, 17, 18, 19, 20, 21): 韭,
 })
 
-讙 = ElementSpec('讙').by_elements(言, 艹_4, 口, 口, 隹)
+讙 = ElementSpec('讙').by_elements(言, 艹, 口, 口, 隹)
 
 谿 = ElementSpec('谿').by_elements(奚_2, 谷)
 
-豊_1 = ElementSpec('豊', 1).by_elements(曲_1, 豆)
-# 禮 體 鱧 軆 醴
+豊 = ElementSpec('豊', 1).by_elements(曲, 豆)
 
-豊_2 = ElementSpec('豊', 2).by_elements(曲_1, 豆)
-# 艶
+禮 = ElementSpec('禮').by_elements(示, 豊)
 
-豊_3 = ElementSpec('豊', 3).by_elements(曲_3, 豆)
+艶 = ElementSpec('艶').by_elements(豊, 色)
 
-禮 = ElementSpec('禮').by_elements(示, 豊_1)
-
-艶 = ElementSpec('艶').by_elements(豊_2, 色)
-
-豢 = ElementSpec('豢').by_elements(2, 二, 人_5, 豕)
+豢 = ElementSpec('豢').by_elements(2, 二, 人, 豕)
 
 豬 = ElementSpec('豬').by_elements(豕, 者_2)
-# 瀦
 
 瀦 = ElementSpec('瀦').by_elements(氵, 豬)
 
 豼 = ElementSpec('豼').by_elements(豸, 比)
 
-貊 = ElementSpec('貊').by_elements(豸, 百_3)
+貊 = ElementSpec('貊').by_elements(豸, 百)
 
 貌 = ElementSpec('貌').by_elements(豸, 皃)
-# 藐
 
-藐 = ElementSpec('藐').by_elements(艹_4, 貌)
+藐 = ElementSpec('藐').by_elements(艹, 貌)
 
 貔 = ElementSpec('貔').by_elements(豸, 3, 乂, 1, 比)
 
@@ -14008,46 +13622,46 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 赫 (赫 嚇)
 
 赦 = ElementSpec('赦').by_elements(赤, 攵)
-# 螫
 
 螫 = ElementSpec('螫').by_elements(赦, 虫)
 
 赧 = ElementSpec('赧').by_elements(赤, 3, 又)
 
 赫 = ElementSpec('赫').by_elements(赤, 赤)
-# 嚇
 
 嚇 = ElementSpec('嚇').by_elements(口, 赫)
 
 赭 = ElementSpec('赭').by_elements(赤, 者_2)
 
-走_1 = ElementSpec('走', 1).by_elements(土, 3)
+# 走_1 = ElementSpec('走', 1).by_elements(土, 3)
 # 赱
 
-走_2 = ElementSpec('走', 2).by_elements(土, 4)
+# TODO element
+走 = ElementSpec('走', 2).by_elements(土, 4)
 # 起 越 赳 趣 超 赴 趙 趁 趨 跿 徒
 
-徒 = ElementSpec('徒').by_elements(彳, 走_2)
+徒 = ElementSpec('徒').by_elements(彳, 走)
 
-赱 = ElementSpec('赱').by_elements(走_1)
+赱 = ElementSpec('赱').by_elements(土, 3)
+# 赱 = ElementSpec('赱').by_elements(走_1)
 
-赳 = ElementSpec('赳').by_elements(走_2, 3)
+赳 = ElementSpec('赳').by_elements(走, 3)
 
-赴 = ElementSpec('赴').by_elements(走_2, 卜)
+赴 = ElementSpec('赴').by_elements(走, 卜)
 
-起 = ElementSpec('起').by_elements(走_2, 己)
+起 = ElementSpec('起').by_elements(走, 己)
 
-趁 = ElementSpec('趁').by_elements(走_2, 2, 彡)
+趁 = ElementSpec('趁').by_elements(走, 2, 彡)
 
-超 = ElementSpec('超').by_elements(走_2, 召)
+超 = ElementSpec('超').by_elements(走, 召)
 
-越 = ElementSpec('越').by_elements(走_2, 戉)
+越 = ElementSpec('越').by_elements(走, 戉)
 
-趙 = ElementSpec('趙').by_elements(走_2, 肖_1)
+趙 = ElementSpec('趙').by_elements(走, 肖_1)
 
-趣 = ElementSpec('趣').by_elements(走_2, 取)
+趣 = ElementSpec('趣').by_elements(走, 取)
 
-趨 = ElementSpec('趨').by_elements(走_2, 芻)
+趨 = ElementSpec('趨').by_elements(走, 芻)
 
 趺 = ElementSpec('趺').by_elements(足, 夫)
 
@@ -14060,19 +13674,19 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 跌 = ElementSpec('跌').by_elements(足, 失)
 
-跚 = ElementSpec('跚').by_elements(足, 冊_3)
+跚 = ElementSpec('跚').by_elements(足, 冊)
 
 跨 = ElementSpec('跨').by_elements(足, 夸)
 
-跫 = ElementSpec('跫').by_elements(工_4, 凡, 足)
+跫 = ElementSpec('跫').by_elements(工, 凡, 足)
 
-跿 = ElementSpec('跿').by_elements(足, 走_2)
+跿 = ElementSpec('跿').by_elements(足, 走)
 
-踈 = ElementSpec('踈').by_elements(足, 束_1)
+踈 = ElementSpec('踈').by_elements(足, 束)
 
 踏 = ElementSpec('踏').by_elements(足, 沓)
 
-踝 = ElementSpec('踝').by_elements(足, 果_2)
+踝 = ElementSpec('踝').by_elements(足, 果)
 
 踞 = ElementSpec('踞').by_elements(足, 居)
 
@@ -14102,21 +13716,21 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 蹤 = ElementSpec('蹤').by_elements(足, 從)
 
-蹼 = ElementSpec('蹼').by_elements(足, 7, 三, 人_5)
+蹼 = ElementSpec('蹼').by_elements(足, 7, 三, 人)
 
 躇 = ElementSpec('躇').by_elements(足, 著_2)
 
-躊 = ElementSpec('躊').by_elements(足, 壽_1)
+躊 = ElementSpec('躊').by_elements(足, 壽)
 
 躪 = ElementSpec('躪').by_elements(足, 藺)
 
-躾 = ElementSpec('躾').by_elements(身, 美_1)
+躾 = ElementSpec('躾').by_elements(身, 美)
 
-軆 = ElementSpec('軆').by_elements(身, 豊_1)
+軆 = ElementSpec('軆').by_elements(身, 豊)
 
-軒 = ElementSpec('軒').by_elements(車, 干_4)
+軒 = ElementSpec('軒').by_elements(車, 干)
 
-軸 = ElementSpec('軸').by_elements(車, 由_1)
+軸 = ElementSpec('軸').by_elements(車, 由)
 
 軼 = ElementSpec('軼').by_elements(車, 失)
 
@@ -14126,11 +13740,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 輊 = ElementSpec('輊').by_elements(車, 至)
 
-輕 = ElementSpec('輕').by_elements(車, 一, 巛, 工_4)
+輕 = ElementSpec('輕').by_elements(車, 一, 巛, 工)
 
 輛 = ElementSpec('輛').by_elements(車, 兩)
 
-輜 = ElementSpec('輜').by_elements(車, 巛, 田_2)
+輜 = ElementSpec('輜').by_elements(車, 巛, 田)
 
 輦 = ElementSpec('輦').by_elements(夫, 夫, 車)
 
@@ -14151,7 +13765,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 轅 = ElementSpec('轅').by_elements(車, 袁)
 
 轉 = ElementSpec('轉').by_elements(車, 專)
-# 囀
 
 囀 = ElementSpec('囀').by_elements(口, 轉)
 
@@ -14159,38 +13772,34 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 轢 = ElementSpec('轢').by_elements(車, 樂)
 
-辛_1 = ElementSpec('辛', 1).by_elements(立_2, 十)
-# 辯
+辛 = ElementSpec('辛').by_strokes_to_elements({
+    (1, 2, 3, 4, 5): 立,
+    (5, 6, 7): 干,
+})
 
-辛_2 = ElementSpec('辛', 2).by_elements(立, 十)
-# 辮 辭 辞 梓 辯 瓣 辧 辨 辜 辣
-# 辟 (僻 嬖 檗 闢 癖 薜 譬 甓 擘 躄 辟 霹 壁 蘗 劈 避 璧 襞 臂)
-# 薛 (薛 蘖)
-# 宰 (滓 縡 宰)
+# 辛 = ElementSpec('辛', 2).by_elements(立, 十)
 
-宰 = ElementSpec('宰').by_elements(宀, 辛_2)
+宰 = ElementSpec('宰').by_elements(宀, 辛)
 # 縡 滓
 
-梓 = ElementSpec('梓').by_elements(木, 辛_2)
+梓 = ElementSpec('梓').by_elements(木, 辛)
 
 滓 = ElementSpec('滓').by_elements(氵, 宰)
 
-瓣 = ElementSpec('瓣').by_elements(辛_2, 瓜, 辛_2)
+瓣 = ElementSpec('瓣').by_elements(辛, 瓜, 辛)
 
 縡 = ElementSpec('縡').by_elements(糸, 宰)
 
-薛 = ElementSpec('薛').by_elements(艹_4, 6, 辛_2)
+薛 = ElementSpec('薛').by_elements(艹, 6, 辛)
 # 蘖
 
 蘖 = ElementSpec('蘖').by_elements(薛, 木)
 
-辜 = ElementSpec('辜').by_elements(古, 辛_2)
+辜 = ElementSpec('辜').by_elements(古, 辛)
 
-辞 = ElementSpec('辞').by_elements(舌, 辛_2)
+辞 = ElementSpec('辞').by_elements(舌, 辛)
 
-辟 = ElementSpec('辟').by_elements(尸, 口, 辛_2)
-# 霹 臂 甓 襞 嬖 璧 癖 躄 壁 闢 避 僻 擘 檗 譬 劈
-# 薜 (蘗 薜)
+辟 = ElementSpec('辟').by_elements(尸, 口, 辛)
 
 僻 = ElementSpec('僻').by_elements(亻, 辟)
 
@@ -14210,8 +13819,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 臂 = ElementSpec('臂').by_elements(辟, 月)
 
-薜 = ElementSpec('薜').by_elements(艹_4, 辟)
-# 蘗
+薜 = ElementSpec('薜').by_elements(艹, 辟)
 
 蘗 = ElementSpec('蘗').by_elements(薜, 木)
 
@@ -14221,20 +13829,19 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 躄 = ElementSpec('躄').by_elements(辟, 足)
 
-辣 = ElementSpec('辣').by_elements(辛_2, 束_1)
+辣 = ElementSpec('辣').by_elements(辛, 束)
 
-辧 = ElementSpec('辧').by_elements(辛_2, 刀, 辛_2)
+辧 = ElementSpec('辧').by_elements(辛, 刀, 辛)
 
-辨 = ElementSpec('辨').by_elements(辛_2, 刂, 辛_2)
+辨 = ElementSpec('辨').by_elements(辛, 刂, 辛)
 
-辭 = ElementSpec('辭').by_elements(x2ea4, マ, 禸_1, 又, 辛_2)
+辭 = ElementSpec('辭').by_elements(x2ea4, マ, 禸_1, 又, 辛)
 
-辮 = ElementSpec('辮').by_elements(辛_2, 糸, 辛_2)
+辮 = ElementSpec('辮').by_elements(辛, 糸, 辛)
 
-辯 = ElementSpec('辯').by_elements(辛_2, 言, 辛_1)
+辯 = ElementSpec('辯').by_elements(辛, 言, 辛)
 
-農 = ElementSpec('農').by_elements(曲_2, 辰)
-# 膿 儂 濃
+農 = ElementSpec('農').by_elements(曲, 辰)
 
 儂 = ElementSpec('儂').by_elements(亻, 農)
 
@@ -14248,24 +13855,24 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 迅 = ElementSpec('迅').by_elements(乙, 十, x2ecc)
 
-迪 = ElementSpec('迪').by_elements(由_1, x2ecc)
+迪 = ElementSpec('迪').by_elements(由, x2ecc)
 
-迫 = ElementSpec('迫').by_elements(白_1, x2ecc)
+迫 = ElementSpec('迫').by_elements(白, x2ecc)
 
 迭 = ElementSpec('迭').by_elements(失, x2ecc)
 
-迸 = ElementSpec('迸').by_elements(并_3, 辶)
+迸 = ElementSpec('迸').by_elements(并_1, 辶)
 
-送_1 = ElementSpec('送', 1).by_elements(关_1, 辶)
+送_1 = ElementSpec('送', 1).by_elements(关, 辶)
 # 鎹
 
-送_2 = ElementSpec('送', 2).by_elements(关_2, x2ecc)
+送_2 = ElementSpec('送', 2).by_elements(关, x2ecc)
 
 途 = ElementSpec('途').by_elements(余, x2ecc)
 
-逕 = ElementSpec('逕').by_elements(一, 巛, 工_4, 辶)
+逕 = ElementSpec('逕').by_elements(一, 巛, 工, 辶)
 
-速 = ElementSpec('速').by_elements(束_1, x2ecc)
+速 = ElementSpec('速').by_elements(束, x2ecc)
 
 週 = ElementSpec('週').by_elements(周, x2ecc)
 
@@ -14281,7 +13888,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 遍 = ElementSpec('遍').by_elements(扁, x2ecc)
 
-遏 = ElementSpec('遏').by_elements(曷_1, 辶)
+遏 = ElementSpec('遏').by_elements(曷, 辶)
 
 達_1 = ElementSpec('達', 1).by_elements(土, 羊, x2ecc)
 
@@ -14308,16 +13915,16 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 遶 = ElementSpec('遶').by_elements(堯, 辶)
 
-遷_1 = ElementSpec('遷', 1).by_elements(6, 大, 己_1, 辶)
+遷_1 = ElementSpec('遷', 1).by_elements(6, 大, 卩, 辶)
 # 韆
 
 遷_2 = ElementSpec('遷', 2).by_elements(6, 大, 己, x2ecc)
 
-遼 = ElementSpec('遼').by_elements(大, 2, 日_9, 小, x2ecc)
+遼 = ElementSpec('遼').by_elements(大, 2, 日, 小, x2ecc)
 
 避 = ElementSpec('避').by_elements(辟, x2ecc)
 
-邀 = ElementSpec('邀').by_elements(白_1, 放, 辶)
+邀 = ElementSpec('邀').by_elements(白, 放, 辶)
 
 邁 = ElementSpec('邁').by_elements(萬, 辶)
 
@@ -14328,19 +13935,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 都 = ElementSpec('都').by_elements(者_1, x2ecf)
 
 鄭 = ElementSpec('鄭').by_elements(奠, x2ecf)
-# 躑 擲
 
 擲 = ElementSpec('擲').by_elements(扌, 鄭)
 
 躑 = ElementSpec('躑').by_elements(足, 鄭)
 
-鄲 = ElementSpec('鄲').by_elements(單_2, x2ecf)
+鄲 = ElementSpec('鄲').by_elements(單, x2ecf)
 
 酔 = ElementSpec('酔').by_elements(酉, 卆)
 
 酣 = ElementSpec('酣').by_elements(酉, 甘)
 
-酵 = ElementSpec('酵').by_elements(酉, 孝_2)
+酵 = ElementSpec('酵').by_elements(酉, 孝)
 
 醉 = ElementSpec('醉').by_elements(酉, 卒)
 
@@ -14352,13 +13958,14 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 醒 = ElementSpec('醒').by_elements(酉, 星)
 
-醫 = ElementSpec('醫').by_elements(医_1, 殳, 酉)
+醫 = ElementSpec('醫').by_elements(医, 殳, 酉)
 
-醴 = ElementSpec('醴').by_elements(酉, 豊_1)
+醴 = ElementSpec('醴').by_elements(酉, 豊)
 
-釉 = ElementSpec('釉').by_elements(釆, 由_1)
+釉 = ElementSpec('釉').by_elements(釆, 由)
 
-里_1 = ElementSpec('里', 1).by_elements(日_9, 3)
+# XXX decomposition?
+# 里_1 = ElementSpec('里', 1).by_elements(日, 3)
 # 裡 俚 哩 埋 釐 裏 鯉 浬 狸 理
 # 童 (潼 鐘 憧 撞 瞳 童 幢 橦 艟 僮)
 # 廛 (廛 纏 躔)
@@ -14368,7 +13975,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 厘 (厘 竰 甅 糎)
 # 貍 (霾 貍)
 
-里_2 = ElementSpec('里', 2).by_stroke_count(7)
+里_1 = ElementSpec('里', 1).by_stroke_count(7)
 # 重 (勲 董 働 踵 腫 慟 薫 重 動 種 鍾 衝)
 
 里_3 = ElementSpec('里', 3).by_stroke_count(8)
@@ -14377,14 +13984,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 俚 = ElementSpec('俚').by_elements(亻, 里_1)
 
 厘 = ElementSpec('厘').by_elements(厂, 里_1)
-# 竰 糎 甅
 
 哩 = ElementSpec('哩').by_elements(口, 里_1)
 
 埋 = ElementSpec('埋').by_elements(土, 里_1)
 
 廛 = ElementSpec('廛').by_elements(广, 里_1, 儿, 土)
-# 躔 纏
 
 浬 = ElementSpec('浬').by_elements(氵, 里_1)
 
@@ -14393,13 +13998,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 甅 = ElementSpec('甅').by_elements(瓦, 厘)
 
 童 = ElementSpec('童').by_elements(立, 里_1)
-# 潼 幢 瞳 橦 撞 艟 鐘 僮 憧
 
 僮 = ElementSpec('僮').by_elements(亻, 童)
 
 幢 = ElementSpec('幢').by_elements(巾, 童)
 
-憧 = ElementSpec('憧').by_elements(忄, 童)
+憧 = ElementSpec('憧').by_elements(心_1, 童)
 
 撞 = ElementSpec('撞').by_elements(扌, 童)
 
@@ -14423,33 +14027,29 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 裡 = ElementSpec('裡').by_elements(衤, 里_1)
 
 貍 = ElementSpec('貍').by_elements(豸, 里_1)
-# 霾
 
 躔 = ElementSpec('躔').by_elements(足, 廛)
 
 重 = ElementSpec('重').by_strokes_to_elements({
     (1, 2, 7): 千,
-    (3, 4, 5, 6, 7, 8, 9): 里_2,
+    (3, 4, 5, 6, 7, 8, 9): 里_1,
 })
-# 踵 薫 種 鍾 衝 腫 董
-# 動 (慟 勲 動 働)
 
 動 = ElementSpec('動').by_elements(重, 力)
-# 働 慟 勲
 
 働 = ElementSpec('働').by_elements(亻, 動)
 
 勲 = ElementSpec('勲').by_elements(動, 灬)
 
-慟 = ElementSpec('慟').by_elements(忄, 動)
+慟 = ElementSpec('慟').by_elements(心_1, 動)
 
 種 = ElementSpec('種').by_elements(禾, 重)
 
 腫 = ElementSpec('腫').by_elements(月, 重)
 
-董 = ElementSpec('董').by_elements(艹_4, 重)
+董 = ElementSpec('董').by_elements(艹, 重)
 
-薫 = ElementSpec('薫').by_elements(艹_4, 重, 灬)
+薫 = ElementSpec('薫').by_elements(艹, 重, 灬)
 
 衝 = ElementSpec('衝').by_strokes_to_elements({
     (1, 2, 3, 13, 14, 15): 行,
@@ -14459,12 +14059,10 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 踵 = ElementSpec('踵').by_elements(足, 重)
 
 野 = ElementSpec('野').by_elements(里_1, 予)
-# 墅
 
 墅 = ElementSpec('墅').by_elements(野, 土)
 
 量 = ElementSpec('量').by_elements(旦, 里_1)
-# 糧
 
 糧 = ElementSpec('糧').by_elements(米, 量)
 
@@ -14476,7 +14074,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鈷 = ElementSpec('鈷').by_elements(金, 古)
 
-鈿 = ElementSpec('鈿').by_elements(金, 田_2)
+鈿 = ElementSpec('鈿').by_elements(金, 田)
 
 鉄 = ElementSpec('鉄').by_elements(金, 失)
 
@@ -14484,13 +14082,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鉗 = ElementSpec('鉗').by_elements(金, 甘)
 
-鉦 = ElementSpec('鉦').by_elements(金, 正_4)
+鉦 = ElementSpec('鉦').by_elements(金, 正)
 
 銕 = ElementSpec('銕').by_elements(金, 夷)
 
 銛 = ElementSpec('銛').by_elements(金, 舌)
 
-鋏 = ElementSpec('鋏').by_elements(金, 夾_3)
+鋏 = ElementSpec('鋏').by_elements(金, 夾_1)
 
 鋩 = ElementSpec('鋩').by_elements(金, 芒)
 
@@ -14498,7 +14096,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 錘 = ElementSpec('錘').by_elements(金, 垂)
 
-錙 = ElementSpec('錙').by_elements(金, 巛, 田_2)
+錙 = ElementSpec('錙').by_elements(金, 巛, 田)
 
 錠 = ElementSpec('錠').by_elements(金, 定)
 
@@ -14508,7 +14106,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 錫 = ElementSpec('錫').by_elements(金, 易)
 
-錬 = ElementSpec('錬').by_elements(金, 東_1)
+錬 = ElementSpec('錬').by_elements(金, 東)
 
 錮 = ElementSpec('錮').by_elements(金, 固)
 
@@ -14520,7 +14118,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鍍 = ElementSpec('鍍').by_elements(金, 度)
 
-鍖 = ElementSpec('鍖').by_elements(金, 甚_1)
+鍖 = ElementSpec('鍖').by_elements(金, 甚)
 
 鍮 = ElementSpec('鍮').by_elements(金, 兪)
 
@@ -14542,7 +14140,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鐇 = ElementSpec('鐇').by_elements(金, 番)
 
-鐐 = ElementSpec('鐐').by_elements(金, 大, 2, 日_9, 小)
+鐐 = ElementSpec('鐐').by_elements(金, 大, 2, 日, 小)
 
 鐔 = ElementSpec('鐔').by_elements(金, 覃)
 
@@ -14550,41 +14148,37 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鐺 = ElementSpec('鐺').by_elements(金, 當)
 
-鑄 = ElementSpec('鑄').by_elements(金, 壽_1)
+鑄 = ElementSpec('鑄').by_elements(金, 壽)
 
 鑠 = ElementSpec('鑠').by_elements(金, 樂)
 
 鑢 = ElementSpec('鑢').by_elements(金, 慮)
 
-鑵 = ElementSpec('鑵').by_elements(金, 艹_4, 口, 口, 隹)
+鑵 = ElementSpec('鑵').by_elements(金, 艹, 口, 口, 隹)
 
 鑿 = ElementSpec('鑿').by_elements(7, 千, 臼, 殳, 金)
 
-閃 = ElementSpec('閃').by_elements(門, 人_5)
+閃 = ElementSpec('閃').by_elements(門, 人)
 
-開 = ElementSpec('開').by_elements(門, 干_4, 干_2)
+開 = ElementSpec('開').by_elements(門, 开)
 
-間_1 = ElementSpec('間', 1).by_elements(門, 日_6)
-# 嫺 繝 燗
+間 = ElementSpec('間').by_elements(門, 日)
 
-間_2 = ElementSpec('間', 2).by_elements(門, 日_9)
-# 墹 澗 簡
+墹 = ElementSpec('墹').by_elements(土, 間)
 
-墹 = ElementSpec('墹').by_elements(土, 間_2)
+嫺 = ElementSpec('嫺').by_elements(女, 間)
 
-嫺 = ElementSpec('嫺').by_elements(女, 間_1)
+澗 = ElementSpec('澗').by_elements(氵, 間)
 
-澗 = ElementSpec('澗').by_elements(氵, 間_2)
+燗 = ElementSpec('燗').by_elements(火, 間)
 
-燗 = ElementSpec('燗').by_elements(火, 間_1)
+簡 = ElementSpec('簡').by_elements(竹, 間)
 
-簡 = ElementSpec('簡').by_elements(竹, 間_2)
+繝 = ElementSpec('繝').by_elements(糸, 間)
 
-繝 = ElementSpec('繝').by_elements(糸, 間_1)
+閘 = ElementSpec('閘').by_elements(門, 甲)
 
-閘 = ElementSpec('閘').by_elements(門, 甲_3)
-
-関 = ElementSpec('関').by_elements(門, 关_2)
+関 = ElementSpec('関').by_elements(門, 关)
 
 閤 = ElementSpec('閤').by_elements(門, 合)
 
@@ -14594,35 +14188,31 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 闊 = ElementSpec('闊').by_elements(門, 活)
 
-闌_1 = ElementSpec('闌', 1).by_elements(門, 東_3)
-# 蘭
+闌_1 = ElementSpec('闌', 1).by_elements(門, 東)
+# 欄 蘭
 
-闌_2 = ElementSpec('闌', 2).by_elements(門, 柬_1)
+闌_2 = ElementSpec('闌', 2).by_elements(門, 柬)
 # 瀾 襴 爛
 
-闌_3 = ElementSpec('闌', 3).by_elements(門, 柬_2)
-# 欄
-
-欄 = ElementSpec('欄').by_elements(木, 闌_3)
+欄 = ElementSpec('欄').by_elements(木, 闌_1)
 
 瀾 = ElementSpec('瀾').by_elements(氵, 闌_2)
 
 爛 = ElementSpec('爛').by_elements(火, 闌_2)
 
-蘭 = ElementSpec('蘭').by_elements(艹_4, 闌_1)
+蘭 = ElementSpec('蘭').by_elements(艹, 闌_1)
 
 襴 = ElementSpec('襴').by_elements(衤, 闌_2)
 
 闍 = ElementSpec('闍').by_elements(門, 者_2)
 
-闡 = ElementSpec('闡').by_elements(門, 單_2)
+闡 = ElementSpec('闡').by_elements(門, 單)
 
 闢 = ElementSpec('闢').by_elements(門, 辟)
 
 闥 = ElementSpec('闥').by_elements(門, 達_2)
 
 阜 = ElementSpec('阜').by_elements(𠂤, 十)
-# 埠
 
 埠 = ElementSpec('埠').by_elements(土, 阜)
 
@@ -14632,34 +14222,33 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 陋 = ElementSpec('陋').by_elements(x2ed6, 丙, 1)
 
-陌 = ElementSpec('陌').by_elements(x2ed6, 百_3)
+陌 = ElementSpec('陌').by_elements(x2ed6, 百)
 
 陛 = ElementSpec('陛').by_elements(x2ed6, 比, 土)
 
-陜 = ElementSpec('陜').by_elements(x2ed6, 夾_3)
+陜 = ElementSpec('陜').by_elements(x2ed6, 夾_1)
 
 陝 = ElementSpec('陝').by_elements(x2ed6, 大, 入, 入)
 
-陞 = ElementSpec('陞').by_elements(x2ed6, 升_2, 土)
+陞 = ElementSpec('陞').by_elements(x2ed6, 升, 土)
 
 除 = ElementSpec('除').by_elements(x2ed6, 余)
 
 陥 = ElementSpec('陥').by_elements(x2ed6, 𠂊, 旧)
 
 陰 = ElementSpec('陰').by_elements(x2ed6, 今, 云)
-# 蔭
 
-蔭 = ElementSpec('蔭').by_elements(艹_4, 陰)
+蔭 = ElementSpec('蔭').by_elements(艹, 陰)
 
 陲 = ElementSpec('陲').by_elements(x2ed6, 垂)
 
-陳 = ElementSpec('陳').by_elements(x2ed6, 東_1)
+陳 = ElementSpec('陳').by_elements(x2ed6, 東)
 
 陵 = ElementSpec('陵').by_elements(x2ed6, 土, 儿, 夂)
 
 陸 = ElementSpec('陸').by_elements(x2ed6, 土, 儿, 土)
 
-険 = ElementSpec('険').by_elements(x2ed6, 人_5, 一, 口, 人_5)
+険 = ElementSpec('険').by_elements(x2ed6, 𠆢, 一, 口, 人)
 
 陽 = ElementSpec('陽').by_elements(x2ed6, 昜)
 
@@ -14668,7 +14257,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 隈 = ElementSpec('隈').by_elements(x2ed6, 畏)
 
 隋 = ElementSpec('隋').by_elements(x2ed6, 左, 月)
-# 橢 墮 隨
 
 墮 = ElementSpec('墮').by_elements(隋, 土)
 
@@ -14676,66 +14264,58 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 階 = ElementSpec('階').by_elements(x2ed6, 皆)
 
-隙 = ElementSpec('隙').by_elements(x2ed6, 小, 日_9, 小)
+隙 = ElementSpec('隙').by_elements(x2ed6, 小, 日, 小)
 
 隨 = ElementSpec('隨').by_elements(隋, 辶)
 
 險 = ElementSpec('險').by_elements(x2ed6, 僉)
 
-隰 = ElementSpec('隰').by_elements(x2ed6, 日_9, 幺, 幺, 灬)
+隰 = ElementSpec('隰').by_elements(x2ed6, 日, 幺, 幺, 灬)
 
-隱 = ElementSpec('隱').by_elements(x2ed6, x2ea4, 工_4, x2e95, 心)
+隱 = ElementSpec('隱').by_elements(x2ed6, x2ea4, 工, x2e95, 心)
 
 隷 = ElementSpec('隷').by_elements(士, 示, 隶)
 
 隼 = ElementSpec('隼').by_elements(隹, 十)
-# 準 凖
 
 凖 = ElementSpec('凖').by_elements(冫, 隼)
 
 準 = ElementSpec('準').by_elements(氵, 隼)
 
 雉 = ElementSpec('雉').by_elements(矢, 隹)
-# 薙
 
-薙 = ElementSpec('薙').by_elements(艹_4, 雉)
+薙 = ElementSpec('薙').by_elements(艹, 雉)
 
 雌 = ElementSpec('雌').by_elements(此_2, 隹)
 
 雕 = ElementSpec('雕').by_elements(周, 隹)
 
-雜 = ElementSpec('雜').by_elements(亠, 从_2, 木, 隹)
-# 囃
+雜 = ElementSpec('雜').by_elements(亠, 从, 木, 隹)
 
 囃 = ElementSpec('囃').by_elements(口, 雜)
 
-難_1 = ElementSpec('難', 1).by_elements(廿_6, 口, 夫, 隹)
-# 攤 儺
+難_1 = ElementSpec('難', 2).by_elements(廿, 口, 夫, 隹)
+# 攤 儺 灘
 
-難_2 = ElementSpec('難', 2).by_elements(艹_4, 口, 夫, 隹)
-
-難_3 = ElementSpec('難', 3).by_elements(艹_5, 口, 夫, 隹)
-# 灘
+難_2 = ElementSpec('難', 1).by_elements(艹, 口, 夫, 隹)
 
 儺 = ElementSpec('儺').by_elements(亻, 難_1)
 
 攤 = ElementSpec('攤').by_elements(扌, 難_1)
 
-灘 = ElementSpec('灘').by_elements(氵, 難_3)
+灘 = ElementSpec('灘').by_elements(氵, 難_1)
 
 零 = ElementSpec('零').by_elements(雨, 令_1)
-# 澪
 
 澪 = ElementSpec('澪').by_elements(氵, 零)
 
-雷 = ElementSpec('雷').by_elements(雨, 田_2)
-# 擂 蕾
+雷 = ElementSpec('雷').by_elements(雨, 田)
 
 擂 = ElementSpec('擂').by_elements(扌, 雷)
 
-蕾 = ElementSpec('蕾').by_elements(艹_4, 雷)
+蕾 = ElementSpec('蕾').by_elements(艹, 雷)
 
-電 = ElementSpec('電').by_elements(雨, 日_9, 1)
+電 = ElementSpec('電').by_elements(雨, 日, 1)
 
 霙 = ElementSpec('霙').by_elements(雨, 英)
 
@@ -14747,146 +14327,130 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 靄 = ElementSpec('靄').by_elements(雨, 謁_1)
 
-靈 = ElementSpec('靈').by_elements(雨, 口, 口, 口, 巫_4)
+靈 = ElementSpec('靈').by_elements(雨, 口, 口, 口, 巫)
 
-靨 = ElementSpec('靨').by_elements(厭_1, 面)
+靨 = ElementSpec('靨').by_elements(厭, 面)
 
-革_1 = ElementSpec('革', 1).by_elements(廿_2, 口, 2)
+革 = ElementSpec('革', 1).by_elements(廿, 口, 2)
 
-革_2 = ElementSpec('革', 2).by_elements(廿_2, 5)
-# 靺 鞆 鞍 鞄 鞜 鞘 靼 羇 靴 覊 韆 鞭 鞏 覇 鞫 靫 鞐 鞠 鞁 韃 靭 鞅 勒 鞴 霸 鞨 鞦 靱 鞋 鞣 靹 鞳 羈 韈
+勒 = ElementSpec('勒').by_elements(革, 力)
 
-勒 = ElementSpec('勒').by_elements(革_2, 力)
+覇 = ElementSpec('覇').by_elements(6, 革, 月)
 
-覇 = ElementSpec('覇').by_elements(6, 革_2, 月)
+覊 = ElementSpec('覊').by_elements(6, 革, 馬)
 
-覊 = ElementSpec('覊').by_elements(6, 革_2, 馬)
+霸 = ElementSpec('霸').by_elements(雨, 革, 月)
 
-霸 = ElementSpec('霸').by_elements(雨, 革_2, 月)
+靫 = ElementSpec('靫').by_elements(革, 叉)
 
-靫 = ElementSpec('靫').by_elements(革_2, 叉)
+靭 = ElementSpec('靭').by_elements(革, 刃)
 
-靭 = ElementSpec('靭').by_elements(革_2, 刃)
+靱 = ElementSpec('靱').by_elements(革, 刄)
 
-靱 = ElementSpec('靱').by_elements(革_2, 刄)
+靴 = ElementSpec('靴').by_elements(革, 化)
 
-靴 = ElementSpec('靴').by_elements(革_2, 化)
+靹 = ElementSpec('靹').by_elements(革, 内_3)
 
-靹 = ElementSpec('靹').by_elements(革_2, 内_3)
+靺 = ElementSpec('靺').by_elements(革, 末)
 
-靺 = ElementSpec('靺').by_elements(革_2, 末)
+靼 = ElementSpec('靼').by_elements(革, 旦)
 
-靼 = ElementSpec('靼').by_elements(革_2, 旦)
+鞁 = ElementSpec('鞁').by_elements(革, 皮)
 
-鞁 = ElementSpec('鞁').by_elements(革_2, 皮)
+鞄 = ElementSpec('鞄').by_elements(革, 包_1)
 
-鞄 = ElementSpec('鞄').by_elements(革_2, 包_1)
+鞅 = ElementSpec('鞅').by_elements(革, 央)
 
-鞅 = ElementSpec('鞅').by_elements(革_2, 央)
+鞆 = ElementSpec('鞆').by_elements(革, 丙)
 
-鞆 = ElementSpec('鞆').by_elements(革_2, 丙)
+鞋 = ElementSpec('鞋').by_elements(革, 圭)
 
-鞋 = ElementSpec('鞋').by_elements(革_2, 圭)
+鞍 = ElementSpec('鞍').by_elements(革, 安)
 
-鞍 = ElementSpec('鞍').by_elements(革_2, 安)
+鞏 = ElementSpec('鞏').by_elements(工, 凡, 革)
 
-鞏 = ElementSpec('鞏').by_elements(工_4, 凡, 革_2)
+鞐 = ElementSpec('鞐').by_elements(革, 上, 下)
 
-鞐 = ElementSpec('鞐').by_elements(革_2, 上, 下)
+鞘 = ElementSpec('鞘').by_elements(革, 肖_1)
 
-鞘 = ElementSpec('鞘').by_elements(革_2, 肖_1)
+鞜 = ElementSpec('鞜').by_elements(革, 沓)
 
-鞜 = ElementSpec('鞜').by_elements(革_2, 沓)
+鞠 = ElementSpec('鞠').by_elements(革, 勹, 米)
 
-鞠 = ElementSpec('鞠').by_elements(革_2, 勹, 米)
+鞣 = ElementSpec('鞣').by_elements(革, 柔)
 
-鞣 = ElementSpec('鞣').by_elements(革_2, 柔)
+鞦 = ElementSpec('鞦').by_elements(革, 秋)
 
-鞦 = ElementSpec('鞦').by_elements(革_2, 秋)
+鞨 = ElementSpec('鞨').by_elements(革, 曷)
 
-鞨 = ElementSpec('鞨').by_elements(革_2, 曷_1)
+鞫 = ElementSpec('鞫').by_elements(革, 勹, 言)
 
-鞫 = ElementSpec('鞫').by_elements(革_2, 勹, 言)
+鞭 = ElementSpec('鞭').by_elements(革, 便)
 
-鞭 = ElementSpec('鞭').by_elements(革_2, 便)
+鞳 = ElementSpec('鞳').by_elements(革, 荅)
 
-鞳 = ElementSpec('鞳').by_elements(革_2, 荅)
+鞴 = ElementSpec('鞴').by_elements(革, 艹, 厂, 用)
 
-鞴 = ElementSpec('鞴').by_elements(革_2, 艹_4, 厂, 用)
+韃 = ElementSpec('韃').by_elements(革, 達_2)
 
-韃 = ElementSpec('韃').by_elements(革_2, 達_2)
-
-韆 = ElementSpec('韆').by_elements(革_2, 遷_1)
+韆 = ElementSpec('韆').by_elements(革, 遷_1)
 
 韓 = ElementSpec('韓').by_elements(十, 早, 韋_2)
 
-韮 = ElementSpec('韮').by_elements(艹_4, 韭)
+韮 = ElementSpec('韮').by_elements(艹, 韭)
 
-音_1 = ElementSpec('音', 1).by_elements(立, 日_9)
-# 闇 黯 韵 響 暗 章 韶 韻 諳
-# 竟 (竸 鏡 竟 境)
-# 意 (意 億 檍 臆 噫 憶)
-
-音_2 = ElementSpec('音', 2).by_elements(立, 日_9)
-# 幟 熾
-# 戠 (織 戠 職 識)
+音 = ElementSpec('音').by_elements(立, 日)
 
 幟 = ElementSpec('幟').by_strokes_to_elements({
     (1, 2, 3): 巾,
-    (4, 5, 6, 7, 8, 9, 10, 11, 12): 音_2,
+    (4, 5, 6, 7, 8, 9, 10, 11, 12): 音,
     (8, 13, 14, 15): 戈,
 })
 
-意 = ElementSpec('意').by_elements(音_1, 心)
-# 億 憶 檍 臆 噫
+意 = ElementSpec('意').by_elements(音, 心)
 
 億 = ElementSpec('億').by_elements(亻, 意)
 
 噫 = ElementSpec('噫').by_elements(口, 意)
 
-憶 = ElementSpec('憶').by_elements(忄, 意)
+憶 = ElementSpec('憶').by_elements(心_1, 意)
 
 戠 = ElementSpec('戠').by_strokes_to_elements({
-    (1, 2, 3, 4, 5, 6, 7, 8, 9): 音_2,
+    (1, 2, 3, 4, 5, 6, 7, 8, 9): 音,
     (5, 10, 11, 12): 戈,
 })
-# 織 識 職
 
-暗 = ElementSpec('暗').by_elements(日_9, 音_1)
+暗 = ElementSpec('暗').by_elements(日, 音)
 
 檍 = ElementSpec('檍').by_elements(木, 意)
 
 熾 = ElementSpec('熾').by_strokes_to_elements({
     (1, 2, 3, 4): 火,
-    (5, 6, 7, 8, 9, 10, 11, 12, 13): 音_2,
+    (5, 6, 7, 8, 9, 10, 11, 12, 13): 音,
     (9, 14, 15, 16): 戈,
 })
 
-竟_1 = ElementSpec('竟', 1).by_elements(音_1, 儿)
-# 竸
+竟 = ElementSpec('竟').by_elements(音, 儿)
 
-竟_2 = ElementSpec('竟', 2).by_elements(音_1, 儿)
-# 鏡 境
+境 = ElementSpec('境').by_elements(土, 竟)
 
-境 = ElementSpec('境').by_elements(土, 竟_2)
-
-章_1 = ElementSpec('章', 1).by_elements(立, 早)
+# 章 = ElementSpec('章', 1).by_elements(立, 早)
 # 彰 樟 瘴 嶂 鱆 璋 障
 
-章_2 = ElementSpec('章', 2).by_strokes_to_elements({
-    (1, 2, 3, 4, 5, 6, 7, 8, 9): 音_1,
+章 = ElementSpec('章').by_strokes_to_elements({
+    (1, 2, 3, 4, 5, 6, 7, 8, 9): 音,
     (6, 7, 8, 9, 10, 11): 早,
 })
 
-嶂 = ElementSpec('嶂').by_elements(山, 章_1)
+嶂 = ElementSpec('嶂').by_elements(山, 章)
 
-彰 = ElementSpec('彰').by_elements(章_1, 彡)
+彰 = ElementSpec('彰').by_elements(章, 彡)
 
-樟 = ElementSpec('樟').by_elements(木, 章_1)
+樟 = ElementSpec('樟').by_elements(木, 章)
 
-瘴 = ElementSpec('瘴').by_elements(疒, 章_1)
+瘴 = ElementSpec('瘴').by_elements(疒, 章)
 
-竸 = ElementSpec('竸').by_elements(竟_1, 竟_1)
+竸 = ElementSpec('竸').by_elements(竟, 竟)
 
 織 = ElementSpec('織').by_elements(糸, 戠)
 
@@ -14894,34 +14458,32 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 臆 = ElementSpec('臆').by_elements(月, 意)
 
-諳 = ElementSpec('諳').by_elements(言, 音_1)
+諳 = ElementSpec('諳').by_elements(言, 音)
 
 識 = ElementSpec('識').by_elements(言, 戠)
 
-鏡 = ElementSpec('鏡').by_elements(金, 竟_2)
+鏡 = ElementSpec('鏡').by_elements(金, 竟)
 
-闇 = ElementSpec('闇').by_elements(門, 音_1)
+闇 = ElementSpec('闇').by_elements(門, 音)
 
-障 = ElementSpec('障').by_elements(x2ed6, 章_1)
+障 = ElementSpec('障').by_elements(x2ed6, 章)
 
-韵 = ElementSpec('韵').by_elements(音_1, 匀)
+韵 = ElementSpec('韵').by_elements(音, 匀)
 
-韶 = ElementSpec('韶').by_elements(音_1, 召)
+韶 = ElementSpec('韶').by_elements(音, 召)
 
-響 = ElementSpec('響').by_elements(郷_1, 音_1)
+響 = ElementSpec('響').by_elements(郷_1, 音)
 
-飆 = ElementSpec('飆').by_elements(犬_2, 犬_2, 犬_2, 風)
+飆 = ElementSpec('飆').by_elements(犬, 犬, 犬, 風)
 
-飛_1 = ElementSpec('飛', 1).by_elements(3, 升_1, 2)
+飛 = ElementSpec('飛').by_elements(3, 升, 2)
 
-飛_2 = ElementSpec('飛', 2).by_elements(3, 升_3, 2)
-# 飜
+飜 = ElementSpec('飜').by_elements(番, 飛)
 
-飜 = ElementSpec('飜').by_elements(番, 飛_2)
-
+# XXX eat
 飫 = ElementSpec('飫').by_elements(9, 夭)
 
-餅 = ElementSpec('餅').by_elements(9, 并_3)
+餅 = ElementSpec('餅').by_elements(9, 并_1)
 
 餘 = ElementSpec('餘').by_elements(9, 余)
 
@@ -14933,14 +14495,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 餾 = ElementSpec('餾').by_elements(9, 留)
 
-饉 = ElementSpec('饉').by_elements(9, 廿_6, 4, 三)
+饉 = ElementSpec('饉').by_elements(9, 廿, 4, 三)
 
 饐 = ElementSpec('饐').by_elements(9, 壹)
 
 饒 = ElementSpec('饒').by_elements(9, 堯)
 
-香 = ElementSpec('香').by_elements(禾, 日_9)
-# 馨 馥
+香 = ElementSpec('香').by_elements(禾, 日)
 
 馥 = ElementSpec('馥').by_elements(香, 复)
 
@@ -14950,25 +14511,25 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 駝 = ElementSpec('駝').by_elements(馬, 它)
 
-駢 = ElementSpec('駢').by_elements(馬, 并_3)
+駢 = ElementSpec('駢').by_elements(馬, 并_1)
 
 駭 = ElementSpec('駭').by_elements(馬, 亥)
 
 駻 = ElementSpec('駻').by_elements(馬, 旱)
 
-騁 = ElementSpec('騁').by_elements(馬, 由_1, 2)
+騁 = ElementSpec('騁').by_elements(馬, 由, 2)
 
 騎 = ElementSpec('騎').by_elements(馬, 奇)
 
 騏 = ElementSpec('騏').by_elements(馬, 其)
 
-験 = ElementSpec('験').by_elements(馬, 人_5, 一, 口, 人_5)
+験 = ElementSpec('験').by_elements(馬, 𠆢, 一, 口, 人)
 
 騙 = ElementSpec('騙').by_elements(馬, 扁)
 
-騨 = ElementSpec('騨').by_elements(馬, 単_1)
+騨 = ElementSpec('騨').by_elements(馬, 単)
 
-騰 = ElementSpec('騰').by_elements(月, 2, 二, 人_5, 馬)
+騰 = ElementSpec('騰').by_elements(月, 2, 二, 人, 馬)
 
 騾 = ElementSpec('騾').by_elements(馬, 累)
 
@@ -14986,9 +14547,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 驥 = ElementSpec('驥').by_elements(馬, 冀)
 
-驩 = ElementSpec('驩').by_elements(馬, 艹_4, 口, 口, 隹)
+驩 = ElementSpec('驩').by_elements(馬, 艹, 口, 口, 隹)
 
-骭 = ElementSpec('骭').by_elements(骨, 干_4)
+骭 = ElementSpec('骭').by_elements(骨, 干)
 
 骸 = ElementSpec('骸').by_elements(骨, 亥)
 
@@ -14996,92 +14557,82 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 髓 = ElementSpec('髓').by_elements(骨, 左, 月, 辶)
 
-體 = ElementSpec('體').by_elements(骨, 豊_1)
+體 = ElementSpec('體').by_elements(骨, 豊)
 
 髭 = ElementSpec('髭').by_elements(髟, 此_2)
 
 髮 = ElementSpec('髮').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6, 7, 8, 9, 10): 髟,
-    (11, 12, 14, 15): 犬_2,
+    (11, 12, 14, 15): 犬,
 }, (13,))
 
 髯 = ElementSpec('髯').by_elements(髟, 冉)
 
-髷 = ElementSpec('髷').by_elements(髟, 曲_4)
+髷 = ElementSpec('髷').by_elements(髟, 曲)
 
 髻 = ElementSpec('髻').by_elements(髟, 吉)
 
-鬯 = ElementSpec('鬯').by_elements(6, 凵, 匕_3)
+鬯 = ElementSpec('鬯').by_elements(6, 凵, 匕)
 # 鬱
 
 鬱 = ElementSpec('鬱').by_elements(缶, 木, 木, 冖, 鬯, 彡)
 
-鬼_1 = ElementSpec('鬼', 1).by_elements(1, 田_2, 儿, 厶)
-# 蒐
+鬼 = ElementSpec('鬼').by_elements(1, 田, 儿, 厶)
 
-鬼_2 = ElementSpec('鬼', 2).by_elements(1, 田_2, 儿, 厶)
-# 餽 愧 魔 隗 魅 嵬 魍 塊 醜 傀 魁 瑰 魑 魘 魃 魂 魎 槐 魄
-# 魏 (魏 巍)
+傀 = ElementSpec('傀').by_elements(亻, 鬼)
 
-傀 = ElementSpec('傀').by_elements(亻, 鬼_2)
+塊 = ElementSpec('塊').by_elements(土, 鬼)
 
-塊 = ElementSpec('塊').by_elements(土, 鬼_2)
+嵬 = ElementSpec('嵬').by_elements(山, 鬼)
 
-嵬 = ElementSpec('嵬').by_elements(山, 鬼_2)
+愧 = ElementSpec('愧').by_elements(心_1, 鬼)
 
-愧 = ElementSpec('愧').by_elements(忄, 鬼_2)
+槐 = ElementSpec('槐').by_elements(木, 鬼)
 
-槐 = ElementSpec('槐').by_elements(木, 鬼_2)
+蒐 = ElementSpec('蒐').by_elements(艹, 鬼)
 
-蒐 = ElementSpec('蒐').by_elements(艹_4, 鬼_1)
+醜 = ElementSpec('醜').by_elements(酉, 鬼)
 
-醜 = ElementSpec('醜').by_elements(酉, 鬼_2)
+隗 = ElementSpec('隗').by_elements(x2ed6, 鬼)
 
-隗 = ElementSpec('隗').by_elements(x2ed6, 鬼_2)
+餽 = ElementSpec('餽').by_elements(9, 鬼)
 
-餽 = ElementSpec('餽').by_elements(9, 鬼_2)
+魁 = ElementSpec('魁').by_elements(鬼, 斗)
 
-魁 = ElementSpec('魁').by_elements(鬼_2, 斗)
-
-魂 = ElementSpec('魂').by_elements(云, 鬼_2)
+魂 = ElementSpec('魂').by_elements(云, 鬼)
 
 魃 = ElementSpec('魃').by_strokes_to_elements({
-    (1, 2, 3, 4, 5, 6, 7, 8, 9, 10): 鬼_2,
-    (11, 12, 14, 15): 犬_2,
+    (1, 2, 3, 4, 5, 6, 7, 8, 9, 10): 鬼,
+    (11, 12, 14, 15): 犬,
 }, (13,))
 
-魄 = ElementSpec('魄').by_elements(白_1, 鬼_2)
+魄 = ElementSpec('魄').by_elements(白, 鬼)
 
-魅 = ElementSpec('魅').by_elements(鬼_2, 未)
+魅 = ElementSpec('魅').by_elements(鬼, 未)
 
-魎 = ElementSpec('魎').by_elements(鬼_2, 兩)
+魎 = ElementSpec('魎').by_elements(鬼, 兩)
 
-魏 = ElementSpec('魏').by_elements(委, 鬼_2)
-# 巍
+魏 = ElementSpec('魏').by_elements(委, 鬼)
 
 巍 = ElementSpec('巍').by_elements(山, 魏)
 
-魑 = ElementSpec('魑').by_elements(鬼_2, 离_2)
+魑 = ElementSpec('魑').by_elements(鬼, 离_2)
 
-魔 = ElementSpec('魔').by_elements(麻, 鬼_2)
+魔 = ElementSpec('魔').by_elements(麻, 鬼)
 
-魘 = ElementSpec('魘').by_elements(厭_2, 鬼_2)
+魘 = ElementSpec('魘').by_elements(厭, 鬼)
 
-魚 = ElementSpec('魚').by_elements(𠂊, 田_2, 灬)
-# 鯱 鮹 鰕 鮃 鯆 鮎 鯖 鯏 鯡 鯊 鮖 鮪 鱚 鯔 鯰 鰭 鰮 鯉 鮗 鰻 鰤 鱗 蘓 鯵 鯨 鰓 鱠 鯣 鯑 鱆 鰈 鰐 鰺 鯤 鰍 鰄 鮒 鱶 鮭 鮑 鯢 鰆 鰹 鮟 鮓 鰊 鯲 薊 鰔 鰡 鰉 魴 鮠 鰥 鮫 鰛 鰰 鯛 鰯 鱧 鰌 蘇 鱇 鰒 鱒 鮨 鰲 鯒 漁 鱸 鯀 鮴 鰾 鱈
-# 鮮 (蘚 癬 鮮)
-# 魯 (艪 櫓 魯)
+魚 = ElementSpec('魚').by_elements(𠂊, 田, 灬)
 
 漁 = ElementSpec('漁').by_elements(氵, 魚)
 
-薊 = ElementSpec('薊').by_elements(艹_4, 魚, 刂)
+薊 = ElementSpec('薊').by_elements(艹, 魚, 刂)
 
-蘇 = ElementSpec('蘇').by_elements(艹_4, 魚, 禾)
+蘇 = ElementSpec('蘇').by_elements(艹, 魚, 禾)
 
-蘓 = ElementSpec('蘓').by_elements(艹_4, 禾, 魚)
+蘓 = ElementSpec('蘓').by_elements(艹, 禾, 魚)
 
-魯 = ElementSpec('魯').by_elements(魚, 日_9)
-# 艪 櫓
+魯 = ElementSpec('魯').by_elements(魚, 日)
 
 櫓 = ElementSpec('櫓').by_elements(木, 魯)
 
@@ -15089,7 +14640,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 魴 = ElementSpec('魴').by_elements(魚, 方)
 
-鮃 = ElementSpec('鮃').by_elements(魚, 平_2)
+鮃 = ElementSpec('鮃').by_elements(魚, 平)
 
 鮎 = ElementSpec('鮎').by_elements(魚, 占)
 
@@ -15116,11 +14667,10 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 鮭 = ElementSpec('鮭').by_elements(魚, 圭)
 
 鮮 = ElementSpec('鮮').by_elements(魚, 羊)
-# 蘚 癬
 
 癬 = ElementSpec('癬').by_elements(疒, 鮮)
 
-蘚 = ElementSpec('蘚').by_elements(艹_4, 鮮)
+蘚 = ElementSpec('蘚').by_elements(艹, 鮮)
 
 鮴 = ElementSpec('鮴').by_elements(魚, 休)
 
@@ -15140,7 +14690,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鯒 = ElementSpec('鯒').by_elements(魚, 甬)
 
-鯔 = ElementSpec('鯔').by_elements(魚, 巛, 田_2)
+鯔 = ElementSpec('鯔').by_elements(魚, 巛, 田)
 
 鯖 = ElementSpec('鯖').by_elements(魚, 青_2)
 
@@ -15170,7 +14720,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鰈 = ElementSpec('鰈').by_elements(魚, 世, 木)
 
-鰊 = ElementSpec('鰊').by_elements(魚, 柬_1)
+鰊 = ElementSpec('鰊').by_elements(魚, 柬)
 
 鰌 = ElementSpec('鰌').by_elements(魚, 酋)
 
@@ -15194,7 +14744,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鰯 = ElementSpec('鰯').by_elements(魚, 弱)
 
-鰰 = ElementSpec('鰰').by_elements(魚, 神_2)
+鰰 = ElementSpec('鰰').by_elements(魚, 神_1)
 
 鰲 = ElementSpec('鰲').by_elements(敖, 魚)
 
@@ -15204,7 +14754,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鰾 = ElementSpec('鰾').by_elements(魚, 票)
 
-鱆 = ElementSpec('鱆').by_elements(魚, 章_1)
+鱆 = ElementSpec('鱆').by_elements(魚, 章)
 
 鱇 = ElementSpec('鱇').by_elements(魚, 康)
 
@@ -15218,7 +14768,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鱠 = ElementSpec('鱠').by_elements(魚, 會)
 
-鱧 = ElementSpec('鱧').by_elements(魚, 豊_1)
+鱧 = ElementSpec('鱧').by_elements(魚, 豊)
 
 鱶 = ElementSpec('鱶').by_elements(魚, 養)
 
@@ -15226,7 +14776,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鴃 = ElementSpec('鴃').by_elements(鳥_1, 夬)
 
-鴇 = ElementSpec('鴇').by_elements(匕_3, 十, 鳥_1)
+鴇 = ElementSpec('鴇').by_elements(匕, 十, 鳥_1)
 
 鴒 = ElementSpec('鴒').by_elements(令_2, 鳥_1)
 
@@ -15236,9 +14786,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鴦 = ElementSpec('鴦').by_elements(央, 鳥_1)
 
-鴨 = ElementSpec('鴨').by_elements(甲_3, 鳥_1)
+鴨 = ElementSpec('鴨').by_elements(甲, 鳥_1)
 
-鴫 = ElementSpec('鴫').by_elements(田_2, 鳥_1)
+鴫 = ElementSpec('鴫').by_elements(田, 鳥_1)
 
 鴻 = ElementSpec('鴻').by_elements(江, 鳥_1)
 
@@ -15246,17 +14796,17 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鵄 = ElementSpec('鵄').by_elements(至, 鳥_1)
 
-鵐 = ElementSpec('鵐').by_elements(巫_4, 鳥_1)
+鵐 = ElementSpec('鵐').by_elements(巫, 鳥_1)
 
-鵯 = ElementSpec('鵯').by_elements(1, 田_2, 十, 鳥_1)
+鵯 = ElementSpec('鵯').by_elements(1, 田, 十, 鳥_1)
 
 鵲 = ElementSpec('鵲').by_elements(昔, 鳥_1)
 
-鶇 = ElementSpec('鶇').by_elements(東_1, 鳥_1)
+鶇 = ElementSpec('鶇').by_elements(東, 鳥_1)
 
-鶏 = ElementSpec('鶏').by_elements(奚_1, 鳥_1)
+鶏 = ElementSpec('鶏').by_elements(x2ea4, 夫, 鳥_1)
 
-鶫 = ElementSpec('鶫').by_elements(柬_1, 鳥_1)
+鶫 = ElementSpec('鶫').by_elements(柬, 鳥_1)
 
 鶺 = ElementSpec('鶺').by_elements(脊, 鳥_1)
 
@@ -15268,11 +14818,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鷭 = ElementSpec('鷭').by_elements(番, 鳥_1)
 
-鷯 = ElementSpec('鷯').by_elements(大, 2, 日_9, 小, 鳥_1)
+鷯 = ElementSpec('鷯').by_elements(大, 2, 日, 小, 鳥_1)
 
-鸛 = ElementSpec('鸛').by_elements(艹_4, 口, 口, 隹, 鳥_1)
+鸛 = ElementSpec('鸛').by_elements(艹, 口, 口, 隹, 鳥_1)
 
-鹸 = ElementSpec('鹸').by_elements(鹵, 人_5, 一, 口, 人_5)
+鹸 = ElementSpec('鹸').by_elements(鹵, 𠆢, 一, 口, 人)
 
 鹿 = ElementSpec('鹿').by_elements(广, 4, 比)
 # 麒 麑 麕 麓 鏖 麈 麌 麋 漉 麝 麁 塵 麟 轆
@@ -15304,6 +14854,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (14, 15, 16, 17, 18): 禾,
 })
 
+# upsetting
 麗 = ElementSpec('麗').by_elements(一, 3, 一, 3, 鹿)
 # 灑 儷 驪
 
@@ -15318,28 +14869,24 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 麟 = ElementSpec('麟').by_elements(鹿, 米, 舛_2)
 
 麥 = ElementSpec('麥').by_elements(來, 夂)
-# 麪 麭 麩
 
 麩 = ElementSpec('麩').by_elements(麥, 夫)
 
-麪 = ElementSpec('麪').by_elements(麥, 正_3)
+麪 = ElementSpec('麪').by_elements(麥, 正_1)
 
 麭 = ElementSpec('麭').by_elements(麥, 包_2)
 
 麸 = ElementSpec('麸').by_elements(麦, 夫)
 
-黃 = ElementSpec('黃').by_elements(廿_7, 一, 由_3, 八)
-# 黌 簧
-# 廣 (曠 廣 鑛 擴 壙 礦)
+黃 = ElementSpec('黃').by_elements(廿, 一, 由, 八)
 
 廣 = ElementSpec('廣').by_elements(广, 黃)
-# 擴 鑛 曠 壙 礦
 
 壙 = ElementSpec('壙').by_elements(土, 廣)
 
 擴 = ElementSpec('擴').by_elements(扌, 廣)
 
-曠 = ElementSpec('曠').by_elements(日_9, 廣)
+曠 = ElementSpec('曠').by_elements(日, 廣)
 
 礦 = ElementSpec('礦').by_elements(石, 廣)
 
@@ -15347,7 +14894,8 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鑛 = ElementSpec('鑛').by_elements(金, 廣)
 
-黄 = ElementSpec('黄').by_elements(4, 由_3, 八)
+# XXX grass thing, new variation?
+黄 = ElementSpec('黄').by_elements(4, 由, 八)
 # 横
 
 横 = ElementSpec('横').by_elements(木, 黄)
@@ -15355,16 +14903,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 黌 = ElementSpec('黌').by_elements(爻, 𦥑, 冖, 黃)
 
 黑 = ElementSpec('黑').by_elements(里_3, 灬)
-# 黠 點 黥 默 黷 黔 黜 黯 黶 黝 黴
-# 熏 (燻 熏 醺 勳)
-# 黨 (黨 儻)
-# 墨 (壥)
 
 熏 = ElementSpec('熏').by_strokes_to_elements({
     (1, 2, 8): 千,
     (3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14): 黑,
 })
-# 勳 燻 醺
 
 勳 = ElementSpec('勳').by_elements(熏, 力)
 
@@ -15373,8 +14916,6 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 醺 = ElementSpec('醺').by_elements(酉, 熏)
 
 黒 = ElementSpec('黒').by_elements(里_1, 灬)
-# 黙 黛
-# 墨 (纒 墨)
 
 墨_1 = ElementSpec('墨', 1).by_elements(黑, 土)
 # 壥
@@ -15388,11 +14929,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 黔 = ElementSpec('黔').by_elements(黑, 今)
 
-默 = ElementSpec('默').by_elements(黑, 犬_2)
+默 = ElementSpec('默').by_elements(黑, 犬)
 
 黙 = ElementSpec('黙').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15): 黒,
-    (8, 9, 10, 11): 犬_2,
+    (8, 9, 10, 11): 犬,
 })
 
 黛 = ElementSpec('黛').by_elements(代, 黒)
@@ -15408,19 +14949,18 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 黥 = ElementSpec('黥').by_elements(黑, 京)
 
 黨 = ElementSpec('黨').by_elements(尚, 黑)
-# 儻
 
 儻 = ElementSpec('儻').by_elements(亻, 黨)
 
-黯 = ElementSpec('黯').by_elements(黑, 音_1)
+黯 = ElementSpec('黯').by_elements(黑, 音)
 
 黴 = ElementSpec('黴').by_elements(彳, 山, 1, 黑, 攵)
 
-黶 = ElementSpec('黶').by_elements(厭_2, 黑)
+黶 = ElementSpec('黶').by_elements(厭, 黑)
 
 黻 = ElementSpec('黻').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12): 黹,
-    (13, 14, 16, 17): 犬_2,
+    (13, 14, 16, 17): 犬,
 }, (15,))
 
 鼇 = ElementSpec('鼇').by_elements(敖, 黽)
@@ -15430,17 +14970,16 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (3, 4, 5, 6, 7, 8, 9): 豆,
     (10, 11, 12, 13): 支,
 })
-# 瞽 鼕
 
 鼕 = ElementSpec('鼕').by_elements(鼓, 冬)
 
-鼬 = ElementSpec('鼬').by_elements(鼠, 由_1)
+鼬 = ElementSpec('鼬').by_elements(鼠, 由)
 
-齒 = ElementSpec('齒').by_elements(止, 从_2, 1, 从_2, 凵)
+齒 = ElementSpec('齒').by_elements(止, 从, 1, 从, 凵)
 # 齣 齷 齲 齠 齶 齪 齔 齬 齡 齦 齟
 # 齧 (齧 囓)
 
-齔 = ElementSpec('齔').by_elements(齒, 匕_3)
+齔 = ElementSpec('齔').by_elements(齒, 匕)
 
 齟 = ElementSpec('齟').by_elements(齒, 且)
 
@@ -15454,6 +14993,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 齦 = ElementSpec('齦').by_elements(齒, 艮_2)
 
+# XXX
 齧_1 = ElementSpec('齧', 1).by_elements(三, 1, 刀, 齒)
 
 齧_2 = ElementSpec('齧', 2).by_elements(彡, 1, 刀, 齒)
@@ -15473,49 +15013,41 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 龕 = ElementSpec('龕').by_elements(合, 龍)
 
-龠_1 = ElementSpec('龠', 1).by_elements(人_5, 1, 口, 口, 口, 冊_3)
+龠 = ElementSpec('龠').by_elements(𠆢, 1, 口, 口, 口, 冊)
 # 鑰 籥
 
-龠_2 = ElementSpec('龠', 2).by_elements(人_5, 1, 口, 口, 口, 冊_4)
+籥 = ElementSpec('籥').by_elements(竹, 龠)
 
-籥 = ElementSpec('籥').by_elements(竹, 龠_1)
+鑰 = ElementSpec('鑰').by_elements(金, 龠)
 
-鑰 = ElementSpec('鑰').by_elements(金, 龠_1)
+冷 = ElementSpec('冷').by_elements(冫, 令_2)
 
-令 = ElementSpec('令').by_elements(人_5, 一, 卩)
-# 聆 零 冷 玲 羚 鈴
-# 領 (嶺 領)
+羚 = ElementSpec('羚').by_elements(羊, 令_2)
 
-冷 = ElementSpec('冷').by_elements(冫, 令)
+聆 = ElementSpec('聆').by_elements(耳, 令_2)
 
-羚 = ElementSpec('羚').by_elements(羊, 令)
+鈴 = ElementSpec('鈴').by_elements(金, 令_2)
 
-聆 = ElementSpec('聆').by_elements(耳, 令)
+零 = ElementSpec('零').by_elements(雨, 令_2)
 
-鈴 = ElementSpec('鈴').by_elements(金, 令)
-
-零 = ElementSpec('零').by_elements(雨, 令)
-
-壬_2 = ElementSpec('壬', 2).by_elements(1, 士)
+壬 = ElementSpec('壬').by_elements(1, 士)
 # 妊 婬 衽
 # 淫 (淫 霪)
 # 廷 (艇 廷 梃 庭 挺 霆)
 # 王 (蟶 酲 郢)
 # 任 (任 恁 姙 袵 荏 賃 凭)
 
-任 = ElementSpec('任').by_elements(亻, 壬_2)
-# 袵 賃 姙 凭 恁 荏
+任 = ElementSpec('任').by_elements(亻, 壬)
 
 凭 = ElementSpec('凭').by_elements(任, 几)
 
-妊 = ElementSpec('妊').by_elements(女, 壬_2)
+妊 = ElementSpec('妊').by_elements(女, 壬)
 
 姙 = ElementSpec('姙').by_elements(女, 任)
 
-婬 = ElementSpec('婬').by_elements(女, x2ea4, 壬_2)
+婬 = ElementSpec('婬').by_elements(女, x2ea4, 壬)
 
-廷 = ElementSpec('廷').by_elements(壬_2, 廴)
-# 艇 挺 庭 梃 霆
+廷 = ElementSpec('廷').by_elements(壬, 廴)
 
 庭 = ElementSpec('庭').by_elements(广, 廷)
 
@@ -15525,14 +15057,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 梃 = ElementSpec('梃').by_elements(木, 廷)
 
-淫 = ElementSpec('淫').by_elements(氵, x2ea4, 壬_2)
-# 霪
+淫 = ElementSpec('淫').by_elements(氵, x2ea4, 壬)
 
-王_1 = ElementSpec('王', 1).by_elements(壬_2)
+# 王 = ElementSpec('王', 1).by_elements(壬)
 # 呈 (酲 郢)
 # 聖 (蟶)
 
-王_2 = ElementSpec('王', 2).by_stroke_count(4)
+王 = ElementSpec('王').by_stroke_count(4)
 # 珠 碧 琢 瑾 斑 瓔 珀 琺 琲 寳 瑠 珮 琉 望 瑣 環 瑛 琅 玲 玲 璢 瑰 玩 瑶 寶 珥 珈 琶 玻 瑁 玳 瓊 汪 澂 瑕 理 琿 珞 瑤 琳 珊 瑞 聖 瑟 珍 琴 現 璋 琵 珂 旺 珱 璃 抂 瑜 球 瑙 瑪 璞 瓏 玖 瑳 班 琥 瑚 枉 珪 珎 珸 瑯 對
 # 全 (銓 全 詮 栓 筌 痊)
 # 玉 (掴 国 宝 玉 筺 璧 璽 椢 閠 瑩)
@@ -15547,257 +15078,243 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 聽 (聽 廳)
 # 弄 (哢 弄)
 
-主_1 = ElementSpec('主', 1).by_strokes_to_elements({
+主 = ElementSpec('主', 1).by_strokes_to_elements({
     (1, 2): 亠,
-    (2, 3, 4, 5): 王_2,
+    (2, 3, 4, 5): 王,
 })
 
-主_2 = ElementSpec('主', 2).by_elements(1, 王_2)
+# 主 = ElementSpec('主', 2).by_elements(1, 王)
 # 住 註 麈 駐 柱 往 注
 
-住 = ElementSpec('住').by_elements(亻, 主_2)
+住 = ElementSpec('住').by_elements(亻, 主)
 
-全_1 = ElementSpec('全', 1).by_elements(人_1, 王_2)
-# 銓
-
-全_2 = ElementSpec('全', 2).by_elements(人_5, 王_2)
-# 筌 痊 栓 詮
+全 = ElementSpec('全').by_elements(𠆢, 王)
 
 匡 = ElementSpec('匡').by_strokes_to_elements({
     (1, 6): 匸,
-    (2, 3, 4, 5): 王_2,
+    (2, 3, 4, 5): 王,
 })
-# 筺 框 筐
 
-呈_1 = ElementSpec('呈', 1).by_elements(口, 王_1)
-# 酲 郢
+呈 = ElementSpec('呈', 1).by_elements(口, 王)
 
-呈_2 = ElementSpec('呈', 2).by_elements(口, 王_2)
-# 程 逞
-# 裁 (鐵)
+對 = ElementSpec('對').by_elements(7, 王, 寸)
 
-對 = ElementSpec('對').by_elements(7, 王_2, 寸)
-
-弄 = ElementSpec('弄').by_elements(王_2, 廾_3)
-# 哢
+弄 = ElementSpec('弄').by_strokes_to_elements({
+    (1, 2, 3, 4): 王,
+    (4, 5, 6, 7): 开,
+})
 
 哢 = ElementSpec('哢').by_elements(口, 弄)
 
-往 = ElementSpec('往').by_elements(彳, 主_2)
+往 = ElementSpec('往').by_elements(彳, 主)
 
-徴 = ElementSpec('徴').by_elements(彳, 山, 王_2, 攵)
-# 懲
+徴 = ElementSpec('徴').by_elements(彳, 山, 王, 攵)
 
 懲 = ElementSpec('懲').by_elements(徴, 心)
 
-抂 = ElementSpec('抂').by_elements(扌, 王_2)
+抂 = ElementSpec('抂').by_elements(扌, 王)
 
-斑 = ElementSpec('斑').by_elements(王_2, 文, 王_2)
+斑 = ElementSpec('斑').by_elements(王, 文, 王)
 
-旺 = ElementSpec('旺').by_elements(日_9, 王_2)
+旺 = ElementSpec('旺').by_elements(日, 王)
 
-望 = ElementSpec('望').by_elements(亡, 月, 王_2)
+望 = ElementSpec('望').by_elements(亡, 月, 王)
 
-枉 = ElementSpec('枉').by_elements(木, 王_2)
+枉 = ElementSpec('枉').by_elements(木, 王)
 
-柱 = ElementSpec('柱').by_elements(木, 主_2)
+柱 = ElementSpec('柱').by_elements(木, 主)
 
-栓 = ElementSpec('栓').by_elements(木, 全_2)
+栓 = ElementSpec('栓').by_elements(木, 全)
 
 框 = ElementSpec('框').by_elements(木, 匡)
 
-汪 = ElementSpec('汪').by_elements(氵, 王_2)
+汪 = ElementSpec('汪').by_elements(氵, 王)
 
-注 = ElementSpec('注').by_elements(氵, 主_2)
+注 = ElementSpec('注').by_elements(氵, 主)
 
-澂 = ElementSpec('澂').by_elements(氵, 山, 一, 王_2, 攵)
+澂 = ElementSpec('澂').by_elements(氵, 山, 一, 王, 攵)
 
-狂 = ElementSpec('狂').by_elements(x2ea8, 王_2)
-# 誑
+狂 = ElementSpec('狂').by_elements(x2ea8, 王)
 
-玉_1 = ElementSpec('玉', 1).by_elements(王_2, 1)
+玉 = ElementSpec('玉').by_elements(王, 1)
 # 璽 瑩 宝 筺 璧 閠
 # 国 (掴 椢 国)
 
-玉_2 = ElementSpec('玉', 2).by_elements(1, 士)
+# 玉_2 = ElementSpec('玉', 2).by_elements(1, 士)
 # 壬
 
 国 = ElementSpec('国').by_strokes_to_elements({
     (1, 2, 8): 口,
-    (3, 4, 5, 6, 7): 玉_1,
+    (3, 4, 5, 6, 7): 玉,
 })
 # 椢 掴
 
-壬_1 = ElementSpec('壬', 1).by_elements(玉_2)
+# 壬_1 = ElementSpec('壬', 1).by_elements(玉_2)
 
-宝 = ElementSpec('宝').by_elements(宀, 玉_1)
+宝 = ElementSpec('宝').by_elements(宀, 玉)
 
 掴 = ElementSpec('掴').by_elements(扌, 国)
 
 椢 = ElementSpec('椢').by_elements(木, 国)
 
-玖 = ElementSpec('玖').by_elements(王_2, 久)
+玖 = ElementSpec('玖').by_elements(王, 久)
 
-玩 = ElementSpec('玩').by_elements(王_2, 元)
+玩 = ElementSpec('玩').by_elements(王, 元)
 
-玲 = ElementSpec('玲').by_elements(王_2, 令_1)
+玲 = ElementSpec('玲').by_elements(王, 令_1)
 
-玳 = ElementSpec('玳').by_elements(王_2, 代)
+玳 = ElementSpec('玳').by_elements(王, 代)
 
-玻 = ElementSpec('玻').by_elements(王_2, 皮)
+玻 = ElementSpec('玻').by_elements(王, 皮)
 
-珀 = ElementSpec('珀').by_elements(王_2, 白_1)
+珀 = ElementSpec('珀').by_elements(王, 白)
 
-珂 = ElementSpec('珂').by_elements(王_2, 可)
+珂 = ElementSpec('珂').by_elements(王, 可)
 
-珈 = ElementSpec('珈').by_elements(王_2, 加)
+珈 = ElementSpec('珈').by_elements(王, 加)
 
-珊 = ElementSpec('珊').by_elements(王_2, 冊_3)
+珊 = ElementSpec('珊').by_elements(王, 冊)
 
-珍 = ElementSpec('珍').by_elements(王_2, 人_5, 彡)
+珍 = ElementSpec('珍').by_elements(王, 𠆢, 彡)
 
-珎 = ElementSpec('珎').by_elements(王_2, 尓)
+珎 = ElementSpec('珎').by_elements(王, 尓)
 
-珞 = ElementSpec('珞').by_elements(王_2, 各)
+珞 = ElementSpec('珞').by_elements(王, 各)
 
-珠 = ElementSpec('珠').by_elements(王_2, 朱)
+珠 = ElementSpec('珠').by_elements(王, 朱)
 
-珥 = ElementSpec('珥').by_elements(王_2, 耳)
+珥 = ElementSpec('珥').by_elements(王, 耳)
 
-珪 = ElementSpec('珪').by_elements(王_2, 圭)
+珪 = ElementSpec('珪').by_elements(王, 圭)
 
-班 = ElementSpec('班').by_elements(王_2, 刂, 王_2)
+班 = ElementSpec('班').by_elements(王, 刂, 王)
 
-珮 = ElementSpec('珮').by_elements(王_2, 几, 1, 巾)
+珮 = ElementSpec('珮').by_elements(王, 几, 1, 巾)
 
-珱 = ElementSpec('珱').by_elements(王_2, x2e8d, 女)
+珱 = ElementSpec('珱').by_elements(王, x2e8d, 女)
 
-珸 = ElementSpec('珸').by_elements(王_2, 吾)
+珸 = ElementSpec('珸').by_elements(王, 吾)
 
-球 = ElementSpec('球').by_elements(王_2, 求)
+球 = ElementSpec('球').by_elements(王, 求)
 
-琅 = ElementSpec('琅').by_elements(王_2, 良_2)
+琅 = ElementSpec('琅').by_elements(王, 良_2)
 
-理 = ElementSpec('理').by_elements(王_2, 里_1)
+理 = ElementSpec('理').by_elements(王, 里_1)
 
-琉 = ElementSpec('琉').by_elements(王_2, 㐬)
+琉 = ElementSpec('琉').by_elements(王, 㐬)
 
-琢 = ElementSpec('琢').by_elements(王_2, 豕)
+琢 = ElementSpec('琢').by_elements(王, 豕)
 
-琥 = ElementSpec('琥').by_elements(王_2, 虎)
+琥 = ElementSpec('琥').by_elements(王, 虎)
 
-琲 = ElementSpec('琲').by_elements(王_2, 非)
+琲 = ElementSpec('琲').by_elements(王, 非)
 
-琳 = ElementSpec('琳').by_elements(王_2, 林)
+琳 = ElementSpec('琳').by_elements(王, 林)
 
-琴 = ElementSpec('琴').by_elements(王_2, 王_2, 今)
+琴 = ElementSpec('琴').by_elements(王, 王, 今)
 
-琵 = ElementSpec('琵').by_elements(王_2, 王_2, 比)
+琵 = ElementSpec('琵').by_elements(王, 王, 比)
 
-琶 = ElementSpec('琶').by_elements(王_2, 王_2, 巴)
+琶 = ElementSpec('琶').by_elements(王, 王, 巴)
 
-琺 = ElementSpec('琺').by_elements(王_2, 法)
+琺 = ElementSpec('琺').by_elements(王, 法)
 
-琿 = ElementSpec('琿').by_elements(王_2, 軍)
+琿 = ElementSpec('琿').by_elements(王, 軍)
 
-瑕 = ElementSpec('瑕').by_elements(王_2, 7, 又)
+瑕 = ElementSpec('瑕').by_elements(王, 7, 又)
 
-瑙 = ElementSpec('瑙').by_elements(王_2, 巛, 3, 乂, 1)
+瑙 = ElementSpec('瑙').by_elements(王, 巛, 3, 乂, 1)
 
-瑚 = ElementSpec('瑚').by_elements(王_2, 胡)
+瑚 = ElementSpec('瑚').by_elements(王, 胡)
 
-瑛 = ElementSpec('瑛').by_elements(王_2, 英)
+瑛 = ElementSpec('瑛').by_elements(王, 英)
 
-瑜 = ElementSpec('瑜').by_elements(王_2, 兪)
+瑜 = ElementSpec('瑜').by_elements(王, 兪)
 
-瑞 = ElementSpec('瑞').by_elements(王_2, 山, 而)
+瑞 = ElementSpec('瑞').by_elements(王, 山, 而)
 
-瑟 = ElementSpec('瑟').by_elements(王_2, 王_2, 必)
+瑟 = ElementSpec('瑟').by_elements(王, 王, 必)
 
-瑠 = ElementSpec('瑠').by_elements(王_2, 留)
+瑠 = ElementSpec('瑠').by_elements(王, 留)
 
-瑤 = ElementSpec('瑤').by_elements(王_2, 月, 缶)
+瑤 = ElementSpec('瑤').by_elements(王, 月, 缶)
 
-瑩 = ElementSpec('瑩').by_elements(火, 火, 冖, 玉_1)
+瑩 = ElementSpec('瑩').by_elements(火, 火, 冖, 玉)
 
-瑪 = ElementSpec('瑪').by_elements(王_2, 馬)
+瑪 = ElementSpec('瑪').by_elements(王, 馬)
 
-瑯 = ElementSpec('瑯').by_elements(王_2, 郎)
+瑯 = ElementSpec('瑯').by_elements(王, 郎)
 
-瑰 = ElementSpec('瑰').by_elements(王_2, 鬼_2)
+瑰 = ElementSpec('瑰').by_elements(王, 鬼)
 
-瑳 = ElementSpec('瑳').by_elements(王_2, 差)
+瑳 = ElementSpec('瑳').by_elements(王, 差)
 
-瑶 = ElementSpec('瑶').by_elements(王_2, x2ea4, 缶)
+瑶 = ElementSpec('瑶').by_elements(王, x2ea4, 缶)
 
-瑾 = ElementSpec('瑾').by_elements(王_2, 廿_6, 4, 三)
+瑾 = ElementSpec('瑾').by_elements(王, 廿, 4, 三)
 
-璃 = ElementSpec('璃').by_elements(王_2, 离_2)
+璃 = ElementSpec('璃').by_elements(王, 离_2)
 
-璋 = ElementSpec('璋').by_elements(王_2, 章_1)
+璋 = ElementSpec('璋').by_elements(王, 章)
 
-璞 = ElementSpec('璞').by_elements(王_2, 7, 三, 人_5)
+璞 = ElementSpec('璞').by_elements(王, 7, 三, 人)
 
-璢 = ElementSpec('璢').by_elements(王_2, 7, 田_2)
+璢 = ElementSpec('璢').by_elements(王, 7, 田)
 
-璧 = ElementSpec('璧').by_elements(辟, 玉_1)
+璧 = ElementSpec('璧').by_elements(辟, 玉)
 
-璽 = ElementSpec('璽').by_elements(爾, 玉_1)
+璽 = ElementSpec('璽').by_elements(爾, 玉)
 
-瓏 = ElementSpec('瓏').by_elements(王_2, 龍)
+瓏 = ElementSpec('瓏').by_elements(王, 龍)
 
-痊 = ElementSpec('痊').by_elements(疒, 全_2)
+痊 = ElementSpec('痊').by_elements(疒, 全)
 
-皇 = ElementSpec('皇').by_elements(白_1, 王_2)
-# 惶 蝗 湟 煌 徨 隍 鍠 遑 篁 凰 鰉
+皇 = ElementSpec('皇').by_elements(白, 王)
 
 凰 = ElementSpec('凰').by_elements(几, 皇)
 
 徨 = ElementSpec('徨').by_elements(彳, 皇)
 
-惶 = ElementSpec('惶').by_elements(忄, 皇)
+惶 = ElementSpec('惶').by_elements(心_1, 皇)
 
 湟 = ElementSpec('湟').by_elements(氵, 皇)
 
 煌 = ElementSpec('煌').by_elements(火, 皇)
 
-碧 = ElementSpec('碧').by_elements(王_2, 白_1, 石)
+碧 = ElementSpec('碧').by_elements(王, 白, 石)
 
-程 = ElementSpec('程').by_elements(禾, 呈_2)
+程 = ElementSpec('程').by_elements(禾, 呈)
 
-筌 = ElementSpec('筌').by_elements(竹, 全_2)
+筌 = ElementSpec('筌').by_elements(竹, 全)
 
 筐 = ElementSpec('筐').by_elements(竹, 匡)
 
 筺 = ElementSpec('筺').by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6): 竹,
     (7, 8, 9, 10, 11, 13): 匡,
-    (8, 9, 10, 11, 12): 玉_1,
+    (8, 9, 10, 11, 12): 玉,
 })
 
 篁 = ElementSpec('篁').by_elements(竹, 皇)
 
-聖_1 = ElementSpec('聖', 1).by_elements(耳, 口, 王_1)
-# 蟶
-
-聖_2 = ElementSpec('聖', 2).by_elements(耳, 口, 王_2)
+聖 = ElementSpec('聖').by_elements(耳, 口, 王)
 
 艇 = ElementSpec('艇').by_elements(舟, 廷)
 
-荏 = ElementSpec('荏').by_elements(艹_4, 任)
+荏 = ElementSpec('荏').by_elements(艹, 任)
 
 蝗 = ElementSpec('蝗').by_elements(虫, 皇)
 
-蟶 = ElementSpec('蟶').by_elements(虫, 聖_1)
+蟶 = ElementSpec('蟶').by_elements(虫, 聖)
 
-衽 = ElementSpec('衽').by_elements(衤, 壬_2)
+衽 = ElementSpec('衽').by_elements(衤, 壬)
 
 袵 = ElementSpec('袵').by_elements(衤, 任)
 
 裁_1 = ElementSpec('裁', 1).by_strokes_to_elements({
     (1, 2, 3, 4, 5, 6): 吉,
     (3, 11, 12, 13): 戈,
-    (4, 5, 6, 7, 8, 9, 10): 呈_2,
+    (4, 5, 6, 7, 8, 9, 10): 呈,
 })
 # 載 (鐵)
 
@@ -15818,9 +15335,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 纎 = ElementSpec('纎').by_elements(糸, 裁_3)
 
-註 = ElementSpec('註').by_elements(言, 主_2)
+註 = ElementSpec('註').by_elements(言, 主)
 
-詮 = ElementSpec('詮').by_elements(言, 全_2)
+詮 = ElementSpec('詮').by_elements(言, 全)
 
 誑 = ElementSpec('誑').by_elements(言, 狂)
 
@@ -15840,15 +15357,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 載_3 = ElementSpec('載', 3).by_elements(裁_1)
 # 鐵
 
-逞 = ElementSpec('逞').by_elements(呈_2, 辶)
+逞 = ElementSpec('逞').by_elements(呈, 辶)
 
 遑 = ElementSpec('遑').by_elements(皇, 辶)
 
-郢 = ElementSpec('郢').by_elements(呈_1, x2ecf)
+郢 = ElementSpec('郢').by_elements(呈, x2ecf)
 
-酲 = ElementSpec('酲').by_elements(酉, 呈_1)
+酲 = ElementSpec('酲').by_elements(酉, 呈)
 
-銓 = ElementSpec('銓').by_elements(金, 全_1)
+銓 = ElementSpec('銓').by_elements(金, 全)
 
 鍠 = ElementSpec('鍠').by_elements(金, 皇)
 
@@ -15856,12 +15373,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鐵 = ElementSpec('鐵').by_elements(金, 載_3)
 
-閏 = ElementSpec('閏').by_elements(門, 王_2)
+閏 = ElementSpec('閏').by_elements(門, 王)
 # 潤
 
 潤 = ElementSpec('潤').by_elements(氵, 閏)
 
-閠 = ElementSpec('閠').by_elements(門, 玉_1)
+閠 = ElementSpec('閠').by_elements(門, 玉)
 
 隍 = ElementSpec('隍').by_elements(x2ed6, 皇)
 
@@ -15869,9 +15386,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 霪 = ElementSpec('霪').by_elements(雨, 淫)
 
-駐 = ElementSpec('駐').by_elements(馬, 主_2)
+駐 = ElementSpec('駐').by_elements(馬, 主)
 
-鬥 = ElementSpec('鬥').by_elements(1, 王_2, 王_2, 1)
+鬥 = ElementSpec('鬥').by_elements(1, 王, 王, 1)
 # 鬨 鬪 鬩 鬧 鬮
 
 鬧 = ElementSpec('鬧').by_elements(鬥, 市_2)
@@ -15886,9 +15403,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鰉 = ElementSpec('鰉').by_elements(魚, 皇)
 
-麈 = ElementSpec('麈').by_elements(鹿, 主_2)
+麈 = ElementSpec('麈').by_elements(鹿, 主)
 
-玲 = ElementSpec('玲').by_elements(王_2, 令)
+玲 = ElementSpec('玲').by_elements(王, 令_2)
 
 皿_2 = ElementSpec('皿', 2).by_stroke_count(5)
 # 鰛 葢 褞 鰮 盖 盜 盟 盆 蠱 盥 盞 慍 榲 盃 饂 塩 蘯 鹽 瘟 盛 盪 媼 盤 謐 諡 盒 蘊 醯 盗 盂 醢 膃
@@ -15910,14 +15427,14 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 孟 = ElementSpec('孟').by_elements(子, 皿_2)
 # 猛
 
-慍 = ElementSpec('慍').by_elements(忄, 囚, 皿_2)
+慍 = ElementSpec('慍').by_elements(心_1, 囚, 皿_2)
 
 榲 = ElementSpec('榲').by_elements(木, 囚, 皿_2)
 
 温_1 = ElementSpec('温', 1).by_elements(氵, 日_5, 皿_2)
 # 薀
 
-温_2 = ElementSpec('温', 2).by_elements(氵, 日_9, 皿_2)
+温_2 = ElementSpec('温', 2).by_elements(氵, 日, 皿_2)
 
 猛 = ElementSpec('猛').by_elements(x2ea8, 孟)
 
@@ -15982,7 +15499,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 盥 = ElementSpec('盥').by_elements(水, 𦥑, 皿_2)
 
-盧 = ElementSpec('盧').by_elements(虍, 田_2, 皿_2)
+盧 = ElementSpec('盧').by_elements(虍, 田, 皿_2)
 # 顱 鱸 臚 艫 瀘 轤 櫨 驢 蘆 鑪 廬 爐
 
 廬 = ElementSpec('廬').by_elements(广, 盧)
@@ -16032,7 +15549,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (9, 10, 11): 口,
 }, (8, 12, 13, 14, 15))
 
-堽 = ElementSpec('堽').by_elements(土, 罒_4, 正_3)
+堽 = ElementSpec('堽').by_elements(土, 罒_4, 正_1)
 
 壊 = ElementSpec('壊').by_elements(土, 十, 罒_4, 衣)
 
@@ -16044,7 +15561,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (14, 15): 二,
 }, (11,))
 
-夢 = ElementSpec('夢').by_elements(艹_4, 罒_4, 冖, 夕)
+夢 = ElementSpec('夢').by_elements(艹, 罒_4, 冖, 夕)
 # 儚
 
 儚 = ElementSpec('儚').by_elements(亻, 夢)
@@ -16062,12 +15579,12 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 憲 = ElementSpec('憲').by_elements(宀, 4, 罒_4, 心)
 
-懌 = ElementSpec('懌').by_elements(忄, 罒_4, 幸)
+懌 = ElementSpec('懌').by_elements(心_1, 罒_4, 幸)
 
-懐 = ElementSpec('懐').by_elements(忄, 十, 罒_4, 衣)
+懐 = ElementSpec('懐').by_elements(心_1, 十, 罒_4, 衣)
 
 懷 = ElementSpec('懷').by_strokes_to_elements({
-    (1, 2, 3): 忄,
+    (1, 2, 3): 心_1,
     (4, 5, 16, 17, 18, 19): 衣,
     (6, 7, 8, 9, 10): 罒_4,
     (12, 13): 二,
@@ -16076,13 +15593,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 擇 = ElementSpec('擇').by_elements(扌, 罒_4, 幸)
 
-曼 = ElementSpec('曼').by_elements(日_9, 罒_4, 又)
+曼 = ElementSpec('曼').by_elements(日, 罒_4, 又)
 # 鬘 幔 鏝 謾 慢 漫 饅 鰻 蔓
 # 縵 (蘰 縵)
 
 幔 = ElementSpec('幔').by_elements(巾, 曼)
 
-慢 = ElementSpec('慢').by_elements(忄, 曼)
+慢 = ElementSpec('慢').by_elements(心_1, 曼)
 
 楞 = ElementSpec('楞').by_elements(木, 罒_4, 方)
 
@@ -16105,9 +15622,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 獰 = ElementSpec('獰').by_elements(x2ea8, 寧_1)
 
-環 = ElementSpec('環').by_elements(王_2, 罒_4, 1, 口, 4)
+環 = ElementSpec('環').by_elements(王, 罒_4, 1, 口, 4)
 
-甍 = ElementSpec('甍').by_elements(艹_4, 罒_4, 冖, 瓦)
+甍 = ElementSpec('甍').by_elements(艹, 罒_4, 冖, 瓦)
 
 皿_1 = ElementSpec('皿', 1).by_elements(罒_4)
 # 目 (睾)
@@ -16148,7 +15665,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 冒_2 = ElementSpec('冒', 2).by_elements(日_7, 目_2)
 # 瑁
 
-冒_3 = ElementSpec('冒', 3).by_elements(日_9, 目_2)
+冒_3 = ElementSpec('冒', 3).by_elements(日, 目_2)
 # 帽
 
 夐 = ElementSpec('夐').by_elements(𠂊, 4, 目_2, 夂)
@@ -16156,13 +15673,13 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 帽 = ElementSpec('帽').by_elements(巾, 冒_3)
 
-惧 = ElementSpec('惧').by_elements(忄, 具)
+惧 = ElementSpec('惧').by_elements(心_1, 具)
 
 泪 = ElementSpec('泪').by_elements(氵, 目_2)
 
-瑁 = ElementSpec('瑁').by_elements(王_2, 冒_2)
+瑁 = ElementSpec('瑁').by_elements(王, 冒_2)
 
-瓊 = ElementSpec('瓊').by_elements(王_2, 夐)
+瓊 = ElementSpec('瓊').by_elements(王, 夐)
 
 盲 = ElementSpec('盲').by_elements(亡, 目_2)
 
@@ -16200,7 +15717,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 省 = ElementSpec('省').by_elements(少, 目_2)
 
-眄 = ElementSpec('眄').by_elements(目_2, 正_3)
+眄 = ElementSpec('眄').by_elements(目_2, 正_1)
 
 眇 = ElementSpec('眇').by_elements(目_2, 少)
 # 緲 渺
@@ -16223,10 +15740,10 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 眛 = ElementSpec('眛').by_elements(目_2, 未)
 
-眞_1 = ElementSpec('眞', 1).by_elements(匕_3, 具)
+眞_1 = ElementSpec('眞', 1).by_elements(匕, 具)
 # 塡 顚
 
-眞_2 = ElementSpec('眞', 2).by_elements(匕_3, 目_2, 1, 八)
+眞_2 = ElementSpec('眞', 2).by_elements(匕, 目_2, 1, 八)
 # 槇 鎭 愼 瞋 鷆 嗔
 
 眞_3 = ElementSpec('眞', 3).by_elements(十_2, 目_2, 1, 八)
@@ -16236,7 +15753,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 塡 = ElementSpec('塡').by_elements(土, 眞_1)
 
-愼 = ElementSpec('愼').by_elements(忄, 眞_2)
+愼 = ElementSpec('愼').by_elements(心_1, 眞_2)
 
 槇 = ElementSpec('槇').by_elements(木, 眞_2)
 
@@ -16251,7 +15768,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 填 = ElementSpec('填').by_elements(土, 真_2)
 
-慎 = ElementSpec('慎').by_elements(忄, 真_2)
+慎 = ElementSpec('慎').by_elements(心_1, 真_2)
 
 槙 = ElementSpec('槙').by_elements(木, 真_2)
 
@@ -16265,7 +15782,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 眩 = ElementSpec('眩').by_elements(目_2, 玄)
 
-眷 = ElementSpec('眷').by_elements(2, 二, 人_5, 目_2)
+眷 = ElementSpec('眷').by_elements(2, 二, 人, 目_2)
 
 眸 = ElementSpec('眸').by_elements(目_2, 牟)
 
@@ -16285,7 +15802,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 督 = ElementSpec('督').by_elements(叔, 目_2)
 
-睥 = ElementSpec('睥').by_elements(目_2, 卑_2)
+睥 = ElementSpec('睥').by_elements(目_2, 卑_1)
 
 睦 = ElementSpec('睦').by_elements(目_2, 土, 儿, 土)
 
@@ -16310,7 +15827,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 瞞 = ElementSpec('瞞').by_strokes_to_elements({
     (1, 2, 3, 4, 5): 目_2,
-    (6, 7, 8, 9): 廿_2,
+    (6, 7, 8, 9): 廿,
     (9, 10, 11, 12, 13, 14, 15, 16): 兩,
 })
 
@@ -16320,7 +15837,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 瞬 = ElementSpec('瞬').by_elements(目_2, 舜_2)
 
-瞭 = ElementSpec('瞭').by_elements(目_2, 大, 2, 日_9, 小)
+瞭 = ElementSpec('瞭').by_elements(目_2, 大, 2, 日, 小)
 
 瞰 = ElementSpec('瞰').by_elements(目_2, 敢)
 
@@ -16338,7 +15855,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 # 懼 衢
 # 矍 (钁 攫 矍)
 
-懼 = ElementSpec('懼').by_elements(忄, 瞿)
+懼 = ElementSpec('懼').by_elements(心_1, 瞿)
 
 矇 = ElementSpec('矇').by_elements(目_2, 蒙)
 
@@ -16382,7 +15899,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 罔 = ElementSpec('罔').by_elements(罒_1, 亡)
 # 惘 網 魍
 
-惘 = ElementSpec('惘').by_elements(忄, 罔)
+惘 = ElementSpec('惘').by_elements(心_1, 罔)
 
 網 = ElementSpec('網').by_elements(糸, 罔)
 
@@ -16417,7 +15934,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 署_2 = ElementSpec('署', 2).by_elements(罒_4, 者_2)
 # 薯
 
-曙 = ElementSpec('曙').by_elements(日_9, 署_1)
+曙 = ElementSpec('曙').by_elements(日, 署_1)
 
 罵 = ElementSpec('罵').by_elements(罒_4, 馬)
 
@@ -16442,9 +15959,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19): 熊,
 })
 
-羇 = ElementSpec('羇').by_elements(罒_4, 革_2, 奇)
+羇 = ElementSpec('羇').by_elements(罒_4, 革, 奇)
 
-羈 = ElementSpec('羈').by_elements(罒_4, 革_2, 馬)
+羈 = ElementSpec('羈').by_elements(罒_4, 革, 馬)
 
 聴 = ElementSpec('聴').by_elements(耳, 十, 罒_4, 心)
 # 廰
@@ -16453,7 +15970,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 聹 = ElementSpec('聹').by_elements(耳, 寧_1)
 
-聽 = ElementSpec('聽').by_elements(耳, 王_2, 十, 罒_4, 1, 心)
+聽 = ElementSpec('聽').by_elements(耳, 王, 十, 罒_4, 1, 心)
 # 廳
 
 廳 = ElementSpec('廳').by_elements(广, 聽)
@@ -16500,41 +16017,41 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 嗅 = ElementSpec('嗅').by_strokes_to_elements({
     (1, 2, 3): 口,
     (4, 5, 6, 7, 8, 9, 10, 11, 12): 臭,
-    (10, 11, 12, 13): 犬_2,
+    (10, 11, 12, 13): 犬,
 })
 
 艦 = ElementSpec('艦').by_elements(舟, 監)
 
 艫 = ElementSpec('艫').by_elements(舟, 盧)
 
-苜 = ElementSpec('苜').by_elements(艹_4, 目_2)
+苜 = ElementSpec('苜').by_elements(艹, 目_2)
 
-葢 = ElementSpec('葢').by_elements(艹_4, 太, 皿_2)
+葢 = ElementSpec('葢').by_elements(艹, 太, 皿_2)
 
-蓋 = ElementSpec('蓋').by_elements(艹_4, 盍)
+蓋 = ElementSpec('蓋').by_elements(艹, 盍)
 
-蔑 = ElementSpec('蔑').by_elements(艹_4, 罒_4, 戍_5)
+蔑 = ElementSpec('蔑').by_elements(艹, 罒_4, 戍_5)
 # 襪 韈
 
-蔓 = ElementSpec('蔓').by_elements(艹_4, 曼)
+蔓 = ElementSpec('蔓').by_elements(艹, 曼)
 
-薀 = ElementSpec('薀').by_elements(艹_4, 温_1)
+薀 = ElementSpec('薀').by_elements(艹, 温_1)
 
-薨 = ElementSpec('薨').by_elements(艹_4, 罒_4, 冖, 死)
+薨 = ElementSpec('薨').by_elements(艹, 罒_4, 冖, 死)
 
-薯 = ElementSpec('薯').by_elements(艹_4, 署_2)
+薯 = ElementSpec('薯').by_elements(艹, 署_2)
 
-藍 = ElementSpec('藍').by_elements(艹_4, 監)
+藍 = ElementSpec('藍').by_elements(艹, 監)
 
-蘆 = ElementSpec('蘆').by_elements(艹_4, 盧)
+蘆 = ElementSpec('蘆').by_elements(艹, 盧)
 
-蘊 = ElementSpec('蘊').by_elements(艹_4, 糸, 囚, 皿_2)
+蘊 = ElementSpec('蘊').by_elements(艹, 糸, 囚, 皿_2)
 
 蘯 = ElementSpec('蘯').by_elements(蕩, 皿_2)
 
-蘰 = ElementSpec('蘰').by_elements(艹_4, 縵)
+蘰 = ElementSpec('蘰').by_elements(艹, 縵)
 
-蘿 = ElementSpec('蘿').by_elements(艹_4, 羅)
+蘿 = ElementSpec('蘿').by_elements(艹, 羅)
 
 蜀 = ElementSpec('蜀').by_elements(罒_4, 勹, 虫)
 # 髑 躅 獨 觸 燭 濁
@@ -16561,7 +16078,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 血_2 = ElementSpec('血', 2).by_elements(1, 目_1)
 # 睾
 
-恤 = ElementSpec('恤').by_elements(忄, 血_1)
+恤 = ElementSpec('恤').by_elements(心_1, 血_1)
 
 洫 = ElementSpec('洫').by_elements(氵, 血_1)
 
@@ -16595,9 +16112,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 俔 = ElementSpec('俔').by_elements(亻, 見)
 
-寛 = ElementSpec('寛').by_elements(宀, 艹_4, 見)
+寛 = ElementSpec('寛').by_elements(宀, 艹, 見)
 
-現 = ElementSpec('現').by_elements(王_2, 見)
+現 = ElementSpec('現').by_elements(王, 見)
 
 硯 = ElementSpec('硯').by_elements(石, 見)
 
@@ -16625,7 +16142,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 撹 = ElementSpec('撹').by_elements(扌, 覚)
 
-覡 = ElementSpec('覡').by_elements(巫_4, 見)
+覡 = ElementSpec('覡').by_elements(巫, 見)
 
 覦 = ElementSpec('覦').by_elements(兪, 見)
 
@@ -16642,7 +16159,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 覯 = ElementSpec('覯').by_elements(冓, 見)
 
-覲 = ElementSpec('覲').by_elements(廿_6, 4, 三, 見)
+覲 = ElementSpec('覲').by_elements(廿, 4, 三, 見)
 
 観 = ElementSpec('観').by_elements(3, 隹, 見)
 
@@ -16660,7 +16177,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 纜 = ElementSpec('纜').by_elements(糸, 覽)
 
-觀 = ElementSpec('觀').by_elements(艹_4, 口, 口, 隹, 見)
+觀 = ElementSpec('觀').by_elements(艹, 口, 口, 隹, 見)
 # 欟
 
 欟 = ElementSpec('欟').by_elements(木, 觀)
@@ -16730,15 +16247,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 嚶 = ElementSpec('嚶').by_elements(口, 嬰)
 
-寳 = ElementSpec('寳').by_elements(宀, 王_2, 尓, 貝_1)
+寳 = ElementSpec('寳').by_elements(宀, 王, 尓, 貝_1)
 
-寶 = ElementSpec('寶').by_elements(宀, 王_2, 缶, 貝_1)
+寶 = ElementSpec('寶').by_elements(宀, 王, 缶, 貝_1)
 
 屓 = ElementSpec('屓').by_elements(尸, 貝_1)
 
 廁 = ElementSpec('廁').by_elements(广, 則)
 
-惻 = ElementSpec('惻').by_elements(忄, 則)
+惻 = ElementSpec('惻').by_elements(心_1, 則)
 
 戝 = ElementSpec('戝').by_elements(貝_1, 戈)
 
@@ -16754,9 +16271,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 狽 = ElementSpec('狽').by_elements(x2ea8, 貝_1)
 
-瑣 = ElementSpec('瑣').by_elements(王_2, 小, 貝_1)
+瑣 = ElementSpec('瑣').by_elements(王, 小, 貝_1)
 
-瓔 = ElementSpec('瓔').by_elements(王_2, 嬰)
+瓔 = ElementSpec('瓔').by_elements(王, 嬰)
 
 纓 = ElementSpec('纓').by_elements(糸, 嬰)
 
@@ -16777,7 +16294,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 財 = ElementSpec('財').by_elements(貝_1, 才)
 
-貢 = ElementSpec('貢').by_elements(工_4, 貝_1)
+貢 = ElementSpec('貢').by_elements(工, 貝_1)
 # 熕 槓
 
 槓 = ElementSpec('槓').by_elements(木, 貢)
@@ -16797,7 +16314,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 實 = ElementSpec('實').by_elements(宀, 貫)
 
-慣 = ElementSpec('慣').by_elements(忄, 貫)
+慣 = ElementSpec('慣').by_elements(心_1, 貫)
 
 樌 = ElementSpec('樌').by_elements(木, 貫)
 
@@ -16886,7 +16403,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 墳 = ElementSpec('墳').by_elements(土, 賁)
 
-憤 = ElementSpec('憤').by_elements(忄, 賁)
+憤 = ElementSpec('憤').by_elements(心_1, 賁)
 
 濆 = ElementSpec('濆').by_elements(氵, 賁)
 
@@ -16999,7 +16516,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 贇 = ElementSpec('贇').by_elements(斌, 貝_1)
 
-贈_1 = ElementSpec('贈', 1).by_elements(貝_1, 曽_2)
+贈_1 = ElementSpec('贈', 1).by_elements(貝_1, 曽)
 
 贈_2 = ElementSpec('贈', 2).by_elements(貝_1, 曾)
 # 囎
@@ -17053,7 +16570,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 釋 = ElementSpec('釋').by_elements(釆, 罒_4, 幸)
 
-鎖 = ElementSpec('鎖').by_elements(金, x2e8c, 貝_1)
+鎖 = ElementSpec('鎖').by_elements(金, 小_2, 貝_1)
 
 鎭 = ElementSpec('鎭').by_elements(金, 眞_2)
 
@@ -17081,7 +16598,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 钁 = ElementSpec('钁').by_elements(金, 矍)
 
-闃 = ElementSpec('闃').by_elements(門, 目_2, 犬_2)
+闃 = ElementSpec('闃').by_elements(門, 目_2, 犬)
 
 闔 = ElementSpec('闔').by_elements(門, 盍)
 
@@ -17096,9 +16613,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 靦 = ElementSpec('靦').by_elements(面, 見)
 
-韈 = ElementSpec('韈').by_elements(革_2, 蔑)
+韈 = ElementSpec('韈').by_elements(革, 蔑)
 
-韻 = ElementSpec('韻').by_elements(音_1, 員)
+韻 = ElementSpec('韻').by_elements(音, 員)
 
 頁_1 = ElementSpec('頁', 1).by_elements(刀, 貝_1)
 # 頼 (癩 籟 藾 嬾 獺 懶)
@@ -17129,7 +16646,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 頂 = ElementSpec('頂').by_elements(丁, 頁_2)
 
-頃 = ElementSpec('頃').by_elements(匕_3, 頁_2)
+頃 = ElementSpec('頃').by_elements(匕, 頁_2)
 # 穎 傾 潁 頴
 
 傾 = ElementSpec('傾').by_elements(亻, 頃)
@@ -17144,7 +16661,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (3, 4, 5, 6, 7): 禾,
 })
 
-項 = ElementSpec('項').by_elements(工_4, 頁_2)
+項 = ElementSpec('項').by_elements(工, 頁_2)
 
 順 = ElementSpec('順').by_elements(川, 頁_2)
 
@@ -17158,7 +16675,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 預 = ElementSpec('預').by_elements(予, 頁_2)
 # 蕷
 
-蕷 = ElementSpec('蕷').by_elements(艹_4, 預)
+蕷 = ElementSpec('蕷').by_elements(艹, 預)
 
 頑 = ElementSpec('頑').by_elements(元, 頁_2)
 
@@ -17196,7 +16713,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 頭 = ElementSpec('頭').by_elements(豆, 頁_2)
 
-頰 = ElementSpec('頰').by_elements(夾_3, 頁_2)
+頰 = ElementSpec('頰').by_elements(夾_1, 頁_2)
 
 頴 = ElementSpec('頴').by_strokes_to_elements({
     (1, 2, 8, 9, 10, 11, 12, 13, 14, 15, 16): 頃,
@@ -17205,7 +16722,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 頷 = ElementSpec('頷').by_elements(含, 頁_2)
 
-頸 = ElementSpec('頸').by_elements(一, 巛, 工_4, 頁_2)
+頸 = ElementSpec('頸').by_elements(一, 巛, 工, 頁_2)
 
 頻_1 = ElementSpec('頻', 1).by_elements(歩_1, 頁_2)
 # 顰 蘋 瀕
@@ -17214,17 +16731,17 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 瀕 = ElementSpec('瀕').by_elements(氵, 頻_1)
 
-蘋 = ElementSpec('蘋').by_elements(艹_4, 頻_1)
+蘋 = ElementSpec('蘋').by_elements(艹, 頻_1)
 
-頼_1 = ElementSpec('頼', 1).by_elements(束_1, 頁_1)
+頼_1 = ElementSpec('頼', 1).by_elements(束, 頁_1)
 # 籟 獺 嬾 癩 懶 藾
 
-頼_2 = ElementSpec('頼', 2).by_elements(束_1, 頁_2)
+頼_2 = ElementSpec('頼', 2).by_elements(束, 頁_2)
 # 瀬
 
 嬾 = ElementSpec('嬾').by_elements(女, 頼_1)
 
-懶 = ElementSpec('懶').by_elements(忄, 頼_1)
+懶 = ElementSpec('懶').by_elements(心_1, 頼_1)
 
 瀬 = ElementSpec('瀬').by_elements(氵, 頼_2)
 
@@ -17234,11 +16751,11 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 籟 = ElementSpec('籟').by_elements(竹, 頼_1)
 
-藾 = ElementSpec('藾').by_elements(艹_4, 頼_1)
+藾 = ElementSpec('藾').by_elements(艹, 頼_1)
 
 頽 = ElementSpec('頽').by_elements(禿, 頁_2)
 
-顆 = ElementSpec('顆').by_elements(果_3, 頁_2)
+顆 = ElementSpec('顆').by_elements(果, 頁_2)
 
 顋 = ElementSpec('顋').by_elements(思, 頁_2)
 
@@ -17252,7 +16769,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 顔 = ElementSpec('顔').by_elements(彦, 頁_3)
 
-顕 = ElementSpec('顕').by_elements(日_9, 5, 頁_2)
+顕 = ElementSpec('顕').by_elements(日, 5, 頁_2)
 
 願 = ElementSpec('願').by_elements(原, 頁_2)
 
@@ -17276,15 +16793,15 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 顫 = ElementSpec('顫').by_elements(亶, 頁_2)
 
-顯 = ElementSpec('顯').by_elements(日_9, 幺, 幺, 灬, 頁_2)
+顯 = ElementSpec('顯').by_elements(日, 幺, 幺, 灬, 頁_2)
 
-顰 = ElementSpec('顰').by_elements(頻_1, 卑_2)
+顰 = ElementSpec('顰').by_elements(頻_1, 卑_1)
 
 顱 = ElementSpec('顱').by_elements(盧, 頁_2)
 
 顳 = ElementSpec('顳').by_elements(聶, 頁_2)
 
-顴 = ElementSpec('顴').by_elements(艹_4, 口, 口, 隹, 頁_2)
+顴 = ElementSpec('顴').by_elements(艹, 口, 口, 隹, 頁_2)
 
 颶 = ElementSpec('颶').by_elements(風, 具)
 
@@ -17321,9 +16838,9 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鬢 = ElementSpec('鬢').by_elements(髟, 賓_1)
 
-魍 = ElementSpec('魍').by_elements(鬼_2, 罔)
+魍 = ElementSpec('魍').by_elements(鬼, 罔)
 
-鰛 = ElementSpec('鰛').by_elements(魚, 日_9, 皿_2)
+鰛 = ElementSpec('鰛').by_elements(魚, 日, 皿_2)
 
 鰥 = ElementSpec('鰥').by_elements(魚, 罒_4, 5)
 
@@ -17349,10 +16866,10 @@ xff01 = ElementSpec('！').by_stroke_count(2)
 
 鼎 = ElementSpec('鼎').by_elements(目_2, 8)
 
-鼻_1 = ElementSpec('鼻', 1).by_elements(自, 田_2, 廾_3)
+鼻_1 = ElementSpec('鼻', 1).by_elements(自, 田, 廾_3)
 # 嬶 嚊
 
-鼻_2 = ElementSpec('鼻', 2).by_elements(自, 田_2, 廾_10)
+鼻_2 = ElementSpec('鼻', 2).by_elements(自, 田, 廾_10)
 # 鼾
 
 嚊 = ElementSpec('嚊').by_elements(口, 鼻_1)
@@ -17366,7 +16883,7 @@ xff01 = ElementSpec('！').by_stroke_count(2)
     (14, 15, 16, 17, 18, 19, 20): 貝_1,
 })
 
-領 = ElementSpec('領').by_elements(令, 頁_2)
+領 = ElementSpec('領').by_elements(令_2, 頁_2)
 # 嶺
 
 嶺 = ElementSpec('嶺').by_elements(山, 領)
